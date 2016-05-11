@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:signavio="http://www.signavio.com" id="sid-dd9d0ca4-6587-45ff-9757-23c0afe6a57d" targetNamespace="http://www.signavio.com" expressionLanguage="http://www.w3.org/TR/XPath" exporter="Signavio Process Editor, http://www.signavio.com" exporterVersion="9.8.1" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:signavio="http://www.signavio.com" id="sid-dd9d0ca4-6587-45ff-9757-23c0afe6a57d" targetNamespace="http://www.signavio.com" expressionLanguage="http://www.w3.org/TR/XPath" exporter="Signavio Process Editor, http://www.signavio.com" exporterVersion="9.8.1" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
   <message id="sid-960C1264-D388-4E58-8F1D-97CA4E220758" name="contract (including a list&#10;with optionally selectable&#10;benefits)" />
   <message id="sid-6933ADC7-853F-4F37-B37E-000F0F7E3976" name="signed contract (including&#10;information about chosen&#10;additional benefits)" />
   <message id="sid-668212AF-50BF-4A25-A5F6-48FC3F6BC129" name="customer data and&#10;contract conditions" />
@@ -43,7 +43,7 @@
         </extensionElements>
         <flowNodeRef>sid-DED54C9E-A9E3-4F7E-9B4D-67CA80108CEA</flowNodeRef>
         <flowNodeRef>sid-90138484-CDD6-4FB7-AFED-64BA516F37EE</flowNodeRef>
-        <flowNodeRef>ServiceTask_0lz9g1w</flowNodeRef>
+        <flowNodeRef>CheckExistingCustomerId</flowNodeRef>
         <flowNodeRef>sid-CEA70218-9AAF-4A9D-B69C-C0BC2E729D64</flowNodeRef>
         <flowNodeRef>ExclusiveGateway_1y770eg</flowNodeRef>
         <flowNodeRef>ServiceTask_1papq4v</flowNodeRef>
@@ -94,8 +94,8 @@
       <incoming>sid-9BB8CE96-6965-4B5C-87FD-8AC75017EB78</incoming>
       <outgoing>sid-DC1F6D3E-22BF-45E3-B494-EA95E7FAAF0D</outgoing>
     </serviceTask>
-    <sequenceFlow id="sid-81E55155-D2E5-4AAF-8AFE-C183AD856622" name="" sourceRef="sid-DED54C9E-A9E3-4F7E-9B4D-67CA80108CEA" targetRef="ServiceTask_0lz9g1w" />
-    <sequenceFlow id="sid-3E9B8CF7-BD5C-4763-B93F-9A264E166D0B" name="" sourceRef="ServiceTask_0lz9g1w" targetRef="sid-D36D1ADB-10C9-47B6-AC3D-419CA3216F00" />
+    <sequenceFlow id="sid-81E55155-D2E5-4AAF-8AFE-C183AD856622" name="" sourceRef="sid-DED54C9E-A9E3-4F7E-9B4D-67CA80108CEA" targetRef="CheckExistingCustomerId" />
+    <sequenceFlow id="sid-3E9B8CF7-BD5C-4763-B93F-9A264E166D0B" name="" sourceRef="CheckExistingCustomerId" targetRef="sid-D36D1ADB-10C9-47B6-AC3D-419CA3216F00" />
     <sequenceFlow id="sid-9BB8CE96-6965-4B5C-87FD-8AC75017EB78" name="" sourceRef="sid-CE61613D-38D0-42B1-A5A4-4DE8FD694371" targetRef="sid-90138484-CDD6-4FB7-AFED-64BA516F37EE" />
     <sequenceFlow id="sid-DC1F6D3E-22BF-45E3-B494-EA95E7FAAF0D" name="" sourceRef="sid-90138484-CDD6-4FB7-AFED-64BA516F37EE" targetRef="sid-CEA70218-9AAF-4A9D-B69C-C0BC2E729D64" />
     <sequenceFlow id="sid-96837459-F426-4E6B-BC16-F7E2BC3380B4" name="no" sourceRef="sid-CEA70218-9AAF-4A9D-B69C-C0BC2E729D64" targetRef="ExclusiveGateway_1y770eg" />
@@ -107,7 +107,7 @@
     <sequenceFlow id="sid-32A6609C-BDF5-40C7-91A9-FA02C5DA9221" name="" sourceRef="sid-F94CE1E0-E540-4F71-AD2F-735CBCD70D62" targetRef="sid-21125104-1F97-4854-B453-F8648D290265" />
     <sequenceFlow id="sid-5EC701AC-A2E8-4630-8677-3F017D42B3B8" name="" sourceRef="sid-44EE2639-FFFD-484D-A29F-05CFA34CC690" targetRef="sid-7F540CB7-5327-42BD-AB76-C10A0CB4429B" />
     <sequenceFlow id="sid-757DD72E-FAFF-4BA4-A8D2-F38F9254E4D9" name="" sourceRef="sid-7F540CB7-5327-42BD-AB76-C10A0CB4429B" targetRef="sid-99728641-7CB6-488A-821D-B44C558DAE6C" />
-    <serviceTask id="ServiceTask_0lz9g1w" name="check for existing customer ID">
+    <serviceTask id="CheckExistingCustomerId" name="check for existing customer ID" camunda:expression="${checkExistingCustomerIdBL.performCheck(execution)}">
       <incoming>sid-81E55155-D2E5-4AAF-8AFE-C183AD856622</incoming>
       <outgoing>sid-3E9B8CF7-BD5C-4763-B93F-9A264E166D0B</outgoing>
     </serviceTask>
@@ -310,7 +310,7 @@
       </extensionElements>
       <incoming>sid-757DD72E-FAFF-4BA4-A8D2-F38F9254E4D9</incoming>
     </endEvent>
-    <association id="sid-4EAE5021-8C60-48E6-A888-94E4C6D6C316" associationDirection="None" sourceRef="ServiceTask_0lz9g1w" targetRef="sid-AC2A4200-4A72-41A7-91C7-5F8F6FE176AE" />
+    <association id="sid-4EAE5021-8C60-48E6-A888-94E4C6D6C316" associationDirection="None" sourceRef="CheckExistingCustomerId" targetRef="sid-AC2A4200-4A72-41A7-91C7-5F8F6FE176AE" />
     <association id="sid-C14042FB-31DB-4F79-BA21-69FCFC487A33" associationDirection="None" sourceRef="sid-E3A673B8-D78A-4BC0-AC00-5E587E9A37B9" targetRef="sid-90138484-CDD6-4FB7-AFED-64BA516F37EE" />
     <association id="sid-EA25BBA4-C244-4465-8A71-7CFEE7C9B003" associationDirection="None" sourceRef="sid-163BD710-341B-4330-A537-6A8E35C48F70" targetRef="sid-21125104-1F97-4854-B453-F8648D290265" />
     <association id="sid-516BE9C1-4687-4222-A8DF-AB8B38F424E9" associationDirection="None" sourceRef="sid-703CF078-7E17-44AE-94FB-78FDC035ED9E" targetRef="sid-09F71DFF-8C12-43E9-8A55-0C971FA8BCD4" />
@@ -695,9 +695,7 @@ System]]></text>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-38123189-E4FD-4728-920D-B9DFD2FD2C65_gui" bpmnElement="sid-38123189-E4FD-4728-920D-B9DFD2FD2C65">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1915" y="345" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1914.5499766758685" y="437" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="2060" y="437" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="2060" y="345" />
         <omgdi:waypoint xsi:type="omgdc:Point" x="2060" y="516" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-0A7D05F1-52E0-406C-813F-0CF97FC34849_gui" bpmnElement="sid-0A7D05F1-52E0-406C-813F-0CF97FC34849">
@@ -786,7 +784,7 @@ System]]></text>
       <bpmndi:BPMNShape id="UserTask_1lkisg5_di" bpmnElement="UserTask_1lkisg5">
         <omgdc:Bounds x="603" y="943" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ServiceTask_0lz9g1w_di" bpmnElement="ServiceTask_0lz9g1w">
+      <bpmndi:BPMNShape id="ServiceTask_0lz9g1w_di" bpmnElement="CheckExistingCustomerId">
         <omgdc:Bounds x="371" y="540" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_0tievdk_di" bpmnElement="UserTask_0tievdk">
