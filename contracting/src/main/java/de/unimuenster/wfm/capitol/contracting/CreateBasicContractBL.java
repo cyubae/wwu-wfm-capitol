@@ -9,13 +9,13 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 
 @Stateless
 @Named
-public class CheckExistingCustomerIdBL {
+public class CreateBasicContractBL {
 
 	  // Inject the entity manager
 	  @PersistenceContext
 	  private EntityManager entityManager;
 	  
-	  public void performCheck(DelegateExecution delegateExecution) {
+	  public void performBusinessLogic(DelegateExecution delegateExecution) {
 		  
 	  }
 
