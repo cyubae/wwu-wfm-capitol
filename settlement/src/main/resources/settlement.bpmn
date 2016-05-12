@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:signavio="http://www.signavio.com" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" expressionLanguage="http://www.w3.org/TR/XPath" exporter="Signavio Process Editor, http://www.signavio.com" exporterVersion="9.8.1" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:signavio="http://www.signavio.com" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" expressionLanguage="http://www.w3.org/TR/XPath" exporter="Signavio Process Editor, http://www.signavio.com" exporterVersion="9.8.1" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
   <message id="sid-6309FA27-8337-4480-83B5-81ECF9209099" name="claim" />
   <message id="sid-1E8BCB82-0D4B-4A3E-B84A-108990D4E5C6" name="information&#10;about the&#10;decision" />
   <message id="sid-D5E75C57-5849-4684-9D12-2165283D2706" name="money" />
@@ -47,10 +47,10 @@
         <flowNodeRef>ExclusiveGateway_1ydgcee</flowNodeRef>
         <flowNodeRef>ExclusiveGateway_0bfo49s</flowNodeRef>
         <flowNodeRef>ExclusiveGateway_05ri3wu</flowNodeRef>
-        <flowNodeRef>ServiceTask_08edlms</flowNodeRef>
+        <flowNodeRef>CheckClaimCoverage</flowNodeRef>
         <flowNodeRef>ParallelGateway_1kd1c10</flowNodeRef>
         <flowNodeRef>SendTask_0tiet84</flowNodeRef>
-        <flowNodeRef>Task_11sh3jt</flowNodeRef>
+        <flowNodeRef>CreateRecord</flowNodeRef>
         <flowNodeRef>ParallelGateway_0bm4i1l</flowNodeRef>
         <flowNodeRef>ExclusiveGateway_1qlf8kn</flowNodeRef>
       </lane>
@@ -143,11 +143,11 @@
     <sequenceFlow id="SequenceFlow_1iuc26z" name="" isImmediate="true" sourceRef="SendTask_11hfxxe" targetRef="ExclusiveGateway_1qlf8kn" />
     <sequenceFlow id="SequenceFlow_0z9thke" name="" isImmediate="true" sourceRef="UserTask_0s6e88g" targetRef="ExclusiveGateway_0jruqba" />
     <sequenceFlow id="SequenceFlow_0et410l" name="yes" isImmediate="true" sourceRef="ExclusiveGateway_0jruqba" targetRef="ExclusiveGateway_1ydgcee" />
-    <sequenceFlow id="SequenceFlow_1s70td0" name="" isImmediate="true" sourceRef="ExclusiveGateway_1ydgcee" targetRef="ServiceTask_08edlms" />
+    <sequenceFlow id="SequenceFlow_1s70td0" name="" isImmediate="true" sourceRef="ExclusiveGateway_1ydgcee" targetRef="CheckClaimCoverage" />
     <sequenceFlow id="SequenceFlow_1bev8vu" name="" isImmediate="true" sourceRef="UserTask_0ivyjmb" targetRef="ExclusiveGateway_1ydgcee" />
     <sequenceFlow id="SequenceFlow_0w1vpnd" name="" isImmediate="true" sourceRef="ExclusiveGateway_0bfo49s" targetRef="ParallelGateway_1kd1c10" />
     <sequenceFlow id="SequenceFlow_07kggg3" name="" isImmediate="true" sourceRef="UserTask_0g5kavc" targetRef="ExclusiveGateway_0bfo49s" />
-    <sequenceFlow id="SequenceFlow_1eo7a6x" name="" isImmediate="true" sourceRef="ServiceTask_08edlms" targetRef="ExclusiveGateway_05ri3wu" />
+    <sequenceFlow id="SequenceFlow_1eo7a6x" name="" isImmediate="true" sourceRef="CheckClaimCoverage" targetRef="ExclusiveGateway_05ri3wu" />
     <sequenceFlow id="SequenceFlow_1rs9g0w" name="no" isImmediate="true" sourceRef="ExclusiveGateway_05ri3wu" targetRef="ExclusiveGateway_0bfo49s" />
     <sequenceFlow id="SequenceFlow_06hmwwp" name="yes" isImmediate="true" sourceRef="ExclusiveGateway_05ri3wu" targetRef="UserTask_0g5kavc">
       <extensionElements>
@@ -172,12 +172,12 @@
       <outgoing>SequenceFlow_0et410l</outgoing>
       <outgoing>SequenceFlow_1120f6i</outgoing>
     </exclusiveGateway>
-    <serviceTask id="ServiceTask_08edlms" name="check claim coverage">
+    <serviceTask id="CheckClaimCoverage" name="check claim coverage" camunda:expression="${CheckClaimCoverageBL.performBusinessLogic(execution)}">
       <incoming>SequenceFlow_1s70td0</incoming>
       <outgoing>SequenceFlow_1eo7a6x</outgoing>
     </serviceTask>
     <sequenceFlow id="SequenceFlow_16v2ykd" sourceRef="ParallelGateway_1kd1c10" targetRef="SendTask_0tiet84" />
-    <sequenceFlow id="SequenceFlow_1kc1vak" sourceRef="ParallelGateway_1kd1c10" targetRef="Task_11sh3jt" />
+    <sequenceFlow id="SequenceFlow_1kc1vak" sourceRef="ParallelGateway_1kd1c10" targetRef="CreateRecord" />
     <parallelGateway id="ParallelGateway_1kd1c10">
       <incoming>SequenceFlow_0w1vpnd</incoming>
       <outgoing>SequenceFlow_16v2ykd</outgoing>
@@ -193,7 +193,7 @@
       <incoming>SequenceFlow_16v2ykd</incoming>
       <outgoing>SequenceFlow_0idgacu</outgoing>
     </sendTask>
-    <serviceTask id="Task_11sh3jt" name="create record" implementation="##WebService">
+    <serviceTask id="CreateRecord" name="create record" implementation="##WebService" camunda:expression="${CreateRecordBL.performBusinessLogic(execution)}">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -208,7 +208,7 @@
       <outgoing>SequenceFlow_16izoy6</outgoing>
     </parallelGateway>
     <sequenceFlow id="SequenceFlow_0idgacu" sourceRef="SendTask_0tiet84" targetRef="ParallelGateway_0bm4i1l" />
-    <sequenceFlow id="SequenceFlow_0f4ew2e" sourceRef="Task_11sh3jt" targetRef="ParallelGateway_0bm4i1l" />
+    <sequenceFlow id="SequenceFlow_0f4ew2e" sourceRef="CreateRecord" targetRef="ParallelGateway_0bm4i1l" />
     <exclusiveGateway id="ExclusiveGateway_1qlf8kn">
       <incoming>SequenceFlow_1iuc26z</incoming>
       <incoming>SequenceFlow_161cvop</incoming>
@@ -216,8 +216,8 @@
     </exclusiveGateway>
     <sequenceFlow id="SequenceFlow_0f08as7" sourceRef="ExclusiveGateway_1qlf8kn" targetRef="EndEvent_0kajk9l" />
     <sequenceFlow id="SequenceFlow_161cvop" name="no" sourceRef="ExclusiveGateway_0vkuswt" targetRef="ExclusiveGateway_1qlf8kn" />
-    <association id="sid-F8BFA0DE-FDFE-4D97-AECC-35A9D214832A" associationDirection="None" sourceRef="sid-7E61AE26-0FE2-435A-9E66-35034BF27B48" targetRef="Task_11sh3jt" />
-    <association id="sid-43EC5884-634E-4FD2-AFB3-3DE2861537F9" associationDirection="None" sourceRef="sid-2819BCFF-76FD-477D-BF69-2AD1A2F8C1B4" targetRef="ServiceTask_08edlms" />
+    <association id="sid-F8BFA0DE-FDFE-4D97-AECC-35A9D214832A" associationDirection="None" sourceRef="sid-7E61AE26-0FE2-435A-9E66-35034BF27B48" targetRef="CreateRecord" />
+    <association id="sid-43EC5884-634E-4FD2-AFB3-3DE2861537F9" associationDirection="None" sourceRef="sid-2819BCFF-76FD-477D-BF69-2AD1A2F8C1B4" targetRef="CheckClaimCoverage" />
     <association id="sid-C1B7D65A-5F69-4F72-8A60-DBA8F0DC3191" associationDirection="None" sourceRef="sid-781E5693-6A5C-4F93-B3CB-B6AF20177D12" targetRef="UserTask_0ivyjmb" />
     <textAnnotation id="sid-2819BCFF-76FD-477D-BF69-2AD1A2F8C1B4">
       <extensionElements>
@@ -309,7 +309,7 @@
       <bpmndi:BPMNShape id="ExclusiveGateway_1ydgcee_gui" bpmnElement="ExclusiveGateway_1ydgcee" isMarkerVisible="true">
         <omgdc:Bounds x="668.863" y="297" width="40" height="40" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_11sh3jt_gui" bpmnElement="Task_11sh3jt">
+      <bpmndi:BPMNShape id="Task_11sh3jt_gui" bpmnElement="CreateRecord">
         <omgdc:Bounds x="1356" y="381" width="100" height="80" />
         <bpmndi:BPMNLabel labelStyle="sid-0edb1d1c-d173-4e38-bf51-9ae55a4661e2">
           <omgdc:Bounds x="1430.263346081153" y="309" width="74.05714416503906" height="12" />
@@ -454,7 +454,7 @@
       <bpmndi:BPMNShape id="UserTask_0s6e88g_di" bpmnElement="UserTask_0s6e88g">
         <omgdc:Bounds x="252" y="487" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ServiceTask_08edlms_di" bpmnElement="ServiceTask_08edlms">
+      <bpmndi:BPMNShape id="ServiceTask_08edlms_di" bpmnElement="CheckClaimCoverage">
         <omgdc:Bounds x="767" y="277" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_16v2ykd_di" bpmnElement="SequenceFlow_16v2ykd">
