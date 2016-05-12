@@ -10,7 +10,8 @@
 Damit ist das Rest-Interface deployed. Es nimmt POST-Anfragen unter folgenden adressen entgegen:
 
 localhost:8080/partner-interface/contracting
-localhost:8080/partner-interface/contracting
+
+localhost:8080/partner-interface/casehandling
 
 Ausprobieren kann man die Funktionsweise einfach per Firefox-Addon "HttpRequester"
 Sende an eine der beiden obrigen Adressen einen POST-Request vom content-type "application/json" mit folgendem inhalt:
@@ -31,11 +32,10 @@ Sende an eine der beiden obrigen Adressen einen POST-Request vom content-type "a
  @EJB(lookup="java:global/MessagingService/MessageServiceImpl!de.unimuenster.wfm.capitol.service.MessageService")
 	  private MessageService messageService;
 
-Damit eclipse und später Wildfly den MessageService erkennt, muss das Projekt des entsprechenden Prozesses konfiguriert werden:
+Damit eclipse den MessageService erkennt, muss das Projekt des entsprechenden Prozesses konfiguriert werden:
 
 1. Rechtsklick auf das Projekt -> Properties
 2. Java Build Path aufrufen
-3. Den Reiter "Libraries" aufrufen -> Add -> MessagingService-0.0.1.SNAPSHOT.jar auswählen
 4. Den Reiter "Projects" ausrufen -> Add -> MessagingService auswählen
 
 Der MessagingService muss zu jedem Prozess manuell hinzugefügt werden
