@@ -36,6 +36,6 @@ Damit eclipse den MessageService erkennt, muss das Projekt des entsprechenden Pr
 
 1. Rechtsklick auf das Projekt -> Properties
 2. Java Build Path aufrufen
-4. Den Reiter "Projects" ausrufen -> Add -> MessagingService auswählen
+3. Den Reiter "Projects" ausrufen -> Add -> MessagingService auswählen
 
-Der MessagingService muss zu jedem Prozess manuell hinzugefügt werden
+Damit die Klassen des Services für die Prozesse sichtbar sind, muss der Ordner "de" in camunda/server/wildfly-8.2.1.Final/modules eingefügt werden
