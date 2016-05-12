@@ -34,7 +34,7 @@
       </extensionElements>
     </messageFlow>
   </collaboration>
-  <process id="sid-DCD927BD-6ED5-4D97-9C1B-BC8818BAC145" name="Capitol" processType="None" isClosed="false" isExecutable="false">
+  <process id="sid-DCD927BD-6ED5-4D97-9C1B-BC8818BAC145" name="Capitol" processType="None" isClosed="false" isExecutable="true">
     <extensionElements />
     <laneSet id="sid-f22ff0c8-c89d-4c46-a247-8ab956220b89">
       <lane id="sid-48972311-4A0E-403E-B2D6-EA2C43D9E6B4" name="WfMS">

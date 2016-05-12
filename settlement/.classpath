@@ -28,5 +28,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/partner-interface"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MessagingService"/>
+	<classpathentry kind="lib" path="/MessagingService/target/MessagingService-0.0.1-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
