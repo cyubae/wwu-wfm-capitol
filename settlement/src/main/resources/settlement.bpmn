@@ -33,7 +33,7 @@
       </extensionElements>
     </messageFlow>
   </collaboration>
-  <process id="Process_1" name="Capitol" processType="None" isClosed="false" isExecutable="false">
+  <process id="Process_1" name="Capitol" processType="None" isClosed="false" isExecutable="true">
     <extensionElements />
     <laneSet id="sid-ff4a9fc2-98a3-4fc1-9145-dd25533357d1">
       <lane id="Lane_1431et6" name="WfMS">
@@ -86,9 +86,9 @@
         <signavio:signavioMetaData metaKey="viaitsystem" metaValue="" />
       </extensionElements>
       <outgoing>SequenceFlow_025bxha</outgoing>
-      <messageEventDefinition id="sid-2e65a6ce-f67c-4fe7-9ac6-737904e96a60" />
+      <messageEventDefinition id="sid-2e65a6ce-f67c-4fe7-9ac6-737904e96a60" messageRef="sid-6309FA27-8337-4480-83B5-81ECF9209099" />
     </startEvent>
-    <sendTask id="SendTask_11hfxxe" name="send money to BVIS bank account" implementation="##unspecified">
+    <sendTask id="SendTask_11hfxxe" name="send money to BVIS bank account" implementation="##unspecified" camunda:expression="${true}" camunda:resultVariable="result2">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -142,24 +142,32 @@
     <sequenceFlow id="SequenceFlow_025bxha" name="" isImmediate="true" sourceRef="StartEvent_0o57kxj" targetRef="UserTask_0s6e88g" />
     <sequenceFlow id="SequenceFlow_1iuc26z" name="" isImmediate="true" sourceRef="SendTask_11hfxxe" targetRef="ExclusiveGateway_1qlf8kn" />
     <sequenceFlow id="SequenceFlow_0z9thke" name="" isImmediate="true" sourceRef="UserTask_0s6e88g" targetRef="ExclusiveGateway_0jruqba" />
-    <sequenceFlow id="SequenceFlow_0et410l" name="yes" isImmediate="true" sourceRef="ExclusiveGateway_0jruqba" targetRef="ExclusiveGateway_1ydgcee" />
+    <sequenceFlow id="SequenceFlow_0et410l" name="yes" isImmediate="true" sourceRef="ExclusiveGateway_0jruqba" targetRef="ExclusiveGateway_1ydgcee">
+      <conditionExpression xsi:type="tFormalExpression">${true}</conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="SequenceFlow_1s70td0" name="" isImmediate="true" sourceRef="ExclusiveGateway_1ydgcee" targetRef="CheckClaimCoverage" />
     <sequenceFlow id="SequenceFlow_1bev8vu" name="" isImmediate="true" sourceRef="UserTask_0ivyjmb" targetRef="ExclusiveGateway_1ydgcee" />
     <sequenceFlow id="SequenceFlow_0w1vpnd" name="" isImmediate="true" sourceRef="ExclusiveGateway_0bfo49s" targetRef="ParallelGateway_1kd1c10" />
     <sequenceFlow id="SequenceFlow_07kggg3" name="" isImmediate="true" sourceRef="UserTask_0g5kavc" targetRef="ExclusiveGateway_0bfo49s" />
     <sequenceFlow id="SequenceFlow_1eo7a6x" name="" isImmediate="true" sourceRef="CheckClaimCoverage" targetRef="ExclusiveGateway_05ri3wu" />
-    <sequenceFlow id="SequenceFlow_1rs9g0w" name="no" isImmediate="true" sourceRef="ExclusiveGateway_05ri3wu" targetRef="ExclusiveGateway_0bfo49s" />
+    <sequenceFlow id="SequenceFlow_1rs9g0w" name="no" isImmediate="true" sourceRef="ExclusiveGateway_05ri3wu" targetRef="ExclusiveGateway_0bfo49s">
+      <conditionExpression xsi:type="tFormalExpression">${true}</conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="SequenceFlow_06hmwwp" name="yes" isImmediate="true" sourceRef="ExclusiveGateway_05ri3wu" targetRef="UserTask_0g5kavc">
       <extensionElements>
         <signavio:signavioLabel align="right" distance="-6.99874" from="0" orientation="ur" ref="text_name" to="1" valign="top" x="947.7752242441129" y="353.99135675142276" />
       </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression">${false}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_1120f6i" name="no" isImmediate="true" sourceRef="ExclusiveGateway_0jruqba" targetRef="UserTask_0ivyjmb">
       <extensionElements>
         <signavio:signavioLabel align="right" distance="-8.720209" from="0" orientation="ur" ref="text_name" to="1" valign="top" x="460.720199016406" y="351.9867405193038" />
       </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression">${false}</conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="sid-BD25EF83-63EC-46BC-BF44-305E914161B1" name="yes" sourceRef="ExclusiveGateway_0vkuswt" targetRef="SendTask_11hfxxe" />
+    <sequenceFlow id="sid-BD25EF83-63EC-46BC-BF44-305E914161B1" name="yes" sourceRef="ExclusiveGateway_0vkuswt" targetRef="SendTask_11hfxxe">
+      <conditionExpression xsi:type="tFormalExpression">${false}</conditionExpression>
+    </sequenceFlow>
     <userTask id="UserTask_0s6e88g" name="check data for completeness and corectness">
       <incoming>SequenceFlow_025bxha</incoming>
       <outgoing>SequenceFlow_0z9thke</outgoing>
@@ -172,7 +180,7 @@
       <outgoing>SequenceFlow_0et410l</outgoing>
       <outgoing>SequenceFlow_1120f6i</outgoing>
     </exclusiveGateway>
-    <serviceTask id="CheckClaimCoverage" name="check claim coverage" camunda:expression="${CheckClaimCoverageBL.performBusinessLogic(execution)}">
+    <serviceTask id="CheckClaimCoverage" name="check claim coverage" camunda:class="${checkClaimCoverageBL.performBusinessLogic(execution)}">
       <incoming>SequenceFlow_1s70td0</incoming>
       <outgoing>SequenceFlow_1eo7a6x</outgoing>
     </serviceTask>
@@ -184,7 +192,7 @@
       <outgoing>SequenceFlow_1kc1vak</outgoing>
     </parallelGateway>
     <sequenceFlow id="SequenceFlow_16izoy6" sourceRef="ParallelGateway_0bm4i1l" targetRef="ExclusiveGateway_0vkuswt" />
-    <sendTask id="SendTask_0tiet84" name="inform BVIS about decison" implementation="##unspecified">
+    <sendTask id="SendTask_0tiet84" name="inform BVIS about decison" implementation="##unspecified" camunda:expression="${true}" camunda:resultVariable="result1">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -215,7 +223,9 @@
       <outgoing>SequenceFlow_0f08as7</outgoing>
     </exclusiveGateway>
     <sequenceFlow id="SequenceFlow_0f08as7" sourceRef="ExclusiveGateway_1qlf8kn" targetRef="EndEvent_0kajk9l" />
-    <sequenceFlow id="SequenceFlow_161cvop" name="no" sourceRef="ExclusiveGateway_0vkuswt" targetRef="ExclusiveGateway_1qlf8kn" />
+    <sequenceFlow id="SequenceFlow_161cvop" name="no" sourceRef="ExclusiveGateway_0vkuswt" targetRef="ExclusiveGateway_1qlf8kn">
+      <conditionExpression xsi:type="tFormalExpression">${true}</conditionExpression>
+    </sequenceFlow>
     <association id="sid-F8BFA0DE-FDFE-4D97-AECC-35A9D214832A" associationDirection="None" sourceRef="sid-7E61AE26-0FE2-435A-9E66-35034BF27B48" targetRef="CreateRecord" />
     <association id="sid-43EC5884-634E-4FD2-AFB3-3DE2861537F9" associationDirection="None" sourceRef="sid-2819BCFF-76FD-477D-BF69-2AD1A2F8C1B4" targetRef="CheckClaimCoverage" />
     <association id="sid-C1B7D65A-5F69-4F72-8A60-DBA8F0DC3191" associationDirection="None" sourceRef="sid-781E5693-6A5C-4F93-B3CB-B6AF20177D12" targetRef="UserTask_0ivyjmb" />

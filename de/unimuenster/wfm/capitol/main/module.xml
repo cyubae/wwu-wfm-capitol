@@ -1,0 +1,10 @@
+<module xmlns="urn:jboss:module:1.0" name="de.unimuenster.wfm.capitol">
+
+	<resources>	
+		<resource-root path="MessagingService.jar" />
+
+	</resources>
+
+
+
+</module>

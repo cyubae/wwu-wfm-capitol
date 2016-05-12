@@ -25,6 +25,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/MessagingService"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/partner-interface"/>
-	<classpathentry kind="lib" path="/MessagingService/target/MessagingService-0.0.1-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

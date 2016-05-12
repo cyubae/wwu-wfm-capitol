@@ -17,7 +17,7 @@ public class CaseHandling {
 	public static final String CALLBACK_CORRELATION_ID = "callbackCorrelationId";
 	public static final String PAYLOAD = "payload";
 	//TODO Make sure the casename is correct
-	public static final String MESSAGENAME = "CaseReceived";
+	public static final String MESSAGENAME = "claim";
 
 	@Inject
 	private RuntimeService runtimeService;
@@ -31,7 +31,7 @@ public class CaseHandling {
 		variables.put("invoiceCategory", liabilityCase.getDescription());
 		variables.put("approverGroups", ArrayList.class);
 
-		runtimeService.startProcessInstanceByKey("invoice", variables );
+		runtimeService.startProcessInstanceByMessage(MESSAGENAME, variables);
 
 	}
 }
