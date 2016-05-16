@@ -6,10 +6,8 @@ import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
@@ -24,7 +22,7 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public void sendContractProposal(ContractProposal proposal) {
 		//TODO Requires correct URL
-		sendJSON(proposal, "localhost:8080/proposal");
+		sendJSON(proposal, "http://localhost:8080/partner-interface/casehandling");
 	}
 
 	@Override

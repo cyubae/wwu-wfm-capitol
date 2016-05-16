@@ -1,7 +1,13 @@
 package de.unimuenster.wfm.capitol.dto;
 
-public class ContractProposal {
+import java.io.Serializable;
+
+public class ContractProposal implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6826615438362854220L;
 	String name;
 	String firm;
 	public String getName() {
