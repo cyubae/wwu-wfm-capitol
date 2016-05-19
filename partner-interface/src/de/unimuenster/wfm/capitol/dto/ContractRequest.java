@@ -3,6 +3,9 @@ package de.unimuenster.wfm.capitol.dto;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlAccessType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -12,8 +15,12 @@ import javax.xml.bind.annotation.XmlAccessType;
     "description",
     "sum"
 })
-public class ContractRequest {
-    protected int id;
+public class ContractRequest implements Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7075362722552603234L;
+	protected int id;
     @XmlElement(required = true)
     protected String name;
     @XmlElement(required = true)

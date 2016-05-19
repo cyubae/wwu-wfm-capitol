@@ -3,6 +3,9 @@ package de.unimuenster.wfm.capitol.dto;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
+
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlAccessType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -12,8 +15,12 @@ import javax.xml.bind.annotation.XmlAccessType;
     "description",
     "sum"
 })
-public class LiabilityCase {
-    protected int id;
+public class LiabilityCase implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1312193785526043742L;
+	protected int id;
     @XmlElement(required = true)
     protected String name;
     @XmlElement(required = true)

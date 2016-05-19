@@ -22,7 +22,7 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public void sendContractProposal(ContractProposal proposal) {
 		//TODO Requires correct URL
-		sendJSON(proposal, "http://localhost:8080/partner-interface/casehandling");
+		sendJSON(proposal, "http://CAMUNDA-BVIS.uni-muenster.de/contracting");
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class MessageServiceImpl implements MessageService{
 			while (in.readLine() != null) {
 				System.out.println(in.toString());
 			}
-			System.out.println("REST Service Invoked Successfully..");
+			System.out.println("REST Service Invoked Successfully");
 			in.close();
 		} catch (Exception e) {
 			System.out.println("Error while calling  REST Service");
