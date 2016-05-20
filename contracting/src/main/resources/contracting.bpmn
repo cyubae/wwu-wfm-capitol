@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:signavio="http://www.signavio.com" id="sid-dd9d0ca4-6587-45ff-9757-23c0afe6a57d" targetNamespace="http://www.signavio.com" expressionLanguage="http://www.w3.org/TR/XPath" exporter="Signavio Process Editor, http://www.signavio.com" exporterVersion="9.8.1" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
-  <message id="sid-960C1264-D388-4E58-8F1D-97CA4E220758" name="contract (including a list&#10;with optionally selectable&#10;benefits)" />
+  <message id="sid-960C1264-D388-4E58-8F1D-97CA4E220758" name="contractRequest" />
   <message id="sid-6933ADC7-853F-4F37-B37E-000F0F7E3976" name="signed contract (including&#10;information about chosen&#10;additional benefits)" />
   <message id="sid-668212AF-50BF-4A25-A5F6-48FC3F6BC129" name="customer data and&#10;contract conditions" />
   <collaboration id="sid-e8f144bf-2a85-4f37-a408-2231652224dd">
@@ -79,7 +79,7 @@
         <signavio:signavioMetaData metaKey="viaitsystem" metaValue="" />
       </extensionElements>
       <outgoing>sid-81E55155-D2E5-4AAF-8AFE-C183AD856622</outgoing>
-      <messageEventDefinition id="sid-9612c456-7bca-4ac0-aacc-8e6269b3a983" />
+      <messageEventDefinition id="sid-9612c456-7bca-4ac0-aacc-8e6269b3a983" messageRef="sid-960C1264-D388-4E58-8F1D-97CA4E220758" />
     </startEvent>
     <serviceTask id="CheckIfCustomerBlacklisted" name="check if customer is blacklisted" implementation="##WebService" camunda:expression="${checkIfCustomerBlacklistedBL.performBusinessLogic(execution)}">
       <extensionElements>
