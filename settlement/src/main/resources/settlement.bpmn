@@ -188,7 +188,9 @@
       <outgoing>SequenceFlow_1ymgav4</outgoing>
       <messageEventDefinition messageRef="Message_1yhro65" />
     </intermediateCatchEvent>
-    <sequenceFlow id="SequenceFlow_12arfxa" name="yes" sourceRef="ExclusiveGateway_0ex7jpu" targetRef="ExclusiveGateway_0vkuswt" />
+    <sequenceFlow id="SequenceFlow_12arfxa" name="yes" sourceRef="ExclusiveGateway_0ex7jpu" targetRef="ExclusiveGateway_0vkuswt">
+      <conditionExpression xsi:type="tFormalExpression">${true}</conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="sid-BD25EF83-63EC-46BC-BF44-305E914161B1" name="yes" sourceRef="ExclusiveGateway_0vkuswt" targetRef="SendTask_11hfxxe">
       <conditionExpression xsi:type="tFormalExpression">${false}</conditionExpression>
     </sequenceFlow>
@@ -236,7 +238,9 @@
       </dataInputAssociation>
     </manualTask>
     <dataStoreReference id="DataStoreReference_1ykcaib" name="claim database" />
-    <sequenceFlow id="SequenceFlow_1rcrs7g" sourceRef="ExclusiveGateway_0ex7jpu" targetRef="EndEvent_0kajk9l" />
+    <sequenceFlow id="SequenceFlow_1rcrs7g" sourceRef="ExclusiveGateway_0ex7jpu" targetRef="EndEvent_0kajk9l">
+      <conditionExpression xsi:type="tFormalExpression">${false}</conditionExpression>
+    </sequenceFlow>
     <exclusiveGateway id="ExclusiveGateway_0vkuswt" name="is claim&#10;covered?" gatewayDirection="Diverging">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
