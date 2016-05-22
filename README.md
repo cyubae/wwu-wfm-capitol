@@ -13,15 +13,14 @@ localhost:8080/partner-interface/contracting
 
 localhost:8080/partner-interface/casehandling
 
-Ausprobieren kann man die Funktionsweise einfach per Firefox-Addon "HttpRequester"
-Sende an eine der beiden obrigen Adressen einen POST-Request vom content-type "application/json" mit folgendem inhalt:
+localhost:8080/partner-interface/orderfeedback
 
-{
-    "id":"1",
-    "name":"Max Mustermann",
-    "description":"Max will ein Auto",
-    "sum":500
-}
+localhost:8080/partner-interface/claimfeedback
+
+Ausprobieren kann man die Funktionsweise einfach per Firefox-Addon "HttpRequester"
+Sende an die orderfeedback-URL einen POST-Request vom content-type "application/json" mit folgendem Inhalt:
+
+{ "process_id":"1", "order_id":"344242532", "request_date":"2016-05-16", "contract_status":1 }
 
 # MessageService ermöglicht Prozessen das senden von Nachrichten
 

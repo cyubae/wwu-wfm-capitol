@@ -20,15 +20,15 @@ public class LiabilityCase implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1312193785526043742L;
-	protected int id;
+	protected String id;
     @XmlElement(required = true)
     protected String name;
     @XmlElement(required = true)
     protected String description;
-    public int getId() {
+    public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {

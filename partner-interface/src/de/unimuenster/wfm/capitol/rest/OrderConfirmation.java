@@ -1,6 +1,5 @@
 package de.unimuenster.wfm.capitol.rest;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,22 +9,21 @@ import javax.ws.rs.*;
 import org.camunda.bpm.engine.MismatchingMessageCorrelationException;
 import org.camunda.bpm.engine.RuntimeService;
 
-import de.unimuenster.wfm.capitol.dto.LiabilityCase;
+import de.unimuenster.wfm.capitol.dto.OrderFeedback;
 
-@Path( "casehandling" )
-public class CaseHandling {
-	public static final String MESSAGENAME = "claim";
-
+@Path( "orderfeedback" )
+public class OrderConfirmation {
+	public static final String MESSAGENAME = "order_feedback";
 	@Inject
 	private RuntimeService runtimeService;
 	@POST
 	@Consumes("application/json")
-	public String receiveCase(LiabilityCase liabilityCase){
+	public String receiveCase(OrderFeedback orderFeedback){
 		Map<String, Object> variables = new HashMap<String, Object>();
-		variables.put("case", liabilityCase);
-		try {
-			runtimeService.correlateMessage(MESSAGENAME, liabilityCase.getId(), variables);
-		} catch (MismatchingMessageCorrelationException e) {
+		variables.put("order_feedback", orderFeedback);
+		try{
+			runtimeService.correlateMessage(MESSAGENAME, orderFeedback.getOrder_id(), variables);
+		} catch(MismatchingMessageCorrelationException e){
 			return "Failure";
 		}
 		return "Success";
