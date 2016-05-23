@@ -219,7 +219,7 @@
       <incoming>sid-5187EE0F-69D1-47F0-9564-D50C069C3197</incoming>
       <outgoing>sid-2F99DF56-CB6F-43C4-98F4-E0B94F03BE82</outgoing>
     </userTask>
-    <sendTask id="sid-09F71DFF-8C12-43E9-8A55-0C971FA8BCD4" name="send contract proposal" implementation="##WebService">
+    <sendTask id="sid-09F71DFF-8C12-43E9-8A55-0C971FA8BCD4" name="send contract proposal" implementation="##WebService" camunda:expression="${sendContractProposalBL.performBusinessLogic(execution)}">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />

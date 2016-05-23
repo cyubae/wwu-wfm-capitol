@@ -13,7 +13,7 @@ import de.unimuenster.wfm.capitol.service.MessageService;
 
 @Stateless
 @Named
-public class CheckExistingCustomerIdBL {
+public class SendContractProposalBL {
 
 	  // Inject the entity manager
 	  @PersistenceContext
@@ -23,7 +23,7 @@ public class CheckExistingCustomerIdBL {
 	  private MessageService messageService;
 	  
 	  public void performBusinessLogic(DelegateExecution delegateExecution) {
-		  //messageService.sendContractProposal(null);
+		  messageService.sendContractProposal(null);
 	  }
 
 
