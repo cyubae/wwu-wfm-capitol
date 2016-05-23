@@ -15,7 +15,7 @@ import de.unimuenster.wfm.capitol.dto.LiabilityCase;
 
 @Path( "contracting" )
 public class Contracting {
-	public static final String MESSAGENAME = "contract_request";
+	public static final String MESSAGENAME = "contractRequest";
 	@Inject
 	private RuntimeService runtimeService;
 	@POST
