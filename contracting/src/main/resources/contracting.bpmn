@@ -247,7 +247,9 @@
     <sequenceFlow id="sid-8B9DFF88-4986-4502-A695-66DD25E2A02C" name="" sourceRef="sid-09F71DFF-8C12-43E9-8A55-0C971FA8BCD4" targetRef="sid-E416B265-A8D8-4894-BA47-CF68322258A8" />
     <boundaryEvent id="sid-90CC009F-F71C-47D9-A7FF-C2D2B971E9E5" name="2 weeks" attachedToRef="sid-E416B265-A8D8-4894-BA47-CF68322258A8">
       <outgoing>sid-16C3DB62-288D-474B-8436-B1CD54F79F8D</outgoing>
-      <timerEventDefinition id="sid-3aa47df0-425d-46b3-8bed-6471245a8f51" />
+      <timerEventDefinition id="sid-3aa47df0-425d-46b3-8bed-6471245a8f51">
+        <timeDuration xsi:type="tFormalExpression">P14D</timeDuration>
+      </timerEventDefinition>
     </boundaryEvent>
     <endEvent id="sid-99728641-7CB6-488A-821D-B44C558DAE6C" name="contract settled">
       <extensionElements>

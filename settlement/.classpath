@@ -22,8 +22,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/partner-interface"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/MessagingService"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/WildFly 8.x Runtime">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.jsf;jst.web"/>
@@ -35,5 +33,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/MessagingService/target/MessagingService-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MessagingService"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/partner-interface"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
