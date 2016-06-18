@@ -136,10 +136,10 @@
       <outgoing>sid-D61DA17E-BBED-4F1A-A43C-563BE79F788D</outgoing>
     </userTask>
     <sequenceFlow id="sid-C61EBAF4-526D-40DF-A555-C99E75B85689" name="no" sourceRef="sid-D36D1ADB-10C9-47B6-AC3D-419CA3216F00" targetRef="UserTask_0tievdk">
-      <conditionExpression xsi:type="tFormalExpression">${false}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${checkExistingCustomerIdBL.customerExists(execution)}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-338B8A5D-B84F-40E1-AD64-38C4B6F8ADB9" name="yes" sourceRef="sid-D36D1ADB-10C9-47B6-AC3D-419CA3216F00" targetRef="UserTask_1lkisg5">
-      <conditionExpression xsi:type="tFormalExpression">${true}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${checkExistingCustomerIdBL.customerExists(execution)}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-D61DA17E-BBED-4F1A-A43C-563BE79F788D" name="" sourceRef="UserTask_0tievdk" targetRef="sid-CE61613D-38D0-42B1-A5A4-4DE8FD694371" />
     <sequenceFlow id="sid-260DD31D-DD1C-4AFE-9567-93C30B29BBCF" name="" sourceRef="UserTask_1lkisg5" targetRef="sid-CE61613D-38D0-42B1-A5A4-4DE8FD694371" />

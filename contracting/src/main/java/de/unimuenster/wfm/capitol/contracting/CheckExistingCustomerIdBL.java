@@ -28,19 +28,28 @@ public class CheckExistingCustomerIdBL {
 
 	public void performBusinessLogic(DelegateExecution delegateExecution) {
 		//messageService.sendContractProposal(null);
-
-		//get all process variables
-		Map<String, Object> variables = delegateExecution.getVariables();
-		int customerId = findCustomerId(variables);
 	}
 	
-    	
-
+	public boolean customerExists(DelegateExecution delegateExecution) {
+		
+		int customerId = findCustomerId(delegateExecution);
+		
+		if (customerId == -1) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
 	/**
 	 * Returns customerId if available for variables given in Map processVariables
 	 * Returns -1 if no appropriate entry is found for given customer data
 	 */
-	private int findCustomerId(Map<String, Object> processVariables) {
+	public int findCustomerId(DelegateExecution delegateExecution) {
+		
+		//get all process variables
+		Map<String, Object> processVariables = delegateExecution.getVariables();
 
 		String query = "SELECT customerId FROM Customer WHERE"
 				+ "firstName = " + processVariables.get("firstname")
@@ -60,7 +69,7 @@ public class CheckExistingCustomerIdBL {
 					+ "AND companyName = " + processVariables.get("company_name");
 		}
 		
-		List<Customer> arr_cust = (List<Customer>)entityManager.createQuery(query).getResultList();
+		List<Integer> arr_cust = (List<Integer>)entityManager.createQuery(query).getResultList();
 		
 		if (arr_cust.size() != 1) {
 			return -1;
@@ -68,8 +77,6 @@ public class CheckExistingCustomerIdBL {
 		else {
 			return arr_cust.get(0);
 		}
-		
-		
 
 	}
 

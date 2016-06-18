@@ -27,7 +27,7 @@ public class Customer implements Serializable {
   protected String houseNumber;
   protected String postcode;
   protected String city;
-  protected Date dateOfBirth; //DD-MM-YYYY
+  protected String dateOfBirth; //DD-MM-YYYY
   protected	boolean company;
   protected String companyName;
   protected String address;
@@ -138,13 +138,13 @@ public void setCity(String city) {
 /**
  * @return the dateOfBirth
  */
-public Date getDateOfBirth() {
+public String getDateOfBirth() {
 	return dateOfBirth;
 }
 /**
  * @param dateOfBirth the dateOfBirth to set
  */
-public void setDateOfBirth(Date dateOfBirth) {
+public void setDateOfBirth(String dateOfBirth) {
 	this.dateOfBirth = dateOfBirth;
 }
 /**
