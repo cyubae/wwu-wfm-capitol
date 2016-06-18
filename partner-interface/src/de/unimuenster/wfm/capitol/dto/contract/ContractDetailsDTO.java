@@ -33,7 +33,7 @@ public class ContractDetailsDTO {
 		private boolean fleet_rental;
 		private String inquiry_text;
 		private User user;
-		private Collection<Car> cars;
+		private Collection<Car> car;
 		private Insurance insurance;
 		
 		public int getOrder_id() {
@@ -76,12 +76,12 @@ public class ContractDetailsDTO {
 			this.user = user;
 		}
 
-		public Collection<Car> getCars() {
-			return cars;
+		public Collection<Car> getCar() {
+			return car;
 		}
 
-		public void setCars(Collection<Car> cars) {
-			this.cars = cars;
+		public void setCar(Collection<Car> car) {
+			this.car = car;
 		}
 
 		public Insurance getInsurance() {
