@@ -75,15 +75,17 @@ public class ContractDetails {
 		variables.put("user_date_of_birth", contractdetails.getOrder().getUser().getDate_of_birth());
 		variables.put("user_iscompany", contractdetails.getOrder().getUser().isCompany());
 		variables.put("user_company_name", contractdetails.getOrder().getUser().getCompany_name());
+		int i = 1;
 		for(Car single_car : contractdetails.getOrder().getCar()) {
-			variables.put("car_registration_number", single_car.getRegistration_number());
-			variables.put("car_brand", single_car.getBrand());
-			variables.put("car_type", single_car.getType());
-			variables.put("car_model", single_car.getModel());
-			variables.put("car_vehicle_identification_number", single_car.getVehicle_identification_number());
-			variables.put("car_fuel_type", single_car.getFuel_type());
-			variables.put("car_ps", single_car.getPs());
-			variables.put("car_construction_year", single_car.getConstruction_year());
+			variables.put("car_registration_number" + i, single_car.getRegistration_number());
+			variables.put("car_brand" + i, single_car.getBrand());
+			variables.put("car_type" + i, single_car.getType());
+			variables.put("car_model" + i, single_car.getModel());
+			variables.put("car_vehicle_identification_number" + i, single_car.getVehicle_identification_number());
+			variables.put("car_fuel_type" + i, single_car.getFuel_type());
+			variables.put("car_ps" + i, single_car.getPs());
+			variables.put("car_construction_year" + i, single_car.getConstruction_year());
+			i++;
 		}
 		variables.put("insurance_insurance_id", contractdetails.getOrder().getInsurance().getInsurance_id());
 		variables.put("insurance_type", contractdetails.getOrder().getInsurance().getType());
