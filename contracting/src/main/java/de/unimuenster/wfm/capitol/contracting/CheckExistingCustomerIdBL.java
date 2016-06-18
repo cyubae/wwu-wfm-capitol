@@ -24,6 +24,8 @@ public class CheckExistingCustomerIdBL {
 	  
 	  public void performBusinessLogic(DelegateExecution delegateExecution) {
 		  //messageService.sendContractProposal(null);
+		  
+		  
 	  }
 
 
