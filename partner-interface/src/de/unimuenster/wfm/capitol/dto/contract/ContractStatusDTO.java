@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-
 public class ContractStatusDTO {
 	private String process_id;
 	private Order order;
@@ -26,7 +25,8 @@ public class ContractStatusDTO {
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-
+	
+	@XmlAccessorType(XmlAccessType.FIELD)
 	public class Order {
 		private int order_id;
 		private Calendar request_date;
