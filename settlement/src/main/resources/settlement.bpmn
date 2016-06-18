@@ -141,7 +141,7 @@
       <outgoing>SequenceFlow_0et410l</outgoing>
       <outgoing>SequenceFlow_1120f6i</outgoing>
     </exclusiveGateway>
-    <serviceTask id="CheckClaimCoverage" name="check claim coverage" camunda:class="${checkClaimCoverageBL.performBusinessLogic(execution)}">
+    <serviceTask id="CheckClaimCoverage" name="check claim coverage" camunda:expression="${checkClaimCoverageBL.performBusinessLogic(execution)}">
       <incoming>SequenceFlow_1s70td0</incoming>
       <outgoing>SequenceFlow_1eo7a6x</outgoing>
     </serviceTask>
@@ -159,7 +159,7 @@
       <incoming>SequenceFlow_16v2ykd</incoming>
       <outgoing>SequenceFlow_0idgacu</outgoing>
     </sendTask>
-    <serviceTask id="CreateRecord" name="create record" implementation="##WebService" camunda:expression="${CreateRecordBL.performBusinessLogic(execution)}">
+    <serviceTask id="CreateRecord" name="create record" implementation="##WebService" camunda:expression="${createRecordBL.performBusinessLogic(execution)}">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
