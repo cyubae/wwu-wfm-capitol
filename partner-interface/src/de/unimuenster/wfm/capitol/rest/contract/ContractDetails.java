@@ -10,8 +10,8 @@ import javax.ws.rs.*;
 import org.camunda.bpm.engine.MismatchingMessageCorrelationException;
 import org.camunda.bpm.engine.RuntimeService;
 
-import de.unimuenster.wfm.capitol.dto.claim.ContractDetailsDTO;
-import de.unimuenster.wfm.capitol.dto.claim.ContractDetailsDTO.Order.Car;
+import de.unimuenster.wfm.capitol.dto.contract.ContractDetailsDTO;
+import de.unimuenster.wfm.capitol.dto.contract.ContractDetailsDTO.Order.Car;
 
 @Path( "contractdetails" )
 
@@ -41,7 +41,7 @@ public class ContractDetails {
 		System.out.println(contractdetails.getOrder().getUser().getDate_of_birth());
 		System.out.println(contractdetails.getOrder().getUser().isCompany());
 		System.out.println(contractdetails.getOrder().getUser().getCompany_name());
-		for(Car single_car : contractdetails.getOrder().getCars()) {
+		for(Car single_car : contractdetails.getOrder().getCar()) {
 			System.out.println(single_car.getRegistration_number());
 			System.out.println(single_car.getBrand());
 			System.out.println(single_car.getType());
@@ -76,7 +76,7 @@ public class ContractDetails {
 		variables.put("user_date_of_birth", contractdetails.getOrder().getUser().getDate_of_birth());
 		variables.put("user_iscompany", contractdetails.getOrder().getUser().isCompany());
 		variables.put("user_company_name", contractdetails.getOrder().getUser().getCompany_name());
-		for(Car single_car : contractdetails.getOrder().getCars()) {
+		for(Car single_car : contractdetails.getOrder().getCar()) {
 			variables.put("car_registration_number", single_car.getRegistration_number());
 			variables.put("car_brand", single_car.getBrand());
 			variables.put("car_type", single_car.getType());
