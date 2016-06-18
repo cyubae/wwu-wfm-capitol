@@ -10,7 +10,7 @@ import org.camunda.bpm.engine.MismatchingMessageCorrelationException;
 import org.camunda.bpm.engine.RuntimeService;
 
 import de.unimuenster.wfm.capitol.dto.claim.ClaimDetailsDTO;
-import de.unimuenster.wfm.capitol.dto.claim.ClaimDetailsDTO.Involved_party;
+import de.unimuenster.wfm.capitol.dto.claim.Involved_party;
 @Path( "claimdetails" )
 
 public class ClaimDetails {
@@ -33,7 +33,7 @@ public class ClaimDetails {
 		System.out.println(claimdetails.getClaim().getClaim_description());
 		System.out.println(claimdetails.getClaim().getWorkshop_price());
 		System.out.println(claimdetails.getClaim().isParties_involved());
-		for(Involved_party single_party : claimdetails.getInvolved_parties()) {
+		for(Involved_party single_party : claimdetails.getClaim().getInvolvedParties()) {
 			System.out.println(single_party.getFirstname());
 			System.out.println(single_party.getSurname());
 			System.out.println(single_party.getEmail());
@@ -54,7 +54,6 @@ public class ClaimDetails {
 			System.out.println(single_party.getInsurance().getCountry());
 		}
 		// END TESTCODE
-		
 		Map<String, Object> variables = new HashMap<String, Object>();
 		variables.put("request_date", claimdetails.getRequest_date());
 		variables.put("claim_id", claimdetails.getClaim().getClaim_id());
@@ -67,7 +66,7 @@ public class ClaimDetails {
 		variables.put("workshop_price", claimdetails.getClaim().getWorkshop_price());
 		variables.put("parties_involved", claimdetails.getClaim().isParties_involved());
 		int i = 1;
-		for(Involved_party single_party : claimdetails.getInvolved_parties()) {
+		for(Involved_party single_party : claimdetails.getClaim().getInvolvedParties()) {
 			variables.put("involved_party_firstname" + i, single_party.getFirstname());
 			variables.put("involved_party_surname" + i, single_party.getSurname());
 			variables.put("involved_party_email" + i, single_party.getEmail());
