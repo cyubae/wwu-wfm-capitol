@@ -1,6 +1,5 @@
 package de.unimuenster.wfm.capitol.rest.contract;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
