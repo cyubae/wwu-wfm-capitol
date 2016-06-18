@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Feedback {
+public class FeedbackDTO {
 	
 	private int process_id;
 	private Decision decision; 
@@ -27,7 +27,7 @@ public class Feedback {
 
 
 
-	class Decision{
+	public class Decision{
 		private int claim_id;
 		private int claim_status;
 		private String description;

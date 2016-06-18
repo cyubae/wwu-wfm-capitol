@@ -1,0 +1,46 @@
+package de.unimuenster.wfm.capitol.rest.claim;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.ws.rs.*;
+
+import org.camunda.bpm.engine.MismatchingMessageCorrelationException;
+import org.camunda.bpm.engine.RuntimeService;
+
+import de.unimuenster.wfm.capitol.dto.LiabilityCase;
+import de.unimuenster.wfm.capitol.dto.claim.FeedbackDTO;
+
+@Path( "feedback" )
+public class Feedback {
+	public static final String MESSAGENAME = "claim_feedback";
+
+	@Inject
+	private RuntimeService runtimeService;
+	@POST
+	@Consumes("application/json")
+	public String receiveCase(FeedbackDTO feedback){
+		// TESTCODE
+		System.out.println(feedback.getProcess_id());
+		System.out.println(feedback.getDecision().getClaim_id());
+		System.out.println(feedback.getDecision().getClaim_status());
+		System.out.println(feedback.getDecision().getDescription());
+		// END TESTCODE
+		
+		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("claim_id",feedback.getDecision().getClaim_id());
+		variables.put("claim_status", feedback.getDecision().getClaim_status());
+		variables.put(	"claim_description",feedback.getDecision().getDescription());		
+		try {
+			//TODO Find a way to correlate a message based on the process id
+			//runtimeService.createMessageCorrelation(MESSAGENAME);
+			//runtimeService.processInstanceId("<id").correlate();
+		} catch (MismatchingMessageCorrelationException e) {
+			return "Failure";
+		}
+		
+		return "Success";
+	}
+}
