@@ -25,7 +25,8 @@ public class ReminderDTO {
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-
+	
+	@XmlAccessorType(XmlAccessType.FIELD)
 	public class Order {
 		private int order_id;
 		private Calendar request_date;
