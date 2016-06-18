@@ -10,7 +10,6 @@ import javax.ws.rs.*;
 import org.camunda.bpm.engine.MismatchingMessageCorrelationException;
 import org.camunda.bpm.engine.RuntimeService;
 
-import de.unimuenster.wfm.capitol.dto.LiabilityCase;
 import de.unimuenster.wfm.capitol.dto.claim.FeedbackDTO;
 
 @Path( "feedback" )
@@ -30,13 +29,14 @@ public class Feedback {
 		// END TESTCODE
 		
 		Map<String, Object> variables = new HashMap<String, Object>();
-		variables.put("claim_id",feedback.getDecision().getClaim_id());
+		variables.put("claim_id", feedback.getDecision().getClaim_id());
 		variables.put("claim_status", feedback.getDecision().getClaim_status());
-		variables.put(	"claim_description",feedback.getDecision().getDescription());		
+		variables.put("claim_description", feedback.getDecision().getDescription());		
 		try {
 			// correlate the message
 			  runtimeService.createMessageCorrelation("Message-Approve")
 		      .processInstanceId(feedback.getProcess_id())
+		      .setVariables(variables)
 		      .correlate();
 		} catch (MismatchingMessageCorrelationException e) {
 			return "Failure";
