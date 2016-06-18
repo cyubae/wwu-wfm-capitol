@@ -2,7 +2,7 @@
 <jboss-deployment-structure>
 	<deployment>
 		<dependencies>
-			<module name="de.unimuenster.wfm.capitol.service" export="true"/>
+			<module name="deployment.MessagingService.jar" />
 		</dependencies>
 	</deployment>
 </jboss-deployment-structure>
