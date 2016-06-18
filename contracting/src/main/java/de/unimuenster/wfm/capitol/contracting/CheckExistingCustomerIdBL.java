@@ -66,10 +66,10 @@ public class CheckExistingCustomerIdBL {
 		//if customer is company, append to companyQuery
 		if ( processVariables.get("company").equals("true")) {
 			query += " AND company = true"
-					+ "AND companyName = " + processVariables.get("company_name");
+				   + " AND companyName = " + processVariables.get("company_name");
 		}
 		
-		List<Integer> arr_cust = (List<Integer>)entityManager.createQuery(query).getResultList();
+		List<Integer> arr_cust = (List<Integer>) entityManager.createQuery(query).getResultList();
 		
 		if (arr_cust.size() != 1) {
 			return -1;
