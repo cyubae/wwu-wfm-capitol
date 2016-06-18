@@ -6,14 +6,14 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class FeedbackDTO {
 	
-	private int process_id;
+	private String process_id;
 	private Decision decision; 
 	
-	public int getProcess_id() {
+	public String getProcess_id() {
 		return process_id;
 	}
 
-	public void setProcess_id(int process_id) {
+	public void setProcess_id(String process_id) {
 		this.process_id = process_id;
 	}
 

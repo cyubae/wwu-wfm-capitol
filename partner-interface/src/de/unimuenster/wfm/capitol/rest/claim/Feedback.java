@@ -34,9 +34,10 @@ public class Feedback {
 		variables.put("claim_status", feedback.getDecision().getClaim_status());
 		variables.put(	"claim_description",feedback.getDecision().getDescription());		
 		try {
-			//TODO Find a way to correlate a message based on the process id
-			//runtimeService.createMessageCorrelation(MESSAGENAME);
-			//runtimeService.processInstanceId("<id").correlate();
+			// correlate the message
+			  runtimeService.createMessageCorrelation("Message-Approve")
+		      .processInstanceId(feedback.getProcess_id())
+		      .correlate();
 		} catch (MismatchingMessageCorrelationException e) {
 			return "Failure";
 		}
