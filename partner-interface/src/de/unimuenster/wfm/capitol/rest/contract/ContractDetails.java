@@ -10,7 +10,7 @@ import org.camunda.bpm.engine.MismatchingMessageCorrelationException;
 import org.camunda.bpm.engine.RuntimeService;
 
 import de.unimuenster.wfm.capitol.dto.contract.ContractDetailsDTO;
-import de.unimuenster.wfm.capitol.dto.contract.ContractDetailsDTO.Order.Car;
+import de.unimuenster.wfm.capitol.dto.contract.Car;
 
 @Path( "contractdetails" )
 
