@@ -14,9 +14,9 @@ public class Customer implements Serializable {
 
   @Id
   @GeneratedValue
-  protected Long customerId;
+  protected int customerId;
 
-  @Version
+@Version
   protected long version;
 
   protected String firstName;
@@ -31,6 +31,14 @@ public class Customer implements Serializable {
   protected	boolean company;
   protected String companyName;
   protected String address;
+  
+  /**
+   * @return the customerId
+   */
+  public int getCustomerId() {
+	  return customerId;
+  }
+  
 /**
  * @return the firstName
  */
