@@ -3,6 +3,7 @@
 	<deployment>
 		<dependencies>
 			<module name="deployment.MessagingService.jar" />
+			<module name="deployment.capitol-persistence.jar" />			
 		</dependencies>
 	</deployment>
 </jboss-deployment-structure>
