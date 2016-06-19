@@ -1,6 +1,7 @@
 package de.unimuenster.wfm.capitol.jpa;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.ejb.Stateless;
 import javax.inject.Named;
@@ -19,12 +20,12 @@ public class Persister {
 	  @PersistenceContext(unitName="capitol-persistence")
 	  private EntityManager entityManager;
 
-	  public void persistCustomer(ArrayList<String> data) {
+	  public void persistCustomer(HashMap<String,String> data) {
 	    // Create new order instance
 	    Customer customer = new Customer();
 	    
-	    customer.setFirstName("James");
-	    customer.setSurname("Bond");
+	    customer.setFirstName(data.get("firstName"));
+	    customer.setSurname(data.get("surname"));
 	    
 	    /*
 	      Persist order instance and flush. After the flush the
