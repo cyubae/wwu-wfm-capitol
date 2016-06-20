@@ -14,7 +14,7 @@
 			<dependency>
 				<groupId>org.camunda.bpm</groupId>
 				<artifactId>camunda-bom</artifactId>
-				<version>7.4.0</version>
+				<version>7.5.0</version>
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
@@ -28,6 +28,7 @@
 			<groupId>de.unimuenster.wfm.capitol</groupId>
 			<artifactId>capitol-persistence</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
 		</dependency>	
 
 		<!-- MessagingService -->
