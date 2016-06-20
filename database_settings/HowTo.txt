@@ -1,0 +1,13 @@
+After creating a user revisit the Administration Console.
+Go to Deployments and click Add to upload hsqldb.jar. Click Next, select the hsqldb.jar, and click Next. Make sure that the deployed file is enabled and click Finish.
+
+Go to Configuration > Subsystems > Datasources > Non-XA and click Add. Use the following information to create a datasource:
+
+    Datasource: Custom
+    Name: DefaultDS
+    JNDI Name: java:/DefaultDS
+    JDBC Driver: Click Detected Driver and choose hsqldb.jar
+    Connection URL: jdbc:hsqldb:${jboss.server.data.dir}${/}hypersonic${/}localDB;shutdown=true
+    username: sa
+
+Ensure that the datasource is enabled (Configuration > Subsystems > Datasources > Non-XA > DefaultDS).
