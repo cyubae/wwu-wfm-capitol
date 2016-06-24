@@ -34,7 +34,7 @@
     </messageFlow>
     <messageFlow id="MessageFlow_0bh8err" sourceRef="sid-4A3515D6-135B-4360-884B-58F4A297ABC8" targetRef="IntermediateCatchEvent_0ox3bvl" />
   </collaboration>
-  <process id="Process_1" name="Capitol" processType="None" isClosed="false" isExecutable="true">
+  <process id="Process_1" name="Capitol - Settlement" processType="None" isClosed="false" isExecutable="true">
     <extensionElements />
     <laneSet id="sid-ff4a9fc2-98a3-4fc1-9145-dd25533357d1">
       <lane id="Lane_1431et6" name="WfMS">

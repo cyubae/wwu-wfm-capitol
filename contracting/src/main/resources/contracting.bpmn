@@ -34,7 +34,7 @@
       </extensionElements>
     </messageFlow>
   </collaboration>
-  <process id="sid-DCD927BD-6ED5-4D97-9C1B-BC8818BAC145" name="Capitol" processType="None" isClosed="false" isExecutable="true">
+  <process id="sid-DCD927BD-6ED5-4D97-9C1B-BC8818BAC145" name="Capitol - Contracting" processType="None" isClosed="false" isExecutable="true">
     <extensionElements />
     <laneSet id="sid-f22ff0c8-c89d-4c46-a247-8ab956220b89">
       <lane id="sid-48972311-4A0E-403E-B2D6-EA2C43D9E6B4" name="WfMS">
@@ -139,7 +139,7 @@
       <conditionExpression xsi:type="tFormalExpression">${not customerIdFound}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-338B8A5D-B84F-40E1-AD64-38C4B6F8ADB9" name="yes" sourceRef="sid-D36D1ADB-10C9-47B6-AC3D-419CA3216F00" targetRef="UserTask_1lkisg5">
-      <conditionExpression xsi:type="tFormalExpression">${not customerIdFound}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${customerIdFound}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-D61DA17E-BBED-4F1A-A43C-563BE79F788D" name="" sourceRef="UserTask_0tievdk" targetRef="sid-CE61613D-38D0-42B1-A5A4-4DE8FD694371" />
     <sequenceFlow id="sid-260DD31D-DD1C-4AFE-9567-93C30B29BBCF" name="" sourceRef="UserTask_1lkisg5" targetRef="sid-CE61613D-38D0-42B1-A5A4-4DE8FD694371" />
