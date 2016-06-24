@@ -21,7 +21,7 @@ public class CheckExistingCustomerIdBL {
 	private MessageService messageService;
 
 	@EJB
-	private OrderBusinessLogic obl = new OrderBusinessLogic();
+	private AccessCustomer customerAccess = new AccessCustomer();
 
 	public void performBusinessLogic(DelegateExecution delegateExecution) {
 		//messageService.sendContractProposal(null);
@@ -36,20 +36,17 @@ public class CheckExistingCustomerIdBL {
 	 */
 	public boolean customerExists(DelegateExecution delegateExecution) {
 		
-		obl.persistOrder();
-		return true;
+		Map<String, Object> dataMap = delegateExecution.getVariables();
+		int customerId = customerAccess.findCustomerId(dataMap);
 		
-//		Map<String, Object> dataMap = delegateExecution.getVariables();
-//		int customerId = new AccessCustomer().findCustomerId(dataMap);
-//		
-//		delegateExecution.setVariable("customerId", customerId);
-//		
-//		if (customerId == -1) {
-//			return false;
-//		}
-//		else {
-//			return true;
-//		}
+		delegateExecution.setVariable("customerId", customerId);
+		
+		if (customerId == -1) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 	
 
