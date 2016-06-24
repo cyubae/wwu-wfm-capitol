@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 
 import de.unimuenster.wfm.capitol.entities.Customer;
@@ -19,7 +20,7 @@ import de.unimuenster.wfm.capitol.entities.Customer;
 public class AccessCustomer {
 		
 	// Inject the entity manager
-	@PersistenceContext(name="DefaultDS")
+	@PersistenceContext
 	private EntityManager entityManager;
 	
 	/**
@@ -31,11 +32,9 @@ public class AccessCustomer {
 		//create dummy customer
 		Customer dummy = new Customer();
 		
-		EntityManager bla = this.entityManager;
-//		
-//		this.entityManager.getTransaction().begin();
-//		this.entityManager.persist(dummy);
-//		this.entityManager.getTransaction().commit();
+		//EntityManager localEm = this.entityManager;		
+		System.out.println(entityManager.toString());
+		//persist(dummy);
 		
 		return 1;
 		

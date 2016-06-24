@@ -20,6 +20,9 @@ public class CheckExistingCustomerIdBL {
 	@EJB(lookup="java:global/MessagingService/MessageServiceImpl!de.unimuenster.wfm.capitol.service.MessageService")
 	private MessageService messageService;
 
+	@EJB
+	private OrderBusinessLogic obl = new OrderBusinessLogic();
+
 	public void performBusinessLogic(DelegateExecution delegateExecution) {
 		//messageService.sendContractProposal(null);
 		this.customerExists(delegateExecution);
@@ -33,17 +36,20 @@ public class CheckExistingCustomerIdBL {
 	 */
 	public boolean customerExists(DelegateExecution delegateExecution) {
 		
-		Map<String, Object> dataMap = delegateExecution.getVariables();
-		int customerId = new AccessCustomer().findCustomerId(dataMap);
+		obl.persistOrder();
+		return true;
 		
-		delegateExecution.setVariable("customerId", customerId);
-		
-		if (customerId == -1) {
-			return false;
-		}
-		else {
-			return true;
-		}
+//		Map<String, Object> dataMap = delegateExecution.getVariables();
+//		int customerId = new AccessCustomer().findCustomerId(dataMap);
+//		
+//		delegateExecution.setVariable("customerId", customerId);
+//		
+//		if (customerId == -1) {
+//			return false;
+//		}
+//		else {
+//			return true;
+//		}
 	}
 	
 
