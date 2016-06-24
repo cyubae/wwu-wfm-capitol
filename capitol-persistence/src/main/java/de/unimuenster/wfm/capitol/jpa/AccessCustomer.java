@@ -35,27 +35,26 @@ public class AccessCustomer {
 	public int findCustomerId(Map<String, Object> dataMap) {
 						
 		LOGGER.log(Level.INFO, "entityManager.toString(): " + entityManager.toString());
-				
-		String query = "Select c FROM Customer c";
+		LOGGER.log(Level.INFO, "Prepare query string");				
+		String query = "Select c FROM Customer c WHERE"
+				+ " c.firstName = " + dataMap.get("firstname")
+				+ " AND c.surname = " + dataMap.get("surname") 
+				+ " AND c.email = " + dataMap.get("email")
+				+ " AND c.phoneNumber = " + dataMap.get("phone_number")
+				+ " AND c.street = " + dataMap.get("street")
+				+ " AND c.houseNumber = " + dataMap.get("house_number")
+				+ " AND c.postcode = " + dataMap.get("postcode")
+				+ " AND c.city = " + dataMap.get("city")
+				+ " AND c.country = " + dataMap.get("country")
+				+ " AND c.dateOfBirth = " + dataMap.get("date_of_birth");
 
-//		String query = "SELECT customerId FROM Customer WHERE"
-//				+ "firstName = " + dataMap.get("firstname")
-//				+ " AND surname = " + dataMap.get("surname") 
-//				+ " AND email = " + dataMap.get("email")
-//				+ " AND phoneNumber = " + dataMap.get("phone_number")
-//				+ " AND street = " + dataMap.get("street")
-//				+ " AND houseNumber = " + dataMap.get("house_number")
-//				+ " AND postcode = " + dataMap.get("postcode")
-//				+ " AND city = " + dataMap.get("city")
-//				+ " AND country = " + dataMap.get("country")
-//				+ " AND date_of_birth = " + dataMap.get("date_of_birth");
-//
-//		//if customer is company, append to companyQuery
-//		if ( dataMap.get("company") != null && dataMap.get("company").equals("true")) {
-//			query += " AND company = true"
-//				   + " AND companyName = " + dataMap.get("company_name");
-//		}
+		//if customer is company, append to companyQuery
+		if ( dataMap.get("company") != null && dataMap.get("company").equals("true")) {
+			query += " AND c.company = true"
+				   + " AND c.companyName = " + dataMap.get("company_name");
+		}
 		
+		LOGGER.log(Level.INFO, "Query string: " + query);		
 		LOGGER.log(Level.INFO, "ACCESSSTEP_1");				
 		TypedQuery<Customer> customerQuery = entityManager.createQuery(query, Customer.class);
 		List<Customer> arr_cust = customerQuery.getResultList();
@@ -70,17 +69,6 @@ public class AccessCustomer {
 			LOGGER.log(Level.INFO, "No valid customer found");
 			return -1;
 		}
-		
-		
-//		if (arr_cust.size() != 1) {
-//			System.out.println("ACCESSSTEP_4a");
-//			return -1;
-//		}
-//		else {
-//			System.out.println("ACCESSSTEP_4b");
-//			return 1;
-////			return arr_cust.get(0).getCustomerId();
-//		}
 
 	}
 }

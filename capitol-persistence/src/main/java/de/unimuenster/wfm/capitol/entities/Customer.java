@@ -26,6 +26,7 @@ public class Customer implements Serializable {
   protected String houseNumber;
   protected String postcode;
   protected String city;
+  protected String country;
   protected String dateOfBirth; //DD-MM-YYYY
   protected	boolean company;
   protected String companyName;
