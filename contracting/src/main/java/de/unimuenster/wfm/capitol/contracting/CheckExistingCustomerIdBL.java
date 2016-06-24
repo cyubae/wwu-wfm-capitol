@@ -23,10 +23,12 @@ public class CheckExistingCustomerIdBL {
 	@EJB
 	private AccessCustomer customerAccess = new AccessCustomer();
 
-	public void performBusinessLogic(DelegateExecution delegateExecution) {
-		//messageService.sendContractProposal(null);
-		this.customerExists(delegateExecution);
-	}
+//	public void performBusinessLogic(DelegateExecution delegateExecution) {
+//		//messageService.sendContractProposal(null);
+//		
+//		//no need: results only needed at connector
+//		this.findExistingCustomer(delegateExecution);
+//	}
 	
 	/**
 	 * Verifies if customer is present in database. If so, customer id is passed into delegateExecution and method returns true.
@@ -34,19 +36,19 @@ public class CheckExistingCustomerIdBL {
 	 * @param delegateExecution
 	 * @return
 	 */
-	public boolean customerExists(DelegateExecution delegateExecution) {
+	public void findExistingCustomer(DelegateExecution delegateExecution) {
 		
 		Map<String, Object> dataMap = delegateExecution.getVariables();
 		int customerId = customerAccess.findCustomerId(dataMap);
 		
-		delegateExecution.setVariable("customerId", customerId);
-		
-		if (customerId == -1) {
-			return false;
+		if (customerId != -1) {
+			delegateExecution.setVariable("customerIdFound", true);
+			delegateExecution.setVariable("customerId", customerId);
 		}
 		else {
-			return true;
+			delegateExecution.setVariable("customerIdFound", false);
 		}
+		
 	}
 	
 

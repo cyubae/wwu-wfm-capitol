@@ -103,7 +103,7 @@
     <sequenceFlow id="sid-0F8FC498-4901-4303-92E4-D9B3713F3B54" name="" sourceRef="CreateBasicContract" targetRef="sid-9C83256E-0D44-4C11-89BF-6BA6B54130D4" />
     <sequenceFlow id="sid-2F99DF56-CB6F-43C4-98F4-E0B94F03BE82" name="" sourceRef="sid-C43326B9-F849-47CA-B9E8-37B22F17C7B1" targetRef="sid-09F71DFF-8C12-43E9-8A55-0C971FA8BCD4" />
     <sequenceFlow id="sid-16C3DB62-288D-474B-8436-B1CD54F79F8D" name="" sourceRef="sid-90CC009F-F71C-47D9-A7FF-C2D2B971E9E5" targetRef="sid-C81607F4-3CF2-4067-9CFC-E55A10FE43DB" />
-    <serviceTask id="CheckExistingCustomerId" name="check for existing customer ID" camunda:expression="${checkExistingCustomerIdBL.performBusinessLogic(execution)}">
+    <serviceTask id="CheckExistingCustomerId" name="check for existing customer ID" camunda:expression="${checkExistingCustomerIdBL.findExistingCustomer(execution)}">
       <incoming>sid-81E55155-D2E5-4AAF-8AFE-C183AD856622</incoming>
       <outgoing>sid-3E9B8CF7-BD5C-4763-B93F-9A264E166D0B</outgoing>
     </serviceTask>
@@ -136,10 +136,10 @@
       <outgoing>sid-D61DA17E-BBED-4F1A-A43C-563BE79F788D</outgoing>
     </userTask>
     <sequenceFlow id="sid-C61EBAF4-526D-40DF-A555-C99E75B85689" name="no" sourceRef="sid-D36D1ADB-10C9-47B6-AC3D-419CA3216F00" targetRef="UserTask_0tievdk">
-      <conditionExpression xsi:type="tFormalExpression">${checkExistingCustomerIdBL.customerExists(execution)}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${not customerIdFound}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-338B8A5D-B84F-40E1-AD64-38C4B6F8ADB9" name="yes" sourceRef="sid-D36D1ADB-10C9-47B6-AC3D-419CA3216F00" targetRef="UserTask_1lkisg5">
-      <conditionExpression xsi:type="tFormalExpression">${checkExistingCustomerIdBL.customerExists(execution)}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${not customerIdFound}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-D61DA17E-BBED-4F1A-A43C-563BE79F788D" name="" sourceRef="UserTask_0tievdk" targetRef="sid-CE61613D-38D0-42B1-A5A4-4DE8FD694371" />
     <sequenceFlow id="sid-260DD31D-DD1C-4AFE-9567-93C30B29BBCF" name="" sourceRef="UserTask_1lkisg5" targetRef="sid-CE61613D-38D0-42B1-A5A4-4DE8FD694371" />

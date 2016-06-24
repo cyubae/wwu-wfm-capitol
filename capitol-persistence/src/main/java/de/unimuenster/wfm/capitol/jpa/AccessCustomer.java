@@ -1,12 +1,15 @@
 package de.unimuenster.wfm.capitol.jpa;
 
+import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import de.unimuenster.wfm.capitol.entities.Customer;
 
@@ -23,23 +26,18 @@ public class AccessCustomer {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	private static Logger LOGGER = Logger.getLogger(AccessCustomer.class.getName());
+	
 	/**
 	 * Returns customerId if available for variables given in Map processVariables
 	 * Returns -1 if no appropriate entry is found for given customer data
 	 */
 	public int findCustomerId(Map<String, Object> dataMap) {
+						
+		LOGGER.log(Level.INFO, "entityManager.toString(): " + entityManager.toString());
 				
-		//create dummy customer
-		Customer dummy = new Customer();
-		
-		//EntityManager localEm = this.entityManager;		
-		System.out.println(entityManager.toString());
-		//persist(dummy);
-		
-		return 1;
-		
-//		String query = "Select c FROM Customer c";
-//
+		String query = "Select c FROM Customer c";
+
 //		String query = "SELECT customerId FROM Customer WHERE"
 //				+ "firstName = " + dataMap.get("firstname")
 //				+ " AND surname = " + dataMap.get("surname") 
@@ -57,27 +55,23 @@ public class AccessCustomer {
 //			query += " AND company = true"
 //				   + " AND companyName = " + dataMap.get("company_name");
 //		}
-//		
-//		System.out.println("ACCESSSTEP_1");
-//		
-//		Query jpaQuery = entityManager.createQuery(query);
-//		
-//		TypedQuery<Customer> customerQuery = entityManager.createQuery("Select c from Customer c", Customer.class);
-//		List<Customer> arr_cust = customerQuery.getResultList();
-//		
-//		System.out.println("ACCESSSTEP_2");
-//		
-//		if (arr_cust.size() <= 0) {
-//			System.out.println("No output found");
-//		}
-//		else {
-//			System.out.println("output found!");
-////			System.out.println("DB_OUTPUT: " + arr_cust.get(0));			
-//		}
-//		
-//		
-//		System.out.println("ACCESSSTEP_3");
-//		
+		
+		LOGGER.log(Level.INFO, "ACCESSSTEP_1");				
+		TypedQuery<Customer> customerQuery = entityManager.createQuery(query, Customer.class);
+		List<Customer> arr_cust = customerQuery.getResultList();
+		
+		LOGGER.log(Level.INFO, "ACCESSSTEP_2");	
+		if (arr_cust.size() == 1) {
+			int customerId = arr_cust.get(0).getCustomerId();
+			LOGGER.log(Level.INFO, "Customer found with ID: " + customerId);
+			return customerId;
+		}
+		else {
+			LOGGER.log(Level.INFO, "No valid customer found");
+			return -1;
+		}
+		
+		
 //		if (arr_cust.size() != 1) {
 //			System.out.println("ACCESSSTEP_4a");
 //			return -1;
