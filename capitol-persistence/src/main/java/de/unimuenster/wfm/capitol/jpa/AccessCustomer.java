@@ -71,4 +71,8 @@ public class AccessCustomer {
 		}
 
 	}
+	
+	public void persistCustomer(Customer customer) {
+		entityManager.persist(customer);
+	}
 }

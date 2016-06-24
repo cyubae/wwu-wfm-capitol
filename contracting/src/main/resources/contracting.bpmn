@@ -131,7 +131,7 @@
       <incoming>sid-338B8A5D-B84F-40E1-AD64-38C4B6F8ADB9</incoming>
       <outgoing>sid-260DD31D-DD1C-4AFE-9567-93C30B29BBCF</outgoing>
     </userTask>
-    <userTask id="UserTask_0tievdk" name="check data and create customer">
+    <userTask id="UserTask_0tievdk" name="check data and create customer" camunda:formKey="app:check_create_customer.jsf">
       <incoming>sid-C61EBAF4-526D-40DF-A555-C99E75B85689</incoming>
       <outgoing>sid-D61DA17E-BBED-4F1A-A43C-563BE79F788D</outgoing>
     </userTask>

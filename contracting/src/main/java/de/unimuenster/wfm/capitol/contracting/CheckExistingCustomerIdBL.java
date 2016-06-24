@@ -51,6 +51,14 @@ public class CheckExistingCustomerIdBL {
 		
 	}
 	
+//	public Map<String, Object> getProposedCustomer() {
+//		return delegateExecution.getVariables();
+//	}
+	
+//	public Customer getCustomer(int customerId) {
+//		
+//	}
+//	
 
 
 

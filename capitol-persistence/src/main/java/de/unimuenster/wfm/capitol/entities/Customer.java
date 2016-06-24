@@ -31,6 +31,7 @@ public class Customer implements Serializable {
   protected	boolean company;
   protected String companyName;
   protected String address;
+  protected boolean blacklisted;
   
   /**
    * @return the customerId
@@ -182,6 +183,34 @@ public String getAddress() {
  */
 public void setAddress(String address) {
 	this.address = address;
+}
+
+/**
+ * @return the country
+ */
+public String getCountry() {
+	return country;
+}
+
+/**
+ * @param country the country to set
+ */
+public void setCountry(String country) {
+	this.country = country;
+}
+
+/**
+ * @return the blacklisted
+ */
+public boolean isBlacklisted() {
+	return blacklisted;
+}
+
+/**
+ * @param blacklisted the blacklisted to set
+ */
+public void setBlacklisted(boolean blacklisted) {
+	this.blacklisted = blacklisted;
 }
 
   
