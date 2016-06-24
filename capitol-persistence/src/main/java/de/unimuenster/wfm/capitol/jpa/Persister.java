@@ -17,7 +17,7 @@ import de.unimuenster.wfm.capitol.entities.Customer;
 public class Persister {
 	
 	  // Inject the entity manager
-	  @PersistenceContext(unitName="capitol-persistence")
+	  @PersistenceContext
 	  private EntityManager entityManager;
 
 	  public void persistCustomer(HashMap<String,String> data) {

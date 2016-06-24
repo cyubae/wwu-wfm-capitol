@@ -34,7 +34,7 @@ public class CheckExistingCustomerIdBL {
 	public boolean customerExists(DelegateExecution delegateExecution) {
 		
 		Map<String, Object> dataMap = delegateExecution.getVariables();
-		int customerId = AccessCustomer.findCustomerId(dataMap);
+		int customerId = new AccessCustomer().findCustomerId(dataMap);
 		
 		delegateExecution.setVariable("customerId", customerId);
 		
