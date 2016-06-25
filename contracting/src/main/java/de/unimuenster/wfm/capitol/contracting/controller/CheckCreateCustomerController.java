@@ -14,6 +14,8 @@ package de.unimuenster.wfm.capitol.contracting.controller;
 
 import org.camunda.bpm.engine.cdi.BusinessProcess;
 
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import de.unimuenster.wfm.capitol.entities.Customer;
 import de.unimuenster.wfm.capitol.jpa.AccessCustomer;
 import de.unimuenster.wfm.capitol.service.MessageService;
@@ -53,46 +55,43 @@ public class CheckCreateCustomerController implements Serializable {
 //	@Inject
 //	private CheckExistingCustomerIdBL checkExistingCustBL;
 
-	// Caches the Customer during the conversation
-	private Customer customer;
+	// Caches the customerId during the conversation
+	private int customerId;
+	
+	// Caches the customer during the conversation
+	private Customer customer;	
 
 	public Customer getCustomer() {
-		if (customer == null) {
+		if (customerId < 0 || customer == null) {
 			// Create the new customer from the input data if not already cached
-			customer = createCustomer();
+			customerId = createCustomer();
+			customer = customerAccess.getCustomerById(customerId);
 		}
 		return customer;			
 	}
 
-	private Customer createCustomer() {
-		Customer newCustomer = customerAccess.createCustomer();
+	private int createCustomer() {
+		int newCustomerId = customerAccess.createCustomer();
 		
-		newCustomer.setFirstName((String) businessProcess.getVariable("user_firstname"));
-		newCustomer.setSurname((String) businessProcess.getVariable("user_surname"));
-		newCustomer.setEmail((String) businessProcess.getVariable("user_email"));
-		newCustomer.setPhoneNumber((String) businessProcess.getVariable("user_phone_number"));
-		newCustomer.setStreet((String) businessProcess.getVariable("user_street"));
-		newCustomer.setHouseNumber((String) businessProcess.getVariable("user_house_number"));
-		newCustomer.setPostcode((String) businessProcess.getVariable("user_postcode"));
-		newCustomer.setCity((String) businessProcess.getVariable("user_city"));
-		newCustomer.setCountry((String) businessProcess.getVariable("user_country"));
-		newCustomer.setDateOfBirth((String) businessProcess.getVariable("user_date_of_birth"));
-		if (((String)businessProcess.getVariable("user_iscompany")).equals("true")) {
-			newCustomer.setCompany(true);
-			newCustomer.setCompanyName((String) businessProcess.getVariable("user_company_name"));			
-		}
-		else {
-			newCustomer.setCompany(false);
-			newCustomer.setCompanyName(null);
-		}
+		customerAccess.updateCustomer(newCustomerId, "firstName", (String) businessProcess.getVariable("user_firstname"));
+		customerAccess.updateCustomer(newCustomerId, "surname", (String) businessProcess.getVariable("user_surname"));
+		customerAccess.updateCustomer(newCustomerId, "email", (String) businessProcess.getVariable("user_email"));
+		customerAccess.updateCustomer(newCustomerId, "phoneNumber", (String) businessProcess.getVariable("user_phone_number"));
+		customerAccess.updateCustomer(newCustomerId, "street", (String) businessProcess.getVariable("user_street"));
+		customerAccess.updateCustomer(newCustomerId, "houseNumber", (String) businessProcess.getVariable("user_house_number"));
+		customerAccess.updateCustomer(newCustomerId, "postcode", (String) businessProcess.getVariable("user_postcode"));
+		customerAccess.updateCustomer(newCustomerId, "city", (String) businessProcess.getVariable("user_city"));
+		customerAccess.updateCustomer(newCustomerId, "country", (String) businessProcess.getVariable("user_country"));
+		customerAccess.updateCustomer(newCustomerId, "dateOfBirth", (String) businessProcess.getVariable("user_date_of_birth"));
+		customerAccess.updateCustomer(newCustomerId, "company", (String) businessProcess.getVariable("user_iscompany"));
+		customerAccess.updateCustomer(newCustomerId, "companyName", (String) businessProcess.getVariable("user_company_name"));
 		
-		LOGGER.log(Level.INFO, "New customer created: " + newCustomer.toString());	
+		LOGGER.log(Level.INFO, "New customer created: " + customerAccess.getCustomerById(newCustomerId).toString());	
 
-		return newCustomer;
+		return newCustomerId;
 	}
 
 	public void submitForm() throws IOException {
-		// Persist updated order entity and complete task form
-		customerAccess.updateCustomer(customer);;
+		// Persist updated customer and complete task form
 	}
 }
