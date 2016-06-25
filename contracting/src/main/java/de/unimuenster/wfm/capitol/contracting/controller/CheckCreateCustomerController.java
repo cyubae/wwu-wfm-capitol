@@ -90,8 +90,10 @@ public class CheckCreateCustomerController implements Serializable {
 			newCustomer.setCompany(false);
 			newCustomer.setCompanyName(null);
 		}
+		newCustomer.setBlacklisted(false);
 		
-		LOGGER.log(Level.INFO, "New customer created: " + newCustomer.toString());	
+		LOGGER.log(Level.INFO, "New customer created: " + newCustomer.toString());
+		customerAccess.updateCustomer(newCustomer);
 
 		return newCustomer;
 	}

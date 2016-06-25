@@ -4,12 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Version;
+
+import de.unimuenster.wfm.capitol.contracting.controller.CheckCreateCustomerController;
+
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Entity
 public class Customer implements Serializable {
 
   private static  final long serialVersionUID = 1L;
+  
+  private static Logger LOGGER = Logger.getLogger(Customer.class.getName());
 
   @Id
   @GeneratedValue
@@ -30,7 +37,6 @@ public class Customer implements Serializable {
   protected String dateOfBirth; //DD-MM-YYYY
   protected	boolean company;
   protected String companyName;
-  protected String address;
   protected boolean blacklisted;
   
   /**
@@ -44,12 +50,14 @@ public class Customer implements Serializable {
  * @return the firstName
  */
 public String getFirstName() {
+	LOGGER.log(Level.INFO, "Called getFirstName");
 	return firstName;
 }
 /**
  * @param firstName the firstName to set
  */
 public void setFirstName(String firstName) {
+	LOGGER.log(Level.INFO, "Called setFirstName: setName=" + firstName);
 	this.firstName = firstName;
 }
 /**
@@ -172,18 +180,6 @@ public String getCompanyName() {
 public void setCompanyName(String companyName) {
 	this.companyName = companyName;
 }
-/**
- * @return the address
- */
-public String getAddress() {
-	return address;
-}
-/**
- * @param address the address to set
- */
-public void setAddress(String address) {
-	this.address = address;
-}
 
 /**
  * @return the country
@@ -221,7 +217,6 @@ public String toString(){
 			+ "; version " + version
 			+ "; dateOfBirth " + dateOfBirth
 			+ "; surname " + surname
-			+ "; address " + address
 			+ "; street " + street
 			+ "; houseNumber " + houseNumber
 			+ "; postcode " + postcode
