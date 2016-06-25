@@ -15,7 +15,7 @@ import de.unimuenster.wfm.capitol.dto.contract.Car;
 @Path( "contractdetails" )
 
 public class ContractDetails {
-	public static final String MESSAGENAME = "contract_details";
+	public static final String MESSAGENAME = "contractRequest";
 
 	@Inject
 	private RuntimeService runtimeService;
@@ -96,10 +96,7 @@ public class ContractDetails {
 		
 		try {
 			// correlate the message
-			  runtimeService.createMessageCorrelation("Message-Approve")
-		      .processInstanceId(contractdetails.getProcess_id())
-		      .setVariables(variables)
-		      .correlate();
+			  runtimeService.startProcessInstanceByMessage(MESSAGENAME, variables);
 		} catch (MismatchingMessageCorrelationException e) {
 			return "Failure";
 		}
