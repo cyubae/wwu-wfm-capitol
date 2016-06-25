@@ -76,99 +76,23 @@ public class AccessCustomer {
 
 	}
 
-
 	/**
 	 * Creates and persists a new Customer object 
 	 * @return customerId of new Customer
 	 */
-	public int createCustomer() {
+	public Customer createCustomer() {
 		Customer newCustomer = new Customer();
 		entityManager.persist(newCustomer);
 		entityManager.flush();
 
-		return newCustomer.getCustomerId();
-	}
-
-	public Customer getCustomerById(int customerId) throws IllegalArgumentException{
-		return entityManager.find(Customer.class, customerId);
+		return newCustomer;
 	}
 
 	/**
-	 * Generic setter for Customer object
-	 * @param customerId the customerId (primary key) of existing Customer object to set attribute on
-	 * @param attribute the attribute to set (must be a settable attribute of Customer)
-	 * @param value the value the settable attribute is to take
+	 * Updates customer object existing in database 
+	 * @param customer
 	 */
-	public void updateCustomer(int customerId, String attribute, String value) {
-
-		if(customerId < 0) {
-			throw new IllegalArgumentException("customerId must be >= 0");
-		}
-		if (attribute == null) {
-			throw new IllegalArgumentException("attribute must be non-null");
-		}
-
-		try {
-			Customer customer = this.getCustomerById(customerId);
-			switch(attribute) {
-			case "firstName":
-				customer.setFirstName(attribute);
-				break;
-			case "surname":
-				customer.setSurname(attribute);
-				break;
-			case "email":
-				customer.setEmail(attribute);
-				break;
-			case "phoneNumber":
-				customer.setPhoneNumber(attribute);
-				break;
-			case "street":
-				customer.setStreet(attribute);
-				break;
-			case "postcode":
-				customer.setPostcode(attribute);
-				break;
-			case "city":
-				customer.setCity(attribute);
-				break;
-			case "country":
-				customer.setCountry(attribute);
-				break;
-			case "dateOfBirth":
-				customer.setDateOfBirth(attribute);
-				break;
-			case "company":
-				if(attribute.equals("true")) {
-					customer.setCompany(true);
-				}
-				else {
-					customer.setCompany(false);
-				}
-				break;
-			case "companyName":
-				if(customer.isCompany()) {
-					customer.setCompanyName(attribute);
-				}
-				else {
-					customer.setCompanyName(null);
-				}
-				break;
-			default:
-				throw new IllegalArgumentException("given attribute " + attribute + " is not a settable attribute of customer");
-			}
-			entityManager.merge(customer);
-		}
-		catch(NullPointerException e) {
-			LOGGER.log(Level.SEVERE, "no customer found");
-		}		
-	}
-
-	/**
-	 * Updates given customer object in database
-	 * @param customer customer object to update which already exists in database
-	 */
-	public void mergeCustomer(Customer customer) {
+	public void updateCustomer(Customer customer) {
 		entityManager.merge(customer);
 		entityManager.flush();
 	}

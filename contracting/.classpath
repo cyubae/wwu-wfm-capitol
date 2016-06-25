@@ -29,5 +29,6 @@
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/MessagingService"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/partner-interface"/>
+	<classpathentry kind="src" path="/capitol-persistence"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
