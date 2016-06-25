@@ -1,6 +1,5 @@
 package de.unimuenster.wfm.capitol.dto.contract;
 
-import java.util.Calendar;
 import java.util.Collection;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -30,7 +29,7 @@ public class ContractDetailsDTO {
 	@XmlAccessorType(XmlAccessType.FIELD)
 	public class Order {
 		private int order_id;
-		private Calendar request_date;
+		private String request_date;
 		private boolean fleet_rental;
 		private String inquiry_text;
 		private User user;
@@ -45,11 +44,11 @@ public class ContractDetailsDTO {
 			this.order_id = order_id;
 		}
 
-		public Calendar getRequest_date() {
+		public String getRequest_date() {
 			return request_date;
 		}
 
-		public void setRequest_date(Calendar request_date) {
+		public void setRequest_date(String request_date) {
 			this.request_date = request_date;
 		}
 
@@ -104,8 +103,8 @@ public class ContractDetailsDTO {
 			private String postcode;
 			private String city;
 			private String country;
-			private Calendar date_of_birth;
-			private boolean company;
+			private String date_of_birth;
+			private String company;
 			private String company_name;
 			
 			public String getFirstname() {
@@ -162,17 +161,30 @@ public class ContractDetailsDTO {
 			public void setCountry(String country) {
 				this.country = country;
 			}
-			public Calendar getDate_of_birth() {
+			public String getDate_of_birth() {
 				return date_of_birth;
 			}
-			public void setDate_of_birth(Calendar date_of_birth) {
+			public void setDate_of_birth(String date_of_birth) {
 				this.date_of_birth = date_of_birth;
 			}
-			public boolean isCompany() {
+			public String isCompany() {
 				return company;
 			}
 			public void setCompany(boolean company) {
-				this.company = company;
+				if (company) {
+					this.company = "true";					
+				}
+				else {
+					this.company = "false";
+				}
+			}
+			public void setCompany(String company) {
+				if (company.equals("true")) {
+					this.company = "true";					
+				}
+				else {
+					this.company = "false";
+				}
 			}
 			public String getCompany_name() {
 				return company_name;
@@ -187,8 +199,8 @@ public class ContractDetailsDTO {
 			private int insurance_id;
 			private String type;
 			private double deductible;
-			private Calendar pick_up_date;
-			private Calendar return_date;
+			private String pick_up_date;
+			private String return_date;
 			private double estimated_of_cost;
 			
 			public int getInsurance_id() {
@@ -209,16 +221,16 @@ public class ContractDetailsDTO {
 			public void setDeductible(double deductible) {
 				this.deductible = deductible;
 			}
-			public Calendar getPick_up_date() {
+			public String getPick_up_date() {
 				return pick_up_date;
 			}
-			public void setPick_up_date(Calendar pick_up_date) {
+			public void setPick_up_date(String pick_up_date) {
 				this.pick_up_date = pick_up_date;
 			}
-			public Calendar getReturn_date() {
+			public String getReturn_date() {
 				return return_date;
 			}
-			public void setReturn_date(Calendar return_date) {
+			public void setReturn_date(String return_date) {
 				this.return_date = return_date;
 			}
 			public double getEstimated_of_cost() {

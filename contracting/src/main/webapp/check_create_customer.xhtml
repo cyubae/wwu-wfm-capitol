@@ -17,7 +17,11 @@
   </h:head>
   <h:body>
     <h1>Customer Data:</h1>
-
+    <p>Firstname: #{checkCreateCustomerController.customer.firstName}</p>
+    <p>Surname: #{checkCreateCustomerController.customer.surname}</p>
+    <h:form id="submitForm">
+      <h:commandButton id="submit_button" value="Create Customer" action="#{checkCreateCustomerController.submitForm()}" />
+    </h:form>
   </h:body>
 </f:view>
 </html>

@@ -22,11 +22,12 @@ import de.unimuenster.wfm.capitol.entities.Customer;
 @Named
 public class AccessCustomer {
 		
+	private static Logger LOGGER = Logger.getLogger(AccessCustomer.class.getName());
+
 	// Inject the entity manager
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	private static Logger LOGGER = Logger.getLogger(AccessCustomer.class.getName());
 	
 	/**
 	 * Returns customerId if available for variables given in Map processVariables
@@ -37,21 +38,24 @@ public class AccessCustomer {
 		LOGGER.log(Level.INFO, "entityManager.toString(): " + entityManager.toString());
 		LOGGER.log(Level.INFO, "Prepare query string");				
 		String query = "Select c FROM Customer c WHERE"
-				+ " c.firstName = " + dataMap.get("firstname")
-				+ " AND c.surname = " + dataMap.get("surname") 
-				+ " AND c.email = " + dataMap.get("email")
-				+ " AND c.phoneNumber = " + dataMap.get("phone_number")
-				+ " AND c.street = " + dataMap.get("street")
-				+ " AND c.houseNumber = " + dataMap.get("house_number")
-				+ " AND c.postcode = " + dataMap.get("postcode")
-				+ " AND c.city = " + dataMap.get("city")
-				+ " AND c.country = " + dataMap.get("country")
-				+ " AND c.dateOfBirth = " + dataMap.get("date_of_birth");
+				+ " c.firstName = '" + dataMap.get("user_firstname") + "'"
+				+ " AND c.surname = '" + dataMap.get("user_surname")  + "'"
+				+ " AND c.email = '" + dataMap.get("user_email") + "'"
+				+ " AND c.phoneNumber = '" + dataMap.get("user_phone_number") + "'"
+				+ " AND c.street = '" + dataMap.get("user_street") + "'"
+				+ " AND c.houseNumber = '" + dataMap.get("user_house_number") + "'"
+				+ " AND c.postcode = '" + dataMap.get("user_postcode") + "'"
+				+ " AND c.city = '" + dataMap.get("user_city") + "'"
+				+ " AND c.country = '" + dataMap.get("user_country") + "'"
+				+ " AND c.dateOfBirth = '" + dataMap.get("user_date_of_birth") + "'";
 
 		//if customer is company, append to companyQuery
-		if ( dataMap.get("company") != null && dataMap.get("company").equals("true")) {
+		if ( dataMap.get("user_iscompany") != null && dataMap.get("user_iscompany").equals("true")) {
 			query += " AND c.company = true"
-				   + " AND c.companyName = " + dataMap.get("company_name");
+				   + " AND c.companyName = '" + dataMap.get("user_company_name") + "'";
+		}
+		else {
+			query += " AND c.company = false";
 		}
 		
 		LOGGER.log(Level.INFO, "Query string: " + query);		
@@ -72,7 +76,23 @@ public class AccessCustomer {
 
 	}
 	
-	public void persistCustomer(Customer customer) {
+	
+	/**
+	 * Creates, persists and returns a new Customer object 
+	 * @return
+	 */
+	public Customer createCustomer() {
+		Customer newCustomer = new Customer();
+		entityManager.persist(newCustomer);
+		return newCustomer;		
+	}
+	
+	/**
+	 * Updates given customer object (precondition: customer object is not detached)
+	 * @param customer
+	 */
+	public void updateCustomer(Customer customer) {
+		entityManager.merge(customer);
 		entityManager.persist(customer);
 	}
 }

@@ -213,6 +213,27 @@ public void setBlacklisted(boolean blacklisted) {
 	this.blacklisted = blacklisted;
 }
 
+@Override
+public String toString(){
+	return 
+			" customerId " + customerId
+			+ "; firstName " + firstName
+			+ "; version " + version
+			+ "; dateOfBirth " + dateOfBirth
+			+ "; surname " + surname
+			+ "; address " + address
+			+ "; street " + street
+			+ "; houseNumber " + houseNumber
+			+ "; postcode " + postcode
+			+ "; city " + city
+			+ "; country " + country
+			+ "; email " + email
+			+ "; phoneNumber " + phoneNumber
+			+ "; blacklisted " + blacklisted
+			+ "; company " + company
+			+ "; companyName " + companyName;
+}
+
   
   
 }
