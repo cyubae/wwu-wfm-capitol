@@ -13,6 +13,7 @@
 package de.unimuenster.wfm.capitol.contracting.controller;
 
 import org.camunda.bpm.engine.cdi.BusinessProcess;
+import org.camunda.bpm.engine.cdi.jsf.TaskForm;
 
 import de.unimuenster.wfm.capitol.entities.Customer;
 import de.unimuenster.wfm.capitol.jpa.AccessCustomer;
@@ -48,10 +49,10 @@ public class CheckCreateCustomerController implements Serializable {
 	// the BusinessProcess to access the process variables
 	@Inject
 	private BusinessProcess businessProcess;
-
-//	// Inject the CheckExistingCustomerIdBL to update the persisted order
-//	@Inject
-//	private CheckExistingCustomerIdBL checkExistingCustBL;
+	
+	// Inject task form available through the camunda cdi artifact
+	@Inject
+	private TaskForm taskForm;
 
 	// Caches the Customer during the conversation
 	private Customer customer;
@@ -98,5 +99,7 @@ public class CheckCreateCustomerController implements Serializable {
 	public void submitForm() throws IOException {
 		// Persist updated order entity and complete task form
 		customerAccess.updateCustomer(customer);;
+		LOGGER.log(Level.INFO, "Successfully updated customer : " + customer.toString());
+		taskForm.completeTask();
 	}
 }
