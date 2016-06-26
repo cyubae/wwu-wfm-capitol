@@ -18,18 +18,78 @@
 	</h:head>
 	<h:body>
 		<h1>Customer Data:</h1>
-
-
 		<h:panelGrid columns="2">
 			<p>
-				<label for="first_name">First Name</label>
+				<label for="user_firstname">First Name</label>
 				<!-- read/write process variables using the processVariables map. -->
-				<h:inputText id="first_name" value="#{processVariables['user_firstname']}" required="true" />
+				<h:inputText id="user_firstname"
+					value="#{processVariables['user_firstname']}" required="true" />
 			</p>
 			<p>
-				<label for="surname">Surname</label>
+				<label for="user_surname">Last Name</label>
 				<!-- read/write process variables using the processVariables map. -->
-				<h:inputText id="surname" value="#{processVariables['user_surname']}" required="true" />
+				<h:inputText id="user_surname"
+					value="#{processVariables['user_surname']}" required="true" />
+			</p>
+			<p>
+				<label for="user_email">Email</label>
+				<!-- read/write process variables using the processVariables map. -->
+				<h:inputText id="user_email"
+					value="#{processVariables['user_email']}" required="true" />
+			</p>
+			<p>
+				<label for="user_phone_number">Phone Number</label>
+				<!-- read/write process variables using the processVariables map. -->
+				<h:inputText id="user_phone_number"
+					value="#{processVariables['user_phone_number']}" required="true" />
+			</p>
+			<p>
+				<label for="user_street">Street</label>
+				<!-- read/write process variables using the processVariables map. -->
+				<h:inputText id="user_street"
+					value="#{processVariables['user_street']}" required="true" />
+			</p>
+			<p>
+				<label for="user_house_number">House Number</label>
+				<!-- read/write process variables using the processVariables map. -->
+				<h:inputText id="user_house_number"
+					value="#{processVariables['user_house_number']}" required="true" />
+			</p>
+			<p>
+				<label for="user_postcode">Postcode</label>
+				<!-- read/write process variables using the processVariables map. -->
+				<h:inputText id="user_postcode"
+					value="#{processVariables['user_postcode']}" required="true" />
+			</p>
+			<p>
+				<label for="user_city">City</label>
+				<!-- read/write process variables using the processVariables map. -->
+				<h:inputText id="user_city"
+					value="#{processVariables['user_city']}" required="true" />
+			</p>
+			<p>
+				<label for="user_country">Country</label>
+				<!-- read/write process variables using the processVariables map. -->
+				<h:inputText id="user_country"
+					value="#{processVariables['user_country']}" required="true" />
+			</p>
+			<p>
+				<label for="user_date_of_birth">Date of Birth</label>
+				<!-- read/write process variables using the processVariables map. -->
+				<h:inputText id="user_date_of_birth"
+					value="#{processVariables['user_date_of_birth']}" required="true" />
+			</p>
+			<p>
+				<label for="user_iscompany">Is Company?</label>
+				<!-- read/write process variables using the processVariables map. -->
+				<h:inputText id="user_iscompany"
+					value="#{processVariables['user_iscompany']}" required="true" />
+			</p>		
+			<p>
+				<label for="user_company_name">Company Name</label>
+				<!-- read/write process variables using the processVariables map. -->
+				<h:inputText id="user_company_name"
+					value="#{processVariables['user_company_name']}" required="true" />
 			</p>
 		</h:panelGrid>
 
