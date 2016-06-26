@@ -84,6 +84,7 @@ public class AccessCustomer {
 		Customer newCustomer = new Customer();
 		entityManager.persist(newCustomer);
 		entityManager.flush();
+		LOGGER.log(Level.INFO, "New empty Customer object created - customerId: " + newCustomer.getCustomerId());	
 
 		return newCustomer;
 	}

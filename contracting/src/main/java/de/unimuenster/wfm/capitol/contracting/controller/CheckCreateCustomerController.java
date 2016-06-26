@@ -70,7 +70,7 @@ public class CheckCreateCustomerController implements Serializable {
 	 */
 	private Customer createCustomer() {
 		Customer newCustomer = customerAccess.createCustomer();
-		
+				
 		newCustomer.setFirstName((String) businessProcess.getVariable("user_firstname"));
 		newCustomer.setSurname((String) businessProcess.getVariable("user_surname"));
 		newCustomer.setEmail((String) businessProcess.getVariable("user_email"));
