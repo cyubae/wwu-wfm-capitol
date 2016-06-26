@@ -23,21 +23,16 @@
 		<h:panelGrid columns="2">
 			<p>
 				<label for="first_name">First Name</label>
-				<!-- create process variables using the processVariables map. -->
-				<h:inputText id="first_name" value="#{checkCreateCustomerController.customer.firstName}"
-					required="true" />
+				<!-- read/write process variables using the processVariables map. -->
+				<h:inputText id="first_name" value="#{processVariables['user_firstname']}" required="true" />
 			</p>
 			<p>
 				<label for="surname">Surname</label>
-				<!-- create process variables using the processVariables map. -->
-				<h:inputText id="surname" value="#{checkCreateCustomerController.customer.surname}"
-					required="true" />
+				<!-- read/write process variables using the processVariables map. -->
+				<h:inputText id="surname" value="#{processVariables['user_surname']}" required="true" />
 			</p>
 		</h:panelGrid>
 
-
-		<p>Firstname: #{checkCreateCustomerController.customer.firstName}</p>
-		<p>Surname: #{checkCreateCustomerController.customer.surname}</p>
 		<h:form id="submitForm">
 			<h:commandButton id="submit_button" value="Create Customer"
 				action="#{checkCreateCustomerController.submitForm()}" />

@@ -89,7 +89,7 @@ public class AccessCustomer {
 	}
 
 	/**
-	 * Updates customer object existing in database 
+	 * Updates customer object pre-existing in database 
 	 * @param customer
 	 */
 	public void updateCustomer(Customer customer) {

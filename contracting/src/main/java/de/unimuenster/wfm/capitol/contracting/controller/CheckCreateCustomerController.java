@@ -44,7 +44,6 @@ public class CheckCreateCustomerController implements Serializable {
 
 	@EJB
 	private AccessCustomer customerAccess = new AccessCustomer();
-	
 
 	// the BusinessProcess to access the process variables
 	@Inject
@@ -54,16 +53,16 @@ public class CheckCreateCustomerController implements Serializable {
 	@Inject
 	private TaskForm taskForm;
 
-	// Caches the Customer during the conversation
-	private Customer customer;
-
-	public Customer getCustomer() {
-		if (customer == null) {
-			// Create the new customer from the input data if not already cached
-			customer = createCustomer();
-		}
-		return customer;			
-	}
+//	// Caches the Customer during the conversation
+//	private Customer customer;
+//
+//	public Customer getCustomer() {
+//		if (customer == null) {
+//			// Create the new customer from the input data if not already cached
+//			customer = createCustomer();
+//		}
+//		return customer;			
+//	}
 
 	/**
 	 * Creates a new Customer object with attribute values taken from process variables
@@ -94,14 +93,18 @@ public class CheckCreateCustomerController implements Serializable {
 		
 		LOGGER.log(Level.INFO, "New customer created: " + newCustomer.toString());
 		customerAccess.updateCustomer(newCustomer);
+		LOGGER.log(Level.INFO, "Successfully updated customer");
 
 		return newCustomer;
 	}
 
+	
+	/**
+	 * Persist customer created with process variables passed from form and complete task form
+	 * @throws IOException
+	 */
 	public void submitForm() throws IOException {
-		// Persist updated order entity and complete task form
-		customerAccess.updateCustomer(customer);;
-		LOGGER.log(Level.INFO, "Successfully updated customer : " + customer.toString());
+		this.createCustomer();
 		taskForm.completeTask();
 	}
 }

@@ -5,8 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
-import de.unimuenster.wfm.capitol.contracting.controller.CheckCreateCustomerController;
-
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
