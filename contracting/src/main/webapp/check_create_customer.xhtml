@@ -11,7 +11,8 @@
     -->
 
 		<f:event type="preRenderView"
-			listener="#{camundaTaskForm.startTaskForm()}" />
+			listener="#{camundaTaskForm.startTaskForm()}"
+			 />
 	</f:metadata>
 	<h:head>
 		<title>Check Data and Create Customer</title>
@@ -23,73 +24,73 @@
 				<label for="user_firstname">First Name</label>
 				<!-- read/write process variables using the processVariables map. -->
 				<h:inputText id="user_firstname"
-					value="#{processVariables['user_firstname']}" required="true" />
+					value="#{checkCreateCustomerController.firstName}" required="true" />
 			</p>
 			<p>
 				<label for="user_surname">Last Name</label>
 				<!-- read/write process variables using the processVariables map. -->
 				<h:inputText id="user_surname"
-					value="#{processVariables['user_surname']}" required="true" />
+					value="#{checkCreateCustomerController.surname}" required="true" />
 			</p>
 			<p>
 				<label for="user_email">Email</label>
 				<!-- read/write process variables using the processVariables map. -->
 				<h:inputText id="user_email"
-					value="#{processVariables['user_email']}" required="true" />
+					value="#{checkCreateCustomerController.email}" required="true" />
 			</p>
 			<p>
 				<label for="user_phone_number">Phone Number</label>
 				<!-- read/write process variables using the processVariables map. -->
 				<h:inputText id="user_phone_number"
-					value="#{processVariables['user_phone_number']}" required="true" />
+					value="#{checkCreateCustomerController.phoneNumber}" required="true" />
 			</p>
 			<p>
 				<label for="user_street">Street</label>
 				<!-- read/write process variables using the processVariables map. -->
 				<h:inputText id="user_street"
-					value="#{processVariables['user_street']}" required="true" />
+					value="#{checkCreateCustomerController.street}" required="true" />
 			</p>
 			<p>
 				<label for="user_house_number">House Number</label>
 				<!-- read/write process variables using the processVariables map. -->
 				<h:inputText id="user_house_number"
-					value="#{processVariables['user_house_number']}" required="true" />
+					value="#{checkCreateCustomerController.houseNumber}" required="true" />
 			</p>
 			<p>
 				<label for="user_postcode">Postcode</label>
 				<!-- read/write process variables using the processVariables map. -->
 				<h:inputText id="user_postcode"
-					value="#{processVariables['user_postcode']}" required="true" />
+					value="#{checkCreateCustomerController.postcode}" required="true" />
 			</p>
 			<p>
 				<label for="user_city">City</label>
 				<!-- read/write process variables using the processVariables map. -->
-				<h:inputText id="user_city" value="#{processVariables['user_city']}"
-					required="true" />
+				<h:inputText id="user_city" 
+					value="#{checkCreateCustomerController.city}" required="true" />
 			</p>
 			<p>
 				<label for="user_country">Country</label>
 				<!-- read/write process variables using the processVariables map. -->
 				<h:inputText id="user_country"
-					value="#{processVariables['user_country']}" required="true" />
+					value="#{checkCreateCustomerController.country}" required="true" />
 			</p>
 			<p>
 				<label for="user_date_of_birth">Date of Birth</label>
 				<!-- read/write process variables using the processVariables map. -->
 				<h:inputText id="user_date_of_birth"
-					value="#{processVariables['user_date_of_birth']}" required="true" />
+					value="#{checkCreateCustomerController.dateOfBirth}" required="true" />
 			</p>
 			<p>
 				<label for="user_iscompany">Is Company?</label>
 				<!-- read/write process variables using the processVariables map. -->
 				<h:inputText id="user_iscompany"
-					value="#{processVariables['user_iscompany']}" required="true" />
+					value="#{checkCreateCustomerController.company}" required="true" />
 			</p>
 			<p>
 				<label for="user_company_name">Company Name</label>
 				<!-- read/write process variables using the processVariables map. -->
 				<h:inputText id="user_company_name"
-					value="#{processVariables['user_company_name']}" required="true" />
+					value="#{checkCreateCustomerController.companyName}" required="true" />
 			</p>
 		</h:panelGrid>
 
