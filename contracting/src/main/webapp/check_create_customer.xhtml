@@ -23,9 +23,20 @@
  			<p>
 				<label for="user_firstname">First Name</label>
 				<h:inputText id="user_firstname"
-					value="#{checkCreateCustomerController.firstName}" required="true" />
+					value="#{processVariables['user_firstname']}" required="true" />				
 			</p>
+			<p>
+				<label for="user_firstname_new">New First Name</label>
+				<h:inputText id="user_firstname_new"
+					value="#{processVariables['user_firstname_new']}" required="true" />	
+			</p> 			
 		</h:panelGrid>
+		
+		<h:form id="submitForm">
+ 			<h:commandButton id="submit_button" value="Create Customer"
+				action="#{checkCreateCustomerController.submitForm()}" />
+		</h:form>
+				
 	</h:body>
 </f:view>
 </html>

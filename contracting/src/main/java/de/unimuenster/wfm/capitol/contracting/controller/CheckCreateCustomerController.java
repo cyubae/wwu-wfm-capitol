@@ -17,6 +17,8 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.ConversationScoped;
@@ -44,7 +46,7 @@ import de.unimuenster.wfm.capitol.service.MessageService;
 @Named
 @ManagedBean
 //@ConversationScoped
-public class CheckCreateCustomerController implements Serializable, TaskListener   {
+public class CheckCreateCustomerController implements Serializable   {
 
 	private static final long serialVersionUID = 1L;
 	private static Logger LOGGER = Logger.getLogger(CheckCreateCustomerController.class.getName());
@@ -52,17 +54,12 @@ public class CheckCreateCustomerController implements Serializable, TaskListener
 	@EJB(lookup="java:global/MessagingService/MessageServiceImpl!de.unimuenster.wfm.capitol.service.MessageService")
 	private static MessageService MESSAGESERVICE;
 
-	private String firstName;
-
-
-
-
 	//	@EJB
 	//	private static AccessCustomer CUSTOMERACCESS = new AccessCustomer();
 
-	//	// Inject task form available through the camunda cdi artifact
-	//	@Inject
-	//	private TaskForm taskForm;
+		// Inject task form available through the camunda cdi artifact
+		@Inject
+		private TaskForm taskForm;
 
 	//	private void initializeVariables() throws NullPointerException {
 	//
@@ -127,44 +124,14 @@ public class CheckCreateCustomerController implements Serializable, TaskListener
 	 * Persist customer created with process variables passed from form and complete task form
 	 * @throws IOException
 	 */
-	//	public void submitForm() throws IOException {
-	//
-	//		LOGGER.log(Level.INFO, "BEFORE COMPLETE TASK: businessProcess.getCachedLocalVariableMap");
-	//
-	//		Map<String, Object> dataMap = businessProcess.getCachedLocalVariableMap();
-	//		//iterating over values only
-	//		for (Object value : dataMap.values()) {
-	//			LOGGER.log(Level.INFO, "dataMap - Value = " + value);
-	//		}
-	//
-	//		LOGGER.log(Level.INFO, "BEFORE COMPLETE TASK: businessProcess.getCachedVariableMap");
-	//
-	//		dataMap = businessProcess.getCachedVariableMap();
-	//		//iterating over values only
-	//		for (Object value : dataMap.values()) {
-	//			LOGGER.log(Level.INFO, "dataMap - Value = " + value);
-	//		}
-	//
-	//		this.createCustomer();
-	//		taskForm.completeTask();
-	//
-	//
-	//		LOGGER.log(Level.INFO, "AFTER COMPLETE TASK: businessProcess.getCachedLocalVariableMap");
-	//
-	//		dataMap = businessProcess.getCachedLocalVariableMap();
-	//		//iterating over values only
-	//		for (Object value : dataMap.values()) {
-	//			LOGGER.log(Level.INFO, "dataMap - Value = " + value);
-	//		}
-	//
-	//		LOGGER.log(Level.INFO, "AFTER COMPLETE TASK: businessProcess.getCachedVariableMap");
-	//
-	//		dataMap = businessProcess.getCachedVariableMap();
-	//		//iterating over values only
-	//		for (Object value : dataMap.values()) {
-	//			LOGGER.log(Level.INFO, "dataMap - Value = " + value);
-	//		}
-	//	}
+		public void submitForm() throws IOException {
+	
+			LOGGER.log(Level.INFO, "Called submitForm");
+
+	
+//			this.createCustomer();
+			taskForm.completeTask();
+		}
 
 	/**
 	 * Transfers all process variables to temp_variables
@@ -172,17 +139,17 @@ public class CheckCreateCustomerController implements Serializable, TaskListener
 	 */
 	public void transferToTempVariables(DelegateTask delegateTask) {
 		LOGGER.log(Level.INFO, "Called transferToTempVariables");
-//		Map<String, Object> dataMap = delegateTask.getVariables();
-////		for (Object value : dataMap.values()) {
-////			LOGGER.log(Level.INFO, "dataMap - Value = " + value);
-////			
-////		}
-//		for (String key : dataMap.keySet()) {
-//			String value = (String) dataMap.get(key);
-//			LOGGER.log(Level.INFO, "Key: " + key + ", Value: " + value );
-//			delegateTask.setVariable(key, value + "_temp");
+		Map<String, Object> dataMap = delegateTask.getVariables();
+//		for (Object value : dataMap.values()) {
+//			LOGGER.log(Level.INFO, "dataMap - Value = " + value);
+//			
 //		}
-
+		for (String key : dataMap.keySet()) {
+			String value = String.valueOf(dataMap.get(key));
+			LOGGER.log(Level.INFO, "Key: " + key + ", Value: " + value );
+//			delegateTask.setVariable(key + "_temp", value);
+		}
+		
 	}
 
 	/**
@@ -190,57 +157,64 @@ public class CheckCreateCustomerController implements Serializable, TaskListener
 	 */
 	public void retransferToProcessVariables(DelegateTask delegateTask) {
 		LOGGER.log(Level.INFO, "Called transferToTempVariables");
-//		Map<String, Object> dataMap = delegateTask.getVariables();
-//		for (String key : dataMap.keySet()) {
-//			String value = (String) dataMap.get(key);
-//			LOGGER.log(Level.INFO, "Key: " + key + ", Value: " + value );
-//			delegateTask.setVariable(key, value + "_temp");
-//		}		
+		Map<String, Object> dataMap = delegateTask.getVariables();
+		for (String key : dataMap.keySet()) {
+			String value = String.valueOf(dataMap.get(key));
+			LOGGER.log(Level.INFO, "Key: " + key + ", Value: " + value );
+//			LOGGER.log(Level.INFO, "checkIfHasTempSuffix: " + checkIfHasTempSuffix(key) );
+//			LOGGER.log(Level.INFO, "returnWithoutTempSuffix: " + returnWithoutTempSuffix(key) );
+//			delegateTask.setVariable(key + "_temp", value);
+		}
 	}	
 
 
-	@Override
-	public void notify(DelegateTask delegateTask) {
-		// TODO Auto-generated method stub
-		LOGGER.log(Level.INFO, "Called execute");
-		this.setFirstName((String) delegateTask.getVariable("user_firstname"));
-		LOGGER.log(Level.INFO, "first name set: " + this.getFirstName());
-
-		//		Map<String, Object> dataMap = delegateTask.getVariables();
-		//		LOGGER.log(Level.INFO, "Line 2");
-		//		for (Object value : dataMap.values()) {
-		//			LOGGER.log(Level.INFO, "dataMap - Value = " + value);
-		//		}
-	}
-
-
-
+//	@Override
+//	public void notify(DelegateTask delegateTask) {
+//		// TODO Auto-generated method stub
+//		LOGGER.log(Level.INFO, "Called execute");
+////		this.setFirstName((String) delegateTask.getVariable("user_firstname"));
+////		LOGGER.log(Level.INFO, "first name set: " + this.getFirstName());
+//
+//		//		Map<String, Object> dataMap = delegateTask.getVariables();
+//		//		LOGGER.log(Level.INFO, "Line 2");
+//		//		for (Object value : dataMap.values()) {
+//		//			LOGGER.log(Level.INFO, "dataMap - Value = " + value);
+//		//		}
+//	}
+	
 	/**
-	 * @return the firstName
+	 * Returns true if name ends on "_temp".
+	 * @param name
+	 * @return
 	 */
-	public String getFirstName() {
-		LOGGER.log(Level.INFO, "getFirstName invoked: " + this.firstName);
-		return firstName;
-	}
-
-
-
-
-	/**
-	 * @param firstName the firstName to set
-	 */
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	private static boolean checkIfHasTempSuffix(String name) {
+		if (name.equals(returnWithoutTempSuffix(name))) {
+			return false;
+		}
+		else {
+			return true;			
+		}
 	}	
+	
+	/**
+	 * Returns name. If name ends on "_temp", this is cut out.
+	 * @param name
+	 * @return
+	 */
+	private static String returnWithoutTempSuffix(String name) {
+		String re1="((?:[a-z][a-z]+))";	// Word 1
+		String re2="(_)";	// Any Single Character 1
+		String re3="(Temp)";	// Word 2
 
-	//	@Override
-	//	public void execute(DelegateExecution execution) throws Exception {
-	//		// TODO Auto-generated method stub
-	//		LOGGER.log(Level.INFO, "Called execute");
-	//		Map<String, Object> dataMap = execution.getVariables();
-	//		LOGGER.log(Level.INFO, "Line 2");
-	//		for (Object value : dataMap.values()) {
-	//			LOGGER.log(Level.INFO, "dataMap - Value = " + value);
-	//		}
-	//	}
+		Pattern p = Pattern.compile(re1+re2+re3,Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+		Matcher m = p.matcher(name);
+		if (m.find())
+		{
+			return m.group(1);
+		}
+		return name;
+	}
+	
+
+
 }

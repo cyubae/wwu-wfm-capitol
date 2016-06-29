@@ -134,6 +134,7 @@
     <userTask id="UserTask_0tievdk" name="check data and create customer" camunda:formKey="app:check_create_customer.jsf">
       <extensionElements>
         <camunda:taskListener expression="${checkCreateCustomerController.transferToTempVariables(task)}" event="create" />
+        <camunda:taskListener expression="${checkCreateCustomerController.retransferToProcessVariables(task)}" event="complete" />
       </extensionElements>
       <incoming>sid-C61EBAF4-526D-40DF-A555-C99E75B85689</incoming>
       <outgoing>sid-D61DA17E-BBED-4F1A-A43C-563BE79F788D</outgoing>
