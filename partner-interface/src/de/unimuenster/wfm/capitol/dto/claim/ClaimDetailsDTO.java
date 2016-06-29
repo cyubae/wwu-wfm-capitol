@@ -2,7 +2,6 @@ package de.unimuenster.wfm.capitol.dto.claim;
 
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -13,16 +12,18 @@ import de.unimuenster.wfm.capitol.dto.claim.Involved_party;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ClaimDetailsDTO {
 
-	private String process_id;
+	private String processinstance_id_bvis;
 	private Calendar request_date;
 	private Claim claim;
 
-	public String getProcess_id() {
-		return process_id;
+	
+
+	public String getProcessinstance_id_bvis() {
+		return processinstance_id_bvis;
 	}
 
-	public void setProcess_id(String process_id) {
-		this.process_id = process_id;
+	public void setProcessinstance_id_bvis(String processinstance_id_bvis) {
+		this.processinstance_id_bvis = processinstance_id_bvis;
 	}
 
 	public Calendar getRequest_date() {

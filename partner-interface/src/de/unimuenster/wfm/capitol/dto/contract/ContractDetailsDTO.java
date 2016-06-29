@@ -7,15 +7,15 @@ import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ContractDetailsDTO {
-	private String process_id;
+	private String processinstance_id_bvis;
 	private Order order;
 
-
-	public String getProcess_id() {
-		return process_id;
+	public String getProcessinstance_id_bvis() {
+		return processinstance_id_bvis;
 	}
-	public void setProcess_id(String process_id) {
-		this.process_id = process_id;
+
+	public void setProcessinstance_id_bvis(String processinstance_id_bvis) {
+		this.processinstance_id_bvis = processinstance_id_bvis;
 	}
 
 	public Order getOrder() {

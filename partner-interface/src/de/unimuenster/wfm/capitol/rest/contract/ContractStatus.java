@@ -22,7 +22,8 @@ public class ContractStatus {
 	@Consumes("application/json")
 	public String receiveCase(ContractStatusDTO contractstatus){
 		// TESTCODE
-		System.out.println(contractstatus.getProcess_id());
+		System.out.println(contractstatus.getProcessinstance_id_bvis());
+		System.out.println(contractstatus.getProcessinstance_id_capitol());
 		System.out.println(contractstatus.getOrder().getOrder_id());
 		System.out.println(contractstatus.getOrder().getRequest_date());
 		System.out.println(contractstatus.getOrder().getContract_status());
@@ -30,6 +31,7 @@ public class ContractStatus {
 		// END TESTCODE
 		
 		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("processinstance_id_bvis", contractstatus.getProcessinstance_id_bvis());
 		variables.put("order_id", contractstatus.getOrder().getOrder_id());
 		variables.put("request_date", contractstatus.getOrder().getRequest_date());
 		variables.put("contract_status", contractstatus.getOrder().getContract_status());
@@ -37,7 +39,7 @@ public class ContractStatus {
 		try {
 			// correlate the message
 			  runtimeService.createMessageCorrelation("Message-Approve")
-		      .processInstanceId(contractstatus.getProcess_id())
+		      .processInstanceId(contractstatus.getProcessinstance_id_capitol())
 		      .setVariables(variables)
 		      .correlate();
 		} catch (MismatchingMessageCorrelationException e) {

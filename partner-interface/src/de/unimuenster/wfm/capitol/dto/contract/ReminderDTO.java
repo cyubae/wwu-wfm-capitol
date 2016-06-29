@@ -7,15 +7,24 @@ import javax.xml.bind.annotation.XmlAccessorType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ReminderDTO {
-	private String process_id;
+	private String processinstance_id_bvis;
+	private String processinstance_id_capitol;
 	private Order order;
-	
-	public String getProcess_id() {
-		return process_id;
+
+	public String getProcessinstance_id_bvis() {
+		return processinstance_id_bvis;
 	}
 
-	public void setProcess_id(String process_id) {
-		this.process_id = process_id;
+	public void setProcessinstance_id_bvis(String processinstance_id_bvis) {
+		this.processinstance_id_bvis = processinstance_id_bvis;
+	}
+
+	public String getProcessinstance_id_capitol() {
+		return processinstance_id_capitol;
+	}
+
+	public void setProcessinstance_id_capitol(String processinstance_id_capitol) {
+		this.processinstance_id_capitol = processinstance_id_capitol;
 	}
 
 	public Order getOrder() {
