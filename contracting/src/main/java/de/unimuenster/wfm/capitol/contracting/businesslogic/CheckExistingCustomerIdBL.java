@@ -1,4 +1,4 @@
-package de.unimuenster.wfm.capitol.contracting;
+package de.unimuenster.wfm.capitol.contracting.businesslogic;
 
 
 import java.util.Map;

@@ -1,4 +1,4 @@
-package de.unimuenster.wfm.capitol.contracting;
+package de.unimuenster.wfm.capitol.contracting.businesslogic;
 
 import javax.ejb.Stateless;
 import javax.inject.Named;
@@ -9,7 +9,7 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 
 @Stateless
 @Named
-public class ReleaseContractBL {
+public class CreateBasicContractBL {
 
 	  // Inject the entity manager
 	  @PersistenceContext
