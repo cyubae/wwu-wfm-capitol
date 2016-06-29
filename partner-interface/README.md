@@ -3,7 +3,7 @@ http://localhost:8080/partner-interface/contractdetails
 
 
 {
-   "process_id":2,
+   "processinstance_id_bvis": “fc9432hjfxn3423fnvbvg”,
    "order":{
       "order_id":3,
       "request_date":"2016-05-20",
@@ -72,7 +72,8 @@ http://localhost:8080/partner-interface/contractdetails
 http://localhost:8080/partner-interface/contractstatus
 
 {
-"process_id": 2,
+"processinstance_id_bvis": “fc9432hjfxn3423fnvbvg”,
+“processinstance_id_capitol”: “3vc5wsdcvisph344r9uvg”,
 "order": {
     "order_id": 3,
     "request_date": "2016-05-21",
@@ -87,7 +88,8 @@ http://localhost:8080/partner-interface/reminder
 
 
 {
-"process_id": 2,
+"processinstance_id_bvis": “fc9432hjfxn3423fnvbvg”,
+“processinstance_id_capitol”: “3vc5wsdcvisph344r9uvg”,
 "order": {
     "order_id": 3,
     "request_date": "2016-05-21"
@@ -102,7 +104,7 @@ http://localhost:8080/partner-interface/claimdetails
 
 
 {
-   "process_id":322,
+   "processinstance_id_bvis": “fc9432hjfxn3423fnvbvg”,
    "request_date":"2016-05-24",
    "claim":{
       "claim_id":43,
@@ -170,7 +172,8 @@ http://localhost:8080/partner-interface/feedback
 
 
 {
-    "process_id": 657,
+    "processinstance_id_bvis": “fc9432hjfxn3423fnvbvg”,
+	“processinstance_id_capitol”: “3vc5wsdcvisph344r9uvg”,
     "decision": {
         "claim_id": 534,
         "claim_status": 2,
