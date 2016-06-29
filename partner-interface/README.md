@@ -3,7 +3,7 @@ http://localhost:8080/partner-interface/contractdetails
 
 
 {
-   "processinstance_id_bvis": “fc9432hjfxn3423fnvbvg”,
+   "processinstance_id_bvis": "1",
    "order":{
       "order_id":3,
       "request_date":"2016-05-20",
@@ -17,7 +17,7 @@ http://localhost:8080/partner-interface/contractdetails
          "street":"Beispielstr.",
          "house_number":"3a",
          "postcode":"48149",
-         "city":"M�nster",
+         "city":"Muenster",
          "country":"Germany",
          "date_of_birth":"1980-01-01",
          "company":true,

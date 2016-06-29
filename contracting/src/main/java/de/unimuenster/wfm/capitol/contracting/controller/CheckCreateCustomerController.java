@@ -51,11 +51,11 @@ public class CheckCreateCustomerController implements Serializable, TaskListener
 
 	@EJB(lookup="java:global/MessagingService/MessageServiceImpl!de.unimuenster.wfm.capitol.service.MessageService")
 	private static MessageService MESSAGESERVICE;
-	
+
 	private String firstName;
-	
-	
-	
+
+
+
 
 	//	@EJB
 	//	private static AccessCustomer CUSTOMERACCESS = new AccessCustomer();
@@ -165,18 +165,39 @@ public class CheckCreateCustomerController implements Serializable, TaskListener
 	//			LOGGER.log(Level.INFO, "dataMap - Value = " + value);
 	//		}
 	//	}
-	
+
 	/**
 	 * Transfers all process variables to temp_variables
+	 * 
 	 */
 	public void transferToTempVariables(DelegateTask delegateTask) {
 		LOGGER.log(Level.INFO, "Called transferToTempVariables");
+//		Map<String, Object> dataMap = delegateTask.getVariables();
+////		for (Object value : dataMap.values()) {
+////			LOGGER.log(Level.INFO, "dataMap - Value = " + value);
+////			
+////		}
+//		for (String key : dataMap.keySet()) {
+//			String value = (String) dataMap.get(key);
+//			LOGGER.log(Level.INFO, "Key: " + key + ", Value: " + value );
+//			delegateTask.setVariable(key, value + "_temp");
+//		}
+
 	}
-	
+
 	/**
 	 * Transfers all temp_variables to process variables
 	 */
-	
+	public void retransferToProcessVariables(DelegateTask delegateTask) {
+		LOGGER.log(Level.INFO, "Called transferToTempVariables");
+//		Map<String, Object> dataMap = delegateTask.getVariables();
+//		for (String key : dataMap.keySet()) {
+//			String value = (String) dataMap.get(key);
+//			LOGGER.log(Level.INFO, "Key: " + key + ", Value: " + value );
+//			delegateTask.setVariable(key, value + "_temp");
+//		}		
+	}	
+
 
 	@Override
 	public void notify(DelegateTask delegateTask) {
@@ -184,12 +205,12 @@ public class CheckCreateCustomerController implements Serializable, TaskListener
 		LOGGER.log(Level.INFO, "Called execute");
 		this.setFirstName((String) delegateTask.getVariable("user_firstname"));
 		LOGGER.log(Level.INFO, "first name set: " + this.getFirstName());
-		
-//		Map<String, Object> dataMap = delegateTask.getVariables();
-//		LOGGER.log(Level.INFO, "Line 2");
-//		for (Object value : dataMap.values()) {
-//			LOGGER.log(Level.INFO, "dataMap - Value = " + value);
-//		}
+
+		//		Map<String, Object> dataMap = delegateTask.getVariables();
+		//		LOGGER.log(Level.INFO, "Line 2");
+		//		for (Object value : dataMap.values()) {
+		//			LOGGER.log(Level.INFO, "dataMap - Value = " + value);
+		//		}
 	}
 
 
@@ -212,14 +233,14 @@ public class CheckCreateCustomerController implements Serializable, TaskListener
 		this.firstName = firstName;
 	}	
 
-//	@Override
-//	public void execute(DelegateExecution execution) throws Exception {
-//		// TODO Auto-generated method stub
-//		LOGGER.log(Level.INFO, "Called execute");
-//		Map<String, Object> dataMap = execution.getVariables();
-//		LOGGER.log(Level.INFO, "Line 2");
-//		for (Object value : dataMap.values()) {
-//			LOGGER.log(Level.INFO, "dataMap - Value = " + value);
-//		}
-//	}
+	//	@Override
+	//	public void execute(DelegateExecution execution) throws Exception {
+	//		// TODO Auto-generated method stub
+	//		LOGGER.log(Level.INFO, "Called execute");
+	//		Map<String, Object> dataMap = execution.getVariables();
+	//		LOGGER.log(Level.INFO, "Line 2");
+	//		for (Object value : dataMap.values()) {
+	//			LOGGER.log(Level.INFO, "dataMap - Value = " + value);
+	//		}
+	//	}
 }
