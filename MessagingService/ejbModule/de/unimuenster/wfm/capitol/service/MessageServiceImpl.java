@@ -12,31 +12,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 
-import de.unimuenster.wfm.capitol.dto.CaseDecision;
-import de.unimuenster.wfm.capitol.dto.ContractProposal;
-
 @Stateless
 public class MessageServiceImpl implements MessageService{
 	
-
-	@Override
-	public void sendContractProposal(ContractProposal proposal) {
-		//TODO Requires correct URL
-		sendJSON(proposal, "http://CAMUNDA-BVIS.uni-muenster.de/contracting");
-	}
-
-	@Override
-	public void sendCaseDecision(CaseDecision decision) {
-		//TODO Requires correct URL
-		sendJSON(decision, "http://CAMUNDA-BVIS.uni-muenster.de/case");
-	}
 	
-	private void sendJSON(Object input, String urlString){
+	public void sendJSON(Object input, String urlString){
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		try {
 			URL url = new URL(urlString);
 			String json = ow.writeValueAsString(input);
-			System.out.println(json);
 			URLConnection connection = url.openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestProperty("Content-Type", "application/json");

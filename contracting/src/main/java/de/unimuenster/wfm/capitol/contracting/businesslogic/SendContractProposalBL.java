@@ -8,6 +8,8 @@ import javax.persistence.PersistenceContext;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 
+import de.unimuenster.wfm.capitol.dto.ContractProposal;
+import de.unimuenster.wfm.capitol.dto.ContractProposal.Order;
 import de.unimuenster.wfm.capitol.service.MessageService;
 
 
@@ -23,7 +25,11 @@ public class SendContractProposalBL {
 	  private MessageService messageService;
 	  
 	  public void performBusinessLogic(DelegateExecution delegateExecution) {
-		  messageService.sendContractProposal(null);
+		  ContractProposal contractProposal = new ContractProposal();
+		  Order order = contractProposal.new Order();
+		  contractProposal.setOrder(order);
+		  //TODO Fill the contractProposal with the correct files, find out the correct URL to send the file to
+		  messageService.sendJSON(contractProposal, "http://camunda-bvis.uni-muenster.de/???");
 	  }
 
 

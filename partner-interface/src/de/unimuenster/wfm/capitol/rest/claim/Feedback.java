@@ -21,20 +21,22 @@ public class Feedback {
 	@Consumes("application/json")
 	public String receiveCase(FeedbackDTO feedback){
 		// TESTCODE
-		System.out.println(feedback.getProcess_id());
+		System.out.println(feedback.getProcessinstance_id_bvis());
+		System.out.println(feedback.getProcessinstance_id_capitol());
 		System.out.println(feedback.getDecision().getClaim_id());
 		System.out.println(feedback.getDecision().getClaim_status());
 		System.out.println(feedback.getDecision().getDescription());
 		// END TESTCODE
 		
 		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("processinstance_id_bvis", feedback.getProcessinstance_id_bvis());
 		variables.put("claim_id", feedback.getDecision().getClaim_id());
 		variables.put("claim_status", feedback.getDecision().getClaim_status());
 		variables.put("claim_description", feedback.getDecision().getDescription());		
 		try {
 			// correlate the message
 			  runtimeService.createMessageCorrelation("Message-Approve")
-		      .processInstanceId(feedback.getProcess_id())
+		      .processInstanceId(feedback.getProcessinstance_id_capitol())
 		      .setVariables(variables)
 		      .correlate();
 		} catch (MismatchingMessageCorrelationException e) {

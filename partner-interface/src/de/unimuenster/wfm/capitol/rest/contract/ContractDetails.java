@@ -8,6 +8,7 @@ import javax.ws.rs.*;
 
 import org.camunda.bpm.engine.MismatchingMessageCorrelationException;
 import org.camunda.bpm.engine.RuntimeService;
+import org.camunda.bpm.engine.runtime.ProcessInstance;
 
 import de.unimuenster.wfm.capitol.dto.contract.ContractDetailsDTO;
 import de.unimuenster.wfm.capitol.dto.contract.Car;
@@ -23,7 +24,7 @@ public class ContractDetails {
 	@Consumes("application/json")
 	public String receiveCase(ContractDetailsDTO contractdetails){
 		// TESTCODE
-		System.out.println(contractdetails.getProcess_id());
+		System.out.println(contractdetails.getProcessinstance_id_bvis());
 		System.out.println(contractdetails.getOrder().getOrder_id());
 		System.out.println(contractdetails.getOrder().getRequest_date());
 		System.out.println(contractdetails.getOrder().isFleet_rental());
@@ -59,6 +60,7 @@ public class ContractDetails {
 		// END TESTCODE
 		
 		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("processinstance_id_bvis", contractdetails.getProcessinstance_id_bvis());
 		variables.put("order_id", contractdetails.getOrder().getOrder_id());
 		variables.put("request_date", contractdetails.getOrder().getRequest_date());
 		variables.put("fleet_rental", contractdetails.getOrder().isFleet_rental());
@@ -93,14 +95,15 @@ public class ContractDetails {
 		variables.put("insurance_pick_up_date", contractdetails.getOrder().getInsurance().getPick_up_date());
 		variables.put("insurance_return_date", contractdetails.getOrder().getInsurance().getReturn_date());
 		variables.put("insurance_estimated_of_cost", contractdetails.getOrder().getInsurance().getEstimated_of_cost());
-		
+		String id;
 		try {
 			// correlate the message
-			  runtimeService.startProcessInstanceByMessage(MESSAGENAME, variables);
+			  ProcessInstance pi = runtimeService.startProcessInstanceByMessage(MESSAGENAME, variables);
+			  id = pi.getProcessInstanceId();
 		} catch (MismatchingMessageCorrelationException e) {
 			return "Failure";
 		}
 		
-		return "Success";
+		return id;
 	}
 }

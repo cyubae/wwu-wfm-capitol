@@ -8,6 +8,7 @@ import javax.ws.rs.*;
 
 import org.camunda.bpm.engine.MismatchingMessageCorrelationException;
 import org.camunda.bpm.engine.RuntimeService;
+import org.camunda.bpm.engine.runtime.ProcessInstance;
 
 import de.unimuenster.wfm.capitol.dto.claim.ClaimDetailsDTO;
 import de.unimuenster.wfm.capitol.dto.claim.Involved_party;
@@ -22,7 +23,7 @@ public class ClaimDetails {
 	@Consumes("application/json")
 	public String receiveCase(ClaimDetailsDTO claimdetails){
 		// TESTCODE
-		System.out.println(claimdetails.getProcess_id());
+		System.out.println(claimdetails.getProcessinstance_id_bvis());
 		System.out.println(claimdetails.getRequest_date());
 		System.out.println(claimdetails.getClaim().getClaim_id());
 		System.out.println(claimdetails.getClaim().getInsurance_id());
@@ -55,6 +56,7 @@ public class ClaimDetails {
 		}
 		// END TESTCODE
 		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("processinstance_id_bvis", claimdetails.getProcessinstance_id_bvis());
 		variables.put("request_date", claimdetails.getRequest_date());
 		variables.put("claim_id", claimdetails.getClaim().getClaim_id());
 		variables.put("insurance_id", claimdetails.getClaim().getInsurance_id());
@@ -87,18 +89,16 @@ public class ClaimDetails {
 			variables.put("involved_party_insurance_country" + i, single_party.getInsurance().getCountry());
 			i++;
 		}			
-				
+		String id;		
 		try {
 			// correlate the message
-			  runtimeService.createMessageCorrelation("Message-Approve")
-		      .processInstanceId(claimdetails.getProcess_id())
-		      .setVariables(variables)
-		      .correlate();
+			  ProcessInstance pi = runtimeService.startProcessInstanceByMessage(MESSAGENAME, variables);
+			  id =  pi.getProcessInstanceId();
 		} catch (MismatchingMessageCorrelationException e) {
 			return "Failure";
 		}
 		
-		return "Success";
+		return id;
 	}
 	
 }

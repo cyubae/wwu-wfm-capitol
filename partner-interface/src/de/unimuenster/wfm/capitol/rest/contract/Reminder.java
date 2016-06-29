@@ -23,19 +23,21 @@ public class Reminder {
 	@Consumes("application/json")
 	public String receiveCase(ReminderDTO reminder){
 		// TESTCODE
-		System.out.println(reminder.getProcess_id());
+		System.out.println(reminder.getProcessinstance_id_bvis());
+		System.out.println(reminder.getProcessinstance_id_capitol());
 		System.out.println(reminder.getOrder().getOrder_id());
 		System.out.println(reminder.getOrder().getRequest_date());
 		// END TESTCODE
 		
 		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("processinstance_id_bvis", reminder.getProcessinstance_id_bvis());
 		variables.put("order_id", reminder.getOrder().getOrder_id());
 		variables.put("request_date", reminder.getOrder().getRequest_date());
 
 		try {
 			// correlate the message
 			  runtimeService.createMessageCorrelation("Message-Approve")
-		      .processInstanceId(reminder.getProcess_id())
+		      .processInstanceId(reminder.getProcessinstance_id_capitol())
 		      .setVariables(variables)
 		      .correlate();
 		} catch (MismatchingMessageCorrelationException e) {
