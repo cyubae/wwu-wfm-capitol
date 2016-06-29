@@ -88,6 +88,18 @@ public class AccessCustomer {
 
 		return newCustomer;
 	}
+	
+	public Customer createCustomer(String firstName, String surname, String email, String phoneNumber, String street,
+			String houseNumber, String postcode, String city, String country, String dateOfBirth, boolean company,
+			String companyName, boolean blacklisted) {
+		Customer newCustomer = new Customer(firstName, surname, email, phoneNumber, street, houseNumber, postcode, 
+				city, country, dateOfBirth, company, companyName, blacklisted);
+		entityManager.persist(newCustomer);
+		entityManager.flush();
+		LOGGER.log(Level.INFO, "New empty Customer object created - customerId: " + newCustomer.getCustomerId());	
+
+		return newCustomer;
+	}	
 
 	/**
 	 * Updates customer object pre-existing in database 
