@@ -109,7 +109,7 @@
     </serviceTask>
     <sequenceFlow id="SequenceFlow_1eto6s4" sourceRef="ExclusiveGateway_1y770eg" targetRef="CreateBasicContract" />
     <sequenceFlow id="SequenceFlow_0oor331" name="yes" sourceRef="ExclusiveGateway_0qegcgb" targetRef="sid-FCB6B618-A53A-4AB8-B118-E5DE1E6A1090">
-      <conditionExpression xsi:type="tFormalExpression">${true}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${user_rejected}</conditionExpression>
     </sequenceFlow>
     <exclusiveGateway id="sid-D36D1ADB-10C9-47B6-AC3D-419CA3216F00" name="customer&#10;exists?" gatewayDirection="Diverging">
       <extensionElements>
@@ -192,7 +192,7 @@
       <incoming>SequenceFlow_1dhxa83</incoming>
       <outgoing>SequenceFlow_1eto6s4</outgoing>
     </exclusiveGateway>
-    <userTask id="UserTask_1l7yy2z" name="check rejection">
+    <userTask id="UserTask_1l7yy2z" name="check rejection" camunda:formKey="app:check_rejection.jsf">
       <incoming>sid-C4A645D8-E767-45F7-930C-34BCCDF5064A</incoming>
       <outgoing>SequenceFlow_1bbq612</outgoing>
     </userTask>
@@ -202,7 +202,7 @@
       <outgoing>SequenceFlow_1dhxa83</outgoing>
     </exclusiveGateway>
     <sequenceFlow id="SequenceFlow_1dhxa83" name="no" sourceRef="ExclusiveGateway_0qegcgb" targetRef="ExclusiveGateway_1y770eg">
-      <conditionExpression xsi:type="tFormalExpression">${false}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${not user_rejected}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_1bbq612" sourceRef="UserTask_1l7yy2z" targetRef="ExclusiveGateway_0qegcgb" />
     <serviceTask id="CreateBasicContract" name="create basic contract (based on customer requirements)" camunda:expression="${createBasicContractBL.performBusinessLogic(execution)}">
