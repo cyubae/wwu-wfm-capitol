@@ -95,10 +95,10 @@
     <sequenceFlow id="sid-9BB8CE96-6965-4B5C-87FD-8AC75017EB78" name="" sourceRef="sid-CE61613D-38D0-42B1-A5A4-4DE8FD694371" targetRef="CheckIfCustomerBlacklisted" />
     <sequenceFlow id="sid-DC1F6D3E-22BF-45E3-B494-EA95E7FAAF0D" name="" sourceRef="CheckIfCustomerBlacklisted" targetRef="sid-CEA70218-9AAF-4A9D-B69C-C0BC2E729D64" />
     <sequenceFlow id="sid-96837459-F426-4E6B-BC16-F7E2BC3380B4" name="no" sourceRef="sid-CEA70218-9AAF-4A9D-B69C-C0BC2E729D64" targetRef="ExclusiveGateway_1y770eg">
-      <conditionExpression xsi:type="tFormalExpression">${false}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${not user_is_blacklisted}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-C4A645D8-E767-45F7-930C-34BCCDF5064A" name="yes" sourceRef="sid-CEA70218-9AAF-4A9D-B69C-C0BC2E729D64" targetRef="UserTask_1l7yy2z">
-      <conditionExpression xsi:type="tFormalExpression">${true}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${user_is_blacklisted}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-0F8FC498-4901-4303-92E4-D9B3713F3B54" name="" sourceRef="CreateBasicContract" targetRef="sid-9C83256E-0D44-4C11-89BF-6BA6B54130D4" />
     <sequenceFlow id="sid-2F99DF56-CB6F-43C4-98F4-E0B94F03BE82" name="" sourceRef="sid-C43326B9-F849-47CA-B9E8-37B22F17C7B1" targetRef="sid-09F71DFF-8C12-43E9-8A55-0C971FA8BCD4" />

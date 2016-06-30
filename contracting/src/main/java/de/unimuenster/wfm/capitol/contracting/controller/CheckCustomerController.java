@@ -37,10 +37,6 @@ public class CheckCustomerController implements Serializable {
 	@Inject
 	private BusinessProcess businessProcess;
 
-	// Inject the EntityManager to access the persisted order
-	@PersistenceContext
-	private EntityManager entityManager;
-
 	// Inject the AccessCustomer to update the persisted customer
 	@Inject
 	private AccessCustomer accessCustomer;
