@@ -29,7 +29,7 @@ import de.unimuenster.wfm.capitol.jpa.AccessCustomer;
 
 @Named
 @ConversationScoped
-public class CheckCreateCustomerController implements Serializable {
+public class CheckCustomerController implements Serializable {
 
 	private static  final long serialVersionUID = 1L;
 

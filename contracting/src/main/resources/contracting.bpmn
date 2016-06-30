@@ -127,7 +127,7 @@
       <incoming>sid-260DD31D-DD1C-4AFE-9567-93C30B29BBCF</incoming>
       <outgoing>sid-9BB8CE96-6965-4B5C-87FD-8AC75017EB78</outgoing>
     </exclusiveGateway>
-    <userTask id="UserTask_1lkisg5" name="check and update customer data">
+    <userTask id="UserTask_1lkisg5" name="check and update customer data" camunda:formKey="app:check_update_customer.jsf">
       <incoming>sid-338B8A5D-B84F-40E1-AD64-38C4B6F8ADB9</incoming>
       <outgoing>sid-260DD31D-DD1C-4AFE-9567-93C30B29BBCF</outgoing>
     </userTask>

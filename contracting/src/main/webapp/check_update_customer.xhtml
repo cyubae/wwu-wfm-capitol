@@ -6,15 +6,19 @@
 
 <f:view>
 	<f:metadata>
+		<!-- Start working on a task. Task Id is read internally from
+         request parameters and cached in the CDI conversation scope.
+    -->
+
 		<f:event type="preRenderView"
 			listener="#{camundaTaskForm.startTaskForm()}" />
 	</f:metadata>
 	<h:head>
-		<title>Check Data and Update Customer</title>
+		<title>Check existing customer data for correctness</title>
 	</h:head>
 	<h:body>
 		<h:form id="submitForm">
-			<h1>Check Data and create new Customer</h1>
+			<h1>Create new customer:</h1>
 			<h:panelGrid columns="2">
 				<p>
 					<label for="customerId">Customer ID</label>
@@ -101,7 +105,7 @@
 				</p>
 			</h:panelGrid>
 
-			<h:commandButton id="submit_button" value="Create Customer"
+			<h:commandButton id="submit_button" value="Update Customer"
 				action="#{checkCustomerController.submitForm()}" />
 		</h:form>
 	</h:body>
