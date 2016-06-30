@@ -21,15 +21,15 @@
 		<h1>Customer Data:</h1>
 		<h:panelGrid columns="2">
  			<p>
-				<label for="user_firstname">First Name</label>
-				<h:inputText id="user_firstname"
-					value="#{processVariables['user_firstname']}" required="true" />				
+				<label for="firstname">First Name</label>
+				<h:inputText id="firstname"
+					value="#{checkCreateCustomerController.customer.firstName}" required="true" />
 			</p>
 			<p>
-				<label for="user_firstname_new">New First Name</label>
-				<h:inputText id="user_firstname_new"
-					value="#{processVariables['user_firstname_new']}" required="true" />	
-			</p> 			
+				<label for="surname">First Name</label>
+				<h:inputText id="surname"
+					value="#{checkCreateCustomerController.customer.surname}" required="true" />
+			</p>
 		</h:panelGrid>
 		
 		<h:form id="submitForm">

@@ -15,7 +15,6 @@ import de.unimuenster.wfm.capitol.entities.Customer;
 
 /**
  * DAO for entity customer
- * @author mkubicki
  *
  */
 @Stateless
@@ -88,7 +87,7 @@ public class AccessCustomer {
 
 		return newCustomer;
 	}
-	
+
 	public Customer createCustomer(String firstName, String surname, String email, String phoneNumber, String street,
 			String houseNumber, String postcode, String city, String country, String dateOfBirth, boolean company,
 			String companyName, boolean blacklisted) {
@@ -108,5 +107,15 @@ public class AccessCustomer {
 	public void updateCustomer(Customer customer) {
 		entityManager.merge(customer);
 		entityManager.flush();
+	}
+
+	/**
+	 * Retrieves customer from database for given id
+	 * @param customerId
+	 * @return
+	 */
+	public Customer getCustomer(int customerId) {
+		// Load order entity from database
+		return entityManager.find(Customer.class, customerId);
 	}
 }

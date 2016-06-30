@@ -11,8 +11,9 @@ import javax.inject.Named;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 
+import de.unimuenster.wfm.capitol.entities.Customer;
+import de.unimuenster.wfm.capitol.jpa.AccessCustomer;
 import de.unimuenster.wfm.capitol.service.MessageService;
-import de.unimuenster.wfm.capitol.jpa.*;
 
 
 @Stateless
@@ -35,8 +36,13 @@ public class CheckExistingCustomerIdBL {
 //	}
 	
 	/**
-	 * Verifies if customer is present in database. If so, customer id is passed into delegateExecution and method returns true.
-	 * Else -1 is passed into delegateExecution and method returns false
+	 * Verifies if customer is present in database. 
+	 * If so, set process variables:
+	 * 	customerIdFound: true
+	 * 	customerId: id of existing customer
+	 * Else create new customer using process variables and set process variables: 
+	 * 	customerIdFound: false
+	 * 	customerId: id of new customer
 	 * @param delegateExecution
 	 * @return
 	 */
@@ -56,6 +62,21 @@ public class CheckExistingCustomerIdBL {
 		}
 		else {
 			delegateExecution.setVariable("customerIdFound", false);
+			Customer newCustomer = customerAccess.createCustomer(
+					String.valueOf(delegateExecution.getVariable("user_firstname")),
+					String.valueOf(delegateExecution.getVariable("user_surname")), 
+					String.valueOf(delegateExecution.getVariable("user_email")), 
+					String.valueOf(delegateExecution.getVariable("user_phone_number")), 
+					String.valueOf(delegateExecution.getVariable("user_street")), 
+					String.valueOf(delegateExecution.getVariable("user_house_number")), 
+					String.valueOf(delegateExecution.getVariable("user_postcode")), 
+					String.valueOf(delegateExecution.getVariable("user_city")), 
+					String.valueOf(delegateExecution.getVariable("user_country")), 
+					String.valueOf(delegateExecution.getVariable("user_date_of_birth")),
+					String.valueOf(delegateExecution.getVariable("user_iscompany")).equals("true") ? true : false,
+					String.valueOf(delegateExecution.getVariable("user_company_name")), 
+					false);
+			delegateExecution.setVariable("customerId", newCustomer.getCustomerId());
 		}
 		
 	}
