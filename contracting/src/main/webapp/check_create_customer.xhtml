@@ -18,7 +18,7 @@
 	</h:head>
 	<h:body>
 		<h:form id="submitForm">
-			<h1>Customer Data:</h1>
+			<h1>Create new customer:</h1>
 			<h:panelGrid columns="2">
 				<p>
 					<label for="firstname">First Name</label>
@@ -32,6 +32,68 @@
 						value="#{checkCreateCustomerController.customer.surname}"
 						required="true" />
 				</p>
+				<p>
+					<label for="email">E-Mail</label>
+					<h:inputText id="email"
+						value="#{checkCreateCustomerController.customer.email}"
+						required="true" />
+				</p>
+				<p>
+					<label for="phoneNumber">Phone Number</label>
+					<h:inputText id="phoneNumber"
+						value="#{checkCreateCustomerController.customer.phoneNumber}"
+						required="true" />
+				</p>
+				<p>
+					<label for="street">Street</label>
+					<h:inputText id="street"
+						value="#{checkCreateCustomerController.customer.street}"
+						required="true" />
+				</p>
+				<p>
+					<label for="houseNumber">House Number</label>
+					<h:inputText id="houseNumber"
+						value="#{checkCreateCustomerController.customer.houseNumber}"
+						required="true" />
+				</p>
+				<p>
+					<label for="postcode">Post Code</label>
+					<h:inputText id="postcode"
+						value="#{checkCreateCustomerController.customer.postcode}"
+						required="true" />
+				</p>	
+																											<p>
+					<label for="city">City</label>
+					<h:inputText id="city"
+						value="#{checkCreateCustomerController.customer.city}"
+						required="true" />
+				</p>
+				<p>
+					<label for="country">Country</label>
+					<h:inputText id="country"
+						value="#{checkCreateCustomerController.customer.country}"
+						required="true" />
+				</p>
+				<p>
+					<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
+					<h:inputText id="dateOfBirth"
+						value="#{checkCreateCustomerController.customer.dateOfBirth}"
+						required="true" />
+				</p>
+				<p>
+					<label for="company">Customer is Company?</label>
+					<h:selectBooleanCheckbox id="company" value="#{checkCreateCustomerController.customer.company}"/><br/>
+				</p>
+				<p>
+					<label for="companyName">Company Name</label>
+					<h:inputText id="companyName"
+						value="#{checkCreateCustomerController.customer.companyName}"
+						required="false" />
+				</p>													
+				<p>
+					<label for="blacklisted">Customer is blacklisted</label>
+      				<h:selectBooleanCheckbox id="blacklisted" value="#{checkCreateCustomerController.customer.blacklisted}"/><br/>
+				</p>					
 			</h:panelGrid>
 
 			<h:commandButton id="submit_button" value="Create Customer"
