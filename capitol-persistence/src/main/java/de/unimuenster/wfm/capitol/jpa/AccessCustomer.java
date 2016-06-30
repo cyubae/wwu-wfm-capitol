@@ -95,7 +95,8 @@ public class AccessCustomer {
 				city, country, dateOfBirth, company, companyName, blacklisted);
 		entityManager.persist(newCustomer);
 		entityManager.flush();
-		LOGGER.log(Level.INFO, "New empty Customer object created - customerId: " + newCustomer.getCustomerId());	
+		LOGGER.log(Level.INFO, "New Customer object created - customerId: " + newCustomer.getCustomerId());
+		LOGGER.log(Level.INFO, "New Customer properties : " + newCustomer.toString());
 
 		return newCustomer;
 	}	
@@ -105,6 +106,7 @@ public class AccessCustomer {
 	 * @param customer
 	 */
 	public void updateCustomer(Customer customer) {
+		LOGGER.log(Level.INFO, "Update Customer properties : " + customer.toString());
 		entityManager.merge(customer);
 		entityManager.flush();
 	}
