@@ -1,26 +1,24 @@
 # wwu-wfm-capitol
 
-# partner-interface bietet Rest-Schnittstellen.
+# Build Reihenfolge 
+
+1. Partner Interface
+2. MessagingService
+4. capitol-persistence
+3. Processes (contracting and settlement)
+
+# Deploy Reihenfolge 
+
+Selbe wie oben
+
+# partner-interface bietet REST interface.
 
 1. Builden der war-Datei
 2. Camunda starten, localhost:8080 aufrufen, Administration Console aufrufen
 3. Create Deployment wählen ->  Add -> partner-interface-0.0.1-SNAPSHOT.war auswählen
 4. Name und Runtime Name beide auf partner-interface.war ändern
 
-Damit ist das Rest-Interface deployed. Es nimmt POST-Anfragen unter folgenden adressen entgegen:
-
-localhost:8080/partner-interface/contracting
-
-localhost:8080/partner-interface/casehandling
-
-localhost:8080/partner-interface/orderfeedback
-
-localhost:8080/partner-interface/claimfeedback
-
-Ausprobieren kann man die Funktionsweise einfach per Firefox-Addon "HttpRequester"
-Sende an die orderfeedback-URL einen POST-Request vom content-type "application/json" mit folgendem Inhalt:
-
-{ "process_id":"1", "order_id":"344242532", "request_date":"2016-05-16", "contract_status":1 }
+Für genaue Daten, check die Readme im Porjekt des partner interfaces
 
 # MessageService ermöglicht Prozessen das senden von Nachrichten
 
