@@ -23,12 +23,12 @@ public class PremiumCalculator {
 
 	public static int getDailyPremium(CarType carType, InsuranceType insuranceType, int horsePower, int yearOfConstruction) {
 
-		//"type": "partial" * "type": "truck" + "ps": 102 * 0,15 + 20-1,2ˆ(actual year- "construction_year")
 		double carCostFactor = getCarCostFactor(carType);
 		int dailyInsurancePremium = getDailyInsuranceTypePremium(insuranceType);
 		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-		
-		int dailyPremium = dailyInsurancePremium * carCostFactor + horsePower * 0.15 + 20 - 1.2 * (currentYear-yearOfConstruction);
+
+		//"type": "partial" * "type": "truck" + "ps": 102 * 0,15 + 20-1,2ˆ(actual year- "construction_year")
+		int dailyPremium = (int) Math.round(dailyInsurancePremium * carCostFactor + horsePower * 0.15 + 20 - 1.2 * (currentYear-yearOfConstruction));
 
 		return dailyPremium;
 	}
@@ -97,19 +97,4 @@ public class PremiumCalculator {
 		
 		return dailyInsurancePremium;
 	}
-
-	public void performBusinessLogic(DelegateExecution delegateExecution) {
-		//get Customer object
-		Customer customer = accessCustomer.getCustomer((Integer) (delegateExecution.getVariable("customerId")));
-
-		//get blacklist attribute
-		if(customer.isBlacklisted()) {
-			delegateExecution.setVariable("user_is_blacklisted", true);
-		}
-		else {
-			delegateExecution.setVariable("user_is_blacklisted", false);
-		}
-	}
-
-
 }

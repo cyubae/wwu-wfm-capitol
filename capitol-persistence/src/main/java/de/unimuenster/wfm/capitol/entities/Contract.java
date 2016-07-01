@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 import org.camunda.bpm.engine.cdi.annotation.BusinessProcessScoped;
@@ -27,14 +29,84 @@ public class Contract implements Serializable {
 	@Version
 	protected long version;
 	
+	@ManyToOne
 	protected Customer customer;
+	
+	@OneToMany(mappedBy="contract")
 	protected Collection<Policy> policies;
 	protected InsuranceType insuranceType;
 	protected Date pickUpDate;
 	protected Date returnDate;
+	protected boolean released;
 
 	public Contract() {
+	}
 
+	public Contract(Customer customer, Collection<Policy> policies, InsuranceType insuranceType, Date pickUpDate,
+			Date returnDate, boolean released) {
+		super();
+		this.customer = customer;
+		this.policies = policies;
+		this.insuranceType = insuranceType;
+		this.pickUpDate = pickUpDate;
+		this.returnDate = returnDate;
+		this.released = released;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public Collection<Policy> getPolicies() {
+		return policies;
+	}
+
+	public void setPolicies(Collection<Policy> policies) {
+		this.policies = policies;
+	}
+
+	public InsuranceType getInsuranceType() {
+		return insuranceType;
+	}
+
+	public void setInsuranceType(InsuranceType insuranceType) {
+		this.insuranceType = insuranceType;
+	}
+
+	public Date getPickUpDate() {
+		return pickUpDate;
+	}
+
+	public void setPickUpDate(Date pickUpDate) {
+		this.pickUpDate = pickUpDate;
+	}
+
+	public Date getReturnDate() {
+		return returnDate;
+	}
+
+	public void setReturnDate(Date returnDate) {
+		this.returnDate = returnDate;
+	}
+
+	public int getContractId() {
+		return contractId;
+	}
+
+	public long getVersion() {
+		return version;
+	}
+
+	public boolean isReleased() {
+		return released;
+	}
+
+	public void setReleased(boolean released) {
+		this.released = released;
 	}
 
 	@Override
@@ -42,18 +114,18 @@ public class Contract implements Serializable {
 		return "";
 	}
 	
-	public int getTotalPremium() {
-		//getTotalDailyPremium *(returnDate - pickUpDate)
-		return 0;
-	}
-	
-	/**
-	 * Returns sum of daily premium of all policies
-	 * @return
-	 */
-	public int getTotalDailyPremium() {
-		return 0;
-	}
+//	public int getTotalPremium() {
+//		//getTotalDailyPremium *(returnDate - pickUpDate)
+//		return 0;
+//	}
+//	
+//	/**
+//	 * Returns sum of daily premium of all policies
+//	 * @return
+//	 */
+//	public int getTotalDailyPremium() {
+//		return 0;
+//	}
 
 
 

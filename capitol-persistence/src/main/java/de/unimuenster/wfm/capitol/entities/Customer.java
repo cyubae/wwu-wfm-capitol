@@ -1,15 +1,17 @@
 package de.unimuenster.wfm.capitol.entities;
 
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 import org.camunda.bpm.engine.cdi.annotation.BusinessProcessScoped;
-
-import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Entity
 @BusinessProcessScoped
@@ -39,12 +41,12 @@ public class Customer implements Serializable {
 	protected	boolean company;
 	protected String companyName;
 	protected boolean blacklisted;
+	
+	@OneToMany(mappedBy="customer")
+	protected Collection<Contract> contracts;
 
 	public Customer() {
-
 	}
-	
-	
 
 	public Customer(String firstName, String surname, String email, String phoneNumber, String street,
 			String houseNumber, String postcode, String city, String country, String dateOfBirth, boolean company,
@@ -234,6 +236,18 @@ public class Customer implements Serializable {
 	public void setBlacklisted(boolean blacklisted) {
 		this.blacklisted = blacklisted;
 	}
+
+	public Collection<Contract> getContracts() {
+		return contracts;
+	}
+
+
+
+	public void setContracts(Collection<Contract> contracts) {
+		this.contracts = contracts;
+	}
+
+
 
 	@Override
 	public String toString(){
