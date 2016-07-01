@@ -1,9 +1,12 @@
 package de.unimuenster.wfm.capitol.jpa;
 
+import java.util.List;
+
+import javax.ejb.Stateless;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
-import java.util.List;
 
 /**
  * Abstract class implementing the {@code AbstractCRUDService<T>} interface. It implements all the defined CRUD methods
@@ -13,6 +16,8 @@ import java.util.List;
  * The generic parameter {@code T} will be replaced with a concrete object type for each concrete implementation of
  * this class.
  */
+@Stateless
+@Named
 public abstract class AbstractCRUDService<T> {
     /**
      * {@code Class<T>} variable storing the class type/object type of the concrete implementation of the
@@ -38,7 +43,7 @@ public abstract class AbstractCRUDService<T> {
     public AbstractCRUDService(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
-
+    
     /**
      * Method implementing the CREATE operation that will create a database entry for the provided {@code T} entity,
      * which for this {@code AbstractCRUDServiceBean<T>} will have the class type specified in {@code this.entityClass}.

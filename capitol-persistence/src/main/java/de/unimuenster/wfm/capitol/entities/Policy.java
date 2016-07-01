@@ -3,11 +3,12 @@ package de.unimuenster.wfm.capitol.entities;
 import java.io.Serializable;
 import java.util.logging.Logger;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 import org.camunda.bpm.engine.cdi.annotation.BusinessProcessScoped;
@@ -27,7 +28,8 @@ public class Policy implements Serializable {
 	@Version
 	protected long version;
 	
-	@Embedded
+	@OneToOne
+    @JoinColumn(name="carId")
 	protected Car car;
 	
 	@ManyToOne

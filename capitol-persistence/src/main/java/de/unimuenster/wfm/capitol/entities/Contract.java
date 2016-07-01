@@ -10,9 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 import javax.persistence.Version;
 
 import org.camunda.bpm.engine.cdi.annotation.BusinessProcessScoped;
+
+import de.unimuenster.wfm.capitol.enums.InsuranceType;
 
 @Entity
 @BusinessProcessScoped
@@ -35,8 +38,11 @@ public class Contract implements Serializable {
 	@OneToMany(mappedBy="contract")
 	protected Collection<Policy> policies;
 	protected InsuranceType insuranceType;
+
 	protected Date pickUpDate;
+
 	protected Date returnDate;
+	
 	protected boolean released;
 
 	public Contract() {

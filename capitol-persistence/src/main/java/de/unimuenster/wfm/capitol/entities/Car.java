@@ -13,8 +13,9 @@ import javax.persistence.Version;
 
 import org.camunda.bpm.engine.cdi.annotation.BusinessProcessScoped;
 
+import de.unimuenster.wfm.capitol.enums.CarType;
+
 @Entity
-@Embeddable
 @BusinessProcessScoped
 public class Car implements Serializable {
 	

@@ -1,4 +1,4 @@
-package de.unimuenster.wfm.capitol.entities;
+package de.unimuenster.wfm.capitol.enums;
 
 public enum InsuranceType {
 	TOTAL,

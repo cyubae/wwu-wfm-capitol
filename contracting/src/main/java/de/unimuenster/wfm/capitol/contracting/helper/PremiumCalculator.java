@@ -8,9 +8,9 @@ import javax.inject.Named;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 
-import de.unimuenster.wfm.capitol.entities.CarType;
 import de.unimuenster.wfm.capitol.entities.Customer;
-import de.unimuenster.wfm.capitol.entities.InsuranceType;
+import de.unimuenster.wfm.capitol.enums.CarType;
+import de.unimuenster.wfm.capitol.enums.InsuranceType;
 import de.unimuenster.wfm.capitol.jpa.AccessCustomer;
 
 @Stateless
