@@ -1,5 +1,6 @@
 package de.unimuenster.wfm.capitol.contracting.businesslogic;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,9 +10,12 @@ import javax.inject.Named;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 
+import de.unimuenster.wfm.capitol.contracting.helper.PremiumCalculator;
 import de.unimuenster.wfm.capitol.entities.Car;
 import de.unimuenster.wfm.capitol.entities.CarType;
 import de.unimuenster.wfm.capitol.entities.Contract;
+import de.unimuenster.wfm.capitol.entities.Customer;
+import de.unimuenster.wfm.capitol.entities.InsuranceType;
 import de.unimuenster.wfm.capitol.entities.Policy;
 import de.unimuenster.wfm.capitol.jpa.AbstractCRUDService;
 
@@ -29,6 +33,9 @@ public class CreateBasicContractBL {
 	@Inject
 	private AbstractCRUDService<Car> carCRUD;
 	
+	@Inject
+	private AbstractCRUDService<Customer> customerCRUD;	
+	
 	
 	private static final HashMap<String, CarType> STRING_TO_CARTYPE;
 	static {
@@ -42,14 +49,30 @@ public class CreateBasicContractBL {
 		STRING_TO_CARTYPE.put("limousine", CarType.LIMOUSINE);
 		STRING_TO_CARTYPE.put("truck", CarType.TRUCK);
 	}
+	
+	private static final HashMap<String, InsuranceType> STRING_TO_INSURANCETYPE;
+	static {
+		STRING_TO_INSURANCETYPE = new HashMap<>();
+		STRING_TO_INSURANCETYPE.put("total", InsuranceType.TOTAL);
+		STRING_TO_INSURANCETYPE.put("partial", InsuranceType.PARTIAL);
+		STRING_TO_INSURANCETYPE.put("liability", InsuranceType.LIABILITY);
+	}	
 
 	public void performBusinessLogic(DelegateExecution delegateExecution) {
-
+		
 		//for each car in process variables --> create car object --> create policy object
+		//Create car objects
+		ArrayList<Car> cars = createCars(delegateExecution);
+		
+		//Create policy objects (one per car)
+		ArrayList<Policy> policies =  createPolicies(delegateExecution, cars);
 
-
-		//create one contract object for all policy objects created here
+		//Create one contract object for all policy objects created here		
+		Contract contract = createContract(delegateExecution, policies);
 	}
+
+
+
 
 
 	private ArrayList<Car> createCars(DelegateExecution delegateExecution) {
@@ -74,14 +97,51 @@ public class CreateBasicContractBL {
 		return cars;
 	}
 	
-	private Policy createPolicy(DelegateExecution delegateExecution) {
-		ArrayList<Car> cars = createCars(delegateExecution);
+	private ArrayList<Policy> createPolicies(DelegateExecution delegateExecution, ArrayList<Car> cars) {
+		ArrayList<Policy> policies = new ArrayList<>();
+		
+		for(Car currentCar : cars) {
+			
+			CarType currentCarType = currentCar.getType();
+			InsuranceType currentInsuranceType = STRING_TO_INSURANCETYPE.get((String) delegateExecution.getVariable("insurance_type"));
+			int horsePower = currentCar.getPs();
+			int yearOfConstruction = currentCar.getConstruction_year();
+			
+			int dailyPremium = PremiumCalculator.getDailyPremium(currentCarType, currentInsuranceType, horsePower, yearOfConstruction);
+			
+			Policy newPolicy = new Policy();
+			newPolicy.setCar(currentCar);
+			newPolicy.setDailyPremium(dailyPremium);
+			
+			newPolicy = policyCRUD.create(newPolicy);
+			
+			policies.add(newPolicy);
+			
+		}
+		
+		return policies;
 	}
 	
+	private Contract createContract(DelegateExecution delegateExecution, ArrayList<Policy> policies) {
+		// TODO Auto-generated method stub
+		
+		Date pickUpDate = (String) delegateExecution.getVariable("insurance_pick_up_date");
+		Date returnDate = (String) delegateExecution.getVariable("insurance_return_date");
+		InsuranceType currentInsuranceType = STRING_TO_INSURANCETYPE.get((String) delegateExecution.getVariable("insurance_type"));
+		Customer currentCustomer = customerCRUD.find((Integer) (delegateExecution.getVariable("customerId")));
+		
+		Contract newContract = new Contract();
+		newContract.setPolicies(policies);
+		newContract.setInsuranceType(currentInsuranceType);
+		newContract.setCustomer(currentCustomer);
+		newContract.setPickUpDate(pickUpDate);
+		newContract.setReturnDate(returnDate);
+		newContract.setReleased(false);
+		
+		newContract = contractCRUD.create(newContract);
+				
+		return newContract;
+	}
 	
-
-	private Car createCar() {
-
-	}	
 
 }

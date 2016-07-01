@@ -21,6 +21,8 @@ public class PremiumCalculator {
 	@Inject
 	private AccessCustomer accessCustomer;
 
+	private static double PS_FACTOR = 0.15;
+
 	public static int getDailyPremium(CarType carType, InsuranceType insuranceType, int horsePower, int yearOfConstruction) {
 
 		double carCostFactor = getCarCostFactor(carType);
@@ -28,11 +30,15 @@ public class PremiumCalculator {
 		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 
 		//"type": "partial" * "type": "truck" + "ps": 102 * 0,15 + 20-1,2ˆ(actual year- "construction_year")
-		int dailyPremium = (int) Math.round(dailyInsurancePremium * carCostFactor + horsePower * 0.15 + 20 - 1.2 * (currentYear-yearOfConstruction));
+		int dailyPremium = (int) Math.round(
+				dailyInsurancePremium * carCostFactor 
+				+ horsePower * PS_FACTOR 
+				+ (20 - Math.pow(1.2, currentYear-yearOfConstruction)/30)
+				);
 
 		return dailyPremium;
 	}
-	
+
 	/**
 	 * Returns cost factor for given car type
 	 * @param insuranceType
@@ -69,7 +75,7 @@ public class PremiumCalculator {
 		default: 
 			throw new IllegalArgumentException("No valid CarType!");
 		}
-		
+
 		return carCostFactor;
 	}	
 
@@ -94,7 +100,7 @@ public class PremiumCalculator {
 		default: 
 			throw new IllegalArgumentException("No valid InsuranceType!");
 		}
-		
+
 		return dailyInsurancePremium;
 	}
 }
