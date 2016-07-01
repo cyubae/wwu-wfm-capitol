@@ -1,6 +1,7 @@
 package de.unimuenster.wfm.capitol.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Collection;
 import java.util.logging.Logger;
 
@@ -27,19 +28,31 @@ public class Contract implements Serializable {
 	protected long version;
 	
 	protected Customer customer;
-	protected Collection<Car> Cars;
-
+	protected Collection<Policy> policies;
+	protected InsuranceType insuranceType;
+	protected Date pickUpDate;
+	protected Date returnDate;
 
 	public Contract() {
 
 	}
-	
-	
-
 
 	@Override
 	public String toString(){
 		return "";
+	}
+	
+	public int getTotalPremium() {
+		//getTotalDailyPremium *(returnDate - pickUpDate)
+		return 0;
+	}
+	
+	/**
+	 * Returns sum of daily premium of all policies
+	 * @return
+	 */
+	public int getTotalDailyPremium() {
+		return 0;
 	}
 
 
