@@ -21,18 +21,24 @@ public class PremiumCalculator {
 	@Inject
 	private AccessCustomer accessCustomer;
 
+	private static double PS_FACTOR = 0.15;
+
 	public static int getDailyPremium(CarType carType, InsuranceType insuranceType, int horsePower, int yearOfConstruction) {
 
-		//"type": "partial" * "type": "truck" + "ps": 102 * 0,15 + 20-1,2ˆ(actual year- "construction_year")
 		double carCostFactor = getCarCostFactor(carType);
 		int dailyInsurancePremium = getDailyInsuranceTypePremium(insuranceType);
 		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-		
-		int dailyPremium = dailyInsurancePremium * carCostFactor + horsePower * 0.15 + 20 - 1.2 * (currentYear-yearOfConstruction);
+
+		//"type": "partial" * "type": "truck" + "ps": 102 * 0,15 + 20-1,2ˆ(actual year- "construction_year")
+		int dailyPremium = (int) Math.round(
+				dailyInsurancePremium * carCostFactor 
+				+ horsePower * PS_FACTOR 
+				+ (20 - Math.pow(1.2, currentYear-yearOfConstruction)/30)
+				);
 
 		return dailyPremium;
 	}
-	
+
 	/**
 	 * Returns cost factor for given car type
 	 * @param insuranceType
@@ -69,7 +75,7 @@ public class PremiumCalculator {
 		default: 
 			throw new IllegalArgumentException("No valid CarType!");
 		}
-		
+
 		return carCostFactor;
 	}	
 
@@ -94,22 +100,7 @@ public class PremiumCalculator {
 		default: 
 			throw new IllegalArgumentException("No valid InsuranceType!");
 		}
-		
+
 		return dailyInsurancePremium;
 	}
-
-	public void performBusinessLogic(DelegateExecution delegateExecution) {
-		//get Customer object
-		Customer customer = accessCustomer.getCustomer((Integer) (delegateExecution.getVariable("customerId")));
-
-		//get blacklist attribute
-		if(customer.isBlacklisted()) {
-			delegateExecution.setVariable("user_is_blacklisted", true);
-		}
-		else {
-			delegateExecution.setVariable("user_is_blacklisted", false);
-		}
-	}
-
-
 }

@@ -7,6 +7,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
 import org.camunda.bpm.engine.cdi.annotation.BusinessProcessScoped;
@@ -29,11 +30,22 @@ public class Policy implements Serializable {
 	@Embedded
 	protected Car car;
 	
+	@ManyToOne
+	protected Contract contract;
+
 	//daily insurance premium (in euro cents)
 	protected int dailyPremium;
+	
 
 	public Policy() {
 
+	}
+
+	public Policy(Car car, Contract contract, int dailyPremium) {
+		super();
+		this.car = car;
+		this.contract = contract;
+		this.dailyPremium = dailyPremium;
 	}
 
 	public int getPolicyId() {
@@ -50,6 +62,14 @@ public class Policy implements Serializable {
 
 	public void setCar(Car car) {
 		this.car = car;
+	}
+
+	public Contract getContract() {
+		return contract;
+	}
+
+	public void setContract(Contract contract) {
+		this.contract = contract;
 	}
 
 	public int getDailyPremium() {

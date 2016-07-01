@@ -1,3 +1,9 @@
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\Persister.java
+C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\CarType.java
+C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\InsuranceType.java
+C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Contract.java
+C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\AbstractCRUDService.java
+C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\AccessContract.java
 C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Customer.java
+C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Policy.java
 C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\AccessCustomer.java
+C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Car.java

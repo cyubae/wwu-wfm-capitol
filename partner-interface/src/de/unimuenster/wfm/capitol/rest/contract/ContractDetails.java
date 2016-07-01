@@ -79,6 +79,10 @@ public class ContractDetails {
 		variables.put("user_company_name", contractdetails.getOrder().getUser().getCompany_name());
 		int i = 1;
 		for(Car single_car : contractdetails.getOrder().getCar()) {
+			
+			//update total number of cars to be insured in this request
+			variables.put("cars_total_number", i);
+			
 			variables.put("car_registration_number" + i, single_car.getRegistration_number());
 			variables.put("car_brand" + i, single_car.getBrand());
 			variables.put("car_type" + i, single_car.getType());

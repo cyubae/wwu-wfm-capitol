@@ -1,3 +1,9 @@
-de\unimuenster\wfm\capitol\jpa\Persister.class
-de\unimuenster\wfm\capitol\entities\Customer.class
+de\unimuenster\wfm\capitol\entities\Contract.class
+de\unimuenster\wfm\capitol\entities\InsuranceType.class
+de\unimuenster\wfm\capitol\jpa\AccessContract.class
+de\unimuenster\wfm\capitol\entities\Car.class
+de\unimuenster\wfm\capitol\entities\CarType.class
 de\unimuenster\wfm\capitol\jpa\AccessCustomer.class
+de\unimuenster\wfm\capitol\entities\Policy.class
+de\unimuenster\wfm\capitol\jpa\AbstractCRUDService.class
+de\unimuenster\wfm\capitol\entities\Customer.class
