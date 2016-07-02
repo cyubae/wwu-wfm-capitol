@@ -172,10 +172,10 @@
     </exclusiveGateway>
     <sequenceFlow id="sid-7664EBAD-E0BF-49B8-869D-3B7CA846F6D4" name="" sourceRef="sid-9C83256E-0D44-4C11-89BF-6BA6B54130D4" targetRef="sid-352209F6-1CDC-4F91-9F46-8648D653EF75" />
     <sequenceFlow id="sid-E4E1AE17-884B-4BC0-893A-01AE499B3A72" name="no" sourceRef="sid-352209F6-1CDC-4F91-9F46-8648D653EF75" targetRef="sid-42D047DA-8DA5-432E-89EB-1C5CF23CD847">
-      <conditionExpression xsi:type="tFormalExpression">${false}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${not contract_validated}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-030CBFA1-F5EA-4BFB-8772-C0C96F6452CC" name="yes" sourceRef="sid-352209F6-1CDC-4F91-9F46-8648D653EF75" targetRef="sid-D31430BA-C4CC-429C-B346-A605D4B8DD2C">
-      <conditionExpression xsi:type="tFormalExpression">${true}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${contract_validated}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-BB169C09-CD09-4BFB-A567-83F869D7E517" name="" sourceRef="sid-42D047DA-8DA5-432E-89EB-1C5CF23CD847" targetRef="sid-D31430BA-C4CC-429C-B346-A605D4B8DD2C" />
     <sequenceFlow id="sid-5187EE0F-69D1-47F0-9564-D50C069C3197" name="" sourceRef="sid-D31430BA-C4CC-429C-B346-A605D4B8DD2C" targetRef="sid-C43326B9-F849-47CA-B9E8-37B22F17C7B1" />
