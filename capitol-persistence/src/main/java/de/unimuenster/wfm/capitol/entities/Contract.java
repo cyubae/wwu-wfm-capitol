@@ -43,6 +43,8 @@ public class Contract implements Serializable {
 
 	protected Date returnDate;
 	
+	protected boolean validated;
+	
 	protected boolean released;
 
 	public Contract() {
@@ -99,6 +101,14 @@ public class Contract implements Serializable {
 		this.returnDate = returnDate;
 	}
 
+	public boolean isValidated() {
+		return validated;
+	}
+
+	public void setValidated(boolean validated) {
+		this.validated = validated;
+	}
+
 	public int getContractId() {
 		return contractId;
 	}
@@ -119,21 +129,6 @@ public class Contract implements Serializable {
 	public String toString(){
 		return "";
 	}
-	
-//	public int getTotalPremium() {
-//		//getTotalDailyPremium *(returnDate - pickUpDate)
-//		return 0;
-//	}
-//	
-//	/**
-//	 * Returns sum of daily premium of all policies
-//	 * @return
-//	 */
-//	public int getTotalDailyPremium() {
-//		return 0;
-//	}
-
-
 
 }
 

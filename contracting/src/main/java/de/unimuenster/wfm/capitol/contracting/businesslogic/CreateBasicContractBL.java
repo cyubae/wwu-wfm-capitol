@@ -33,7 +33,7 @@ public class CreateBasicContractBL {
 	
 	private static Logger LOGGER = Logger.getLogger(CheckExistingCustomerIdBL.class.getName());
 
-	// Inject the AbstractCRUDService to access persistence unit	
+	// Inject CRUD-Services to access persistence unit	
 	@Inject
 	private ContractCRUD contractCRUD;
 
@@ -66,7 +66,7 @@ public class CreateBasicContractBL {
 		Contract contract = createContract(delegateExecution, policies);
 		
 		LOGGER.log(Level.INFO, "CONTRACT CREATION - STEP 4");
-		delegateExecution.setVariable("new_contract_id", contract.getContractId());
+		delegateExecution.setVariable("contract_id", contract.getContractId());
 		
 		LOGGER.log(Level.INFO, "CONTRACT CREATION - FINISHED");
 	}
@@ -143,6 +143,7 @@ public class CreateBasicContractBL {
 			newContract.setPolicies(policies);
 			newContract.setInsuranceType(currentInsuranceType);
 			newContract.setCustomer(currentCustomer);
+			newContract.setValidated(false);;
 			newContract.setReleased(false);
 			
 			//parse dates			
@@ -153,7 +154,6 @@ public class CreateBasicContractBL {
 				newContract.setPickUpDate(pickUpDate);
 				newContract.setReturnDate(returnDate);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			

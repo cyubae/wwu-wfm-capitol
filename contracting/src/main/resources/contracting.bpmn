@@ -152,7 +152,7 @@
       <outgoing>sid-96837459-F426-4E6B-BC16-F7E2BC3380B4</outgoing>
       <outgoing>sid-C4A645D8-E767-45F7-930C-34BCCDF5064A</outgoing>
     </exclusiveGateway>
-    <userTask id="sid-9C83256E-0D44-4C11-89BF-6BA6B54130D4" name="validate contract" implementation="##WebService">
+    <userTask id="sid-9C83256E-0D44-4C11-89BF-6BA6B54130D4" name="validate contract" implementation="##WebService" camunda:formKey="app:validate_contract.jsf">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
