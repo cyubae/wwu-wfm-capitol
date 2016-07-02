@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -28,6 +30,8 @@ import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;
 @Stateless
 @Named
 public class CreateBasicContractBL {
+	
+	private static Logger LOGGER = Logger.getLogger(CheckExistingCustomerIdBL.class.getName());
 
 	// Inject the AbstractCRUDService to access persistence unit	
 	@Inject
@@ -50,33 +54,55 @@ public class CreateBasicContractBL {
 
 		//for each car in process variables --> create car object --> create policy object
 		//Create car objects
+		LOGGER.log(Level.INFO, "CONTRACT CREATION - STEP 1");
 		ArrayList<Car> cars = createCars(delegateExecution);
 
 		//Create policy objects (one per car)
+		LOGGER.log(Level.INFO, "CONTRACT CREATION - STEP 2");
 		ArrayList<Policy> policies =  createPolicies(delegateExecution, cars);
 
-		//Create one contract object for all policy objects created here		
+		//Create one contract object for all policy objects created here
+		LOGGER.log(Level.INFO, "CONTRACT CREATION - STEP 3");
 		Contract contract = createContract(delegateExecution, policies);
+		
+		LOGGER.log(Level.INFO, "CONTRACT CREATION - STEP 4");
+		delegateExecution.setVariable("new_contract_id", contract.getContractId());
+		
+		LOGGER.log(Level.INFO, "CONTRACT CREATION - FINISHED");
 	}
 
 	private ArrayList<Car> createCars(DelegateExecution delegateExecution) {
-		int totalNumberOfCars = (Integer) delegateExecution.getVariable("cars_total_number");
+		int totalNumberOfCars = Integer.valueOf((String) delegateExecution.getVariable("cars_total_number"));
 		ArrayList<Car> cars = new ArrayList<Car>();
 
 		for(int i = 1; i <= totalNumberOfCars; i++) {
+			int logVar = 1;
+			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
+
 			Car newCar = new Car();
-			newCar.setRegistration_number((String) delegateExecution.getVariable("car_registration_number"+i));
+			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
+			newCar.setRegistrationNumber((String) delegateExecution.getVariable("car_registration_number"+i));
+			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 			newCar.setBrand((String) delegateExecution.getVariable("car_brand"+i));
+			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 			newCar.setType(STRING_TO_CARTYPE.get((String) delegateExecution.getVariable("car_type"+i)));
+			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 			newCar.setModel((String) delegateExecution.getVariable("car_model"+i));
-			newCar.setVehicle_identification_number((String) delegateExecution.getVariable("car_vehicle_identification_number"+i));
-			newCar.setFuel_type((String) delegateExecution.getVariable("car_fuel_type"+i));
+			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
+			newCar.setVehicleIdentificationNumber((String) delegateExecution.getVariable("car_vehicle_identification_number"+i));
+			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
+			newCar.setFuelType((String) delegateExecution.getVariable("car_fuel_type"+i));
+			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 			newCar.setPs(Integer.valueOf((String) delegateExecution.getVariable("car_ps"+i)));
-			newCar.setConstruction_year(Integer.valueOf((String) delegateExecution.getVariable("car_construction_year"+i)));
+			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
+			newCar.setConstructionYear(Integer.valueOf((String) delegateExecution.getVariable("car_construction_year"+i)));
+			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 
 			newCar = carCRUD.create(newCar);
+			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 
 			cars.add(newCar);
+			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 		}
 		return cars;
 	}
@@ -89,7 +115,7 @@ public class CreateBasicContractBL {
 			CarType currentCarType = currentCar.getType();
 			InsuranceType currentInsuranceType = STRING_TO_INSURANCETYPE.get((String) delegateExecution.getVariable("insurance_type"));
 			int horsePower = currentCar.getPs();
-			int yearOfConstruction = currentCar.getConstruction_year();
+			int yearOfConstruction = currentCar.getConstructionYear();
 
 			int dailyPremium = PremiumCalculator.getDailyPremium(currentCarType, currentInsuranceType, horsePower, yearOfConstruction);
 

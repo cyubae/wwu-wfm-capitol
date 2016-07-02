@@ -30,13 +30,13 @@ public class Car implements Serializable {
 	@Version
 	protected long version;
 	
-	private String registration_number;
+	private String registrationNumber;
 	private String brand;	
 	private String model;
-	private String vehicle_identification_number;
-	private String fuel_type;
+	private String vehicleIdentificationNumber;
+	private String fuelType;
 	private int ps;
-	private int construction_year;
+	private int constructionYear;
 	
 	@Enumerated(EnumType.STRING)
 	private CarType type;
@@ -53,12 +53,12 @@ public class Car implements Serializable {
 		this.carId = carId;
 	}
 
-	public String getRegistration_number() {
-		return registration_number;
+	public String getRegistrationNumber() {
+		return registrationNumber;
 	}
 
-	public void setRegistration_number(String registration_number) {
-		this.registration_number = registration_number;
+	public void setRegistrationNumber(String registrationNumber) {
+		this.registrationNumber = registrationNumber;
 	}
 
 	public String getBrand() {
@@ -77,20 +77,20 @@ public class Car implements Serializable {
 		this.model = model;
 	}
 
-	public String getVehicle_identification_number() {
-		return vehicle_identification_number;
+	public String getVehicleIdentificationNumber() {
+		return vehicleIdentificationNumber;
 	}
 
-	public void setVehicle_identification_number(String vehicle_identification_number) {
-		this.vehicle_identification_number = vehicle_identification_number;
+	public void setVehicleIdentificationNumber(String vehicleIdentificationNumber) {
+		this.vehicleIdentificationNumber = vehicleIdentificationNumber;
 	}
 
-	public String getFuel_type() {
-		return fuel_type;
+	public String getFuelType() {
+		return fuelType;
 	}
 
-	public void setFuel_type(String fuel_type) {
-		this.fuel_type = fuel_type;
+	public void setFuelType(String fuelType) {
+		this.fuelType = fuelType;
 	}
 
 	public int getPs() {
@@ -101,12 +101,12 @@ public class Car implements Serializable {
 		this.ps = ps;
 	}
 
-	public int getConstruction_year() {
-		return construction_year;
+	public int getConstructionYear() {
+		return constructionYear;
 	}
 
-	public void setConstruction_year(int construction_year) {
-		this.construction_year = construction_year;
+	public void setConstructionYear(int constructionYear) {
+		this.constructionYear = constructionYear;
 	}
 
 	public CarType getType() {

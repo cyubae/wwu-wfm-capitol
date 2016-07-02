@@ -22,18 +22,8 @@ public class CheckExistingCustomerIdBL {
 	
 	private static Logger LOGGER = Logger.getLogger(CheckExistingCustomerIdBL.class.getName());
 
-	@EJB(lookup="java:global/MessagingService/MessageServiceImpl!de.unimuenster.wfm.capitol.service.MessageService")
-	private MessageService messageService;
-
 	@EJB
 	private AccessCustomer customerAccess = new AccessCustomer();
-
-//	public void performBusinessLogic(DelegateExecution delegateExecution) {
-//		//messageService.sendContractProposal(null);
-//		
-//		//no need: results only needed at connector
-//		this.findExistingCustomer(delegateExecution);
-//	}
 	
 	/**
 	 * Verifies if customer is present in database. 
@@ -77,19 +67,6 @@ public class CheckExistingCustomerIdBL {
 					String.valueOf(delegateExecution.getVariable("user_company_name")), 
 					false);
 			delegateExecution.setVariable("customerId", newCustomer.getCustomerId());
-		}
-		
+		}	
 	}
-	
-//	public Map<String, Object> getProposedCustomer() {
-//		return delegateExecution.getVariables();
-//	}
-	
-//	public Customer getCustomer(int customerId) {
-//		
-//	}
-//	
-
-
-
 }

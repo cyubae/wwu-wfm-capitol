@@ -46,13 +46,13 @@
         <flowNodeRef>CheckExistingCustomerId</flowNodeRef>
         <flowNodeRef>sid-CEA70218-9AAF-4A9D-B69C-C0BC2E729D64</flowNodeRef>
         <flowNodeRef>ExclusiveGateway_1y770eg</flowNodeRef>
-        <flowNodeRef>CreateBasicContract</flowNodeRef>
         <flowNodeRef>sid-09F71DFF-8C12-43E9-8A55-0C971FA8BCD4</flowNodeRef>
         <flowNodeRef>sid-E416B265-A8D8-4894-BA47-CF68322258A8</flowNodeRef>
         <flowNodeRef>sid-C81607F4-3CF2-4067-9CFC-E55A10FE43DB</flowNodeRef>
         <flowNodeRef>sid-90CC009F-F71C-47D9-A7FF-C2D2B971E9E5</flowNodeRef>
         <flowNodeRef>sid-99728641-7CB6-488A-821D-B44C558DAE6C</flowNodeRef>
         <flowNodeRef>ReleaseContract</flowNodeRef>
+        <flowNodeRef>CreateBasicContract</flowNodeRef>
       </lane>
       <lane id="sid-DDAFB47F-CBDC-4AE2-8AF5-E165E9286971" name="Clerk">
         <extensionElements>
@@ -205,10 +205,6 @@
       <conditionExpression xsi:type="tFormalExpression">${not user_rejected}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_1bbq612" sourceRef="UserTask_1l7yy2z" targetRef="ExclusiveGateway_0qegcgb" />
-    <serviceTask id="CreateBasicContract" name="create basic contract (based on customer requirements)" camunda:expression="${createBasicContractBL.performBusinessLogic(execution)}">
-      <incoming>SequenceFlow_1eto6s4</incoming>
-      <outgoing>sid-0F8FC498-4901-4303-92E4-D9B3713F3B54</outgoing>
-    </serviceTask>
     <userTask id="sid-42D047DA-8DA5-432E-89EB-1C5CF23CD847" name="modify contract manually" implementation="##WebService">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
@@ -284,6 +280,10 @@
       </extensionElements>
       <incoming>SequenceFlow_1d84f3k</incoming>
       <outgoing>SequenceFlow_144bw6w</outgoing>
+    </serviceTask>
+    <serviceTask id="CreateBasicContract" name="create basic contract (based on customer requirements)" camunda:expression="${createBasicContractBL.performBusinessLogic(execution)}">
+      <incoming>SequenceFlow_1eto6s4</incoming>
+      <outgoing>sid-0F8FC498-4901-4303-92E4-D9B3713F3B54</outgoing>
     </serviceTask>
     <association id="sid-4EAE5021-8C60-48E6-A888-94E4C6D6C316" associationDirection="None" sourceRef="CheckExistingCustomerId" targetRef="sid-AC2A4200-4A72-41A7-91C7-5F8F6FE176AE" />
     <association id="sid-C14042FB-31DB-4F79-BA21-69FCFC487A33" associationDirection="None" sourceRef="sid-E3A673B8-D78A-4BC0-AC00-5E587E9A37B9" targetRef="CheckIfCustomerBlacklisted" />
@@ -576,8 +576,8 @@ System]]></text>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-0F8FC498-4901-4303-92E4-D9B3713F3B54_gui" bpmnElement="sid-0F8FC498-4901-4303-92E4-D9B3713F3B54">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1425" y="580" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1445" y="580" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1420" y="581" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1445" y="581" />
         <omgdi:waypoint xsi:type="omgdc:Point" x="1445" y="907" />
         <omgdi:waypoint xsi:type="omgdc:Point" x="1490" y="907" />
         <bpmndi:BPMNLabel>
@@ -702,7 +702,7 @@ System]]></text>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1eto6s4_di" bpmnElement="SequenceFlow_1eto6s4">
         <omgdi:waypoint xsi:type="omgdc:Point" x="1209" y="580" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1325" y="580" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1320" y="581" />
         <bpmndi:BPMNLabel>
           <omgdc:Bounds x="1172.5" y="648" width="90" height="20" />
         </bpmndi:BPMNLabel>
@@ -740,7 +740,7 @@ System]]></text>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_1papq4v_di" bpmnElement="CreateBasicContract">
-        <omgdc:Bounds x="1325" y="540" width="100" height="80" />
+        <omgdc:Bounds x="1320" y="541" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1d84f3k_di" bpmnElement="SequenceFlow_1d84f3k">
         <omgdi:waypoint xsi:type="omgdc:Point" x="2110" y="556" />
