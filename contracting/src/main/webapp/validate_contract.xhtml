@@ -14,7 +14,7 @@
 	</h:head>
 	<h:body>
 		<h:form id="submitForm">
-			<h1>Validate proposed contract Customer Rejection</h1>
+			<h1>Validate proposed contract</h1>
 			<h:panelGrid columns="2">
 				<p>
 					<label for="customerId">Customer ID</label>
@@ -67,7 +67,7 @@
 						value="#{validateContractController.contract.customer.country}" />
 				</p>
 				<p>
-					<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
+					<label for="dateOfBirth">Date of Birth (YYYY-MM-DD)</label>
 					<h:outputText id="dateOfBirth"
 						value="#{validateContractController.contract.customer.dateOfBirth}" />
 				</p>

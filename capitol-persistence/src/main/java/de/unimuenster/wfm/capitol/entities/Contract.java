@@ -3,6 +3,7 @@ package de.unimuenster.wfm.capitol.entities;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.persistence.Entity;
@@ -106,6 +107,7 @@ public class Contract implements Serializable {
 	}
 
 	public void setValidated(boolean validated) {
+		LOGGER.log(Level.INFO, "Called setValidated: " + validated);
 		this.validated = validated;
 	}
 
