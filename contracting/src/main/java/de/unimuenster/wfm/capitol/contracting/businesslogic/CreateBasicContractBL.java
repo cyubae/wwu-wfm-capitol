@@ -72,7 +72,9 @@ public class CreateBasicContractBL {
 	}
 
 	private ArrayList<Car> createCars(DelegateExecution delegateExecution) {
-		int totalNumberOfCars = Integer.valueOf((String) delegateExecution.getVariable("cars_total_number"));
+		LOGGER.log(Level.INFO, "CAR CREATION - STEP 0a");
+		int totalNumberOfCars = (Integer) delegateExecution.getVariable("cars_total_number");
+		LOGGER.log(Level.INFO, "CAR CREATION - STEP 0b");
 		ArrayList<Car> cars = new ArrayList<Car>();
 
 		for(int i = 1; i <= totalNumberOfCars; i++) {
@@ -93,9 +95,9 @@ public class CreateBasicContractBL {
 			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 			newCar.setFuelType((String) delegateExecution.getVariable("car_fuel_type"+i));
 			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
-			newCar.setPs(Integer.valueOf((String) delegateExecution.getVariable("car_ps"+i)));
+			newCar.setPs((Integer) delegateExecution.getVariable("car_ps"+i));
 			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
-			newCar.setConstructionYear(Integer.valueOf((String) delegateExecution.getVariable("car_construction_year"+i)));
+			newCar.setPs((Integer) delegateExecution.getVariable("car_construction_year"+i));
 			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 
 			newCar = carCRUD.create(newCar);
