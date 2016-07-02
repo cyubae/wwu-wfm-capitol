@@ -1,5 +1,10 @@
 package de.unimuenster.wfm.capitol.entities;
 
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.REFRESH;
+
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Collection;
@@ -36,7 +41,7 @@ public class Contract implements Serializable {
 	@ManyToOne
 	protected Customer customer;
 	
-	@OneToMany(mappedBy="contract")
+	@OneToMany(cascade = {DETACH, MERGE, PERSIST, REFRESH}, mappedBy = "contract")
 	protected Collection<Policy> policies;
 	protected InsuranceType insuranceType;
 

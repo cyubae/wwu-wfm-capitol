@@ -15,6 +15,8 @@
 	<h:body>
 		<h:form id="submitForm">
 			<h1>Validate proposed contract</h1>
+
+			<h2>Customer Information</h2>
 			<h:panelGrid columns="2">
 				<p>
 					<label for="customerId">Customer ID</label>
@@ -90,6 +92,38 @@
 				</p>
 			</h:panelGrid>
 
+			<h2>Policies</h2>
+			<h:form>
+				<h:dataTable value="#{validateContractController.policies}"
+					var="policy">
+					<h:column>
+						<f:facet name="header">Car ID</f:facet>    				
+            #{policy.car.carId}
+         </h:column>
+					<h:column>
+						<f:facet name="header">Daily Premium</f:facet>
+            #{policy.dailyPremium}
+         </h:column>
+				</h:dataTable>
+			</h:form>
+
+			<h:panelGrid columns="2">
+				<p>
+					<label for="insuranceType">Insurance Type</label>
+					<h:outputText id="insuranceType"
+						value="#{validateContractController.contract.insuranceType}" />
+				</p>
+				<p>
+					<label for="pickUpDate">Pick-up date:</label>
+					<h:outputText id="pickUpDate"
+						value="#{validateContractController.contract.pickUpDate}" />
+				</p>
+				<p>
+					<label for="returnDate">Return date:</label>
+					<h:outputText id="returnDate"
+						value="#{validateContractController.contract.returnDate}" />
+				</p>				
+			</h:panelGrid>				
 			<h:commandButton id="validate_button" value="Validate Contract"
 				action="#{validateContractController.submitValidation(true)}" />
 			<h:commandButton id="dont_validate_button" value="Do not validate"

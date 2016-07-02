@@ -14,6 +14,7 @@ package de.unimuenster.wfm.capitol.contracting.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
@@ -23,6 +24,7 @@ import org.camunda.bpm.engine.cdi.BusinessProcess;
 import org.camunda.bpm.engine.cdi.jsf.TaskForm;
 
 import de.unimuenster.wfm.capitol.entities.Contract;
+import de.unimuenster.wfm.capitol.entities.Policy;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
 import de.unimuenster.wfm.capitol.jpa.CustomerCRUD;
@@ -58,16 +60,31 @@ public class ValidateContractController implements Serializable {
 	// Caches the Contract during the conversation
 	private Contract contract;
 	
+	private List<Policy> policies;
+	
 	public Contract getContract() {
 		if (contract == null) {
 			contract = contractCRUD.find((Integer) (businessProcess.getVariable("contract_id")));
 		}
 		return contract;
 	}
+	
+	public List<Policy> getPolicies() {
+		if (policies == null) {
+			policies = policyCRUD.findPoliciesForContractId((Integer) (businessProcess.getVariable("contract_id")));
+		}
+		return policies;
+	}
+	
 
 	public void submitValidation(boolean validated) throws IOException {
+		//update process variable
 		businessProcess.setVariable("contract_validated", validated);
+		
+		//update contract persistence object
 		this.getContract().setValidated(validated);
+		contractCRUD.update(this.getContract());
+		
 		try {
 			// Complete user task from
 			taskForm.completeTask();
