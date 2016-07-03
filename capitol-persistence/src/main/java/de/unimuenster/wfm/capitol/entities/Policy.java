@@ -1,9 +1,16 @@
 package de.unimuenster.wfm.capitol.entities;
 
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.REFRESH;
+
 import java.io.Serializable;
 import java.util.logging.Logger;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -28,11 +35,11 @@ public class Policy implements Serializable {
 	@Version
 	protected long version;
 	
-	@OneToOne
-    @JoinColumn(name="carId")
+	@OneToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER, mappedBy="policy")
+//    @JoinColumn(name="carId")
 	protected Car car;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
 	protected Contract contract;
 
 	//daily insurance premium (in euro cents)
@@ -83,8 +90,9 @@ public class Policy implements Serializable {
 	}
 
 	@Override
-	public String toString(){
-		return "";
+	public String toString() {
+		return "Policy [policyId=" + policyId + ", version=" + version + ", car=" + car + ", contract=" + contract
+				+ ", dailyPremium=" + dailyPremium + "]";
 	}
 
 

@@ -24,6 +24,7 @@ import javax.inject.Named;
 import org.camunda.bpm.engine.cdi.BusinessProcess;
 import org.camunda.bpm.engine.cdi.jsf.TaskForm;
 
+import de.unimuenster.wfm.capitol.contracting.helper.DBLogger;
 import de.unimuenster.wfm.capitol.entities.Contract;
 import de.unimuenster.wfm.capitol.entities.Policy;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
@@ -85,6 +86,8 @@ public class ValidateContractController implements Serializable {
 		//update contract persistence object
 		this.getContract().setValidated(validated);
 		contractCRUD.update(this.getContract());
+		
+//		new DBLogger().printContract(this.getContract().getContractId());		
 		
 		try {
 			// Complete user task from

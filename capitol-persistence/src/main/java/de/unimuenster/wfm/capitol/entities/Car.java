@@ -1,14 +1,20 @@
 package de.unimuenster.wfm.capitol.entities;
 
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.REFRESH;
+
 import java.io.Serializable;
 import java.util.logging.Logger;
 
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 import org.camunda.bpm.engine.cdi.annotation.BusinessProcessScoped;
@@ -40,6 +46,9 @@ public class Car implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	private CarType type;
+	
+	@OneToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
+	private Policy policy;
 	
 	public Car(){
 		super();
@@ -115,6 +124,22 @@ public class Car implements Serializable {
 
 	public void setType(CarType type) {
 		this.type = type;
+	}
+
+	public Policy getPolicy() {
+		return policy;
+	}
+
+	public void setPolicy(Policy policy) {
+		this.policy = policy;
+	}
+
+	@Override
+	public String toString() {
+		return "Car [carId=" + carId + ", version=" + version + ", registrationNumber=" + registrationNumber
+				+ ", brand=" + brand + ", model=" + model + ", vehicleIdentificationNumber="
+				+ vehicleIdentificationNumber + ", fuelType=" + fuelType + ", ps=" + ps + ", constructionYear="
+				+ constructionYear + ", type=" + type + ", policy=" + policy + "]";
 	}
 	
 }

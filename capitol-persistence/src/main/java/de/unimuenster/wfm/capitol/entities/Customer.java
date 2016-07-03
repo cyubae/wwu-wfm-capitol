@@ -1,11 +1,17 @@
 package de.unimuenster.wfm.capitol.entities;
 
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.REFRESH;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -42,7 +48,7 @@ public class Customer implements Serializable {
 	protected String companyName;
 	protected boolean blacklisted;
 	
-	@OneToMany(mappedBy="customer")
+	@OneToMany(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER, mappedBy="customer")
 	protected Collection<Contract> contracts;
 
 	public Customer() {
@@ -250,23 +256,12 @@ public class Customer implements Serializable {
 
 
 	@Override
-	public String toString(){
-		return 
-				" customerId " + customerId
-				+ "; firstName " + firstName
-				+ "; version " + version
-				+ "; dateOfBirth " + dateOfBirth
-				+ "; surname " + surname
-				+ "; street " + street
-				+ "; houseNumber " + houseNumber
-				+ "; postcode " + postcode
-				+ "; city " + city
-				+ "; country " + country
-				+ "; email " + email
-				+ "; phoneNumber " + phoneNumber
-				+ "; blacklisted " + blacklisted
-				+ "; company " + company
-				+ "; companyName " + companyName;
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", version=" + version + ", firstName=" + firstName + ", surname="
+				+ surname + ", email=" + email + ", phoneNumber=" + phoneNumber + ", street=" + street
+				+ ", houseNumber=" + houseNumber + ", postcode=" + postcode + ", city=" + city + ", country=" + country
+				+ ", dateOfBirth=" + dateOfBirth + ", company=" + company + ", companyName=" + companyName
+				+ ", blacklisted=" + blacklisted + ", contracts=" + contracts + "]";
 	}
 
 

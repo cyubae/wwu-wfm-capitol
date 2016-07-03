@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -38,10 +39,10 @@ public class Contract implements Serializable {
 	@Version
 	protected long version;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
 	protected Customer customer;
 	
-	@OneToMany(cascade = {DETACH, MERGE, PERSIST, REFRESH}, mappedBy = "contract")
+	@OneToMany(cascade = {DETACH, MERGE, PERSIST, REFRESH}, mappedBy = "contract", fetch=FetchType.EAGER)
 	protected Collection<Policy> policies;
 	protected InsuranceType insuranceType;
 
@@ -133,8 +134,10 @@ public class Contract implements Serializable {
 	}
 
 	@Override
-	public String toString(){
-		return "";
+	public String toString() {
+		return "Contract [contractId=" + contractId + ", version=" + version + ", customer=" + customer + ", policies="
+				+ policies + ", insuranceType=" + insuranceType + ", pickUpDate=" + pickUpDate + ", returnDate="
+				+ returnDate + ", validated=" + validated + ", released=" + released + "]";
 	}
 
 }

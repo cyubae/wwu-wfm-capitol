@@ -108,8 +108,9 @@ public abstract class AbstractCRUDService<T> {
      *
      * @param entity {@code T} object being of type {@code this.entityClass} which will be updated in the database.
      */    
-    public void update(T entity) {
+    public T update(T entity) {
         entityManager.merge(entity);
+        return entity;
     }
 
     /**

@@ -48,6 +48,12 @@
 			<artifactId>camunda-ejb-client</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>3.6.3.Final</version>
+		</dependency>
+
 		<!-- Java EE 6 Specification -->
 		<dependency>
 			<groupId>org.jboss.spec</groupId>
@@ -64,5 +70,5 @@
 		</dependency>
 
 	</dependencies>
-	
+
 </project>

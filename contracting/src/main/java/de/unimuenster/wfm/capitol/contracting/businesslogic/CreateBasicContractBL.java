@@ -51,6 +51,8 @@ public class CreateBasicContractBL {
 	private final HashMap<String, InsuranceType> STRING_TO_INSURANCETYPE = EnumMapper.STRING_TO_INSURANCETYPE;
 
 	public void performBusinessLogic(DelegateExecution delegateExecution) {
+		
+		//http://stackoverflow.com/questions/18373383/jpa-onetoone-difference-between-cascade-merge-and-persist
 
 		//for each car in process variables --> create car object --> create policy object
 		//Create car objects
@@ -100,7 +102,7 @@ public class CreateBasicContractBL {
 			newCar.setPs((Integer) delegateExecution.getVariable("car_construction_year"+i));
 			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 
-			newCar = carCRUD.create(newCar);
+			newCar = carCRUD.update(newCar);
 			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 
 			cars.add(newCar);
@@ -125,8 +127,7 @@ public class CreateBasicContractBL {
 			newPolicy.setCar(currentCar);
 			newPolicy.setDailyPremium(dailyPremium);
 
-			newPolicy = policyCRUD.create(newPolicy);
-
+			newPolicy = policyCRUD.update(newPolicy);
 			policies.add(newPolicy);
 
 		}
@@ -157,7 +158,7 @@ public class CreateBasicContractBL {
 				e.printStackTrace();
 			}
 			
-			newContract = contractCRUD.create(newContract);
+			newContract = contractCRUD.update(newContract);
 
 			return newContract;
 	}
