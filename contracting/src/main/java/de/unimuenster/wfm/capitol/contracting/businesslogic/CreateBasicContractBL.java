@@ -101,7 +101,7 @@ public class CreateBasicContractBL {
 			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 			newCar.setPs((Integer) delegateExecution.getVariable("car_ps"+i));
 			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
-			newCar.setPs((Integer) delegateExecution.getVariable("car_construction_year"+i));
+			newCar.setConstructionYear((Integer) delegateExecution.getVariable("car_construction_year"+i));
 			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 
 			newCar = carCRUD.createAndFlush(newCar);

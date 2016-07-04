@@ -84,15 +84,15 @@ public class ValidateContractController implements Serializable {
 //		return policies;
 //	}
 	
-	public List<Policy> getPolicies() {
-//		if (policies == null) {
-//			policies = policyCRUD.findPoliciesForContractId((Integer) (businessProcess.getVariable("contract_id")));
-//		}
-//		return policies;
-		
-		return policyCRUD.findPoliciesForContractId(getContract());
-		
-	}
+//	public List<Policy> getPolicies() {
+////		if (policies == null) {
+////			policies = policyCRUD.findPoliciesForContractId((Integer) (businessProcess.getVariable("contract_id")));
+////		}
+////		return policies;
+//		
+//		return policyCRUD.findPoliciesForContractId(getContract());
+//		
+//	}
 	
 
 	public void submitValidation(boolean validated) throws IOException {
