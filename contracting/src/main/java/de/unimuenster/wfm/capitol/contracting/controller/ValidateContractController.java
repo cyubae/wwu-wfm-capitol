@@ -97,42 +97,50 @@ public class ValidateContractController implements Serializable {
 
 	public void submitValidation(boolean validated) throws IOException {
 		//update process variable
+		int counter = 1;
+		LOGGER.log(Level.INFO, "submitValidation - STEP: " + counter++);
 		businessProcess.setVariable("contract_validated", validated);
 		
 		//update contract persistence object
+		LOGGER.log(Level.INFO, "submitValidation - STEP: " + counter++);
 		this.getContract().setValidated(validated);
+		LOGGER.log(Level.INFO, "submitValidation - STEP: " + counter++);
 		contractCRUD.update(this.getContract());
+		LOGGER.log(Level.INFO, "submitValidation - STEP: " + counter++);
 		
 //		new DBLogger().printContract(this.getContract().getContractId());		
 		
 		try {
 			// Complete user task from
+			LOGGER.log(Level.INFO, "submitValidation - STEP: TRY");
 			taskForm.completeTask();
+			LOGGER.log(Level.INFO, "submitValidation - STEP: TRY - FINISHED");
 		} catch (IOException e) {
 			// Rollback both transactions on error
+			LOGGER.log(Level.INFO, "submitValidation - STEP: CATCH");
 			throw new RuntimeException("Cannot complete task", e);
 		}
 	}
 	
 	
-	public void printCustomerContracts(DelegateExecution delegateExecution) {
-		int customerID = (Integer) delegateExecution.getVariable("customerId");
-		LOGGER.log(Level.INFO, "printCustomerContracts called");
-		
-		Customer customer = customerCRUD.find(customerID);
-		LOGGER.log(Level.INFO, "found customer : " + customer.getCustomerId());
-		
-		Collection<Contract> contracts = customer.getContracts();
-		for(Contract contract : contracts) {
-			LOGGER.log(Level.INFO, "found contract: " + contract);
-			Collection<Policy> policies = contract.getPolicies();
-			for(Policy policy : policies) {
-				LOGGER.log(Level.INFO, "found policy: " + policy);
-				Car car = policy.getCar();
-				LOGGER.log(Level.INFO, "found car: " + car);
-			}
-		}
-		
-	}
+//	public void printCustomerContracts(DelegateExecution delegateExecution) {
+//		int customerID = (Integer) delegateExecution.getVariable("customerId");
+//		LOGGER.log(Level.INFO, "printCustomerContracts called");
+//		
+//		Customer customer = customerCRUD.find(customerID);
+//		LOGGER.log(Level.INFO, "found customer : " + customer.getCustomerId());
+//		
+//		Collection<Contract> contracts = customer.getContracts();
+//		for(Contract contract : contracts) {
+//			LOGGER.log(Level.INFO, "found contract: " + contract);
+//			Collection<Policy> policies = contract.getPolicies();
+//			for(Policy policy : policies) {
+//				LOGGER.log(Level.INFO, "found policy: " + policy);
+//				Car car = policy.getCar();
+//				LOGGER.log(Level.INFO, "found car: " + car);
+//			}
+//		}
+//		
+//	}
 }
 

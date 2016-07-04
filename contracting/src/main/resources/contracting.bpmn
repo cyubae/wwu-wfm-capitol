@@ -53,7 +53,6 @@
         <flowNodeRef>sid-99728641-7CB6-488A-821D-B44C558DAE6C</flowNodeRef>
         <flowNodeRef>ReleaseContract</flowNodeRef>
         <flowNodeRef>CreateBasicContract</flowNodeRef>
-        <flowNodeRef>ServiceTask_0xavzi9</flowNodeRef>
       </lane>
       <lane id="sid-DDAFB47F-CBDC-4AE2-8AF5-E165E9286971" name="Clerk">
         <extensionElements>
@@ -101,7 +100,6 @@
     <sequenceFlow id="sid-C4A645D8-E767-45F7-930C-34BCCDF5064A" name="yes" sourceRef="sid-CEA70218-9AAF-4A9D-B69C-C0BC2E729D64" targetRef="UserTask_1l7yy2z">
       <conditionExpression xsi:type="tFormalExpression">${user_is_blacklisted}</conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="sid-0F8FC498-4901-4303-92E4-D9B3713F3B54" name="" sourceRef="CreateBasicContract" targetRef="ServiceTask_0xavzi9" />
     <sequenceFlow id="sid-2F99DF56-CB6F-43C4-98F4-E0B94F03BE82" name="" sourceRef="sid-C43326B9-F849-47CA-B9E8-37B22F17C7B1" targetRef="sid-09F71DFF-8C12-43E9-8A55-0C971FA8BCD4" />
     <sequenceFlow id="sid-16C3DB62-288D-474B-8436-B1CD54F79F8D" name="" sourceRef="sid-90CC009F-F71C-47D9-A7FF-C2D2B971E9E5" targetRef="sid-C81607F4-3CF2-4067-9CFC-E55A10FE43DB" />
     <serviceTask id="CheckExistingCustomerId" name="check for existing customer ID" camunda:expression="${checkExistingCustomerIdBL.findExistingCustomer(execution)}">
@@ -159,7 +157,7 @@
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
         <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
       </extensionElements>
-      <incoming>SequenceFlow_0tu7pl2</incoming>
+      <incoming>sid-0F8FC498-4901-4303-92E4-D9B3713F3B54</incoming>
       <outgoing>sid-7664EBAD-E0BF-49B8-869D-3B7CA846F6D4</outgoing>
     </userTask>
     <exclusiveGateway id="sid-352209F6-1CDC-4F91-9F46-8648D653EF75" name="Basic contract&#10;valid?" gatewayDirection="Diverging">
@@ -286,11 +284,7 @@
       <incoming>SequenceFlow_1eto6s4</incoming>
       <outgoing>sid-0F8FC498-4901-4303-92E4-D9B3713F3B54</outgoing>
     </serviceTask>
-    <sequenceFlow id="SequenceFlow_0tu7pl2" sourceRef="ServiceTask_0xavzi9" targetRef="sid-9C83256E-0D44-4C11-89BF-6BA6B54130D4" />
-    <serviceTask id="ServiceTask_0xavzi9" name="Debug Step" camunda:expression="${validateContractController.printCustomerContracts(execution)}">
-      <incoming>sid-0F8FC498-4901-4303-92E4-D9B3713F3B54</incoming>
-      <outgoing>SequenceFlow_0tu7pl2</outgoing>
-    </serviceTask>
+    <sequenceFlow id="sid-0F8FC498-4901-4303-92E4-D9B3713F3B54" name="" sourceRef="CreateBasicContract" targetRef="sid-9C83256E-0D44-4C11-89BF-6BA6B54130D4" />
     <association id="sid-4EAE5021-8C60-48E6-A888-94E4C6D6C316" associationDirection="None" sourceRef="CheckExistingCustomerId" targetRef="sid-AC2A4200-4A72-41A7-91C7-5F8F6FE176AE" />
     <association id="sid-C14042FB-31DB-4F79-BA21-69FCFC487A33" associationDirection="None" sourceRef="sid-E3A673B8-D78A-4BC0-AC00-5E587E9A37B9" targetRef="CheckIfCustomerBlacklisted" />
     <association id="sid-516BE9C1-4687-4222-A8DF-AB8B38F424E9" associationDirection="None" sourceRef="sid-703CF078-7E17-44AE-94FB-78FDC035ED9E" targetRef="sid-9C83256E-0D44-4C11-89BF-6BA6B54130D4" />
@@ -581,13 +575,6 @@ System]]></text>
           <omgdc:Bounds x="948" y="609" width="90" height="19" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="sid-0F8FC498-4901-4303-92E4-D9B3713F3B54_gui" bpmnElement="sid-0F8FC498-4901-4303-92E4-D9B3713F3B54">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1420" y="581" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1490" y="574" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1129" y="773" width="90" height="20" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-7664EBAD-E0BF-49B8-869D-3B7CA846F6D4_gui" bpmnElement="sid-7664EBAD-E0BF-49B8-869D-3B7CA846F6D4">
         <omgdi:waypoint xsi:type="omgdc:Point" x="1589.5499766758685" y="907.3564468010328" />
         <omgdi:waypoint xsi:type="omgdc:Point" x="1634.5499766758685" y="907.551251995838" />
@@ -760,16 +747,14 @@ System]]></text>
           <omgdc:Bounds x="2461" y="546" width="90" height="20" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0tu7pl2_di" bpmnElement="SequenceFlow_0tu7pl2">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1540" y="611" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1540" y="867" />
+      <bpmndi:BPMNEdge id="sid-0F8FC498-4901-4303-92E4-D9B3713F3B54_gui" bpmnElement="sid-0F8FC498-4901-4303-92E4-D9B3713F3B54">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1370" y="621" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1370" y="907" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1490" y="907" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1495" y="729" width="90" height="20" />
+          <omgdc:Bounds x="1129" y="773" width="90" height="20" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ServiceTask_0xavzi9_di" bpmnElement="ServiceTask_0xavzi9">
-        <omgdc:Bounds x="1490" y="531.278" width="100" height="80" />
-      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
     <bpmndi:BPMNLabelStyle id="sid-670f9e02-dc9e-4512-b7ba-1344050985bb">
       <omgdc:Font name="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" />

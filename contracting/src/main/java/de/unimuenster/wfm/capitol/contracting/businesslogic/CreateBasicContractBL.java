@@ -127,11 +127,9 @@ public class CreateBasicContractBL {
 			int dailyPremium = PremiumCalculator.getDailyPremium(currentCarType, currentInsuranceType, horsePower, yearOfConstruction);
 
 			Policy newPolicy = new Policy();
-			LOGGER.log(Level.INFO, "Setting car for policy");
-//			newPolicy.setCar(currentCar);
-			currentCar.setPolicy(newPolicy);
-			LOGGER.log(Level.INFO, "car persisted for policy");
 			newPolicy.setDailyPremium(dailyPremium);
+
+			newPolicy.setCar(currentCar);
 
 			newPolicy = policyCRUD.createAndFlush(newPolicy);
 			

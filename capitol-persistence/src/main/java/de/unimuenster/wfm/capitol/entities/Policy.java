@@ -6,15 +6,12 @@ import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.CascadeType.REFRESH;
 
 import java.io.Serializable;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
@@ -36,8 +33,7 @@ public class Policy implements Serializable {
 	@Version
 	protected long version;
 	
-	@OneToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, mappedBy="policy", fetch=FetchType.EAGER)
-//    @JoinColumn(name="carId")
+	@OneToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
 	protected Car car;
 	
 	@ManyToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
@@ -71,11 +67,7 @@ public class Policy implements Serializable {
 	}
 
 	public void setCar(Car car) {
-//		LOGGER.log(Level.INFO, "Set car - Step 1");
 		this.car = car;
-//		LOGGER.log(Level.INFO, "Set car - Step 2");
-//		car.setPolicy(this);
-//		LOGGER.log(Level.INFO, "Set car - finished");
 	}
 
 	public Contract getContract() {

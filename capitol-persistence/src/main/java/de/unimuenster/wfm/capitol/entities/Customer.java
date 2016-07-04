@@ -248,12 +248,17 @@ public class Customer implements Serializable {
 		return contracts;
 	}
 
-
-
 	public void setContracts(Collection<Contract> contracts) {
 		this.contracts = contracts;
 	}
 
+	public void addContract(Contract contract) {
+		this.contracts.add(contract);
+	}
+	
+	public void removeContract(Contract contract) {
+		this.contracts.remove(contract);
+	}
 
 
 	@Override
