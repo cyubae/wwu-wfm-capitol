@@ -92,19 +92,8 @@
 				</p>
 			</h:panelGrid>
 			
-			<h2>Policies</h2>
-				<h:dataTable value="#{validateContractController.contract.policies}"
-					var="policy">
-					<h:column>
-						<f:facet name="header">Car ID</f:facet>
-						#{policy.car.carId}
-         			</h:column>
-					<h:column>
-						<f:facet name="header">Daily Premium (Euro Cents)</f:facet>
-			            #{policy.dailyPremium}
-			        </h:column>
-				</h:dataTable>
-				
+			<h2>Contract Information</h2>
+
 			<h:panelGrid columns="2">
 				<p>
 					<label for="insuranceType">Insurance Type</label>
@@ -122,6 +111,48 @@
 						value="#{validateContractController.contract.returnDate}" />
 				</p>
 			</h:panelGrid>
+			
+			<h3>Policies</h3>
+				<h:dataTable value="#{validateContractController.contract.policies}"
+					var="policy">
+					<h:column>
+						<f:facet name="header">Policy ID</f:facet>
+						#{policy.policyId}
+         			</h:column>		
+					<h:column>
+						<f:facet name="header">Daily Premium (Euro Cents)</f:facet>
+			            #{policy.dailyPremium}
+			        </h:column>
+					<h:column>
+						<f:facet name="header">Car ID</f:facet>
+						#{policy.car.carId}
+         			</h:column>
+					<h:column>
+						<f:facet name="header">Brand</f:facet>
+						#{policy.car.brand}
+         			</h:column>
+         			<h:column>
+						<f:facet name="header">Model</f:facet>
+						#{policy.car.model}
+         			</h:column>
+					<h:column>
+						<f:facet name="header">Registration</f:facet>
+						#{policy.car.registrationNumber}
+         			</h:column>
+         			<h:column>
+						<f:facet name="header">Fuel Type</f:facet>
+						#{policy.car.fuelType}
+         			</h:column>
+					<h:column>
+						<f:facet name="header">Horsepower</f:facet>
+						#{policy.car.ps}
+         			</h:column>
+         			<h:column>
+						<f:facet name="header">Construction Year</f:facet>
+						#{policy.car.constructionYear}
+         			</h:column>
+				</h:dataTable>
+				
 			
 			<h:commandButton id="validate_button" value="Validate Contract"
 				action="#{validateContractController.submitValidation(true)}" />
