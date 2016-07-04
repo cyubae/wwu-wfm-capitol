@@ -6,6 +6,7 @@ import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.CascadeType.REFRESH;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,8 +49,8 @@ public class Customer implements Serializable {
 	protected String companyName;
 	protected boolean blacklisted;
 	
-	@OneToMany(cascade = {MERGE}, mappedBy="customer")
-	protected Collection<Contract> contracts;
+	@OneToMany(cascade = {DETACH, MERGE, PERSIST, REFRESH}, mappedBy="customer", fetch=FetchType.EAGER)
+	protected Collection<Contract> contracts = new ArrayList<Contract>();
 
 	public Customer() {
 	}

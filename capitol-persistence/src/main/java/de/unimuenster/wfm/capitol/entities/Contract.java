@@ -7,6 +7,7 @@ import static javax.persistence.CascadeType.REFRESH;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,11 +40,12 @@ public class Contract implements Serializable {
 	@Version
 	protected long version;
 	
-	@ManyToOne(cascade = {MERGE})
+	@ManyToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
 	protected Customer customer;
 	
-	@OneToMany(cascade = {MERGE}, mappedBy = "contract")
-	protected Collection<Policy> policies;
+	@OneToMany(cascade = {DETACH, MERGE, PERSIST, REFRESH}, mappedBy = "contract",fetch=FetchType.EAGER)
+	protected Collection<Policy> policies = new ArrayList<Policy>();
+	
 	protected InsuranceType insuranceType;
 
 	protected Date pickUpDate;
@@ -78,6 +80,17 @@ public class Contract implements Serializable {
 
 	public Collection<Policy> getPolicies() {
 		return policies;
+	}
+	
+	//https://notesonjava.wordpress.com/2008/11/03/managing-the-bidirectional-relationship/
+	public void addPolicy(Policy policy) {
+		this.policies.add(policy);
+//		policy.setContract(this);
+	}
+	
+	public void removePolicy(Policy policy) {
+		this.policies.remove(policy);
+//		policy.setContract(null);
 	}
 
 	public void setPolicies(Collection<Policy> policies) {

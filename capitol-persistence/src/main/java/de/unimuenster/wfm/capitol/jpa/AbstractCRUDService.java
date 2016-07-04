@@ -58,12 +58,12 @@ public abstract class AbstractCRUDService<T> {
         //  Return the inputted and saved database.
         return entity;
     }
-//    
-//    public T createAndFlush(T entity) {
-//    	this.create(entity);
-//    	entityManager.flush();
-//    	return entity;
-//    }
+    
+    public T createAndFlush(T entity) {
+    	this.create(entity);
+    	entityManager.flush();
+    	return entity;
+    }
 
     /**
      * Method implementing one specific READ operation that will fetch exactly one object from the database

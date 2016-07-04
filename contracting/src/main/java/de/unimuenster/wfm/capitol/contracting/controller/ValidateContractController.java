@@ -15,6 +15,7 @@ package de.unimuenster.wfm.capitol.contracting.controller;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -67,7 +68,7 @@ public class ValidateContractController implements Serializable {
 	// Caches the Contract during the conversation
 	private Contract contract;
 	
-	private Collection<Policy> policies;
+//	private Collection<Policy> policies;
 	
 	public Contract getContract() {
 		if (contract == null) {
@@ -76,11 +77,21 @@ public class ValidateContractController implements Serializable {
 		return contract;
 	}
 	
-	public Collection<Policy> getPolicies() {
-		if (policies == null) {
-			policies = policyCRUD.findPoliciesForContractId((Integer) (businessProcess.getVariable("contract_id")));
-		}
-		return policies;
+//	public Collection<Policy> getPolicies() {
+//		if (policies == null) {
+//			policies = policyCRUD.findPoliciesForContractId((Integer) (businessProcess.getVariable("contract_id")));
+//		}
+//		return policies;
+//	}
+	
+	public List<Policy> getPolicies() {
+//		if (policies == null) {
+//			policies = policyCRUD.findPoliciesForContractId((Integer) (businessProcess.getVariable("contract_id")));
+//		}
+//		return policies;
+		
+		return policyCRUD.findPoliciesForContractId(getContract());
+		
 	}
 	
 

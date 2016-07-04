@@ -6,6 +6,7 @@ import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.CascadeType.REFRESH;
 
 import java.io.Serializable;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.persistence.Entity;
@@ -47,7 +48,7 @@ public class Car implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private CarType type;
 	
-	@OneToOne(cascade = {MERGE})
+	@OneToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
 	private Policy policy;
 	
 	public Car(){
@@ -131,7 +132,9 @@ public class Car implements Serializable {
 	}
 
 	public void setPolicy(Policy policy) {
+		LOGGER.log(Level.INFO, "Set policy - Step 1");
 		this.policy = policy;
+		LOGGER.log(Level.INFO, "Set policy - finished");
 	}
 
 	@Override

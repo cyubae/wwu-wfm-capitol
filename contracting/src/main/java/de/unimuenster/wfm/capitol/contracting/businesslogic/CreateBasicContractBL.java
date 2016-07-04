@@ -104,7 +104,7 @@ public class CreateBasicContractBL {
 			newCar.setPs((Integer) delegateExecution.getVariable("car_construction_year"+i));
 			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 
-			newCar = carCRUD.create(newCar);
+			newCar = carCRUD.createAndFlush(newCar);
 			LOGGER.log(Level.INFO, "NEW CAR PERSISTED: newCar.toString(): " + newCar.toString());
 			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 
@@ -127,10 +127,13 @@ public class CreateBasicContractBL {
 			int dailyPremium = PremiumCalculator.getDailyPremium(currentCarType, currentInsuranceType, horsePower, yearOfConstruction);
 
 			Policy newPolicy = new Policy();
-			newPolicy.setCar(currentCar);
+			LOGGER.log(Level.INFO, "Setting car for policy");
+//			newPolicy.setCar(currentCar);
+			currentCar.setPolicy(newPolicy);
+			LOGGER.log(Level.INFO, "car persisted for policy");
 			newPolicy.setDailyPremium(dailyPremium);
 
-			newPolicy = policyCRUD.create(newPolicy);
+			newPolicy = policyCRUD.createAndFlush(newPolicy);
 			
 			LOGGER.log(Level.INFO, "NEW POLICY PERSISTED: newPolicy.toString(): " + newPolicy.toString());
 			
@@ -162,10 +165,15 @@ public class CreateBasicContractBL {
 				e.printStackTrace();
 			}
 			
-			newContract.setPolicies(policies);
+			for(Policy policy : policies) {
+				policy.setContract(newContract);
+//				newContract.addPolicy(policy);
+			}
+//			newContract.setPolicies(policies);
+			
 			newContract.setCustomer(currentCustomer);
 			
-			newContract = contractCRUD.create(newContract);
+			newContract = contractCRUD.createAndFlush(newContract);
 
 			LOGGER.log(Level.INFO, "NEW CONTRACT PERSISTED: newContract.toString(): " + newContract.toString());
 			LOGGER.log(Level.INFO, "NEW CONTRACT HAS CUSTOMER: " + newContract.getCustomer().toString());
