@@ -26,6 +26,7 @@ import org.camunda.bpm.engine.cdi.jsf.TaskForm;
 
 import de.unimuenster.wfm.capitol.entities.Customer;
 import de.unimuenster.wfm.capitol.jpa.AccessCustomer;
+import de.unimuenster.wfm.capitol.jpa.CustomerCRUD;
 
 @Named
 @ConversationScoped
@@ -40,6 +41,9 @@ public class CheckCustomerController implements Serializable {
 	// Inject the AccessCustomer to update the persisted customer
 	@Inject
 	private AccessCustomer accessCustomer;
+	
+	@Inject
+	private CustomerCRUD customerCRUD;		
 
 	// Inject task form available through the camunda cdi artifact
 	@Inject
@@ -51,14 +55,17 @@ public class CheckCustomerController implements Serializable {
 	public Customer getCustomer() {
 		if (customer == null) {
 			// Load the customer from the database if not already cached
-			customer = accessCustomer.getCustomer((Integer) businessProcess.getVariable("customerId"));
+			customer = customerCRUD.find((Integer) businessProcess.getVariable("customerId"));
+//			customer = accessCustomer.getCustomer((Integer) businessProcess.getVariable("customerId"));
 		}
 		return customer;
 	}
 
 	public void submitForm() throws IOException {
 		// Persist updated order entity and complete task form
-		accessCustomer.updateCustomer(customer);
+		customerCRUD.update(customer);		
+//		customerCRUD.createAndFlush(this.getCustomer());
+//		accessCustomer.updateCustomer(customer);
 		try {
 			// Complete user task from
 			taskForm.completeTask();

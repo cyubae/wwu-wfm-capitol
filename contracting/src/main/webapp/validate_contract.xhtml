@@ -92,21 +92,6 @@
 				</p>
 			</h:panelGrid>
 
-			<h2>Policies</h2>
-			<h:form>
-				<h:dataTable value="#{validateContractController.contract.policies}"
-					var="policy">
-					<h:column>
-						<f:facet name="header">Car ID</f:facet>
-						#{policy.car.carId}
-         			</h:column>
-					<h:column>
-						<f:facet name="header">Daily Premium</f:facet>
-			            #{policy.dailyPremium}
-			        </h:column>
-				</h:dataTable>
-			</h:form>
-
 			<h:panelGrid columns="2">
 				<p>
 					<label for="insuranceType">Insurance Type</label>

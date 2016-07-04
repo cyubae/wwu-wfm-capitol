@@ -47,7 +47,7 @@ public class Car implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private CarType type;
 	
-	@OneToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
+	@OneToOne(cascade = {MERGE})
 	private Policy policy;
 	
 	public Car(){

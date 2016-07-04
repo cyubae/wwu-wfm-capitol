@@ -39,10 +39,10 @@ public class Contract implements Serializable {
 	@Version
 	protected long version;
 	
-	@ManyToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
+	@ManyToOne(cascade = {MERGE})
 	protected Customer customer;
 	
-	@OneToMany(cascade = {DETACH, MERGE, PERSIST, REFRESH}, mappedBy = "contract", fetch=FetchType.EAGER)
+	@OneToMany(cascade = {MERGE}, mappedBy = "contract")
 	protected Collection<Policy> policies;
 	protected InsuranceType insuranceType;
 

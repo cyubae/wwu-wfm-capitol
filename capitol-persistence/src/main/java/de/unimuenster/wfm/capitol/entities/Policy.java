@@ -35,11 +35,11 @@ public class Policy implements Serializable {
 	@Version
 	protected long version;
 	
-	@OneToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER, mappedBy="policy")
+	@OneToOne(cascade = {MERGE}, mappedBy="policy")
 //    @JoinColumn(name="carId")
 	protected Car car;
 	
-	@ManyToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
+	@ManyToOne(cascade = {MERGE})
 	protected Contract contract;
 
 	//daily insurance premium (in euro cents)

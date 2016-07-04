@@ -21,7 +21,7 @@ import de.unimuenster.wfm.capitol.entities.Policy;
 @Named
 public class PolicyCRUD extends AbstractCRUDService<Policy> {
 	
-	private static Logger LOGGER = Logger.getLogger(AccessCustomer.class.getName());
+	private static Logger LOGGER = Logger.getLogger(PolicyCRUD.class.getName());
 	
 	// Inject CRUD-Services to access persistence unit	
 	@Inject

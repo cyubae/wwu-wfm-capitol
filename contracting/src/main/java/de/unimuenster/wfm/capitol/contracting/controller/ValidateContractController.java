@@ -15,7 +15,8 @@ package de.unimuenster.wfm.capitol.contracting.controller;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
@@ -23,9 +24,11 @@ import javax.inject.Named;
 
 import org.camunda.bpm.engine.cdi.BusinessProcess;
 import org.camunda.bpm.engine.cdi.jsf.TaskForm;
+import org.camunda.bpm.engine.delegate.DelegateExecution;
 
-import de.unimuenster.wfm.capitol.contracting.helper.DBLogger;
+import de.unimuenster.wfm.capitol.entities.Car;
 import de.unimuenster.wfm.capitol.entities.Contract;
+import de.unimuenster.wfm.capitol.entities.Customer;
 import de.unimuenster.wfm.capitol.entities.Policy;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
@@ -35,6 +38,8 @@ import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;
 @Named
 @ConversationScoped
 public class ValidateContractController implements Serializable {
+	
+	private static Logger LOGGER = Logger.getLogger(ValidateContractController.class.getName());
 
 	private static  final long serialVersionUID = 1L;
 
@@ -96,6 +101,27 @@ public class ValidateContractController implements Serializable {
 			// Rollback both transactions on error
 			throw new RuntimeException("Cannot complete task", e);
 		}
+	}
+	
+	
+	public void printCustomerContracts(DelegateExecution delegateExecution) {
+		int customerID = (Integer) delegateExecution.getVariable("customerId");
+		LOGGER.log(Level.INFO, "printCustomerContracts called");
+		
+		Customer customer = customerCRUD.find(customerID);
+		LOGGER.log(Level.INFO, "found customer : " + customer.getCustomerId());
+		
+		Collection<Contract> contracts = customer.getContracts();
+		for(Contract contract : contracts) {
+			LOGGER.log(Level.INFO, "found contract: " + contract);
+			Collection<Policy> policies = contract.getPolicies();
+			for(Policy policy : policies) {
+				LOGGER.log(Level.INFO, "found policy: " + policy);
+				Car car = policy.getCar();
+				LOGGER.log(Level.INFO, "found car: " + car);
+			}
+		}
+		
 	}
 }
 

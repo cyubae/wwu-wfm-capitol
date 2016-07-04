@@ -3,6 +3,7 @@ package de.unimuenster.wfm.capitol.contracting.businesslogic;
 import java.sql.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +32,7 @@ import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;
 @Named
 public class CreateBasicContractBL {
 	
-	private static Logger LOGGER = Logger.getLogger(CheckExistingCustomerIdBL.class.getName());
+	private static Logger LOGGER = Logger.getLogger(CreateBasicContractBL.class.getName());
 
 	// Inject CRUD-Services to access persistence unit	
 	@Inject
@@ -54,7 +55,8 @@ public class CreateBasicContractBL {
 		
 		//http://stackoverflow.com/questions/18373383/jpa-onetoone-difference-between-cascade-merge-and-persist
 
-		//for each car in process variables --> create car object --> create policy object
+		//for each car in process variables --> create car object --> store into and create one policy object 
+		//--> store all policy objects into one contract object (associate each contract object with exactly one Customer object) 
 		//Create car objects
 		LOGGER.log(Level.INFO, "CONTRACT CREATION - STEP 1");
 		ArrayList<Car> cars = createCars(delegateExecution);
@@ -70,7 +72,7 @@ public class CreateBasicContractBL {
 		LOGGER.log(Level.INFO, "CONTRACT CREATION - STEP 4");
 		delegateExecution.setVariable("contract_id", contract.getContractId());
 		
-		LOGGER.log(Level.INFO, "CONTRACT CREATION - FINISHED");
+		LOGGER.log(Level.INFO, "CONTRACT CREATION - FINISHED - contractId: " + contract.getContractId());
 	}
 
 	private ArrayList<Car> createCars(DelegateExecution delegateExecution) {
@@ -102,7 +104,8 @@ public class CreateBasicContractBL {
 			newCar.setPs((Integer) delegateExecution.getVariable("car_construction_year"+i));
 			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 
-			newCar = carCRUD.update(newCar);
+			newCar = carCRUD.create(newCar);
+			LOGGER.log(Level.INFO, "NEW CAR PERSISTED: newCar.toString(): " + newCar.toString());
 			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 
 			cars.add(newCar);
@@ -127,7 +130,10 @@ public class CreateBasicContractBL {
 			newPolicy.setCar(currentCar);
 			newPolicy.setDailyPremium(dailyPremium);
 
-			newPolicy = policyCRUD.update(newPolicy);
+			newPolicy = policyCRUD.create(newPolicy);
+			
+			LOGGER.log(Level.INFO, "NEW POLICY PERSISTED: newPolicy.toString(): " + newPolicy.toString());
+			
 			policies.add(newPolicy);
 
 		}
@@ -141,9 +147,7 @@ public class CreateBasicContractBL {
 			Customer currentCustomer = customerCRUD.find((Integer) (delegateExecution.getVariable("customerId")));
 
 			Contract newContract = new Contract();
-			newContract.setPolicies(policies);
 			newContract.setInsuranceType(currentInsuranceType);
-			newContract.setCustomer(currentCustomer);
 			newContract.setValidated(false);;
 			newContract.setReleased(false);
 			
@@ -158,8 +162,21 @@ public class CreateBasicContractBL {
 				e.printStackTrace();
 			}
 			
-			newContract = contractCRUD.update(newContract);
+			newContract.setPolicies(policies);
+			newContract.setCustomer(currentCustomer);
+			
+			newContract = contractCRUD.create(newContract);
 
+			LOGGER.log(Level.INFO, "NEW CONTRACT PERSISTED: newContract.toString(): " + newContract.toString());
+			LOGGER.log(Level.INFO, "NEW CONTRACT HAS CUSTOMER: " + newContract.getCustomer().toString());
+			
+			LOGGER.log(Level.INFO, "NEW CONTRACT HAS POLICIES: ");
+			Collection<Policy> policiesEntity = newContract.getPolicies();
+			int policyCount = 0;
+			for(Policy p : policiesEntity) {
+				LOGGER.log(Level.INFO, "POLICY " + policyCount + ": " + p.toString());
+			}
+			
 			return newContract;
 	}
 

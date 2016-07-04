@@ -48,7 +48,7 @@ public class Customer implements Serializable {
 	protected String companyName;
 	protected boolean blacklisted;
 	
-	@OneToMany(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER, mappedBy="customer")
+	@OneToMany(cascade = {MERGE}, mappedBy="customer")
 	protected Collection<Contract> contracts;
 
 	public Customer() {
