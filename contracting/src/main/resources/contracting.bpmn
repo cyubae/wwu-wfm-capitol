@@ -201,7 +201,7 @@
       <conditionExpression xsi:type="tFormalExpression">${not user_rejected}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_1bbq612" sourceRef="UserTask_1l7yy2z" targetRef="ExclusiveGateway_0qegcgb" />
-    <userTask id="sid-42D047DA-8DA5-432E-89EB-1C5CF23CD847" name="modify contract manually" implementation="##WebService">
+    <userTask id="sid-42D047DA-8DA5-432E-89EB-1C5CF23CD847" name="modify contract manually" implementation="##WebService" camunda:formKey="app:modify_contract.jsf">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />

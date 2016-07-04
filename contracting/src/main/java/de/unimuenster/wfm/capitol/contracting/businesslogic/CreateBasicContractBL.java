@@ -163,13 +163,16 @@ public class CreateBasicContractBL {
 				e.printStackTrace();
 			}
 			
+			LOGGER.log(Level.INFO, "SETTING POLICIES");
 			for(Policy policy : policies) {
 				policy.setContract(newContract);
 //				newContract.addPolicy(policy);
 			}
 //			newContract.setPolicies(policies);
+			LOGGER.log(Level.INFO, "POLICIES SET");
 			
 			newContract.setCustomer(currentCustomer);
+			LOGGER.log(Level.INFO, "CUSTOMER SET");
 			
 			newContract = contractCRUD.createAndFlush(newContract);
 
