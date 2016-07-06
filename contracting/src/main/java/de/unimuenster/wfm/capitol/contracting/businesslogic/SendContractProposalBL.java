@@ -47,7 +47,7 @@ public class SendContractProposalBL {
 	public void performBusinessLogic(DelegateExecution delegateExecution) {
 		LOGGER.log(Level.INFO, "Contract proposal sending invoked!");
 		
-		Contract contract = contractCRUD.find(Integer.parseInt((String) delegateExecution.getVariable("contract_id")));	
+		Contract contract = contractCRUD.find((Integer) (delegateExecution.getVariable("contract_id")));	
 		
 		ContractProposal contractProposal = new ContractProposal();
 		Order order = contractProposal.new Order();
@@ -58,7 +58,7 @@ public class SendContractProposalBL {
 
 		order.setFinal_price(contract.getTotalCost());
 		order.setInquiry_text("");
-		order.setOrder_id(Integer.parseInt((String) delegateExecution.getVariable("order_id")));
+		order.setOrder_id((Integer) delegateExecution.getVariable("order_id"));
 		try {
 			order.setRequest_date(DateConverter.convertStringToDate((String) delegateExecution.getVariable("request_date")));
 		} catch (ParseException e) {
@@ -66,7 +66,7 @@ public class SendContractProposalBL {
 			LOGGER.log(Level.SEVERE, "Contract Request Date could not be parsed!");
 			e.printStackTrace();
 		}
-		order.setResult(Integer.parseInt((String) delegateExecution.getVariable("contract_result")));		
+		order.setResult((Integer) delegateExecution.getVariable("contract_result"));		
 
 		//TODO Fill the contractProposal with the correct files, find out the correct URL to send the file to
 		messageService.sendJSON(contractProposal, "http://camunda-bvis.uni-muenster.de/???");
