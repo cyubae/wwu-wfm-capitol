@@ -70,5 +70,9 @@
 		</dependency>
 
 	</dependencies>
+	
+	<build>
+		<finalName>capitol-persistence</finalName>
+	</build>
 
 </project>
