@@ -4,8 +4,8 @@
 	<groupId>de.unimuenster.wfm.capitol</groupId>
 	<artifactId>capitol-persistence</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
-
+	
+	
 	<!-- import Camunda BOM to ensure correct versions of Camunda projects -->
 	<dependencyManagement>
 		<dependencies>
@@ -18,9 +18,8 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
+	
 	<dependencies>
-
 		<!-- MessagingService -->
 		<dependency>
 			<groupId>MessagingService</groupId>
@@ -68,11 +67,16 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
 	</dependencies>
 	
 	<build>
+<<<<<<< HEAD
+		<!-- Just so we do not have to change the name when deploying -->
+		<finalName>capitol-persistence</finalName>
+	</build>
+=======
 		<finalName>capitol-persistence</finalName>
 	</build>
 
+>>>>>>> master
 </project>
