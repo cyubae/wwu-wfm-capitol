@@ -68,15 +68,8 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
-	
-	<build>
-<<<<<<< HEAD
-		<!-- Just so we do not have to change the name when deploying -->
-		<finalName>capitol-persistence</finalName>
-	</build>
-=======
-		<finalName>capitol-persistence</finalName>
-	</build>
 
->>>>>>> master
+	<build>
+		<finalName>capitol-persistence</finalName>
+	</build>
 </project>
