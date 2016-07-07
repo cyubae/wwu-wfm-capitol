@@ -107,7 +107,9 @@ public class ValidateContractController implements Serializable {
 		LOGGER.log(Level.INFO, "submitValidation - STEP: " + counter++);
 		contractCRUD.update(this.getContract());
 		LOGGER.log(Level.INFO, "submitValidation - STEP: " + counter++);
-		
+		//Set contract_result to 1 (accepted)
+		businessProcess.setVariable("contract_result", 1);
+		LOGGER.log(Level.INFO, "submitValidation - STEP: " + counter++);
 //		new DBLogger().printContract(this.getContract().getContractId());		
 		
 		try {
@@ -122,25 +124,5 @@ public class ValidateContractController implements Serializable {
 		}
 	}
 	
-	
-//	public void printCustomerContracts(DelegateExecution delegateExecution) {
-//		int customerID = (Integer) delegateExecution.getVariable("customerId");
-//		LOGGER.log(Level.INFO, "printCustomerContracts called");
-//		
-//		Customer customer = customerCRUD.find(customerID);
-//		LOGGER.log(Level.INFO, "found customer : " + customer.getCustomerId());
-//		
-//		Collection<Contract> contracts = customer.getContracts();
-//		for(Contract contract : contracts) {
-//			LOGGER.log(Level.INFO, "found contract: " + contract);
-//			Collection<Policy> policies = contract.getPolicies();
-//			for(Policy policy : policies) {
-//				LOGGER.log(Level.INFO, "found policy: " + policy);
-//				Car car = policy.getCar();
-//				LOGGER.log(Level.INFO, "found car: " + car);
-//			}
-//		}
-//		
-//	}
 }
 

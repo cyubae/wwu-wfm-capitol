@@ -62,6 +62,7 @@
 	
 
 	<build>
+		<finalName>partner-interface</finalName>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>

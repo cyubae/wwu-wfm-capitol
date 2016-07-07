@@ -18,12 +18,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
 import javax.persistence.Version;
 
 import org.camunda.bpm.engine.cdi.annotation.BusinessProcessScoped;
 
 import de.unimuenster.wfm.capitol.enums.InsuranceType;
+import de.unimuenster.wfm.capitol.helper.DateTools;
 
 @Entity
 @BusinessProcessScoped
@@ -145,12 +145,37 @@ public class Contract implements Serializable {
 	public void setReleased(boolean released) {
 		this.released = released;
 	}
+	
+	/**
+	 * Returns sum of daily premiums of all associated policies
+	 * @return
+	 */
+	public int getTotalDailyPremium() {
+		int totalDailyPremium = 0;
+		for(Policy policy : this.getPolicies()) {
+			totalDailyPremium += policy.getDailyPremium();
+		}
+		return totalDailyPremium;
+	}
+	
+	/**
+	 * Returns costs of all associated polices for entire contract duration in euro cents
+	 * @return
+	 */
+	public int getTotalCost() {
+		int numberOfDays = DateTools.getDaysBetweenDates(this.getPickUpDate(), this.getReturnDate());		
+		return numberOfDays * this.getTotalDailyPremium(); 
+	}
+	
 
 	@Override
 	public String toString() {
-		return "Contract [contractId=" + contractId + ", version=" + version + ", customer=" + customer + ", policies="
-				+ policies + ", insuranceType=" + insuranceType + ", pickUpDate=" + pickUpDate + ", returnDate="
-				+ returnDate + ", validated=" + validated + ", released=" + released + "]";
+		return "";
+//		return "Contract [contractId=" + contractId + ", version=" + version 
+//				//+ ", customer=" + customer 
+//				+ ", policies="
+//				+ policies + ", insuranceType=" + insuranceType + ", pickUpDate=" + pickUpDate + ", returnDate="
+//				+ returnDate + ", validated=" + validated + ", released=" + released + "]";
 	}
 
 }

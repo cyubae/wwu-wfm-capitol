@@ -263,11 +263,14 @@ public class Customer implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Customer [customerId=" + customerId + ", version=" + version + ", firstName=" + firstName + ", surname="
-				+ surname + ", email=" + email + ", phoneNumber=" + phoneNumber + ", street=" + street
-				+ ", houseNumber=" + houseNumber + ", postcode=" + postcode + ", city=" + city + ", country=" + country
-				+ ", dateOfBirth=" + dateOfBirth + ", company=" + company + ", companyName=" + companyName
-				+ ", blacklisted=" + blacklisted + ", contracts=" + contracts + "]";
+		return "";
+//		return "Customer [customerId=" + customerId + ", version=" + version + ", firstName=" + firstName + ", surname="
+//				+ surname + ", email=" + email + ", phoneNumber=" + phoneNumber + ", street=" + street
+//				+ ", houseNumber=" + houseNumber + ", postcode=" + postcode + ", city=" + city + ", country=" + country
+//				+ ", dateOfBirth=" + dateOfBirth + ", company=" + company + ", companyName=" + companyName
+//				+ ", blacklisted=" + blacklisted
+//				//+ ", contracts=" + contracts 
+//				+ "]";
 	}
 
 

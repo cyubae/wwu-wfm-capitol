@@ -1,7 +1,7 @@
 package de.unimuenster.wfm.capitol.dto;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Date;
 
 public class ContractProposal implements Serializable{
 	
@@ -44,7 +44,7 @@ public class ContractProposal implements Serializable{
 
 	public class Order{
 	    private int order_id;
-	    private Calendar request_date;
+	    private Date request_date;
 	    private String inquiry_text;
 	    private int result;
 	    private double final_price;
@@ -54,10 +54,10 @@ public class ContractProposal implements Serializable{
 		public void setOrder_id(int order_id) {
 			this.order_id = order_id;
 		}
-		public Calendar getRequest_date() {
+		public Date getRequest_date() {
 			return request_date;
 		}
-		public void setRequest_date(Calendar request_date) {
+		public void setRequest_date(Date request_date) {
 			this.request_date = request_date;
 		}
 		public String getInquiry_text() {
