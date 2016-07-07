@@ -69,7 +69,7 @@ public class SendContractProposalBL {
 		order.setResult((Integer) delegateExecution.getVariable("contract_result"));		
 
 		//TODO Fill the contractProposal with the correct files, find out the correct URL to send the file to
-		messageService.sendJSON(contractProposal, "http://camunda-bvis.uni-muenster.de/???");
+//		messageService.sendJSON(contractProposal, "http://camunda-bvis.uni-muenster.de/???");
 		LOGGER.log(Level.INFO, "Contract proposal sent successfully!");
 	}
 
