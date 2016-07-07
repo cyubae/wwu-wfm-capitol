@@ -6,34 +6,33 @@
 	<groupId>de.uni-muenster.wfm.capitol</groupId>
 	<artifactId>contracting</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
-
+    <packaging>war</packaging>
+    
 	<!-- import Camunda BOM to ensure correct versions of Camunda projects -->
 	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.camunda.bpm</groupId>
+	   <dependencies>
+            <dependency>
+	            <groupId>org.camunda.bpm</groupId>
 				<artifactId>camunda-bom</artifactId>
 				<version>7.5.0</version>
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
-		</dependencies>
+	   </dependencies>
 	</dependencyManagement>
 
 	<dependencies>
-	
-		<!--  Common persistence project -->
-		<dependency>
-			<groupId>de.unimuenster.wfm.capitol</groupId>
-			<artifactId>capitol-persistence</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>	
-
+        <!-- Common persistence project -->
+        <dependency>
+            <groupId>de.unimuenster.wfm.capitol</groupId>
+            <artifactId>capitol-persistence</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        
 		<!-- MessagingService -->
 		<dependency>
-			<groupId>MessagingService</groupId>
+	        <groupId>MessagingService</groupId>
 			<artifactId>MessagingService</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>compile</scope>
@@ -88,5 +87,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
