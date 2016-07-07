@@ -170,9 +170,12 @@ public class Contract implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Contract [contractId=" + contractId + ", version=" + version + ", customer=" + customer + ", policies="
-				+ policies + ", insuranceType=" + insuranceType + ", pickUpDate=" + pickUpDate + ", returnDate="
-				+ returnDate + ", validated=" + validated + ", released=" + released + "]";
+		return "";
+//		return "Contract [contractId=" + contractId + ", version=" + version 
+//				//+ ", customer=" + customer 
+//				+ ", policies="
+//				+ policies + ", insuranceType=" + insuranceType + ", pickUpDate=" + pickUpDate + ", returnDate="
+//				+ returnDate + ", validated=" + validated + ", released=" + released + "]";
 	}
 
 }
