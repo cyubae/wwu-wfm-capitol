@@ -38,7 +38,7 @@ public class ContractStatus {
 
 		try {
 			// correlate the message
-			  runtimeService.createMessageCorrelation("Message-Approve")
+			  runtimeService.createMessageCorrelation(MESSAGENAME)
 		      .processInstanceId(contractstatus.getProcessinstance_id_capitol())
 		      .setVariables(variables)
 		      .correlate();

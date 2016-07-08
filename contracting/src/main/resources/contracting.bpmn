@@ -227,7 +227,7 @@
       <incoming>SequenceFlow_1m5e0p5</incoming>
       <outgoing>sid-8B9DFF88-4986-4502-A695-66DD25E2A02C</outgoing>
     </sendTask>
-    <receiveTask id="sid-E416B265-A8D8-4894-BA47-CF68322258A8" name="receive accept/decline" implementation="##WebService" messageRef="sid-6933ADC7-853F-4F37-B37E-000F0F7E3976">
+    <receiveTask id="sid-E416B265-A8D8-4894-BA47-CF68322258A8" name="receive accept/decline" implementation="##WebService" messageRef="Message_1tx3dwf">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -333,6 +333,7 @@ System]]></text>
     </textAnnotation>
     <association id="sid-EA25BBA4-C244-4465-8A71-7CFEE7C9B003" associationDirection="None" sourceRef="sid-163BD710-341B-4330-A537-6A8E35C48F70" targetRef="ReleaseContract" />
   </process>
+  <message id="Message_1tx3dwf" name="contract_status" />
   <bpmndi:BPMNDiagram id="sid-dceff5a8-2066-4564-9adf-95b09a18edae">
     <bpmndi:BPMNPlane id="sid-be32041c-5b3f-42f9-a410-81eea244372a" bpmnElement="sid-e8f144bf-2a85-4f37-a408-2231652224dd">
       <bpmndi:BPMNShape id="sid-53A508C7-65F8-4AB4-B59A-C6F9CA060DDE_gui" bpmnElement="sid-53A508C7-65F8-4AB4-B59A-C6F9CA060DDE" isHorizontal="true">
