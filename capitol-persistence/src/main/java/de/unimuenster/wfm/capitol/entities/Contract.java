@@ -155,7 +155,7 @@ public class Contract implements Serializable {
 	public void setReleased(boolean released) {
 		this.released = released;
 	}
-	
+
 	/**
 	 * Returns sum of daily premiums of all associated policies
 	 * @return

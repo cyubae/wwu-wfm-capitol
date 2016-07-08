@@ -6,6 +6,8 @@ import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.CascadeType.REFRESH;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.logging.Logger;
 
 import javax.persistence.Entity;
@@ -13,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
@@ -38,6 +41,9 @@ public class Policy implements Serializable {
 	
 	@ManyToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
 	protected Contract contract;
+	
+	@OneToMany(cascade = {DETACH, MERGE, PERSIST, REFRESH}, mappedBy = "policy",fetch=FetchType.EAGER)
+	protected Collection<Claim> claims = new ArrayList<Claim>();	
 
 	//daily insurance premium (in euro cents)
 	protected int dailyPremium;
@@ -85,6 +91,22 @@ public class Policy implements Serializable {
 	public void setDailyPremium(int dailyPremium) {
 		this.dailyPremium = dailyPremium;
 	}
+	
+	public Collection<Claim> getClaims() {
+		return claims;
+	}
+
+	public void setClaims(Collection<Claim> claims) {
+		this.claims = claims;
+	}
+	
+	public void addClaim(Claim claim) {
+		this.claims.add(claim);
+	}
+	
+	public void removeClaim(Claim claim) {
+		this.claims.remove(claim);
+	}	
 
 	@Override
 	public String toString() {
