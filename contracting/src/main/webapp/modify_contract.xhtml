@@ -96,6 +96,11 @@
 
 			<h:panelGrid columns="2">
 				<p>
+					<label for="contractId">Contract ID</label>
+					<h:outputText id="contractId"
+						value="#{validateContractController.contract.contractId}" />
+				</p>
+				<p>
 					<label for="insuranceType">Insurance Type</label>
 					<h:inputText id="insuranceType"
 						value="#{modifyContractController.contract.insuranceType}" />
@@ -121,40 +126,43 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Daily Premium (Euro Cents)</f:facet>
-			            <h:inputText id="dailyPremium" value="#{policy.dailyPremium}" />			            
-			        </h:column>
+					<h:inputText id="dailyPremium" value="#{policy.dailyPremium}" />
+				</h:column>
 				<h:column>
 					<f:facet name="header">Car ID</f:facet>
-					<h:inputText id="carId" value="#{policy.car.carId}" />						
-         			</h:column>
+					<h:inputText id="carId" value="#{policy.car.carId}" />
+				</h:column>
 				<h:column>
 					<f:facet name="header">Brand</f:facet>
-					<h:inputText id="brand" value="#{policy.car.brand}" />						
-         			</h:column>
+					<h:inputText id="brand" value="#{policy.car.brand}" />
+				</h:column>
 				<h:column>
 					<f:facet name="header">Model</f:facet>
-					<h:inputText id="model" value="#{policy.car.model}" />						
-         			</h:column>
+					<h:inputText id="model" value="#{policy.car.model}" />
+				</h:column>
 				<h:column>
 					<f:facet name="header">Registration</f:facet>
-					<h:inputText id="registrationNumber" value="#{policy.car.registrationNumber}" />						
-         			</h:column>
+					<h:inputText id="registrationNumber"
+						value="#{policy.car.registrationNumber}" />
+				</h:column>
 				<h:column>
 					<f:facet name="header">Fuel Type</f:facet>
-					<h:inputText id="fuelType" value="#{policy.car.fuelType}" />						
-         			</h:column>
+					<h:inputText id="fuelType" value="#{policy.car.fuelType}" />
+				</h:column>
 				<h:column>
 					<f:facet name="header">Horsepower</f:facet>
-					<h:inputText id="ps" value="#{policy.car.ps}" />						
-         			</h:column>
+					<h:inputText id="ps" value="#{policy.car.ps}" />
+				</h:column>
 				<h:column>
 					<f:facet name="header">Construction Year</f:facet>
-					<h:inputText id="constructionYear" value="#{policy.car.constructionYear}" />						
-         			</h:column>
+					<h:inputText id="constructionYear"
+						value="#{policy.car.constructionYear}" />
+				</h:column>
 			</h:dataTable>
 
 
-			<h:commandButton id="modify_button" value="Modify and Validate Contract"
+			<h:commandButton id="modify_button"
+				value="Modify and Validate Contract"
 				action="#{modifyContractController.submitValidation()}" />
 		</h:form>
 	</h:body>

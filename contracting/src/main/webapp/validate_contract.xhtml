@@ -96,6 +96,11 @@
 
 			<h:panelGrid columns="2">
 				<p>
+					<label for="contractId">Contract ID</label>
+					<h:outputText id="contractId"
+						value="#{validateContractController.contract.contractId}" />
+				</p>			
+				<p>
 					<label for="insuranceType">Insurance Type</label>
 					<h:outputText id="insuranceType"
 						value="#{validateContractController.contract.insuranceType}" />
