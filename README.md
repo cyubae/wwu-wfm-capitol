@@ -2,6 +2,8 @@
 
 # Build Reihenfolge 
 
+(wird bei Ausführung von mvn clean install im Hauptordner automatisch eingehalten)
+
 1. Partner Interface
 2. MessagingService
 4. capitol-persistence

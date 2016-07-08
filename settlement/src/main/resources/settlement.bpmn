@@ -56,16 +56,16 @@
         <flowNodeRef>IntermediateCatchEvent_0ox3bvl</flowNodeRef>
         <flowNodeRef>ExclusiveGateway_0vkuswt</flowNodeRef>
         <flowNodeRef>SendTask_11hfxxe</flowNodeRef>
+        <flowNodeRef>ManualTask_03wqdq1</flowNodeRef>
       </lane>
       <lane id="Lane_04vwp5m" name="Clerk">
         <extensionElements>
           <signavio:signavioMetaData metaKey="bgcolor" metaValue="" />
         </extensionElements>
-        <flowNodeRef>UserTask_0s6e88g</flowNodeRef>
         <flowNodeRef>UserTask_0g5kavc</flowNodeRef>
         <flowNodeRef>UserTask_0ivyjmb</flowNodeRef>
         <flowNodeRef>ExclusiveGateway_0jruqba</flowNodeRef>
-        <flowNodeRef>ManualTask_03wqdq1</flowNodeRef>
+        <flowNodeRef>UserTask_0s6e88g</flowNodeRef>
       </lane>
     </laneSet>
     <startEvent id="StartEvent_0o57kxj" name="receive claim">
@@ -74,15 +74,9 @@
         <signavio:signavioMetaData metaKey="vorgngerprozesse" metaValue="[]" />
         <signavio:signavioMetaData metaKey="viaitsystem" metaValue="" />
       </extensionElements>
-      <outgoing>SequenceFlow_025bxha</outgoing>
+      <outgoing>SequenceFlow_1ahlven</outgoing>
       <messageEventDefinition id="sid-2e65a6ce-f67c-4fe7-9ac6-737904e96a60" messageRef="sid-6309FA27-8337-4480-83B5-81ECF9209099" />
     </startEvent>
-    <sequenceFlow id="SequenceFlow_025bxha" name="" isImmediate="true" sourceRef="StartEvent_0o57kxj" targetRef="UserTask_0s6e88g" />
-    <sequenceFlow id="SequenceFlow_0z9thke" name="" isImmediate="true" sourceRef="UserTask_0s6e88g" targetRef="ManualTask_03wqdq1" />
-    <userTask id="UserTask_0s6e88g" name="check data for completeness and corectness">
-      <incoming>SequenceFlow_025bxha</incoming>
-      <outgoing>SequenceFlow_0z9thke</outgoing>
-    </userTask>
     <endEvent id="EndEvent_0kajk9l" name="claim processed">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
@@ -137,7 +131,7 @@
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
       </extensionElements>
-      <incoming>SequenceFlow_0k2uta7</incoming>
+      <incoming>SequenceFlow_1iois9y</incoming>
       <outgoing>SequenceFlow_0et410l</outgoing>
       <outgoing>SequenceFlow_1120f6i</outgoing>
     </exclusiveGateway>
@@ -227,17 +221,6 @@
     <sequenceFlow id="SequenceFlow_0f4ew2e" sourceRef="CreateRecord" targetRef="ParallelGateway_0bm4i1l" />
     <sequenceFlow id="SequenceFlow_1targ69" sourceRef="ParallelGateway_0bm4i1l" targetRef="IntermediateCatchEvent_0ox3bvl" />
     <sequenceFlow id="SequenceFlow_1ymgav4" sourceRef="IntermediateCatchEvent_0ox3bvl" targetRef="ExclusiveGateway_0ex7jpu" />
-    <sequenceFlow id="SequenceFlow_0k2uta7" sourceRef="ManualTask_03wqdq1" targetRef="ExclusiveGateway_0jruqba" />
-    <manualTask id="ManualTask_03wqdq1" name="Check claim history">
-      <incoming>SequenceFlow_0z9thke</incoming>
-      <outgoing>SequenceFlow_0k2uta7</outgoing>
-      <property id="Property_0n8dcmi" name="__targetRef_placeholder" />
-      <dataInputAssociation id="DataInputAssociation_0ou0bjk">
-        <sourceRef>DataStoreReference_1ykcaib</sourceRef>
-        <targetRef>Property_0n8dcmi</targetRef>
-      </dataInputAssociation>
-    </manualTask>
-    <dataStoreReference id="DataStoreReference_1ykcaib" name="claim database" />
     <sequenceFlow id="SequenceFlow_1rcrs7g" sourceRef="ExclusiveGateway_0ex7jpu" targetRef="EndEvent_0kajk9l">
       <conditionExpression xsi:type="tFormalExpression">${false}</conditionExpression>
     </sequenceFlow>
@@ -258,6 +241,23 @@
       <incoming>sid-BD25EF83-63EC-46BC-BF44-305E914161B1</incoming>
       <outgoing>SequenceFlow_1iuc26z</outgoing>
     </sendTask>
+    <sequenceFlow id="SequenceFlow_1ahlven" sourceRef="StartEvent_0o57kxj" targetRef="ManualTask_03wqdq1" />
+    <sequenceFlow id="SequenceFlow_1iois9y" sourceRef="UserTask_0s6e88g" targetRef="ExclusiveGateway_0jruqba" />
+    <userTask id="UserTask_0s6e88g" name="check data for completeness and corectness">
+      <incoming>SequenceFlow_1s16rje</incoming>
+      <outgoing>SequenceFlow_1iois9y</outgoing>
+    </userTask>
+    <sequenceFlow id="SequenceFlow_1s16rje" sourceRef="ManualTask_03wqdq1" targetRef="UserTask_0s6e88g" />
+    <manualTask id="ManualTask_03wqdq1" name="Retrieve contract and user data">
+      <incoming>SequenceFlow_1ahlven</incoming>
+      <outgoing>SequenceFlow_1s16rje</outgoing>
+      <property id="Property_0n8dcmi" name="__targetRef_placeholder" />
+      <dataInputAssociation id="DataInputAssociation_0ou0bjk">
+        <sourceRef>DataStoreReference_1ykcaib</sourceRef>
+        <targetRef>Property_0n8dcmi</targetRef>
+      </dataInputAssociation>
+    </manualTask>
+    <dataStoreReference id="DataStoreReference_1ykcaib" name="claim database" />
     <textAnnotation id="sid-2819BCFF-76FD-477D-BF69-2AD1A2F8C1B4">
       <extensionElements>
         <signavio:signavioType dataObjectType="IT-System" />
@@ -403,22 +403,12 @@
           <omgdc:Bounds x="866.9527131958007" y="206" width="69.42857360839844" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_025bxha_gui" bpmnElement="SequenceFlow_025bxha">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="203" y="317" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="235" y="317" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="235" y="528" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="252" y="528" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1iuc26z_gui" bpmnElement="SequenceFlow_1iuc26z">
         <omgdi:waypoint xsi:type="omgdc:Point" x="2410" y="317" />
         <omgdi:waypoint xsi:type="omgdc:Point" x="2440" y="317" />
         <bpmndi:BPMNLabel>
           <omgdc:Bounds x="2384" y="307" width="90" height="20" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0z9thke_gui" bpmnElement="SequenceFlow_0z9thke">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="352" y="527" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="484" y="527" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0et410l_gui" bpmnElement="SequenceFlow_0et410l">
         <omgdi:waypoint xsi:type="omgdc:Point" x="773" y="507" />
@@ -525,7 +515,7 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_0s6e88g_di" bpmnElement="UserTask_0s6e88g">
-        <omgdc:Bounds x="252" y="487" width="100" height="80" />
+        <omgdc:Bounds x="401" y="487" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_08edlms_di" bpmnElement="CheckClaimCoverage">
         <omgdc:Bounds x="1130" y="277" width="100" height="80" />
@@ -627,25 +617,18 @@
           <omgdc:Bounds x="2018.5" y="307" width="90" height="20" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0k2uta7_di" bpmnElement="SequenceFlow_0k2uta7">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="584" y="527" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="753" y="527" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="623.5" y="517" width="90" height="20" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ManualTask_03wqdq1_di" bpmnElement="ManualTask_03wqdq1">
-        <omgdc:Bounds x="483.59520123839013" y="487" width="100" height="80" />
+        <omgdc:Bounds x="263" y="277" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="DataStoreReference_1ykcaib_di" bpmnElement="DataStoreReference_1ykcaib">
-        <omgdc:Bounds x="509" y="366.41558441558436" width="50" height="50" />
+        <omgdc:Bounds x="414" y="292" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="489" y="343.41558441558436" width="90" height="20" />
+          <omgdc:Bounds x="394" y="269" width="90" height="20" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataInputAssociation_0ou0bjk_di" bpmnElement="DataInputAssociation_0ou0bjk">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="534" y="416" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="534" y="487" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="414" y="317" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="363" y="317" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_0bh8err_di" bpmnElement="MessageFlow_0bh8err">
         <omgdi:waypoint xsi:type="omgdc:Point" x="2019" y="100" />
@@ -661,6 +644,28 @@
         <omgdi:waypoint xsi:type="omgdc:Point" x="2528" y="330" />
         <bpmndi:BPMNLabel>
           <omgdc:Bounds x="2287" y="306.5" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ahlven_di" bpmnElement="SequenceFlow_1ahlven">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="203" y="317" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="263" y="317" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="260" y="416.5" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1iois9y_di" bpmnElement="SequenceFlow_1iois9y">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="501" y="527" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="753" y="527" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="584" y="521.5" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1s16rje_di" bpmnElement="SequenceFlow_1s16rje">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="313" y="357" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="313" y="527" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="401" y="527" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="370" y="412" width="90" height="20" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>

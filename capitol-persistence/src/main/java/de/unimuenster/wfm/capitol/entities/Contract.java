@@ -36,6 +36,8 @@ public class Contract implements Serializable {
 	@Id
 	@GeneratedValue
 	protected int contractId;
+	
+	protected int insuranceId;
 
 	@Version
 	protected long version;
@@ -68,6 +70,14 @@ public class Contract implements Serializable {
 		this.pickUpDate = pickUpDate;
 		this.returnDate = returnDate;
 		this.released = released;
+	}
+
+	public int getInsuranceId() {
+		return insuranceId;
+	}
+
+	public void setInsuranceId(int insuranceId) {
+		this.insuranceId = insuranceId;
 	}
 
 	public Customer getCustomer() {

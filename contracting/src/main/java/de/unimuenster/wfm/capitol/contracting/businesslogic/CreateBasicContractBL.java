@@ -128,6 +128,7 @@ public class CreateBasicContractBL {
 			Customer currentCustomer = customerCRUD.find((Integer) (delegateExecution.getVariable("customerId")));
 
 			Contract newContract = new Contract();
+			newContract.setInsuranceId((Integer) delegateExecution.getVariable("insurance_insurance_id"));
 			newContract.setInsuranceType(currentInsuranceType);
 			newContract.setValidated(false);;
 			newContract.setReleased(false);
