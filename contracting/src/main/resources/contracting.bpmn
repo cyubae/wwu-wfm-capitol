@@ -227,7 +227,7 @@
       <incoming>SequenceFlow_1m5e0p5</incoming>
       <outgoing>sid-8B9DFF88-4986-4502-A695-66DD25E2A02C</outgoing>
     </sendTask>
-    <receiveTask id="sid-E416B265-A8D8-4894-BA47-CF68322258A8" name="receive accept/decline" implementation="##WebService">
+    <receiveTask id="sid-E416B265-A8D8-4894-BA47-CF68322258A8" name="receive accept/decline" implementation="##WebService" messageRef="sid-6933ADC7-853F-4F37-B37E-000F0F7E3976">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />

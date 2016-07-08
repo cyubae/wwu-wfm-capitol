@@ -27,6 +27,10 @@ import de.unimuenster.wfm.capitol.service.MessageService;
 public class SendContractProposalBL {
 	
 	private static Logger LOGGER = Logger.getLogger(SendContractProposalBL.class.getName());
+	
+	//TODO: set URL to send JSON to
+	//"http://camunda-bvis.uni-muenster.de/???"
+	private static String DESTINATION_URL;
 
 	// Inject CRUD-Services to access persistence unit	
 	@Inject
@@ -67,8 +71,10 @@ public class SendContractProposalBL {
 		}
 		order.setResult((Integer) delegateExecution.getVariable("contract_result"));		
 
-		//TODO Fill the contractProposal with the correct data, find out the correct URL to send the file to
-//		messageService.sendJSON(contractProposal, "http://camunda-bvis.uni-muenster.de/???");
+		if(DESTINATION_URL != null) {
+			messageService.sendJSON(contractProposal, DESTINATION_URL);			
+		}
+		
 		LOGGER.log(Level.INFO, "Final contract price: " + contract.getTotalCost());
 		
 		LOGGER.log(Level.INFO, "Contract proposal sent successfully! Contract Result: " + order.getResult());
