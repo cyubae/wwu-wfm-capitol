@@ -1,4 +1,6 @@
 de\unimuenster\wfm\capitol\entities\Contract.class
+de\unimuenster\wfm\capitol\entities\Claim.class
+de\unimuenster\wfm\capitol\jpa\ClaimCRUD.class
 de\unimuenster\wfm\capitol\jpa\PolicyCRUD.class
 de\unimuenster\wfm\capitol\enums\InsuranceType.class
 de\unimuenster\wfm\capitol\enums\CarType.class
