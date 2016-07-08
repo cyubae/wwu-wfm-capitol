@@ -24,6 +24,8 @@ import javax.persistence.PersistenceContext;
 import org.camunda.bpm.engine.cdi.BusinessProcess;
 import org.camunda.bpm.engine.cdi.jsf.TaskForm;
 
+import de.unimuenster.wfm.capitol.contracting.enums.ContractResult;
+import de.unimuenster.wfm.capitol.contracting.helper.EnumMapper;
 import de.unimuenster.wfm.capitol.entities.Customer;
 import de.unimuenster.wfm.capitol.jpa.AccessCustomer;
 
@@ -57,7 +59,9 @@ public class RejectCustomerController implements Serializable {
 	}
 
 	public void submitRejection(boolean reject) throws IOException {
-		businessProcess.setVariable("user_rejected", reject);		
+		businessProcess.setVariable("user_rejected", reject);
+		businessProcess.setVariable("contract_result", EnumMapper.CONTRACTRESULT_TO_INTEGER.get(ContractResult.REJECTED));
+		
 		try {
 			// Complete user task from
 			taskForm.completeTask();

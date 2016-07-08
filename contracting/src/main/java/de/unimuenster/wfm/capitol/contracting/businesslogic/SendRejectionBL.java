@@ -24,9 +24,9 @@ import de.unimuenster.wfm.capitol.service.MessageService;
 
 @Stateless
 @Named
-public class SendContractProposalBL {
+public class SendRejectionBL {
 	
-	private static Logger LOGGER = Logger.getLogger(SendContractProposalBL.class.getName());
+	private static Logger LOGGER = Logger.getLogger(SendRejectionBL.class.getName());
 
 	// Inject CRUD-Services to access persistence unit	
 	@Inject
@@ -45,10 +45,7 @@ public class SendContractProposalBL {
 	private MessageService messageService;
 
 	public void performBusinessLogic(DelegateExecution delegateExecution) {
-		LOGGER.log(Level.INFO, "Contract proposal sending invoked!");
-		
-		Contract contract = contractCRUD.find((Integer) (delegateExecution.getVariable("contract_id")));	
-		
+		LOGGER.log(Level.INFO, "Rejection sending invoked!");
 		ContractProposal contractProposal = new ContractProposal();
 		Order order = contractProposal.new Order();
 		contractProposal.setOrder(order);
@@ -56,7 +53,7 @@ public class SendContractProposalBL {
 		contractProposal.setProcessinstance_id_bvis(String.valueOf(delegateExecution.getVariable("processinstance_id_bvis")));
 		contractProposal.setProcessinstance_id_capitol(delegateExecution.getProcessInstanceId());
 
-		order.setFinal_price(contract.getTotalCost());
+		order.setFinal_price(0);
 		order.setInquiry_text("");
 		order.setOrder_id((Integer) delegateExecution.getVariable("order_id"));
 		try {
@@ -69,9 +66,8 @@ public class SendContractProposalBL {
 
 		//TODO Fill the contractProposal with the correct data, find out the correct URL to send the file to
 //		messageService.sendJSON(contractProposal, "http://camunda-bvis.uni-muenster.de/???");
-		LOGGER.log(Level.INFO, "Final contract price: " + contract.getTotalCost());
 		
-		LOGGER.log(Level.INFO, "Contract proposal sent successfully! Contract Result: " + order.getResult());
+		LOGGER.log(Level.INFO, "Contract rejction sent successfully! Contract Result: " + order.getResult());
 	}
 
 

@@ -139,10 +139,11 @@ public class Car implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Car [carId=" + carId + ", version=" + version + ", registrationNumber=" + registrationNumber
-				+ ", brand=" + brand + ", model=" + model + ", vehicleIdentificationNumber="
-				+ vehicleIdentificationNumber + ", fuelType=" + fuelType + ", ps=" + ps + ", constructionYear="
-				+ constructionYear + ", type=" + type + ", policy=" + policy + "]";
+		return "";
+//		return "Car [carId=" + carId + ", version=" + version + ", registrationNumber=" + registrationNumber
+//				+ ", brand=" + brand + ", model=" + model + ", vehicleIdentificationNumber="
+//				+ vehicleIdentificationNumber + ", fuelType=" + fuelType + ", ps=" + ps + ", constructionYear="
+//				+ constructionYear + ", type=" + type + ", policy=" + policy + "]";
 	}
 	
 }

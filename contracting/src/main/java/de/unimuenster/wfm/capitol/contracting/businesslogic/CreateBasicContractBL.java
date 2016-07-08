@@ -58,58 +58,38 @@ public class CreateBasicContractBL {
 		//for each car in process variables --> create car object --> store into and create one policy object 
 		//--> store all policy objects into one contract object (associate each contract object with exactly one Customer object) 
 		//Create car objects
-		LOGGER.log(Level.INFO, "CONTRACT CREATION - STEP 1");
 		ArrayList<Car> cars = createCars(delegateExecution);
 
 		//Create policy objects (one per car)
-		LOGGER.log(Level.INFO, "CONTRACT CREATION - STEP 2");
 		ArrayList<Policy> policies =  createPolicies(delegateExecution, cars);
 
 		//Create one contract object for all policy objects created here
-		LOGGER.log(Level.INFO, "CONTRACT CREATION - STEP 3");
 		Contract contract = createContract(delegateExecution, policies);
 		
-		LOGGER.log(Level.INFO, "CONTRACT CREATION - STEP 4");
 		delegateExecution.setVariable("contract_id", contract.getContractId());
-		
 		LOGGER.log(Level.INFO, "CONTRACT CREATION - FINISHED - contractId: " + contract.getContractId());
 	}
 
 	private ArrayList<Car> createCars(DelegateExecution delegateExecution) {
-		LOGGER.log(Level.INFO, "CAR CREATION - STEP 0a");
+
 		int totalNumberOfCars = (Integer) delegateExecution.getVariable("cars_total_number");
-		LOGGER.log(Level.INFO, "CAR CREATION - STEP 0b");
 		ArrayList<Car> cars = new ArrayList<Car>();
 
 		for(int i = 1; i <= totalNumberOfCars; i++) {
-			int logVar = 1;
-			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
-
 			Car newCar = new Car();
-			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 			newCar.setRegistrationNumber((String) delegateExecution.getVariable("car_registration_number"+i));
-			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 			newCar.setBrand((String) delegateExecution.getVariable("car_brand"+i));
-			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 			newCar.setType(STRING_TO_CARTYPE.get((String) delegateExecution.getVariable("car_type"+i)));
-			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 			newCar.setModel((String) delegateExecution.getVariable("car_model"+i));
-			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 			newCar.setVehicleIdentificationNumber((String) delegateExecution.getVariable("car_vehicle_identification_number"+i));
-			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 			newCar.setFuelType((String) delegateExecution.getVariable("car_fuel_type"+i));
-			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 			newCar.setPs((Integer) delegateExecution.getVariable("car_ps"+i));
-			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 			newCar.setConstructionYear((Integer) delegateExecution.getVariable("car_construction_year"+i));
-			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
-
+			
 			newCar = carCRUD.createAndFlush(newCar);
 			LOGGER.log(Level.INFO, "NEW CAR PERSISTED: newCar.toString(): " + newCar.toString());
-			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
-
+			
 			cars.add(newCar);
-			LOGGER.log(Level.INFO, "CAR CREATION - STEP " + logVar++);
 		}
 		return cars;
 	}

@@ -181,7 +181,7 @@
         <signavio:signavioMetaData metaKey="nachfolgerprozesse" metaValue="[]" />
       </extensionElements>
       <incoming>SequenceFlow_0oor331</incoming>
-      <messageEventDefinition id="sid-5e63da5d-e631-45c2-be06-c890fa7ff6d2" />
+      <messageEventDefinition id="sid-5e63da5d-e631-45c2-be06-c890fa7ff6d2" camunda:expression="${sendRejectionBL.performBusinessLogic(execution)}" />
     </endEvent>
     <exclusiveGateway id="ExclusiveGateway_1y770eg">
       <incoming>sid-96837459-F426-4E6B-BC16-F7E2BC3380B4</incoming>

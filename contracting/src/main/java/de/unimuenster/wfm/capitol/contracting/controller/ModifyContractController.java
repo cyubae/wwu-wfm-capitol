@@ -23,6 +23,8 @@ import javax.inject.Named;
 import org.camunda.bpm.engine.cdi.BusinessProcess;
 import org.camunda.bpm.engine.cdi.jsf.TaskForm;
 
+import de.unimuenster.wfm.capitol.contracting.enums.ContractResult;
+import de.unimuenster.wfm.capitol.contracting.helper.EnumMapper;
 import de.unimuenster.wfm.capitol.entities.Contract;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
@@ -74,6 +76,7 @@ public class ModifyContractController implements Serializable {
 	public void submitValidation() throws IOException {
 		//update process variable
 		businessProcess.setVariable("contract_validated", true);
+		businessProcess.setVariable("contract_result", EnumMapper.CONTRACTRESULT_TO_INTEGER.get(ContractResult.ACCEPTED));
 
 		//update contract persistence object
 		this.getContract().setValidated(true);		

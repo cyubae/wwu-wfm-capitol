@@ -27,6 +27,8 @@ import org.camunda.bpm.engine.cdi.BusinessProcess;
 import org.camunda.bpm.engine.cdi.jsf.TaskForm;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 
+import de.unimuenster.wfm.capitol.contracting.enums.ContractResult;
+import de.unimuenster.wfm.capitol.contracting.helper.EnumMapper;
 import de.unimuenster.wfm.capitol.entities.Car;
 import de.unimuenster.wfm.capitol.entities.Contract;
 import de.unimuenster.wfm.capitol.entities.Customer;
@@ -67,51 +69,25 @@ public class ValidateContractController implements Serializable {
 
 	// Caches the Contract during the conversation
 	private Contract contract;
-	
-//	private Collection<Policy> policies;
-	
+		
 	public Contract getContract() {
 		if (contract == null) {
 			contract = contractCRUD.find((Integer) (businessProcess.getVariable("contract_id")));
 		}
 		return contract;
-	}
-	
-//	public Collection<Policy> getPolicies() {
-//		if (policies == null) {
-//			policies = policyCRUD.findPoliciesForContractId((Integer) (businessProcess.getVariable("contract_id")));
-//		}
-//		return policies;
-//	}
-	
-//	public List<Policy> getPolicies() {
-////		if (policies == null) {
-////			policies = policyCRUD.findPoliciesForContractId((Integer) (businessProcess.getVariable("contract_id")));
-////		}
-////		return policies;
-//		
-//		return policyCRUD.findPoliciesForContractId(getContract());
-//		
-//	}
-	
+	}	
 
 	public void submitValidation(boolean validated) throws IOException {
 		//update process variable
-		int counter = 1;
-		LOGGER.log(Level.INFO, "submitValidation - STEP: " + counter++);
 		businessProcess.setVariable("contract_validated", validated);
 		
 		//update contract persistence object
-		LOGGER.log(Level.INFO, "submitValidation - STEP: " + counter++);
 		this.getContract().setValidated(validated);
-		LOGGER.log(Level.INFO, "submitValidation - STEP: " + counter++);
 		contractCRUD.update(this.getContract());
-		LOGGER.log(Level.INFO, "submitValidation - STEP: " + counter++);
-		//Set contract_result to 1 (accepted)
-		businessProcess.setVariable("contract_result", 1);
-		LOGGER.log(Level.INFO, "submitValidation - STEP: " + counter++);
-//		new DBLogger().printContract(this.getContract().getContractId());		
-		
+
+		//Set contract_result to accepted
+		businessProcess.setVariable("contract_result", EnumMapper.CONTRACTRESULT_TO_INTEGER.get(ContractResult.ACCEPTED));
+				
 		try {
 			// Complete user task from
 			LOGGER.log(Level.INFO, "submitValidation - STEP: TRY");

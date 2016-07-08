@@ -2,6 +2,7 @@ package de.unimuenster.wfm.capitol.contracting.helper;
 
 import java.util.HashMap;
 
+import de.unimuenster.wfm.capitol.contracting.enums.ContractResult;
 import de.unimuenster.wfm.capitol.enums.CarType;
 import de.unimuenster.wfm.capitol.enums.InsuranceType;
 
@@ -26,6 +27,14 @@ public class EnumMapper {
 		STRING_TO_INSURANCETYPE.put("total", InsuranceType.TOTAL);
 		STRING_TO_INSURANCETYPE.put("partial", InsuranceType.PARTIAL);
 		STRING_TO_INSURANCETYPE.put("liability", InsuranceType.LIABILITY);
+	}	
+	
+	public static final HashMap<ContractResult, Integer> CONTRACTRESULT_TO_INTEGER;
+	static {
+		CONTRACTRESULT_TO_INTEGER = new HashMap<ContractResult, Integer>();
+		CONTRACTRESULT_TO_INTEGER.put(ContractResult.REJECTED, 0);
+		CONTRACTRESULT_TO_INTEGER.put(ContractResult.ACCEPTED, 1);
+		CONTRACTRESULT_TO_INTEGER.put(ContractResult.MODIFIED, 2);
 	}	
 
 }

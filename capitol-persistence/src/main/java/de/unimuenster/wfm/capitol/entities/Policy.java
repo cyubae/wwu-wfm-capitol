@@ -88,8 +88,9 @@ public class Policy implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Policy [policyId=" + policyId + ", version=" + version + ", car=" + car + ", contract=" + contract
-				+ ", dailyPremium=" + dailyPremium + "]";
+		return "";
+//		return "Policy [policyId=" + policyId + ", version=" + version + ", car=" + car + ", contract=" + contract
+//				+ ", dailyPremium=" + dailyPremium + "]";
 	}
 
 
