@@ -1,6 +1,6 @@
 package de.unimuenster.wfm.capitol.contracting.businesslogic;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;

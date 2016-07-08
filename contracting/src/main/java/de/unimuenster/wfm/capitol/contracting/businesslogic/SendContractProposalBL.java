@@ -70,6 +70,8 @@ public class SendContractProposalBL {
 
 		//TODO Fill the contractProposal with the correct files, find out the correct URL to send the file to
 //		messageService.sendJSON(contractProposal, "http://camunda-bvis.uni-muenster.de/???");
+		LOGGER.log(Level.INFO, "Final contract price: " + contract.getTotalCost());
+		
 		LOGGER.log(Level.INFO, "Contract proposal sent successfully!");
 	}
 

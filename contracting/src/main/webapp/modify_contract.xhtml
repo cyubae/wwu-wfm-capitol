@@ -108,12 +108,16 @@
 				<p>
 					<label for="pickUpDate">Pick-up date:</label>
 					<h:inputText id="pickUpDate"
-						value="#{modifyContractController.contract.pickUpDate}" />
+						value="#{modifyContractController.contract.pickUpDate}">
+						<f:convertDateTime pattern="yyyy-MM-dd" />
+						</h:inputText>
 				</p>
 				<p>
 					<label for="returnDate">Return date:</label>
 					<h:inputText id="returnDate"
-						value="#{modifyContractController.contract.returnDate}" />
+						value="#{modifyContractController.contract.returnDate}">
+						<f:convertDateTime pattern="yyyy-MM-dd" />
+						</h:inputText>
 				</p>
 			</h:panelGrid>
 
@@ -122,7 +126,7 @@
 				var="policy">
 				<h:column>
 					<f:facet name="header">Policy ID</f:facet>
-					<h:inputText id="policyId" value="#{policy.policyId}" />
+					<h:outputText id="policyId" value="#{policy.policyId}" />
 				</h:column>
 				<h:column>
 					<f:facet name="header">Daily Premium (Euro Cents)</f:facet>
@@ -130,7 +134,7 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Car ID</f:facet>
-					<h:inputText id="carId" value="#{policy.car.carId}" />
+					<h:outputText id="carId" value="#{policy.car.carId}" />
 				</h:column>
 				<h:column>
 					<f:facet name="header">Brand</f:facet>
@@ -159,8 +163,6 @@
 						value="#{policy.car.constructionYear}" />
 				</h:column>
 			</h:dataTable>
-
-
 			<h:commandButton id="modify_button"
 				value="Modify and Validate Contract"
 				action="#{modifyContractController.submitValidation()}" />

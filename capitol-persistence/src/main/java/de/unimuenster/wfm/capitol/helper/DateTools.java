@@ -1,6 +1,6 @@
 package de.unimuenster.wfm.capitol.helper;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class DateTools {
 	
