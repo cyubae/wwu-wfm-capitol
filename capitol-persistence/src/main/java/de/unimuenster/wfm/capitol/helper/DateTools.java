@@ -1,5 +1,7 @@
 package de.unimuenster.wfm.capitol.helper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateTools {
@@ -16,4 +18,20 @@ public class DateTools {
 	{       
 	    return (int)((date2.getTime() - date1.getTime()) / (1000*60*60*24l));
 	}
+	
+	
+	/**
+	 * Returns
+	 * @param dateString takes String of format YYYY-MM-DD and returns object of type java.util.Date
+	 * @return
+	 * @throws ParseException 
+	 */
+	public static Date convertStringToDate(String dateString) throws ParseException {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date parsedDate = format.parse(dateString);
+		java.util.Date utilDate = new java.util.Date(parsedDate.getTime());
+
+		return utilDate;
+	}
+	
 }

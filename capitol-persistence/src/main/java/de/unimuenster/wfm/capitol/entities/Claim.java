@@ -41,7 +41,7 @@ public class Claim implements Serializable {
 	@Version
 	protected long version;
 
-	protected int externalClaimId;
+	protected Integer externalClaimId;
 	
 	@ManyToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
 	protected Policy policy;
@@ -57,13 +57,10 @@ public class Claim implements Serializable {
 	public long getVersion() {
 		return version;
 	}
-	public void setVersion(long version) {
-		this.version = version;
-	}
-	public int getExternalClaimId() {
+	public Integer getExternalClaimId() {
 		return externalClaimId;
 	}
-	public void setExternalClaimId(int externalClaimId) {
+	public void setExternalClaimId(Integer externalClaimId) {
 		this.externalClaimId = externalClaimId;
 	}
 	public Policy getPolicy() {

@@ -11,10 +11,10 @@ import javax.inject.Named;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 
-import de.unimuenster.wfm.capitol.contracting.helper.DateConverter;
 import de.unimuenster.wfm.capitol.dto.ContractProposal;
 import de.unimuenster.wfm.capitol.dto.ContractProposal.Order;
 import de.unimuenster.wfm.capitol.entities.Contract;
+import de.unimuenster.wfm.capitol.helper.DateTools;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
 import de.unimuenster.wfm.capitol.jpa.CustomerCRUD;
@@ -64,7 +64,7 @@ public class SendContractProposalBL {
 		order.setInquiry_text("");
 		order.setOrder_id((Integer) delegateExecution.getVariable("order_id"));
 		try {
-			order.setRequest_date(DateConverter.convertStringToDate((String) delegateExecution.getVariable("request_date")));
+			order.setRequest_date(DateTools.convertStringToDate((String) delegateExecution.getVariable("request_date")));
 		} catch (ParseException e) {
 			LOGGER.log(Level.SEVERE, "Contract Request Date could not be parsed!");
 			e.printStackTrace();

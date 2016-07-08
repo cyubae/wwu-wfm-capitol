@@ -1,5 +1,7 @@
 package de.unimuenster.wfm.capitol.settlement.businesslogic;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
@@ -8,6 +10,9 @@ import javax.inject.Named;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 
+import de.unimuenster.wfm.capitol.entities.Car;
+import de.unimuenster.wfm.capitol.entities.Claim;
+import de.unimuenster.wfm.capitol.helper.DateTools;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
 import de.unimuenster.wfm.capitol.jpa.ClaimCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
@@ -17,7 +22,7 @@ import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;
 @Stateless
 @Named
 public class CreateClaim {
-	
+
 	private static Logger LOGGER = Logger.getLogger(CreateClaim.class.getName());
 
 	// Inject CRUD-Services to access persistence unit	
@@ -32,11 +37,40 @@ public class CreateClaim {
 
 	@Inject
 	private CustomerCRUD customerCRUD;	
-	
+
 	@Inject
 	private ClaimCRUD claimCRUD;
 
 	public void performBusinessLogic(DelegateExecution delegateExecution) {
+
+		Claim newClaim = new Claim();
+		newClaim.setClaimDescription((String) delegateExecution.getVariable("claim_description"));
+		newClaim.setDamageAddress((String) delegateExecution.getVariable("damage_address"));
+		newClaim.setExternalClaimId( (Integer) delegateExecution.getVariable("claim_id") );
+				
+		newClaim.setPartiesInvolved(
+				((String) delegateExecution.getVariable("claim_description")).equals("true") ? true : false);
+		
+		newClaim.setClaimDescription((String) delegateExecution.getVariable("claim_description"));
+		newClaim.setVehicleIDNumber((String) delegateExecution.getVariable("vehicle_identification_number"));
+
+		//parse dates			
+		try {
+			Date damageDate = DateTools.convertStringToDate((String) delegateExecution.getVariable("damage_date"));
+			newClaim.setDamageDate(damageDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		//try to find policy associated to the claim
+		Car car = carCRUD.findCarByVehicleId(newClaim.getVehicleIDNumber());
+		if(car!=null) {
+			newClaim.setPolicy(car.getPolicy());
+		}
+		
+		//persist new claim
+		newClaim = claimCRUD.createAndFlush(newClaim);
+		delegateExecution.setVariable("claim_id", Integer.valueOf(newClaim.getClaimId()));
 
 	}
 

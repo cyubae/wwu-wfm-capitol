@@ -1,9 +1,8 @@
 package de.unimuenster.wfm.capitol.contracting.businesslogic;
 
-import java.util.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,7 +13,6 @@ import javax.inject.Named;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 
-import de.unimuenster.wfm.capitol.contracting.helper.DateConverter;
 import de.unimuenster.wfm.capitol.contracting.helper.EnumMapper;
 import de.unimuenster.wfm.capitol.contracting.helper.PremiumCalculator;
 import de.unimuenster.wfm.capitol.entities.Car;
@@ -23,6 +21,7 @@ import de.unimuenster.wfm.capitol.entities.Customer;
 import de.unimuenster.wfm.capitol.entities.Policy;
 import de.unimuenster.wfm.capitol.enums.CarType;
 import de.unimuenster.wfm.capitol.enums.InsuranceType;
+import de.unimuenster.wfm.capitol.helper.DateTools;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
 import de.unimuenster.wfm.capitol.jpa.CustomerCRUD;
@@ -135,8 +134,8 @@ public class CreateBasicContractBL {
 			
 			//parse dates			
 			try {
-				Date pickUpDate = DateConverter.convertStringToDate((String) delegateExecution.getVariable("insurance_pick_up_date"));
-				Date returnDate = DateConverter.convertStringToDate((String) delegateExecution.getVariable("insurance_return_date"));
+				Date pickUpDate = DateTools.convertStringToDate((String) delegateExecution.getVariable("insurance_pick_up_date"));
+				Date returnDate = DateTools.convertStringToDate((String) delegateExecution.getVariable("insurance_return_date"));
 
 				newContract.setPickUpDate(pickUpDate);
 				newContract.setReturnDate(returnDate);
