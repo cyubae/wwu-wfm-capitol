@@ -156,15 +156,15 @@ public class CreateBasicContractBL {
 			
 			newContract = contractCRUD.createAndFlush(newContract);
 
-			LOGGER.log(Level.INFO, "NEW CONTRACT PERSISTED: newContract.toString(): " + newContract.toString());
-			LOGGER.log(Level.INFO, "NEW CONTRACT HAS CUSTOMER: " + newContract.getCustomer().toString());
-			
-			LOGGER.log(Level.INFO, "NEW CONTRACT HAS POLICIES: ");
-			Collection<Policy> policiesEntity = newContract.getPolicies();
-			int policyCount = 0;
-			for(Policy p : policiesEntity) {
-				LOGGER.log(Level.INFO, "POLICY " + policyCount + ": " + p.toString());
-			}
+//			LOGGER.log(Level.INFO, "NEW CONTRACT PERSISTED: newContract.toString(): " + newContract.toString());
+//			LOGGER.log(Level.INFO, "NEW CONTRACT HAS CUSTOMER: " + newContract.getCustomer().toString());
+//			
+//			LOGGER.log(Level.INFO, "NEW CONTRACT HAS POLICIES: ");
+//			Collection<Policy> policiesEntity = newContract.getPolicies();
+//			int policyCount = 0;
+//			for(Policy p : policiesEntity) {
+//				LOGGER.log(Level.INFO, "POLICY " + policyCount + ": " + p.toString());
+//			}
 			
 			return newContract;
 	}
