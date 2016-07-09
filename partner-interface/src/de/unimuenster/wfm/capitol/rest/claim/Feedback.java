@@ -35,7 +35,7 @@ public class Feedback {
 		variables.put("claim_description", feedback.getDecision().getDescription());		
 		try {
 			// correlate the message
-			  runtimeService.createMessageCorrelation("Message-Approve")
+			  runtimeService.createMessageCorrelation(MESSAGENAME)
 		      .processInstanceId(feedback.getProcessinstance_id_capitol())
 		      .setVariables(variables)
 		      .correlate();

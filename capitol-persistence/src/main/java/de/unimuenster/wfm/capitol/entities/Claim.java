@@ -52,7 +52,7 @@ public class Claim implements Serializable {
 	protected String damageAddress;
 	protected String claimDescription;
 	protected boolean partiesInvolved;
-	protected boolean covered;
+	protected boolean finished = false;
 	
 	//values in euro cents
 	protected int claimValue;
@@ -109,11 +109,11 @@ public class Claim implements Serializable {
 	public int getClaimId() {
 		return claimId;
 	}
-	public boolean isCovered() {
-		return covered;
+	public boolean isFinished() {
+		return finished;
 	}
-	public void setCovered(boolean covered) {
-		this.covered = covered;
+	public void setFinished(boolean finished) {
+		this.finished = finished;
 	}
 	public int getClaimValue() {
 		return claimValue;

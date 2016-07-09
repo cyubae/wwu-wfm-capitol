@@ -43,7 +43,6 @@ public class HandleClaimBL {
 		int internalClaimId = (Integer) delegateExecution.getVariable("claim_id_internal");
 		Claim claim = claimCRUD.find(internalClaimId);
 		
-		claim.setCovered(true);
 		claim.setCoverageCosts(claim.getClaimValue());
 		claim.setCustomerCosts(0);
 		claim.setClaimDecision(ClaimDecision.COVERED);

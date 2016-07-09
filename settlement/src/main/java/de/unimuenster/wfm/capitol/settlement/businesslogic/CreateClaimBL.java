@@ -59,8 +59,6 @@ public class CreateClaimBL {
 		newClaim.setClaimDescription((String) delegateExecution.getVariable("claim_description"));
 		newClaim.setVehicleIDNumber((String) delegateExecution.getVariable("vehicle_identification_number"));
 		
-		newClaim.setCovered(false);
-
 		//parse dates			
 		try {
 			Date damageDate = (Date) delegateExecution.getVariable("damage_date");
