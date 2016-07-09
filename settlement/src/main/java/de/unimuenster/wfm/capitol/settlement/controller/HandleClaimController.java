@@ -79,16 +79,27 @@ public class HandleClaimController implements Serializable {
 	}
 
 	public void submitResult(boolean result) throws IOException {
-		//update process variable
-		businessProcess.setVariable("claim_covered", result);
+
+		int claimValue = claim.getClaimValue();
+		int claimCoverageCosts = claim.getCoverageCosts();
 		
-		//update persistence object
-		if(result == true) {
-			claim.setClaimDecision(ClaimDecision.COVERED);
+		claim.setCustomerCosts(claimValue-claimCoverageCosts);
+		
+		ClaimDecision claimDecision;
+		if (claimValue > claimCoverageCosts) {
+			if (claimCoverageCosts > 0) {
+				claimDecision = ClaimDecision.PARTIALLY_COVERED;
+			}
+			else {
+				claimDecision = ClaimDecision.NOT_COVERED;
+			}
 		}
 		else {
-			claim.setClaimDecision(ClaimDecision.NOT_COVERED);
+			claimDecision = ClaimDecision.NOT_COVERED;
 		}
+		
+		claim.setClaimDecision(claimDecision);
+		
 		claimCRUD.update(claim);
 
 		try {
