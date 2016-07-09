@@ -2,6 +2,7 @@ package de.unimuenster.wfm.capitol.settlement.businesslogic;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
@@ -56,10 +57,11 @@ public class CreateClaim {
 
 		//parse dates			
 		try {
-			Date damageDate = DateTools.convertStringToDate((String) delegateExecution.getVariable("damage_date"));
+			Date damageDate = (Date) delegateExecution.getVariable("damage_date");
 			newClaim.setDamageDate(damageDate);
-		} catch (ParseException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.log(Level.INFO, "Could not parse damageDate!");
+//			e.printStackTrace();
 		}
 
 		//try to find policy associated to the claim

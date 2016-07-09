@@ -1,6 +1,6 @@
 package de.unimuenster.wfm.capitol.dto.claim;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Collection;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,7 +13,7 @@ import de.unimuenster.wfm.capitol.dto.claim.Involved_party;
 public class ClaimDetailsDTO {
 
 	private String processinstance_id_bvis;
-	private Calendar request_date;
+	private Date request_date;
 	private Claim claim;
 
 	
@@ -26,11 +26,11 @@ public class ClaimDetailsDTO {
 		this.processinstance_id_bvis = processinstance_id_bvis;
 	}
 
-	public Calendar getRequest_date() {
+	public Date getRequest_date() {
 		return request_date;
 	}
 
-	public void setRequest_date(Calendar request_date) {
+	public void setRequest_date(Date request_date) {
 		this.request_date = request_date;
 	}
 
@@ -48,7 +48,7 @@ public class ClaimDetailsDTO {
 		private int insurance_id;
 		private String vehicle_identification_number;
 		private int order_id;
-		private Calendar damage_date;
+		private Date damage_date;
 		private String damage_address;
 		private String claim_description;
 		private double workshop_price;
@@ -88,11 +88,11 @@ public class ClaimDetailsDTO {
 			this.order_id = order_id;
 		}
 
-		public Calendar getDamage_date() {
+		public Date getDamage_date() {
 			return damage_date;
 		}
 
-		public void setDamage_date(Calendar damage_date) {
+		public void setDamage_date(Date damage_date) {
 			this.damage_date = damage_date;
 		}
 

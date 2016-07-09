@@ -56,7 +56,7 @@
         <flowNodeRef>IntermediateCatchEvent_0ox3bvl</flowNodeRef>
         <flowNodeRef>ExclusiveGateway_0vkuswt</flowNodeRef>
         <flowNodeRef>SendTask_11hfxxe</flowNodeRef>
-        <flowNodeRef>ManualTask_03wqdq1</flowNodeRef>
+        <flowNodeRef>ServiceTask_17x9v6j</flowNodeRef>
       </lane>
       <lane id="Lane_04vwp5m" name="Clerk">
         <extensionElements>
@@ -241,23 +241,23 @@
       <incoming>sid-BD25EF83-63EC-46BC-BF44-305E914161B1</incoming>
       <outgoing>SequenceFlow_1iuc26z</outgoing>
     </sendTask>
-    <sequenceFlow id="SequenceFlow_1ahlven" sourceRef="StartEvent_0o57kxj" targetRef="ManualTask_03wqdq1" />
+    <sequenceFlow id="SequenceFlow_1ahlven" sourceRef="StartEvent_0o57kxj" targetRef="ServiceTask_17x9v6j" />
     <sequenceFlow id="SequenceFlow_1iois9y" sourceRef="UserTask_0s6e88g" targetRef="ExclusiveGateway_0jruqba" />
     <userTask id="UserTask_0s6e88g" name="check data for completeness and corectness">
       <incoming>SequenceFlow_1s16rje</incoming>
       <outgoing>SequenceFlow_1iois9y</outgoing>
     </userTask>
-    <sequenceFlow id="SequenceFlow_1s16rje" sourceRef="ManualTask_03wqdq1" targetRef="UserTask_0s6e88g" />
-    <manualTask id="ManualTask_03wqdq1" name="Retrieve contract and user data">
+    <sequenceFlow id="SequenceFlow_1s16rje" sourceRef="ServiceTask_17x9v6j" targetRef="UserTask_0s6e88g" />
+    <dataStoreReference id="DataStoreReference_1ykcaib" name="claim database" />
+    <serviceTask id="ServiceTask_17x9v6j" name="Create Claim (Retrieve contract data)" camunda:expression="${createClaim.performBusinessLogic(execution)}">
       <incoming>SequenceFlow_1ahlven</incoming>
       <outgoing>SequenceFlow_1s16rje</outgoing>
-      <property id="Property_0n8dcmi" name="__targetRef_placeholder" />
+      <property id="Property_1k227hz" name="__targetRef_placeholder" />
       <dataInputAssociation id="DataInputAssociation_0ou0bjk">
         <sourceRef>DataStoreReference_1ykcaib</sourceRef>
-        <targetRef>Property_0n8dcmi</targetRef>
+        <targetRef>Property_1k227hz</targetRef>
       </dataInputAssociation>
-    </manualTask>
-    <dataStoreReference id="DataStoreReference_1ykcaib" name="claim database" />
+    </serviceTask>
     <textAnnotation id="sid-2819BCFF-76FD-477D-BF69-2AD1A2F8C1B4">
       <extensionElements>
         <signavio:signavioType dataObjectType="IT-System" />
@@ -617,9 +617,6 @@
           <omgdc:Bounds x="2018.5" y="307" width="90" height="20" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ManualTask_03wqdq1_di" bpmnElement="ManualTask_03wqdq1">
-        <omgdc:Bounds x="263" y="277" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="DataStoreReference_1ykcaib_di" bpmnElement="DataStoreReference_1ykcaib">
         <omgdc:Bounds x="414" y="292" width="50" height="50" />
         <bpmndi:BPMNLabel>
@@ -668,6 +665,9 @@
           <omgdc:Bounds x="370" y="412" width="90" height="20" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_17x9v6j_di" bpmnElement="ServiceTask_17x9v6j">
+        <omgdc:Bounds x="263" y="277" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
     <bpmndi:BPMNLabelStyle id="sid-bf836240-0b77-4659-b35f-e4b3289bdd66">
       <omgdc:Font name="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" />
