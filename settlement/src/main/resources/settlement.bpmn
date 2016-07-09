@@ -194,7 +194,7 @@
     <sequenceFlow id="SequenceFlow_0f08as7" sourceRef="ExclusiveGateway_1qlf8kn" targetRef="EndEvent_0kajk9l" />
     <sequenceFlow id="SequenceFlow_1iuc26z" name="" isImmediate="true" sourceRef="SendTask_11hfxxe" targetRef="ExclusiveGateway_1qlf8kn" />
     <sequenceFlow id="SequenceFlow_0et410l" name="yes" isImmediate="true" sourceRef="ExclusiveGateway_0jruqba" targetRef="ExclusiveGateway_1ydgcee">
-      <conditionExpression xsi:type="tFormalExpression">${true}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${data_correct}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_1bev8vu" name="" isImmediate="true" sourceRef="UserTask_0ivyjmb" targetRef="ExclusiveGateway_1ydgcee" />
     <sequenceFlow id="SequenceFlow_1s70td0" name="" isImmediate="true" sourceRef="ExclusiveGateway_1ydgcee" targetRef="CheckClaimCoverage" />
@@ -213,7 +213,7 @@
       <extensionElements>
         <signavio:signavioLabel align="right" distance="-8.720209" from="0" orientation="ur" ref="text_name" to="1" valign="top" x="460.720199016406" y="351.9867405193038" />
       </extensionElements>
-      <conditionExpression xsi:type="tFormalExpression">${false}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${not data_correct}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_16v2ykd" sourceRef="ParallelGateway_1kd1c10" targetRef="SendTask_0tiet84" />
     <sequenceFlow id="SequenceFlow_1kc1vak" sourceRef="ParallelGateway_1kd1c10" targetRef="CreateRecord" />
@@ -243,7 +243,7 @@
     </sendTask>
     <sequenceFlow id="SequenceFlow_1ahlven" sourceRef="StartEvent_0o57kxj" targetRef="ServiceTask_17x9v6j" />
     <sequenceFlow id="SequenceFlow_1iois9y" sourceRef="UserTask_0s6e88g" targetRef="ExclusiveGateway_0jruqba" />
-    <userTask id="UserTask_0s6e88g" name="check data for completeness and corectness">
+    <userTask id="UserTask_0s6e88g" name="check data for completeness and corectness" camunda:formKey="app:check_data.jsf">
       <incoming>SequenceFlow_1s16rje</incoming>
       <outgoing>SequenceFlow_1iois9y</outgoing>
     </userTask>

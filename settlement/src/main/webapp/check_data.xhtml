@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view>
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{camundaTaskForm.startTaskForm()}" />
+	</f:metadata>
+	<h:head>
+		<title>Check data for completeness and correctness</title>
+	</h:head>
+	<h:body>
+		<h:form id="submitForm">
+			<h1>Check data for completeness and correctness</h1>
+
+			<h2>Claim Information</h2>
+			<h:panelGrid columns="2">
+				<p>
+					<label for="claimId">Claim ID</label>
+					<h:outputText id="claimId"
+						value="#{checkDataController.claim.claimId}" />
+				</p>
+
+				<p>
+					<label for="externalClaimId">External Claim ID</label>
+					<h:outputText id="externalClaimId"
+						value="#{checkDataController.claim.externalClaimId}" />
+				</p>
+
+				<p>
+					<label for="claimDescription">Description</label>
+					<h:outputText id="claimDescription"
+						value="#{checkDataController.claim.claimDescription}" />
+				</p>
+
+				<p>
+					<label for="damageDate">Damage Date</label>
+					<h:outputText id="damageDate"
+						value="#{checkDataController.claim.damageDate}" />
+				</p>
+
+				<p>
+					<label for="damageAddress">Damage Address</label>
+					<h:outputText id="damageAddress"
+						value="#{checkDataController.claim.damageAddress}" />
+				</p>
+
+				<!-- Data Table for parties involved -->
+
+			</h:panelGrid>
+
+			<h:commandButton id="ok_button" value="Data is OK"
+				action="#{checkDataController.submitResult(true)}" />
+			<h:commandButton id="not_ok_button" value="Data is not OK"
+				action="#{checkDataController.submitResult(false)}" />
+		</h:form>
+	</h:body>
+</f:view>
+</html>
