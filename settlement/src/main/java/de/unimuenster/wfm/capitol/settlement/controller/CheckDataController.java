@@ -77,7 +77,7 @@ public class CheckDataController implements Serializable {
 
 	public Claim getClaim() {
 		if(claim == null) {
-			claim = claimCRUD.find((Integer) (businessProcess.getVariable("claim_id")));
+			claim = claimCRUD.find((Integer) (businessProcess.getVariable("claim_id_internal")));
 		}
 		return claim;
 	}

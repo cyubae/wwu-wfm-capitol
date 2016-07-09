@@ -200,7 +200,7 @@
     <sequenceFlow id="SequenceFlow_1s70td0" name="" isImmediate="true" sourceRef="ExclusiveGateway_1ydgcee" targetRef="CheckClaimCoverage" />
     <sequenceFlow id="SequenceFlow_07kggg3" name="" isImmediate="true" sourceRef="UserTask_0g5kavc" targetRef="ExclusiveGateway_0bfo49s" />
     <sequenceFlow id="SequenceFlow_1rs9g0w" name="no" isImmediate="true" sourceRef="ExclusiveGateway_05ri3wu" targetRef="ExclusiveGateway_0bfo49s">
-      <conditionExpression xsi:type="tFormalExpression">${true}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${not handle_manually}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_0w1vpnd" name="" isImmediate="true" sourceRef="ExclusiveGateway_0bfo49s" targetRef="ParallelGateway_1kd1c10" />
     <sequenceFlow id="SequenceFlow_1eo7a6x" name="" isImmediate="true" sourceRef="CheckClaimCoverage" targetRef="ExclusiveGateway_05ri3wu" />
@@ -208,6 +208,7 @@
       <extensionElements>
         <signavio:signavioLabel align="right" distance="-6.99874" from="0" orientation="ur" ref="text_name" to="1" valign="top" x="947.7752242441129" y="353.99135675142276" />
       </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression">${handle_manually}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_1120f6i" name="no" isImmediate="true" sourceRef="ExclusiveGateway_0jruqba" targetRef="UserTask_0ivyjmb">
       <extensionElements>

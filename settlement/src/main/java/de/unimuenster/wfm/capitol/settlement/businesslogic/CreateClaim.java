@@ -48,6 +48,7 @@ public class CreateClaim {
 		newClaim.setClaimDescription((String) delegateExecution.getVariable("claim_description"));
 		newClaim.setDamageAddress((String) delegateExecution.getVariable("damage_address"));
 		newClaim.setExternalClaimId( (Integer) delegateExecution.getVariable("claim_id") );
+		newClaim.setClaimValue( ( (Integer) delegateExecution.getVariable("workshop_price") )*100); 
 				
 		newClaim.setPartiesInvolved(
 				((String) delegateExecution.getVariable("claim_description")).equals("true") ? true : false);
@@ -72,7 +73,7 @@ public class CreateClaim {
 		
 		//persist new claim
 		newClaim = claimCRUD.createAndFlush(newClaim);
-		delegateExecution.setVariable("claim_id", Integer.valueOf(newClaim.getClaimId()));
+		delegateExecution.setVariable("claim_id_internal", Integer.valueOf(newClaim.getClaimId()));
 
 	}
 

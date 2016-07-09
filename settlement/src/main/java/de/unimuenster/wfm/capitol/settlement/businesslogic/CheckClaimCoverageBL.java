@@ -1,14 +1,17 @@
 package de.unimuenster.wfm.capitol.settlement.businesslogic;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 
-import de.unimuenster.wfm.capitol.service.MessageService;
+import de.unimuenster.wfm.capitol.entities.Claim;
+import de.unimuenster.wfm.capitol.jpa.CarCRUD;
+import de.unimuenster.wfm.capitol.jpa.ClaimCRUD;
+import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
+import de.unimuenster.wfm.capitol.jpa.CustomerCRUD;
+import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;
 
 
 /**
@@ -17,15 +20,37 @@ import de.unimuenster.wfm.capitol.service.MessageService;
 @Stateless
 @Named
 public class CheckClaimCoverageBL {
+	
+	//Limit in euro above which claim must be handled manually
+	private static int AUTOMATIC_COVERAGE_LIMIT = 1000;
 
-	  // Inject the entity manager
-	  @PersistenceContext
-	  private EntityManager entityManager;
-	  
-	  @EJB(lookup="java:global/MessagingService/MessageServiceImpl!de.unimuenster.wfm.capitol.service.MessageService")
-	  private MessageService messageService;
-	  
-	  public void performBusinessLogic(DelegateExecution delegateExecution) {
-		  //messageService.sendContractProposal(null);
-	  }
+	// Inject CRUD-Services to access persistence unit	
+	@Inject
+	private ContractCRUD contractCRUD;
+
+	@Inject
+	private PolicyCRUD policyCRUD;
+
+	@Inject
+	private CarCRUD carCRUD;
+
+	@Inject
+	private CustomerCRUD customerCRUD;	
+
+	@Inject
+	private ClaimCRUD claimCRUD;
+
+	public void performBusinessLogic(DelegateExecution delegateExecution) {
+		
+		int internalClaimId = (Integer) delegateExecution.getVariable("claim_id_internal");
+		Claim claim = claimCRUD.find(internalClaimId);
+		
+		boolean handleManually = false;
+		if(claim.getClaimValue() > AUTOMATIC_COVERAGE_LIMIT*100) {
+			handleManually = true;
+		}
+		
+		delegateExecution.setVariable("handle_manually", handleManually);
+				
+	}
 }

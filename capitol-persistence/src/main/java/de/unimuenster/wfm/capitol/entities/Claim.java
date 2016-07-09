@@ -52,7 +52,9 @@ public class Claim implements Serializable {
 	protected String claimDescription;
 	protected boolean partiesInvolved;
 	protected boolean accepted;
-	
+
+	//value of claim in euro cents
+	protected int claimValue;
 	
 	public long getVersion() {
 		return version;
@@ -107,6 +109,12 @@ public class Claim implements Serializable {
 	}
 	public void setAccepted(boolean accepted) {
 		this.accepted = accepted;
+	}
+	public int getClaimValue() {
+		return claimValue;
+	}
+	public void setClaimValue(int claimValue) {
+		this.claimValue = claimValue;
 	}
 
 }
