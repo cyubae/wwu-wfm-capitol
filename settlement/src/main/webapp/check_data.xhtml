@@ -47,14 +47,56 @@
 					<h:outputText id="damageAddress"
 						value="#{checkDataController.claim.damageAddress}" />
 				</p>
-				
+
 				<p>
 					<label for="claimValue">Claim Value</label>
 					<h:inputText id="claimValue"
 						value="#{handleClaimController.claim.claimValue}" />
-				</p>								
+				</p>
 
 				<!-- Data Table for parties involved -->
+				<h:dataTable value="#{modifyContractController.contract.policies}"
+					var="policy">
+					<h:column>
+						<f:facet name="header">Policy ID</f:facet>
+						<h:outputText id="policyId" value="#{policy.policyId}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Daily Premium (Euro Cents)</f:facet>
+						<h:inputText id="dailyPremium" value="#{policy.dailyPremium}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Car ID</f:facet>
+						<h:outputText id="carId" value="#{policy.car.carId}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Brand</f:facet>
+						<h:inputText id="brand" value="#{policy.car.brand}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Model</f:facet>
+						<h:inputText id="model" value="#{policy.car.model}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Registration</f:facet>
+						<h:inputText id="registrationNumber"
+							value="#{policy.car.registrationNumber}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Fuel Type</f:facet>
+						<h:inputText id="fuelType" value="#{policy.car.fuelType}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Horsepower</f:facet>
+						<h:inputText id="ps" value="#{policy.car.ps}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Construction Year</f:facet>
+						<h:inputText id="constructionYear"
+							value="#{policy.car.constructionYear}" />
+					</h:column>
+				</h:dataTable>
+
 			</h:panelGrid>
 
 			<h2>Contract Information</h2>
@@ -104,7 +146,7 @@
 					<label for="country">Country</label>
 					<h:outputText id="country"
 						value="#{checkDataController.claim.policy.contract.customer.country}" />
-				</p>				
+				</p>
 				<p>
 					<label for="phoneNumber">Phone Number</label>
 					<h:outputText id="phoneNumber"
@@ -114,7 +156,7 @@
 					<label for="email">E-Mail</label>
 					<h:outputText id="email"
 						value="#{checkDataController.claim.policy.contract.customer.email}" />
-				</p>				
+				</p>
 				<p>
 					<label for="blacklisted">Is blacklisted?</label>
 					<h:outputText id="blacklisted"
@@ -129,7 +171,7 @@
 					<label for="companyName">Company Name</label>
 					<h:outputText id="companyName"
 						value="#{checkDataController.claim.policy.contract.customer.companyName}" />
-				</p>				
+				</p>
 			</h:panelGrid>
 
 			<h3>Contract Information</h3>
@@ -174,7 +216,7 @@
 						value="#{checkDataController.claim.policy.dailyPremium}" />
 				</p>
 			</h:panelGrid>
-			
+
 			<h3>Car Information</h3>
 			<h:panelGrid columns="2">
 				<p>
@@ -186,7 +228,7 @@
 					<label for="vehicleID">Vehicle ID Number</label>
 					<h:outputText id="vehicleID"
 						value="#{checkDataController.claim.policy.car.vehicleIdentificationNumber}" />
-				</p>												
+				</p>
 				<p>
 					<label for="registrationNumber">Registration Number</label>
 					<h:outputText id="registrationNumber"
@@ -216,7 +258,7 @@
 					<label for="horsePower">Horse Power</label>
 					<h:outputText id="horsePower"
 						value="#{checkDataController.claim.policy.car.ps}" />
-				</p>				
+				</p>
 
 
 			</h:panelGrid>

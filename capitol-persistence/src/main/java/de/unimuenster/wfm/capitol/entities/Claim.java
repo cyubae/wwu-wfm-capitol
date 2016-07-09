@@ -47,6 +47,9 @@ public class Claim implements Serializable {
 	@ManyToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
 	protected Policy policy;
 	
+	@OneToMany(cascade = {DETACH, MERGE, PERSIST, REFRESH}, mappedBy = "claim",fetch=FetchType.EAGER)
+	protected Collection<ExternalParty> externalParties = new ArrayList<ExternalParty>();	
+	
 	protected String vehicleIDNumber;
 	protected Date damageDate;	
 	protected String damageAddress;
@@ -138,6 +141,12 @@ public class Claim implements Serializable {
 	}
 	public void setClaimDecision(ClaimDecision claimDecision) {
 		this.claimDecision = claimDecision;
+	}
+	public Collection<ExternalParty> getExternalParties() {
+		return externalParties;
+	}
+	public void setExternalParties(Collection<ExternalParty> externalParties) {
+		this.externalParties = externalParties;
 	}
 
 }
