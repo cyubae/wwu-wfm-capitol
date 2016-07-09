@@ -29,7 +29,6 @@ import de.unimuenster.wfm.capitol.entities.Claim;
 import de.unimuenster.wfm.capitol.entities.Contract;
 import de.unimuenster.wfm.capitol.entities.Customer;
 import de.unimuenster.wfm.capitol.entities.Policy;
-import de.unimuenster.wfm.capitol.enums.ClaimDecision;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
 import de.unimuenster.wfm.capitol.jpa.CustomerCRUD;
@@ -38,9 +37,9 @@ import de.unimuenster.wfm.capitol.jpa.ClaimCRUD;;
 
 @Named
 @ConversationScoped
-public class HandleClaimController implements Serializable {
+public class CompleteDataController implements Serializable {
 
-	private static Logger LOGGER = Logger.getLogger(HandleClaimController.class.getName());
+	private static Logger LOGGER = Logger.getLogger(CompleteDataController.class.getName());
 
 	private static  final long serialVersionUID = 1L;
 
@@ -80,15 +79,7 @@ public class HandleClaimController implements Serializable {
 
 	public void submitResult(boolean result) throws IOException {
 		//update process variable
-		businessProcess.setVariable("claim_covered", result);
-		
-		//update persistence object
-		if(result == true) {
-			claim.setClaimDecision(ClaimDecision.COVERED);
-		}
-		else {
-			claim.setClaimDecision(ClaimDecision.NOT_COVERED);
-		}
+		businessProcess.setVariable("data_correct", result);
 		claimCRUD.update(claim);
 
 		try {

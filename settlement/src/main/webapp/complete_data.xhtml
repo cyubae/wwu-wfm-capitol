@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view>
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{camundaTaskForm.startTaskForm()}" />
+	</f:metadata>
+	<h:head>
+		<title>Manual Data Completion</title>
+	</h:head>
+	<h:body>
+		<h:form id="submitForm">
+			<h1>Manual Data Completion</h1>
+
+			<h2>Claim Information</h2>
+			<h:panelGrid columns="2">
+				<p>
+					<label for="claimId">Claim ID</label>
+					<h:inputText id="claimId"
+						value="#{completeDataController.claim.claimId}" />
+				</p>
+
+				<p>
+					<label for="externalClaimId">External Claim ID</label>
+					<h:inputText id="externalClaimId"
+						value="#{completeDataController.claim.externalClaimId}" />
+				</p>
+
+				<p>
+					<label for="claimDescription">Description</label>
+					<h:inputText id="claimDescription"
+						value="#{completeDataController.claim.claimDescription}" />
+				</p>
+
+				<p>
+					<label for="damageDate">Damage Date</label>
+					<h:inputText id="damageDate"
+						value="#{completeDataController.claim.damageDate}" />
+				</p>
+
+				<p>
+					<label for="damageAddress">Damage Address</label>
+					<h:inputText id="damageAddress"
+						value="#{completeDataController.claim.damageAddress}" />
+				</p>
+
+				<!-- Data Table for parties involved -->
+			</h:panelGrid>
+
+			<h2>Contract Information</h2>
+			<h3>Customer Information</h3>
+			<h:panelGrid columns="2">
+				<p>
+					<label for="customerID">Customer ID</label>
+					<h:outputText id="customerID"
+						value="#{completeDataController.claim.policy.contract.customer.customerId}" />
+				</p>
+				<p>
+					<label for="customerSurname">Surname</label>
+					<h:inputText id="customerSurname"
+						value="#{completeDataController.claim.policy.contract.customer.surname}" />
+				</p>
+				<p>
+					<label for="customerFirstName">First Name</label>
+					<h:inputText id="customerFirstName"
+						value="#{completeDataController.claim.policy.contract.customer.firstName}" />
+				</p>
+				<p>
+					<label for="customerDOB">Date of Birth</label>
+					<h:inputText id="customerDOB"
+						value="#{completeDataController.claim.policy.contract.customer.dateOfBirth}" />
+				</p>
+			</h:panelGrid>
+
+			<h3>Contract Information</h3>
+			<h:panelGrid columns="2">
+				<p>
+					<label for="contractID">Contract ID</label>
+					<h:outputText id="contractID"
+						value="#{completeDataController.claim.policy.contract.contractId}" />
+				</p>
+				<p>
+					<label for="insuranceType">Insurance Type</label>
+					<h:inputText id="insuranceType"
+						value="#{completeDataController.claim.policy.contract.insuranceType}" />
+				</p>
+				<p>
+					<label for="pickUpDate">Pick-up Date</label>
+					<h:inputText id="pickUpDate"
+						value="#{completeDataController.claim.policy.contract.pickUpDate}" />
+				</p>
+				<p>
+					<label for="returnDate">Return Date</label>
+					<h:inputText id="returnDate"
+						value="#{completeDataController.claim.policy.contract.returnDate}" />
+				</p>
+				<p>
+					<label for="released">Is released?</label>
+					<h:inputText id="released"
+						value="#{completeDataController.claim.policy.contract.released}" />
+				</p>
+			</h:panelGrid>
+
+			<h3>Policy Information</h3>
+			<h:panelGrid columns="2">
+				<p>
+					<label for="policyId">Policy ID</label>
+					<h:outputText id="policyId"
+						value="#{completeDataController.claim.policy.policyId}" />
+				</p>
+				<p>
+					<label for="dailyPremium">Insurance Type</label>
+					<h:inputText id="dailyPremium"
+						value="#{completeDataController.claim.policy.dailyPremium}" />
+				</p>
+			</h:panelGrid>
+			
+			<h3>Car Information</h3>
+			<h:panelGrid columns="2">
+				<p>
+					<label for="carId">Car ID</label>
+					<h:outputText id="carId"
+						value="#{completeDataController.claim.policy.car.carId}" />
+				</p>
+				<p>
+					<label for="vehicleID">Vehicle ID Number</label>
+					<h:inputText id="vehicleID"
+						value="#{completeDataController.claim.policy.car.vehicleIdentificationNumber}" />
+				</p>												
+				<p>
+					<label for="registrationNumber">Registration Number</label>
+					<h:inputText id="registrationNumber"
+						value="#{completeDataController.claim.policy.car.registrationNumber}" />
+				</p>
+				<p>
+					<label for="carBrand">Brand</label>
+					<h:inputText id="carBrand"
+						value="#{completeDataController.claim.policy.car.brand}" />
+				</p>
+				<p>
+					<label for="carModel">Model</label>
+					<h:inputText id="carModel"
+						value="#{completeDataController.claim.policy.car.model}" />
+				</p>
+				<p>
+					<label for="constructionYear">Construction Year</label>
+					<h:inputText id="constructionYear"
+						value="#{completeDataController.claim.policy.car.constructionYear}" />
+				</p>
+				<p>
+					<label for="fuelType">Fuel Type</label>
+					<h:inputText id="fuelType"
+						value="#{completeDataController.claim.policy.car.fuelType}" />
+				</p>
+				<p>
+					<label for="horsePower">Horse Power</label>
+					<h:inputText id="horsePower"
+						value="#{completeDataController.claim.policy.car.ps}" />
+				</p>				
+
+
+			</h:panelGrid>
+
+
+			<h:commandButton id="ok_button" value="Data is complete and correct"
+				action="#{completeDataController.submitResult(true)}" />
+		</h:form>
+	</h:body>
+</f:view>
+</html>
