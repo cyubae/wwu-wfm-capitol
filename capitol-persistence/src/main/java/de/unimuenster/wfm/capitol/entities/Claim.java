@@ -148,6 +148,12 @@ public class Claim implements Serializable {
 	public void setExternalParties(Collection<ExternalParty> externalParties) {
 		this.externalParties = externalParties;
 	}
+	public void addExternalParty(ExternalParty externalParty) {
+		this.externalParties.add(externalParty);
+	}
+	public void removeExternalParty(ExternalParty externalParty) {
+		this.externalParties.remove(externalParty);
+	}
 
 }
 

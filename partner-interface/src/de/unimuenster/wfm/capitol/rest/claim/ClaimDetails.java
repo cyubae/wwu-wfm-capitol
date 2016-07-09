@@ -88,7 +88,9 @@ public class ClaimDetails {
 			variables.put("involved_party_insurance_city" + i, single_party.getInsurance().getCity());
 			variables.put("involved_party_insurance_country" + i, single_party.getInsurance().getCountry());
 			i++;
-		}			
+		}		
+		variables.put("number_of_involved_parties", i);
+		
 		String id;		
 		try {
 			// correlate the message

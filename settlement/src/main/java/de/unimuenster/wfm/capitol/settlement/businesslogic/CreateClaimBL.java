@@ -1,6 +1,5 @@
 package de.unimuenster.wfm.capitol.settlement.businesslogic;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,11 +12,14 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 
 import de.unimuenster.wfm.capitol.entities.Car;
 import de.unimuenster.wfm.capitol.entities.Claim;
-import de.unimuenster.wfm.capitol.helper.DateTools;
+import de.unimuenster.wfm.capitol.entities.ExternalParty;
+import de.unimuenster.wfm.capitol.entities.Insurance;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
 import de.unimuenster.wfm.capitol.jpa.ClaimCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
 import de.unimuenster.wfm.capitol.jpa.CustomerCRUD;
+import de.unimuenster.wfm.capitol.jpa.ExternalPartyCRUD;
+import de.unimuenster.wfm.capitol.jpa.InsuranceCRUD;
 import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;
 
 @Stateless
@@ -41,6 +43,12 @@ public class CreateClaimBL {
 
 	@Inject
 	private ClaimCRUD claimCRUD;
+	
+	@Inject
+	private ExternalPartyCRUD externalPartyCRUD;
+	
+	@Inject
+	private InsuranceCRUD insuranceCRUD;
 
 	public void performBusinessLogic(DelegateExecution delegateExecution) {
 
@@ -78,10 +86,58 @@ public class CreateClaimBL {
 			delegateExecution.setVariable("contract_found", false);
 		}
 		
+		//associate involved parties
+		int numberOfExternalParties = (Integer) delegateExecution.getVariable("number_of_involved_parties");
+		if (numberOfExternalParties > 0) {
+			for (int partyCount = 1; partyCount<=numberOfExternalParties; partyCount++) {
+				newClaim.addExternalParty(createExternalParty(delegateExecution, partyCount));
+			}
+		}
+		
 		//persist new claim
 		newClaim = claimCRUD.createAndFlush(newClaim);
 		delegateExecution.setVariable("claim_id_internal", Integer.valueOf(newClaim.getClaimId()));
 
+	}
+	
+	
+	public ExternalParty createExternalParty(DelegateExecution delegateExecution, int partyCount) {
+		ExternalParty externalParty = new ExternalParty();
+		externalParty.setFirstName((String) delegateExecution.getVariable("involved_party_firstname" + partyCount));
+		externalParty.setSurname((String) delegateExecution.getVariable("involved_party_surname" + partyCount));
+		externalParty.setEmail((String) delegateExecution.getVariable("involved_party_email" + partyCount));
+		externalParty.setPhoneNumber((String) delegateExecution.getVariable("involved_party_phone_number" + partyCount));
+		externalParty.setStreet((String) delegateExecution.getVariable("involved_party_street" + partyCount));		
+		externalParty.setHouseNumber((String) delegateExecution.getVariable("involved_party_house_number" + partyCount));
+		externalParty.setPostcode((String) delegateExecution.getVariable("involved_party_postcode" + partyCount));
+		externalParty.setCity((String) delegateExecution.getVariable("involved_party_city" + partyCount));
+		externalParty.setCountry((String) delegateExecution.getVariable("involved_party_country" + partyCount));
+		externalParty.setDateOfBirth((String) delegateExecution.getVariable("involved_party_date_of_birth" + partyCount));
+		externalParty.setCompany((String) delegateExecution.getVariable("involved_party_company" + partyCount));
+		externalParty.setHasInsurance(Boolean.valueOf((String)delegateExecution.getVariable("involved_party_has_insurance" + partyCount)));
+		
+		if(externalParty.isHasInsurance()) {
+			externalParty.setInsurance(createInsurance(delegateExecution, partyCount));
+		}
+		
+		externalParty = externalPartyCRUD.createAndFlush(externalParty);
+		
+		return externalParty;
+	}
+	
+	public Insurance createInsurance(DelegateExecution delegateExecution, int partyCount) {
+		
+		Insurance insurance = new Insurance();
+		insurance.setCompany((String) delegateExecution.getVariable("involved_party_insurance_company" + partyCount));
+		insurance.setStreet((String) delegateExecution.getVariable("involved_party_insurance_street" + partyCount));
+		insurance.setHouseNumber((String) delegateExecution.getVariable("involved_party_insurance_house_number" + partyCount));
+		insurance.setPostcode((String) delegateExecution.getVariable("involved_party_insurance_postcode" + partyCount));
+		insurance.setCity((String) delegateExecution.getVariable("involved_party_insurance_city" + partyCount));
+		insurance.setCountry((String) delegateExecution.getVariable("involved_party_insurance_country" + partyCount));
+		
+		insurance = insuranceCRUD.createAndFlush(insurance);
+		
+		return insurance;
 	}
 
 
