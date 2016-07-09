@@ -7,6 +7,7 @@ import javax.inject.Named;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 
 import de.unimuenster.wfm.capitol.entities.Claim;
+import de.unimuenster.wfm.capitol.enums.ClaimDecision;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
 import de.unimuenster.wfm.capitol.jpa.ClaimCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
@@ -14,9 +15,6 @@ import de.unimuenster.wfm.capitol.jpa.CustomerCRUD;
 import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;
 
 
-/**
- * @author Christoph
- */
 @Stateless
 @Named
 public class HandleClaimBL {
@@ -42,20 +40,16 @@ public class HandleClaimBL {
 
 	public void performBusinessLogic(DelegateExecution delegateExecution) {
 		
-//		int internalClaimId = (Integer) delegateExecution.getVariable("claim_id_internal");
-//		Claim claim = claimCRUD.find(internalClaimId);
-//		
-//		boolean handleManually = false;
-//		if(claim.getClaimValue() > AUTOMATIC_COVERAGE_LIMIT*100 && claim.getPolicy() != null) {
-//			delegateExecution.setVariable("handle_manually", true);
-//		}
-//		else {
-//			claim.setCovered(true);
-//			claimCRUD.update(claim);
-//			
-//			delegateExecution.setVariable("claim_covered", true);
-//			delegateExecution.setVariable("handle_manually", false);
-//		}
+		int internalClaimId = (Integer) delegateExecution.getVariable("claim_id_internal");
+		Claim claim = claimCRUD.find(internalClaimId);
+		
+		claim.setCovered(true);
+		claim.setCoverageCosts(claim.getClaimValue());
+		claim.setCustomerCosts(0);
+		claim.setClaimDecision(ClaimDecision.COVERED);
+		
+		claimCRUD.update(claim);		
+		delegateExecution.setVariable("claim_covered", true);
 		
 	}
 }

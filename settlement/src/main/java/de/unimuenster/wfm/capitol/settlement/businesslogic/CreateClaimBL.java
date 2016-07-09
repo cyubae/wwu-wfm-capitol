@@ -51,8 +51,8 @@ public class CreateClaimBL {
 		
 		Double workshopPrice = (Double) delegateExecution.getVariable("workshop_price");
 		int claimValue = (int) (workshopPrice.doubleValue()*100);
-		newClaim.setClaimValue(claimValue); 
-				
+		newClaim.setClaimValue(claimValue);
+						
 		newClaim.setPartiesInvolved(
 				((String) delegateExecution.getVariable("claim_description")).equals("true") ? true : false);
 		

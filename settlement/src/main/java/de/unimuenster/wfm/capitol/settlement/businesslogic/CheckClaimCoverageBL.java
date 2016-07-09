@@ -14,9 +14,6 @@ import de.unimuenster.wfm.capitol.jpa.CustomerCRUD;
 import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;
 
 
-/**
- * @author Christoph
- */
 @Stateless
 @Named
 public class CheckClaimCoverageBL {
@@ -45,15 +42,10 @@ public class CheckClaimCoverageBL {
 		int internalClaimId = (Integer) delegateExecution.getVariable("claim_id_internal");
 		Claim claim = claimCRUD.find(internalClaimId);
 		
-		boolean handleManually = false;
-		if(claim.getClaimValue() > AUTOMATIC_COVERAGE_LIMIT*100 && claim.getPolicy() != null) {
+		if(claim.getClaimValue() > AUTOMATIC_COVERAGE_LIMIT*100 || claim.getPolicy() == null) {
 			delegateExecution.setVariable("handle_manually", true);
 		}
 		else {
-			claim.setCovered(true);
-			claimCRUD.update(claim);
-			
-			delegateExecution.setVariable("claim_covered", true);
 			delegateExecution.setVariable("handle_manually", false);
 		}
 		

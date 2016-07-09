@@ -23,6 +23,7 @@ import javax.persistence.Version;
 
 import org.camunda.bpm.engine.cdi.annotation.BusinessProcessScoped;
 
+import de.unimuenster.wfm.capitol.enums.ClaimDecision;
 import de.unimuenster.wfm.capitol.enums.InsuranceType;
 import de.unimuenster.wfm.capitol.helper.DateTools;
 
@@ -52,9 +53,13 @@ public class Claim implements Serializable {
 	protected String claimDescription;
 	protected boolean partiesInvolved;
 	protected boolean covered;
-
-	//value of claim in euro cents
+	
+	//values in euro cents
 	protected int claimValue;
+	protected int coverageCosts;
+	protected int customerCosts;
+	
+	protected ClaimDecision claimDecision;
 	
 	public long getVersion() {
 		return version;
@@ -115,6 +120,24 @@ public class Claim implements Serializable {
 	}
 	public void setClaimValue(int claimValue) {
 		this.claimValue = claimValue;
+	}
+	public int getCoverageCosts() {
+		return coverageCosts;
+	}
+	public void setCoverageCosts(int coverageCosts) {
+		this.coverageCosts = coverageCosts;
+	}
+	public int getCustomerCosts() {
+		return customerCosts;
+	}
+	public void setCustomerCosts(int customerCosts) {
+		this.customerCosts = customerCosts;
+	}
+	public ClaimDecision getClaimDecision() {
+		return claimDecision;
+	}
+	public void setClaimDecision(ClaimDecision claimDecision) {
+		this.claimDecision = claimDecision;
 	}
 
 }
