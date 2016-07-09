@@ -44,7 +44,6 @@
         <flowNodeRef>StartEvent_0o57kxj</flowNodeRef>
         <flowNodeRef>EndEvent_0kajk9l</flowNodeRef>
         <flowNodeRef>ExclusiveGateway_1ydgcee</flowNodeRef>
-        <flowNodeRef>ExclusiveGateway_0bfo49s</flowNodeRef>
         <flowNodeRef>ExclusiveGateway_05ri3wu</flowNodeRef>
         <flowNodeRef>CheckClaimCoverage</flowNodeRef>
         <flowNodeRef>SendTask_0tiet84</flowNodeRef>
@@ -54,15 +53,17 @@
         <flowNodeRef>ExclusiveGateway_0vkuswt</flowNodeRef>
         <flowNodeRef>SendTask_11hfxxe</flowNodeRef>
         <flowNodeRef>ServiceTask_17x9v6j</flowNodeRef>
+        <flowNodeRef>ExclusiveGateway_0bfo49s</flowNodeRef>
+        <flowNodeRef>ServiceTask_1dlcziy</flowNodeRef>
       </lane>
       <lane id="Lane_04vwp5m" name="Clerk">
         <extensionElements>
           <signavio:signavioMetaData metaKey="bgcolor" metaValue="" />
         </extensionElements>
-        <flowNodeRef>UserTask_0g5kavc</flowNodeRef>
         <flowNodeRef>UserTask_0ivyjmb</flowNodeRef>
         <flowNodeRef>ExclusiveGateway_0jruqba</flowNodeRef>
         <flowNodeRef>UserTask_0s6e88g</flowNodeRef>
+        <flowNodeRef>UserTask_0g5kavc</flowNodeRef>
       </lane>
     </laneSet>
     <startEvent id="StartEvent_0o57kxj" name="receive claim">
@@ -90,14 +91,6 @@
       <incoming>SequenceFlow_1bev8vu</incoming>
       <outgoing>SequenceFlow_1s70td0</outgoing>
     </exclusiveGateway>
-    <exclusiveGateway id="ExclusiveGateway_0bfo49s" name="" gatewayDirection="Converging">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
-      </extensionElements>
-      <incoming>SequenceFlow_07kggg3</incoming>
-      <incoming>SequenceFlow_1rs9g0w</incoming>
-      <outgoing>SequenceFlow_0nrvt3r</outgoing>
-    </exclusiveGateway>
     <exclusiveGateway id="ExclusiveGateway_05ri3wu" name="manual evaluation&#10;required?" gatewayDirection="Diverging">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
@@ -106,16 +99,7 @@
       <outgoing>SequenceFlow_1rs9g0w</outgoing>
       <outgoing>SequenceFlow_06hmwwp</outgoing>
     </exclusiveGateway>
-    <userTask id="UserTask_0g5kavc" name="handle claim manually" implementation="##unspecified" camunda:formKey="app:handle_claim.jsf">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
-        <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
-      </extensionElements>
-      <incoming>SequenceFlow_06hmwwp</incoming>
-      <outgoing>SequenceFlow_07kggg3</outgoing>
-    </userTask>
-    <userTask id="UserTask_0ivyjmb" name="complete data manually" implementation="##unspecified">
+    <userTask id="UserTask_0ivyjmb" name="Complete data manually" implementation="##unspecified">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -132,11 +116,11 @@
       <outgoing>SequenceFlow_0et410l</outgoing>
       <outgoing>SequenceFlow_1120f6i</outgoing>
     </exclusiveGateway>
-    <serviceTask id="CheckClaimCoverage" name="check claim coverage" camunda:expression="${checkClaimCoverageBL.performBusinessLogic(execution)}">
+    <serviceTask id="CheckClaimCoverage" name="Check claim coverage" camunda:expression="${checkClaimCoverageBL.performBusinessLogic(execution)}">
       <incoming>SequenceFlow_1s70td0</incoming>
       <outgoing>SequenceFlow_1eo7a6x</outgoing>
     </serviceTask>
-    <sendTask id="SendTask_0tiet84" name="send decision to BVIS" implementation="##unspecified" camunda:expression="${sendDecisionBL.performBusinessLogic(execution)}" camunda:resultVariable="result1">
+    <sendTask id="SendTask_0tiet84" name="Send decision to BVIS " implementation="##unspecified" camunda:expression="${sendDecisionBL.performBusinessLogic(execution)}" camunda:resultVariable="result1">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -177,7 +161,7 @@
     <sequenceFlow id="SequenceFlow_1bev8vu" name="" isImmediate="true" sourceRef="UserTask_0ivyjmb" targetRef="ExclusiveGateway_1ydgcee" />
     <sequenceFlow id="SequenceFlow_1s70td0" name="" isImmediate="true" sourceRef="ExclusiveGateway_1ydgcee" targetRef="CheckClaimCoverage" />
     <sequenceFlow id="SequenceFlow_07kggg3" name="" isImmediate="true" sourceRef="UserTask_0g5kavc" targetRef="ExclusiveGateway_0bfo49s" />
-    <sequenceFlow id="SequenceFlow_1rs9g0w" name="no" isImmediate="true" sourceRef="ExclusiveGateway_05ri3wu" targetRef="ExclusiveGateway_0bfo49s">
+    <sequenceFlow id="SequenceFlow_1rs9g0w" name="no" isImmediate="true" sourceRef="ExclusiveGateway_05ri3wu" targetRef="ServiceTask_1dlcziy">
       <conditionExpression xsi:type="tFormalExpression">${not handle_manually}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_1eo7a6x" name="" isImmediate="true" sourceRef="CheckClaimCoverage" targetRef="ExclusiveGateway_05ri3wu" />
@@ -205,7 +189,7 @@
       <outgoing>sid-BD25EF83-63EC-46BC-BF44-305E914161B1</outgoing>
       <outgoing>SequenceFlow_161cvop</outgoing>
     </exclusiveGateway>
-    <sendTask id="SendTask_11hfxxe" name="send money to BVIS bank account" implementation="##unspecified" camunda:expression="${true}" camunda:resultVariable="result2">
+    <sendTask id="SendTask_11hfxxe" name="Send refund to BVIS bank account" implementation="##unspecified" camunda:expression="${true}" camunda:resultVariable="result2">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -216,7 +200,7 @@
     </sendTask>
     <sequenceFlow id="SequenceFlow_1ahlven" sourceRef="StartEvent_0o57kxj" targetRef="ServiceTask_17x9v6j" />
     <sequenceFlow id="SequenceFlow_1iois9y" sourceRef="UserTask_0s6e88g" targetRef="ExclusiveGateway_0jruqba" />
-    <userTask id="UserTask_0s6e88g" name="check data for completeness and corectness" camunda:formKey="app:check_data.jsf">
+    <userTask id="UserTask_0s6e88g" name="Check data for completeness and corectness" camunda:formKey="app:check_data.jsf">
       <incoming>SequenceFlow_1s16rje</incoming>
       <outgoing>SequenceFlow_1iois9y</outgoing>
     </userTask>
@@ -233,6 +217,28 @@
     </serviceTask>
     <sequenceFlow id="SequenceFlow_0nrvt3r" sourceRef="ExclusiveGateway_0bfo49s" targetRef="SendTask_0tiet84" />
     <sequenceFlow id="SequenceFlow_15duin7" sourceRef="SendTask_0tiet84" targetRef="IntermediateCatchEvent_0ox3bvl" />
+    <sequenceFlow id="SequenceFlow_0nad7mk" sourceRef="ServiceTask_1dlcziy" targetRef="ExclusiveGateway_0bfo49s" />
+    <exclusiveGateway id="ExclusiveGateway_0bfo49s" name="" gatewayDirection="Converging">
+      <extensionElements>
+        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
+      </extensionElements>
+      <incoming>SequenceFlow_07kggg3</incoming>
+      <incoming>SequenceFlow_0nad7mk</incoming>
+      <outgoing>SequenceFlow_0nrvt3r</outgoing>
+    </exclusiveGateway>
+    <serviceTask id="ServiceTask_1dlcziy" name="Handle claim automatically" camunda:expression="${handleClaimBL.performBusinessLogic(execution)}">
+      <incoming>SequenceFlow_1rs9g0w</incoming>
+      <outgoing>SequenceFlow_0nad7mk</outgoing>
+    </serviceTask>
+    <userTask id="UserTask_0g5kavc" name="Handle claim manually" implementation="##unspecified" camunda:formKey="app:handle_claim.jsf">
+      <extensionElements>
+        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
+        <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
+        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
+      </extensionElements>
+      <incoming>SequenceFlow_06hmwwp</incoming>
+      <outgoing>SequenceFlow_07kggg3</outgoing>
+    </userTask>
     <textAnnotation id="sid-2819BCFF-76FD-477D-BF69-2AD1A2F8C1B4">
       <extensionElements>
         <signavio:signavioType dataObjectType="IT-System" />
@@ -322,9 +328,9 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ExclusiveGateway_0bfo49s_gui" bpmnElement="ExclusiveGateway_0bfo49s" isMarkerVisible="true">
-        <omgdc:Bounds x="1501" y="297" width="40" height="40" />
+        <omgdc:Bounds x="1619" y="297" width="40" height="40" />
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1476" y="337" width="90" height="20" />
+          <omgdc:Bounds x="1594" y="337" width="90" height="20" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ExclusiveGateway_05ri3wu_gui" bpmnElement="ExclusiveGateway_05ri3wu" isMarkerVisible="true">
@@ -334,7 +340,7 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_0g5kavc_gui" bpmnElement="UserTask_0g5kavc">
-        <omgdc:Bounds x="1385" y="496" width="100" height="80" />
+        <omgdc:Bounds x="1441" y="496" width="100" height="80" />
         <bpmndi:BPMNLabel labelStyle="sid-0edb1d1c-d173-4e38-bf51-9ae55a4661e2">
           <omgdc:Bounds x="1038.5581122377437" y="522" width="66.34285736083984" height="24" />
         </bpmndi:BPMNLabel>
@@ -388,9 +394,9 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_07kggg3_gui" bpmnElement="SequenceFlow_07kggg3">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1484.7295409181636" y="536" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1521" y="536" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1520.754240377692" y="337" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1541" y="536" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1639" y="536" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1639" y="337" />
         <bpmndi:BPMNLabel>
           <omgdc:Bounds x="1458" y="526" width="90" height="20" />
         </bpmndi:BPMNLabel>
@@ -403,8 +409,8 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1rs9g0w_gui" bpmnElement="SequenceFlow_1rs9g0w">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1330.7295409181638" y="317" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1500.7295409181636" y="317" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1331" y="317" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1441" y="317" />
         <bpmndi:BPMNLabel labelStyle="sid-bf836240-0b77-4659-b35f-e4b3289bdd66">
           <omgdc:Bounds x="1300" y="297" width="90" height="12" />
         </bpmndi:BPMNLabel>
@@ -412,7 +418,7 @@
       <bpmndi:BPMNEdge id="SequenceFlow_06hmwwp_gui" bpmnElement="SequenceFlow_06hmwwp">
         <omgdi:waypoint xsi:type="omgdc:Point" x="1310.754240377692" y="337" />
         <omgdi:waypoint xsi:type="omgdc:Point" x="1311" y="536" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1384.7295409181636" y="536" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1441" y="536" />
         <bpmndi:BPMNLabel labelStyle="sid-bf836240-0b77-4659-b35f-e4b3289bdd66">
           <omgdc:Bounds x="1250" y="354" width="90" height="12" />
         </bpmndi:BPMNLabel>
@@ -563,7 +569,7 @@
         <omgdc:Bounds x="263" y="277" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0nrvt3r_di" bpmnElement="SequenceFlow_0nrvt3r">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1541" y="317" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1659" y="317" />
         <omgdi:waypoint xsi:type="omgdc:Point" x="1719" y="317" />
         <bpmndi:BPMNLabel>
           <omgdc:Bounds x="1585" y="307" width="90" height="20" />
@@ -576,6 +582,16 @@
           <omgdc:Bounds x="1865" y="307" width="90" height="20" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0nad7mk_di" bpmnElement="SequenceFlow_0nad7mk">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1541" y="317" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1619" y="317" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1438.8647704590817" y="307" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1dlcziy_di" bpmnElement="ServiceTask_1dlcziy">
+        <omgdc:Bounds x="1440.783" y="277" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
     <bpmndi:BPMNLabelStyle id="sid-bf836240-0b77-4659-b35f-e4b3289bdd66">
       <omgdc:Font name="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" />

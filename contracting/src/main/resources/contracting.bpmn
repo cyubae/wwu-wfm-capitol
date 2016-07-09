@@ -80,7 +80,7 @@
       <outgoing>sid-81E55155-D2E5-4AAF-8AFE-C183AD856622</outgoing>
       <messageEventDefinition id="sid-9612c456-7bca-4ac0-aacc-8e6269b3a983" messageRef="sid-960C1264-D388-4E58-8F1D-97CA4E220758" />
     </startEvent>
-    <serviceTask id="CheckIfCustomerBlacklisted" name="check if customer is blacklisted" implementation="##WebService" camunda:expression="${checkIfCustomerBlacklistedBL.performBusinessLogic(execution)}">
+    <serviceTask id="CheckIfCustomerBlacklisted" name="Check if customer is blacklisted" implementation="##WebService" camunda:expression="${checkIfCustomerBlacklistedBL.performBusinessLogic(execution)}">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -100,7 +100,7 @@
       <conditionExpression xsi:type="tFormalExpression">${user_is_blacklisted}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-16C3DB62-288D-474B-8436-B1CD54F79F8D" name="" sourceRef="sid-90CC009F-F71C-47D9-A7FF-C2D2B971E9E5" targetRef="sid-C81607F4-3CF2-4067-9CFC-E55A10FE43DB" />
-    <serviceTask id="CheckExistingCustomerId" name="check for existing customer ID" camunda:expression="${checkExistingCustomerIdBL.findExistingCustomer(execution)}">
+    <serviceTask id="CheckExistingCustomerId" name="Check for existing customer ID" camunda:expression="${checkExistingCustomerIdBL.findExistingCustomer(execution)}">
       <incoming>sid-81E55155-D2E5-4AAF-8AFE-C183AD856622</incoming>
       <outgoing>sid-3E9B8CF7-BD5C-4763-B93F-9A264E166D0B</outgoing>
     </serviceTask>
@@ -124,11 +124,11 @@
       <incoming>sid-260DD31D-DD1C-4AFE-9567-93C30B29BBCF</incoming>
       <outgoing>sid-9BB8CE96-6965-4B5C-87FD-8AC75017EB78</outgoing>
     </exclusiveGateway>
-    <userTask id="UserTask_1lkisg5" name="check and update customer data" camunda:formKey="app:check_update_customer.jsf">
+    <userTask id="UserTask_1lkisg5" name="Check and update customer data" camunda:formKey="app:check_update_customer.jsf">
       <incoming>sid-338B8A5D-B84F-40E1-AD64-38C4B6F8ADB9</incoming>
       <outgoing>sid-260DD31D-DD1C-4AFE-9567-93C30B29BBCF</outgoing>
     </userTask>
-    <userTask id="UserTask_0tievdk" name="check data and create customer" camunda:formKey="app:check_create_customer.jsf">
+    <userTask id="UserTask_0tievdk" name="Check data and create customer" camunda:formKey="app:check_create_customer.jsf">
       <incoming>sid-C61EBAF4-526D-40DF-A555-C99E75B85689</incoming>
       <outgoing>sid-D61DA17E-BBED-4F1A-A43C-563BE79F788D</outgoing>
     </userTask>
@@ -149,7 +149,7 @@
       <outgoing>sid-96837459-F426-4E6B-BC16-F7E2BC3380B4</outgoing>
       <outgoing>sid-C4A645D8-E767-45F7-930C-34BCCDF5064A</outgoing>
     </exclusiveGateway>
-    <userTask id="sid-9C83256E-0D44-4C11-89BF-6BA6B54130D4" name="validate contract" implementation="##WebService" camunda:formKey="app:validate_contract.jsf">
+    <userTask id="sid-9C83256E-0D44-4C11-89BF-6BA6B54130D4" name="Validate contract" implementation="##WebService" camunda:formKey="app:validate_contract.jsf">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -188,7 +188,7 @@
       <incoming>SequenceFlow_1dhxa83</incoming>
       <outgoing>SequenceFlow_1eto6s4</outgoing>
     </exclusiveGateway>
-    <userTask id="UserTask_1l7yy2z" name="check rejection" camunda:formKey="app:check_rejection.jsf">
+    <userTask id="UserTask_1l7yy2z" name="Check rejection" camunda:formKey="app:check_rejection.jsf">
       <incoming>sid-C4A645D8-E767-45F7-930C-34BCCDF5064A</incoming>
       <outgoing>SequenceFlow_1bbq612</outgoing>
     </userTask>
@@ -201,7 +201,7 @@
       <conditionExpression xsi:type="tFormalExpression">${not user_rejected}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_1bbq612" sourceRef="UserTask_1l7yy2z" targetRef="ExclusiveGateway_0qegcgb" />
-    <userTask id="sid-42D047DA-8DA5-432E-89EB-1C5CF23CD847" name="modify contract manually" implementation="##WebService" camunda:formKey="app:modify_contract.jsf">
+    <userTask id="sid-42D047DA-8DA5-432E-89EB-1C5CF23CD847" name="Modify contract manually" implementation="##WebService" camunda:formKey="app:modify_contract.jsf">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -218,7 +218,7 @@
       <incoming>sid-030CBFA1-F5EA-4BFB-8772-C0C96F6452CC</incoming>
       <outgoing>SequenceFlow_1m5e0p5</outgoing>
     </exclusiveGateway>
-    <sendTask id="sid-09F71DFF-8C12-43E9-8A55-0C971FA8BCD4" name="send contract proposal" implementation="##WebService" camunda:expression="${sendContractProposalBL.performBusinessLogic(execution)}">
+    <sendTask id="sid-09F71DFF-8C12-43E9-8A55-0C971FA8BCD4" name="Send contract proposal" implementation="##WebService" camunda:expression="${sendContractProposalBL.performBusinessLogic(execution)}">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -227,7 +227,7 @@
       <incoming>SequenceFlow_1m5e0p5</incoming>
       <outgoing>sid-8B9DFF88-4986-4502-A695-66DD25E2A02C</outgoing>
     </sendTask>
-    <receiveTask id="sid-E416B265-A8D8-4894-BA47-CF68322258A8" name="receive accept/decline" implementation="##WebService" messageRef="Message_1tx3dwf">
+    <receiveTask id="sid-E416B265-A8D8-4894-BA47-CF68322258A8" name="Receive accept/decline" implementation="##WebService" messageRef="Message_1tx3dwf">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -259,7 +259,7 @@
     </endEvent>
     <sequenceFlow id="SequenceFlow_1d84f3k" sourceRef="sid-E416B265-A8D8-4894-BA47-CF68322258A8" targetRef="ReleaseContract" />
     <sequenceFlow id="SequenceFlow_144bw6w" sourceRef="ReleaseContract" targetRef="sid-99728641-7CB6-488A-821D-B44C558DAE6C" />
-    <serviceTask id="ReleaseContract" name="release contract" implementation="##WebService" camunda:expression="${releaseContractBL.performBusinessLogic(execution)}">
+    <serviceTask id="ReleaseContract" name="Release contract" implementation="##WebService" camunda:expression="${releaseContractBL.performBusinessLogic(execution)}">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -268,7 +268,7 @@
       <incoming>SequenceFlow_1d84f3k</incoming>
       <outgoing>SequenceFlow_144bw6w</outgoing>
     </serviceTask>
-    <serviceTask id="CreateBasicContract" name="create basic contract (based on customer requirements)" camunda:expression="${createBasicContractBL.performBusinessLogic(execution)}">
+    <serviceTask id="CreateBasicContract" name="Create basic contract (based on customer requirements)" camunda:expression="${createBasicContractBL.performBusinessLogic(execution)}">
       <incoming>SequenceFlow_1eto6s4</incoming>
       <outgoing>sid-0F8FC498-4901-4303-92E4-D9B3713F3B54</outgoing>
     </serviceTask>
