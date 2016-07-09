@@ -37,9 +37,9 @@ import de.unimuenster.wfm.capitol.jpa.ClaimCRUD;;
 
 @Named
 @ConversationScoped
-public class CheckDataController implements Serializable {
+public class HandleClaimController implements Serializable {
 
-	private static Logger LOGGER = Logger.getLogger(CheckDataController.class.getName());
+	private static Logger LOGGER = Logger.getLogger(HandleClaimController.class.getName());
 
 	private static  final long serialVersionUID = 1L;
 
@@ -79,7 +79,11 @@ public class CheckDataController implements Serializable {
 
 	public void submitResult(boolean result) throws IOException {
 		//update process variable
-		businessProcess.setVariable("data_correct", result);
+		businessProcess.setVariable("claim_covered", result);
+		
+		//update persistence object
+		claim.setCovered(result);
+		claimCRUD.update(claim);
 
 		try {
 			// Complete user task from

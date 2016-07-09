@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view>
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{camundaTaskForm.startTaskForm()}" />
+	</f:metadata>
+	<h:head>
+		<title>Check Claim Approval</title>
+	</h:head>
+	<h:body>
+		<h:form id="submitForm">
+			<h1>Check Claim Approval</h1>
+
+			<h2>Claim Information</h2>
+			<h:panelGrid columns="2">
+				<p>
+					<label for="claimId">Claim ID</label>
+					<h:outputText id="claimId"
+						value="#{checkDataController.claim.claimId}" />
+				</p>
+
+				<p>
+					<label for="externalClaimId">External Claim ID</label>
+					<h:outputText id="externalClaimId"
+						value="#{checkDataController.claim.externalClaimId}" />
+				</p>
+
+				<p>
+					<label for="claimDescription">Description</label>
+					<h:outputText id="claimDescription"
+						value="#{checkDataController.claim.claimDescription}" />
+				</p>
+
+				<p>
+					<label for="damageDate">Damage Date</label>
+					<h:outputText id="damageDate"
+						value="#{checkDataController.claim.damageDate}" />
+				</p>
+
+				<p>
+					<label for="damageAddress">Damage Address</label>
+					<h:outputText id="damageAddress"
+						value="#{checkDataController.claim.damageAddress}" />
+				</p>
+
+				<!-- Data Table for parties involved -->
+			</h:panelGrid>
+
+			<h2>Contract Information</h2>
+			<h3>Customer Information</h3>
+			<h:panelGrid columns="2">
+				<p>
+					<label for="customerID">Customer ID</label>
+					<h:outputText id="customerID"
+						value="#{checkDataController.claim.policy.contract.customer.customerId}" />
+				</p>
+				<p>
+					<label for="customerSurname">Surname</label>
+					<h:outputText id="customerSurname"
+						value="#{checkDataController.claim.policy.contract.customer.surname}" />
+				</p>
+				<p>
+					<label for="customerFirstName">First Name</label>
+					<h:outputText id="customerFirstName"
+						value="#{checkDataController.claim.policy.contract.customer.firstName}" />
+				</p>
+				<p>
+					<label for="customerDOB">Date of Birth</label>
+					<h:outputText id="customerDOB"
+						value="#{checkDataController.claim.policy.contract.customer.dateOfBirth}" />
+				</p>
+			</h:panelGrid>
+
+			<h3>Contract Information</h3>
+			<h:panelGrid columns="2">
+				<p>
+					<label for="contractID">Contract ID</label>
+					<h:outputText id="contractID"
+						value="#{checkDataController.claim.policy.contract.contractId}" />
+				</p>
+				<p>
+					<label for="insuranceType">Insurance Type</label>
+					<h:outputText id="insuranceType"
+						value="#{checkDataController.claim.policy.contract.insuranceType}" />
+				</p>
+				<p>
+					<label for="pickUpDate">Pick-up Date</label>
+					<h:outputText id="pickUpDate"
+						value="#{checkDataController.claim.policy.contract.pickUpDate}" />
+				</p>
+				<p>
+					<label for="returnDate">Return Date</label>
+					<h:outputText id="returnDate"
+						value="#{checkDataController.claim.policy.contract.returnDate}" />
+				</p>
+				<p>
+					<label for="released">Is released?</label>
+					<h:outputText id="released"
+						value="#{checkDataController.claim.policy.contract.released}" />
+				</p>
+			</h:panelGrid>
+
+			<h3>Policy Information</h3>
+			<h:panelGrid columns="2">
+				<p>
+					<label for="policyId">Policy ID</label>
+					<h:outputText id="policyId"
+						value="#{checkDataController.claim.policy.policyId}" />
+				</p>
+				<p>
+					<label for="dailyPremium">Insurance Type</label>
+					<h:outputText id="dailyPremium"
+						value="#{checkDataController.claim.policy.dailyPremium}" />
+				</p>
+			</h:panelGrid>
+			
+			<h3>Car Information</h3>
+			<h:panelGrid columns="2">
+				<p>
+					<label for="carId">Car ID</label>
+					<h:outputText id="carId"
+						value="#{checkDataController.claim.policy.car.carId}" />
+				</p>
+				<p>
+					<label for="vehicleID">Vehicle ID Number</label>
+					<h:outputText id="vehicleID"
+						value="#{checkDataController.claim.policy.car.vehicleIdentificationNumber}" />
+				</p>												
+				<p>
+					<label for="registrationNumber">Registration Number</label>
+					<h:outputText id="registrationNumber"
+						value="#{checkDataController.claim.policy.car.registrationNumber}" />
+				</p>
+				<p>
+					<label for="carBrand">Brand</label>
+					<h:outputText id="carBrand"
+						value="#{checkDataController.claim.policy.car.brand}" />
+				</p>
+				<p>
+					<label for="carModel">Model</label>
+					<h:outputText id="carModel"
+						value="#{checkDataController.claim.policy.car.model}" />
+				</p>
+				<p>
+					<label for="constructionYear">Construction Year</label>
+					<h:outputText id="constructionYear"
+						value="#{checkDataController.claim.policy.car.constructionYear}" />
+				</p>
+				<p>
+					<label for="fuelType">Fuel Type</label>
+					<h:outputText id="fuelType"
+						value="#{checkDataController.claim.policy.car.fuelType}" />
+				</p>
+				<p>
+					<label for="horsePower">Horse Power</label>
+					<h:outputText id="horsePower"
+						value="#{checkDataController.claim.policy.car.ps}" />
+				</p>				
+			</h:panelGrid>
+
+
+			<h:commandButton id="ok_button" value="Approve Claim"
+				action="#{checkDataController.submitResult(true)}" />
+			<h:commandButton id="not_ok_button" value="Reject Claim"
+				action="#{checkDataController.submitResult(false)}" />
+		</h:form>
+	</h:body>
+</f:view>
+</html>

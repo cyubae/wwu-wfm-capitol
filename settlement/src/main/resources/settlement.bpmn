@@ -109,7 +109,7 @@
       <outgoing>SequenceFlow_1rs9g0w</outgoing>
       <outgoing>SequenceFlow_06hmwwp</outgoing>
     </exclusiveGateway>
-    <userTask id="UserTask_0g5kavc" name="handle claim manually" implementation="##unspecified">
+    <userTask id="UserTask_0g5kavc" name="handle claim manually" implementation="##unspecified" camunda:formKey="app:handle_claim.jsf">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -186,10 +186,10 @@
       <conditionExpression xsi:type="tFormalExpression">${true}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-BD25EF83-63EC-46BC-BF44-305E914161B1" name="yes" sourceRef="ExclusiveGateway_0vkuswt" targetRef="SendTask_11hfxxe">
-      <conditionExpression xsi:type="tFormalExpression">${false}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${claim_covered}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_161cvop" name="no" sourceRef="ExclusiveGateway_0vkuswt" targetRef="ExclusiveGateway_1qlf8kn">
-      <conditionExpression xsi:type="tFormalExpression">${true}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${not claim_covered}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_0f08as7" sourceRef="ExclusiveGateway_1qlf8kn" targetRef="EndEvent_0kajk9l" />
     <sequenceFlow id="SequenceFlow_1iuc26z" name="" isImmediate="true" sourceRef="SendTask_11hfxxe" targetRef="ExclusiveGateway_1qlf8kn" />

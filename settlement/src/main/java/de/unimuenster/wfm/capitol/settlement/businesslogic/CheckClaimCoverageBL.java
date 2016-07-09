@@ -47,10 +47,15 @@ public class CheckClaimCoverageBL {
 		
 		boolean handleManually = false;
 		if(claim.getClaimValue() > AUTOMATIC_COVERAGE_LIMIT*100) {
-			handleManually = true;
+			delegateExecution.setVariable("handle_manually", true);
+		}
+		else {
+			claim.setCovered(true);
+			claimCRUD.update(claim);
+			
+			delegateExecution.setVariable("claim_covered", true);
+			delegateExecution.setVariable("handle_manually", false);
 		}
 		
-		delegateExecution.setVariable("handle_manually", handleManually);
-				
 	}
 }
