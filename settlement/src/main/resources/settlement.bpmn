@@ -90,7 +90,7 @@
       <outgoing>SequenceFlow_1rs9g0w</outgoing>
       <outgoing>SequenceFlow_06hmwwp</outgoing>
     </exclusiveGateway>
-    <userTask id="UserTask_0ivyjmb" name="Complete data manually" implementation="##unspecified">
+    <userTask id="UserTask_0ivyjmb" name="Complete data manually" implementation="##unspecified" camunda:formKey="app:complete_data.jsf">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />

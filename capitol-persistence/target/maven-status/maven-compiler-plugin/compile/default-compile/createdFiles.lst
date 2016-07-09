@@ -5,6 +5,7 @@ de\unimuenster\wfm\capitol\jpa\PolicyCRUD.class
 de\unimuenster\wfm\capitol\enums\InsuranceType.class
 de\unimuenster\wfm\capitol\enums\CarType.class
 de\unimuenster\wfm\capitol\entities\Car.class
+de\unimuenster\wfm\capitol\enums\ClaimDecision.class
 de\unimuenster\wfm\capitol\jpa\AccessCustomer.class
 de\unimuenster\wfm\capitol\helper\DateTools.class
 de\unimuenster\wfm\capitol\jpa\CarCRUD.class
