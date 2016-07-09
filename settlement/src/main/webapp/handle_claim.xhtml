@@ -47,6 +47,12 @@
 					<h:outputText id="damageAddress"
 						value="#{handleClaimController.claim.damageAddress}" />
 				</p>
+				
+				<p>
+					<label for="claimValue">Claim Value</label>
+					<h:outputText id="claimValue"
+						value="#{handleClaimController.claim.claimValue}" />
+				</p>				
 
 				<!-- Data Table for parties involved -->
 			</h:panelGrid>
@@ -70,23 +76,73 @@
 				<p>
 					<label for="customerID">Customer ID</label>
 					<h:outputText id="customerID"
-						value="#{handleClaimController.claim.policy.contract.customer.customerId}" />
+						value="#{checkDataController.claim.policy.contract.customer.customerId}" />
 				</p>
 				<p>
 					<label for="customerSurname">Surname</label>
 					<h:outputText id="customerSurname"
-						value="#{handleClaimController.claim.policy.contract.customer.surname}" />
+						value="#{checkDataController.claim.policy.contract.customer.surname}" />
 				</p>
 				<p>
 					<label for="customerFirstName">First Name</label>
 					<h:outputText id="customerFirstName"
-						value="#{handleClaimController.claim.policy.contract.customer.firstName}" />
+						value="#{checkDataController.claim.policy.contract.customer.firstName}" />
 				</p>
 				<p>
 					<label for="customerDOB">Date of Birth</label>
 					<h:outputText id="customerDOB"
-						value="#{handleClaimController.claim.policy.contract.customer.dateOfBirth}" />
+						value="#{checkDataController.claim.policy.contract.customer.dateOfBirth}" />
 				</p>
+				<p>
+					<label for="street">Street</label>
+					<h:outputText id="street"
+						value="#{checkDataController.claim.policy.contract.customer.street}" />
+				</p>
+				<p>
+					<label for="houseNumber">House Number</label>
+					<h:outputText id="houseNumber"
+						value="#{checkDataController.claim.policy.contract.customer.houseNumber}" />
+				</p>
+				<p>
+					<label for="postcode">Postcode</label>
+					<h:outputText id="postcode"
+						value="#{checkDataController.claim.policy.contract.customer.postcode}" />
+				</p>
+				<p>
+					<label for="city">City</label>
+					<h:outputText id="city"
+						value="#{checkDataController.claim.policy.contract.customer.city}" />
+				</p>
+				<p>
+					<label for="country">Country</label>
+					<h:outputText id="country"
+						value="#{checkDataController.claim.policy.contract.customer.country}" />
+				</p>				
+				<p>
+					<label for="phoneNumber">Phone Number</label>
+					<h:outputText id="phoneNumber"
+						value="#{checkDataController.claim.policy.contract.customer.phoneNumber}" />
+				</p>
+				<p>
+					<label for="email">E-Mail</label>
+					<h:outputText id="email"
+						value="#{checkDataController.claim.policy.contract.customer.email}" />
+				</p>				
+				<p>
+					<label for="blacklisted">Is blacklisted?</label>
+					<h:outputText id="blacklisted"
+						value="#{checkDataController.claim.policy.contract.customer.blacklisted}" />
+				</p>
+				<p>
+					<label for="isCompany">Is Company?</label>
+					<h:outputText id="isCompany"
+						value="#{checkDataController.claim.policy.contract.customer.company}" />
+				</p>
+				<p>
+					<label for="companyName">Company Name</label>
+					<h:outputText id="companyName"
+						value="#{checkDataController.claim.policy.contract.customer.companyName}" />
+				</p>				
 			</h:panelGrid>
 
 			<h3>Contract Information</h3>

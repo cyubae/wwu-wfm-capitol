@@ -47,6 +47,12 @@
 					<h:inputText id="damageAddress"
 						value="#{completeDataController.claim.damageAddress}" />
 				</p>
+				
+				<p>
+					<label for="claimValue">Claim Value</label>
+					<h:inputText id="claimValue"
+						value="#{handleClaimController.claim.claimValue}" />
+				</p>								
 
 				<!-- Data Table for parties involved -->
 			</h:panelGrid>
@@ -57,23 +63,73 @@
 				<p>
 					<label for="customerID">Customer ID</label>
 					<h:outputText id="customerID"
-						value="#{completeDataController.claim.policy.contract.customer.customerId}" />
+						value="#{checkDataController.claim.policy.contract.customer.customerId}" />
 				</p>
 				<p>
 					<label for="customerSurname">Surname</label>
-					<h:inputText id="customerSurname"
-						value="#{completeDataController.claim.policy.contract.customer.surname}" />
+					<h:outputText id="customerSurname"
+						value="#{checkDataController.claim.policy.contract.customer.surname}" />
 				</p>
 				<p>
 					<label for="customerFirstName">First Name</label>
-					<h:inputText id="customerFirstName"
-						value="#{completeDataController.claim.policy.contract.customer.firstName}" />
+					<h:outputText id="customerFirstName"
+						value="#{checkDataController.claim.policy.contract.customer.firstName}" />
 				</p>
 				<p>
 					<label for="customerDOB">Date of Birth</label>
-					<h:inputText id="customerDOB"
-						value="#{completeDataController.claim.policy.contract.customer.dateOfBirth}" />
+					<h:outputText id="customerDOB"
+						value="#{checkDataController.claim.policy.contract.customer.dateOfBirth}" />
 				</p>
+				<p>
+					<label for="street">Street</label>
+					<h:outputText id="street"
+						value="#{checkDataController.claim.policy.contract.customer.street}" />
+				</p>
+				<p>
+					<label for="houseNumber">House Number</label>
+					<h:outputText id="houseNumber"
+						value="#{checkDataController.claim.policy.contract.customer.houseNumber}" />
+				</p>
+				<p>
+					<label for="postcode">Postcode</label>
+					<h:outputText id="postcode"
+						value="#{checkDataController.claim.policy.contract.customer.postcode}" />
+				</p>
+				<p>
+					<label for="city">City</label>
+					<h:outputText id="city"
+						value="#{checkDataController.claim.policy.contract.customer.city}" />
+				</p>
+				<p>
+					<label for="country">Country</label>
+					<h:outputText id="country"
+						value="#{checkDataController.claim.policy.contract.customer.country}" />
+				</p>				
+				<p>
+					<label for="phoneNumber">Phone Number</label>
+					<h:outputText id="phoneNumber"
+						value="#{checkDataController.claim.policy.contract.customer.phoneNumber}" />
+				</p>
+				<p>
+					<label for="email">E-Mail</label>
+					<h:outputText id="email"
+						value="#{checkDataController.claim.policy.contract.customer.email}" />
+				</p>				
+				<p>
+					<label for="blacklisted">Is blacklisted?</label>
+					<h:outputText id="blacklisted"
+						value="#{checkDataController.claim.policy.contract.customer.blacklisted}" />
+				</p>
+				<p>
+					<label for="isCompany">Is Company?</label>
+					<h:outputText id="isCompany"
+						value="#{checkDataController.claim.policy.contract.customer.company}" />
+				</p>
+				<p>
+					<label for="companyName">Company Name</label>
+					<h:outputText id="companyName"
+						value="#{checkDataController.claim.policy.contract.customer.companyName}" />
+				</p>				
 			</h:panelGrid>
 
 			<h3>Contract Information</h3>
@@ -85,22 +141,22 @@
 				</p>
 				<p>
 					<label for="insuranceType">Insurance Type</label>
-					<h:inputText id="insuranceType"
+					<h:outputText id="insuranceType"
 						value="#{completeDataController.claim.policy.contract.insuranceType}" />
 				</p>
 				<p>
 					<label for="pickUpDate">Pick-up Date</label>
-					<h:inputText id="pickUpDate"
+					<h:outputText id="pickUpDate"
 						value="#{completeDataController.claim.policy.contract.pickUpDate}" />
 				</p>
 				<p>
 					<label for="returnDate">Return Date</label>
-					<h:inputText id="returnDate"
+					<h:outputText id="returnDate"
 						value="#{completeDataController.claim.policy.contract.returnDate}" />
 				</p>
 				<p>
 					<label for="released">Is released?</label>
-					<h:inputText id="released"
+					<h:outputText id="released"
 						value="#{completeDataController.claim.policy.contract.released}" />
 				</p>
 			</h:panelGrid>
@@ -114,7 +170,7 @@
 				</p>
 				<p>
 					<label for="dailyPremium">Insurance Type</label>
-					<h:inputText id="dailyPremium"
+					<h:outputText id="dailyPremium"
 						value="#{completeDataController.claim.policy.dailyPremium}" />
 				</p>
 			</h:panelGrid>
@@ -128,37 +184,37 @@
 				</p>
 				<p>
 					<label for="vehicleID">Vehicle ID Number</label>
-					<h:inputText id="vehicleID"
+					<h:outputText id="vehicleID"
 						value="#{completeDataController.claim.policy.car.vehicleIdentificationNumber}" />
 				</p>												
 				<p>
 					<label for="registrationNumber">Registration Number</label>
-					<h:inputText id="registrationNumber"
+					<h:outputText id="registrationNumber"
 						value="#{completeDataController.claim.policy.car.registrationNumber}" />
 				</p>
 				<p>
 					<label for="carBrand">Brand</label>
-					<h:inputText id="carBrand"
+					<h:outputText id="carBrand"
 						value="#{completeDataController.claim.policy.car.brand}" />
 				</p>
 				<p>
 					<label for="carModel">Model</label>
-					<h:inputText id="carModel"
+					<h:outputText id="carModel"
 						value="#{completeDataController.claim.policy.car.model}" />
 				</p>
 				<p>
 					<label for="constructionYear">Construction Year</label>
-					<h:inputText id="constructionYear"
+					<h:outputText id="constructionYear"
 						value="#{completeDataController.claim.policy.car.constructionYear}" />
 				</p>
 				<p>
 					<label for="fuelType">Fuel Type</label>
-					<h:inputText id="fuelType"
+					<h:outputText id="fuelType"
 						value="#{completeDataController.claim.policy.car.fuelType}" />
 				</p>
 				<p>
 					<label for="horsePower">Horse Power</label>
-					<h:inputText id="horsePower"
+					<h:outputText id="horsePower"
 						value="#{completeDataController.claim.policy.car.ps}" />
 				</p>				
 
