@@ -17,6 +17,7 @@ import de.unimuenster.wfm.capitol.dto.ContractProposal;
 import de.unimuenster.wfm.capitol.dto.ContractProposal.Order;
 import de.unimuenster.wfm.capitol.entities.Claim;
 import de.unimuenster.wfm.capitol.entities.Contract;
+import de.unimuenster.wfm.capitol.enums.ClaimDecision;
 import de.unimuenster.wfm.capitol.helper.DateTools;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
 import de.unimuenster.wfm.capitol.jpa.ClaimCRUD;
@@ -74,12 +75,33 @@ public class SendDecisionBL {
 		decision.setDescription("");
 		decision.setInsurance_decision(EnumMapper.CLAIMDECISION_TO_INTEGER.get(claim.getClaimDecision()));
 		
-		if(DESTINATION_URL != null) {
-			messageService.sendJSON(caseDecision, DESTINATION_URL);			
-		}
+		sendCaseDecision(caseDecision);
 		
 		LOGGER.log(Level.INFO, "Decision sent successfully! Decision Result: " + caseDecision.getDecision().getInsurance_decision());
 		
+	}
+	
+	
+	public void sendIncompleteDataNotification(DelegateExecution delegateExecution) {
+		
+		CaseDecision caseDecision = new CaseDecision();
+		Decision decision = caseDecision.new Decision();
+		caseDecision.setDecision(decision);
+		
+		caseDecision.setProcessinstance_id_bvis((String) delegateExecution.getVariable("processinstance_id_bvis"));
+		caseDecision.setProcessinstance_id_capitol((String) delegateExecution.getVariable(delegateExecution.getProcessInstanceId()));
+		
+		decision.setDescription("We could not find a valid policy for received vehicle_identification_number: "
+		+ (String) delegateExecution.getVariable("vehicle_identification_number") );		
+		
+		decision.setInsurance_decision(EnumMapper.CLAIMDECISION_TO_INTEGER.get(ClaimDecision.NOT_COVERED));
+	}
+	
+	
+	public void sendCaseDecision(CaseDecision caseDecision) {
+		if(DESTINATION_URL != null) {
+			messageService.sendJSON(caseDecision, DESTINATION_URL);			
+		}
 	}
 
 

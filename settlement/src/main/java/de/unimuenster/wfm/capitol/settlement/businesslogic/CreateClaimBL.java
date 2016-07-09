@@ -72,6 +72,10 @@ public class CreateClaimBL {
 		Car car = carCRUD.findCarByVehicleId(newClaim.getVehicleIDNumber());
 		if(car!=null) {
 			newClaim.setPolicy(car.getPolicy());
+			delegateExecution.setVariable("contract_found", true);
+		}
+		else{
+			delegateExecution.setVariable("contract_found", false);
 		}
 		
 		//persist new claim
