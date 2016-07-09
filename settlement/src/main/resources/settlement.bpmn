@@ -47,10 +47,7 @@
         <flowNodeRef>ExclusiveGateway_0bfo49s</flowNodeRef>
         <flowNodeRef>ExclusiveGateway_05ri3wu</flowNodeRef>
         <flowNodeRef>CheckClaimCoverage</flowNodeRef>
-        <flowNodeRef>ParallelGateway_1kd1c10</flowNodeRef>
         <flowNodeRef>SendTask_0tiet84</flowNodeRef>
-        <flowNodeRef>CreateRecord</flowNodeRef>
-        <flowNodeRef>ParallelGateway_0bm4i1l</flowNodeRef>
         <flowNodeRef>ExclusiveGateway_1qlf8kn</flowNodeRef>
         <flowNodeRef>ExclusiveGateway_0ex7jpu</flowNodeRef>
         <flowNodeRef>IntermediateCatchEvent_0ox3bvl</flowNodeRef>
@@ -99,7 +96,7 @@
       </extensionElements>
       <incoming>SequenceFlow_07kggg3</incoming>
       <incoming>SequenceFlow_1rs9g0w</incoming>
-      <outgoing>SequenceFlow_0w1vpnd</outgoing>
+      <outgoing>SequenceFlow_0nrvt3r</outgoing>
     </exclusiveGateway>
     <exclusiveGateway id="ExclusiveGateway_05ri3wu" name="manual evaluation&#10;required?" gatewayDirection="Diverging">
       <extensionElements>
@@ -139,34 +136,15 @@
       <incoming>SequenceFlow_1s70td0</incoming>
       <outgoing>SequenceFlow_1eo7a6x</outgoing>
     </serviceTask>
-    <parallelGateway id="ParallelGateway_1kd1c10">
-      <incoming>SequenceFlow_0w1vpnd</incoming>
-      <outgoing>SequenceFlow_16v2ykd</outgoing>
-      <outgoing>SequenceFlow_1kc1vak</outgoing>
-    </parallelGateway>
-    <sendTask id="SendTask_0tiet84" name="inform BVIS about decison" implementation="##unspecified" camunda:expression="${true}" camunda:resultVariable="result1">
+    <sendTask id="SendTask_0tiet84" name="send decision to BVIS" implementation="##unspecified" camunda:expression="${sendDecisionBL.performBusinessLogic(execution)}" camunda:resultVariable="result1">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
         <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
       </extensionElements>
-      <incoming>SequenceFlow_16v2ykd</incoming>
-      <outgoing>SequenceFlow_0idgacu</outgoing>
+      <incoming>SequenceFlow_0nrvt3r</incoming>
+      <outgoing>SequenceFlow_15duin7</outgoing>
     </sendTask>
-    <serviceTask id="CreateRecord" name="create record" implementation="##WebService" camunda:expression="${createRecordBL.performBusinessLogic(execution)}">
-      <extensionElements>
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
-        <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
-        <signavio:signavioMetaData metaKey="externaldocuments" metaValue="[]" />
-      </extensionElements>
-      <incoming>SequenceFlow_1kc1vak</incoming>
-      <outgoing>SequenceFlow_0f4ew2e</outgoing>
-    </serviceTask>
-    <parallelGateway id="ParallelGateway_0bm4i1l">
-      <incoming>SequenceFlow_0idgacu</incoming>
-      <incoming>SequenceFlow_0f4ew2e</incoming>
-      <outgoing>SequenceFlow_1targ69</outgoing>
-    </parallelGateway>
     <exclusiveGateway id="ExclusiveGateway_1qlf8kn">
       <incoming>SequenceFlow_1iuc26z</incoming>
       <incoming>SequenceFlow_161cvop</incoming>
@@ -178,7 +156,7 @@
       <outgoing>SequenceFlow_1rcrs7g</outgoing>
     </exclusiveGateway>
     <intermediateCatchEvent id="IntermediateCatchEvent_0ox3bvl" name="receive accept/decline">
-      <incoming>SequenceFlow_1targ69</incoming>
+      <incoming>SequenceFlow_15duin7</incoming>
       <outgoing>SequenceFlow_1ymgav4</outgoing>
       <messageEventDefinition messageRef="Message_1yhro65" />
     </intermediateCatchEvent>
@@ -202,7 +180,6 @@
     <sequenceFlow id="SequenceFlow_1rs9g0w" name="no" isImmediate="true" sourceRef="ExclusiveGateway_05ri3wu" targetRef="ExclusiveGateway_0bfo49s">
       <conditionExpression xsi:type="tFormalExpression">${not handle_manually}</conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="SequenceFlow_0w1vpnd" name="" isImmediate="true" sourceRef="ExclusiveGateway_0bfo49s" targetRef="ParallelGateway_1kd1c10" />
     <sequenceFlow id="SequenceFlow_1eo7a6x" name="" isImmediate="true" sourceRef="CheckClaimCoverage" targetRef="ExclusiveGateway_05ri3wu" />
     <sequenceFlow id="SequenceFlow_06hmwwp" name="yes" isImmediate="true" sourceRef="ExclusiveGateway_05ri3wu" targetRef="UserTask_0g5kavc">
       <extensionElements>
@@ -216,11 +193,6 @@
       </extensionElements>
       <conditionExpression xsi:type="tFormalExpression">${not data_correct}</conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="SequenceFlow_16v2ykd" sourceRef="ParallelGateway_1kd1c10" targetRef="SendTask_0tiet84" />
-    <sequenceFlow id="SequenceFlow_1kc1vak" sourceRef="ParallelGateway_1kd1c10" targetRef="CreateRecord" />
-    <sequenceFlow id="SequenceFlow_0idgacu" sourceRef="SendTask_0tiet84" targetRef="ParallelGateway_0bm4i1l" />
-    <sequenceFlow id="SequenceFlow_0f4ew2e" sourceRef="CreateRecord" targetRef="ParallelGateway_0bm4i1l" />
-    <sequenceFlow id="SequenceFlow_1targ69" sourceRef="ParallelGateway_0bm4i1l" targetRef="IntermediateCatchEvent_0ox3bvl" />
     <sequenceFlow id="SequenceFlow_1ymgav4" sourceRef="IntermediateCatchEvent_0ox3bvl" targetRef="ExclusiveGateway_0ex7jpu" />
     <sequenceFlow id="SequenceFlow_1rcrs7g" sourceRef="ExclusiveGateway_0ex7jpu" targetRef="EndEvent_0kajk9l">
       <conditionExpression xsi:type="tFormalExpression">${false}</conditionExpression>
@@ -259,6 +231,8 @@
         <targetRef>Property_1k227hz</targetRef>
       </dataInputAssociation>
     </serviceTask>
+    <sequenceFlow id="SequenceFlow_0nrvt3r" sourceRef="ExclusiveGateway_0bfo49s" targetRef="SendTask_0tiet84" />
+    <sequenceFlow id="SequenceFlow_15duin7" sourceRef="SendTask_0tiet84" targetRef="IntermediateCatchEvent_0ox3bvl" />
     <textAnnotation id="sid-2819BCFF-76FD-477D-BF69-2AD1A2F8C1B4">
       <extensionElements>
         <signavio:signavioType dataObjectType="IT-System" />
@@ -275,17 +249,8 @@
       </extensionElements>
       <text>claim system</text>
     </textAnnotation>
-    <textAnnotation id="sid-7E61AE26-0FE2-435A-9E66-35034BF27B48">
-      <extensionElements>
-        <signavio:signavioType dataObjectType="IT-System" />
-        <signavio:signavioMetaData metaKey="bgcolor" metaValue="#e1e1e1" />
-        <signavio:signavioLabel align="left" bottom="false" left="false" ref="text_name" right="true" top="false" valign="middle" x="67.0" y="28.0" />
-      </extensionElements>
-      <text>claim system</text>
-    </textAnnotation>
     <association id="sid-C1B7D65A-5F69-4F72-8A60-DBA8F0DC3191" associationDirection="None" sourceRef="sid-781E5693-6A5C-4F93-B3CB-B6AF20177D12" targetRef="UserTask_0ivyjmb" />
     <association id="sid-43EC5884-634E-4FD2-AFB3-3DE2861537F9" associationDirection="None" sourceRef="sid-2819BCFF-76FD-477D-BF69-2AD1A2F8C1B4" targetRef="CheckClaimCoverage" />
-    <association id="sid-F8BFA0DE-FDFE-4D97-AECC-35A9D214832A" associationDirection="None" sourceRef="sid-7E61AE26-0FE2-435A-9E66-35034BF27B48" targetRef="CreateRecord" />
   </process>
   <message id="Message_1yhro65" name="claim_feedback" />
   <bpmndi:BPMNDiagram id="sid-71439cd9-d8b8-4627-8008-42c0fcf3dfd5">
@@ -356,12 +321,6 @@
           <omgdc:Bounds x="1007" y="337" width="90" height="20" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_11sh3jt_gui" bpmnElement="CreateRecord">
-        <omgdc:Bounds x="1719" y="381" width="100" height="80" />
-        <bpmndi:BPMNLabel labelStyle="sid-0edb1d1c-d173-4e38-bf51-9ae55a4661e2">
-          <omgdc:Bounds x="1430.263346081153" y="309" width="74.05714416503906" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ExclusiveGateway_0bfo49s_gui" bpmnElement="ExclusiveGateway_0bfo49s" isMarkerVisible="true">
         <omgdc:Bounds x="1501" y="297" width="40" height="40" />
         <bpmndi:BPMNLabel>
@@ -384,12 +343,6 @@
         <omgdc:Bounds x="886" y="496" width="100" height="80" />
         <bpmndi:BPMNLabel labelStyle="sid-0edb1d1c-d173-4e38-bf51-9ae55a4661e2">
           <omgdc:Bounds x="533.3241426391601" y="522" width="78.68571472167969" height="24" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="sid-7E61AE26-0FE2-435A-9E66-35034BF27B48_gui" bpmnElement="sid-7E61AE26-0FE2-435A-9E66-35034BF27B48">
-        <omgdc:Bounds x="1738" y="498" width="63" height="57" />
-        <bpmndi:BPMNLabel labelStyle="sid-bf836240-0b77-4659-b35f-e4b3289bdd66">
-          <omgdc:Bounds x="1503.2919181636726" y="195" width="69.42857360839844" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-781E5693-6A5C-4F93-B3CB-B6AF20177D12_gui" bpmnElement="sid-781E5693-6A5C-4F93-B3CB-B6AF20177D12">
@@ -432,13 +385,6 @@
         <omgdi:waypoint xsi:type="omgdc:Point" x="1051.8755114155251" y="337" />
         <bpmndi:BPMNLabel>
           <omgdc:Bounds x="974" y="526" width="90" height="20" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0w1vpnd_gui" bpmnElement="SequenceFlow_0w1vpnd">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1541" y="317" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1564" y="317" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1508" y="307" width="90" height="20" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_07kggg3_gui" bpmnElement="SequenceFlow_07kggg3">
@@ -489,10 +435,6 @@
         <omgdi:waypoint xsi:type="omgdc:Point" x="189" y="100" />
         <omgdi:waypoint xsi:type="omgdc:Point" x="189" y="302" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="sid-F8BFA0DE-FDFE-4D97-AECC-35A9D214832A_gui" bpmnElement="sid-F8BFA0DE-FDFE-4D97-AECC-35A9D214832A">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1770" y="498" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1769" y="461" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="sid-43EC5884-634E-4FD2-AFB3-3DE2861537F9_gui" bpmnElement="sid-43EC5884-634E-4FD2-AFB3-3DE2861537F9">
         <omgdi:waypoint xsi:type="omgdc:Point" x="1178" y="258" />
         <omgdi:waypoint xsi:type="omgdc:Point" x="1180" y="277" />
@@ -520,48 +462,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_08edlms_di" bpmnElement="CheckClaimCoverage">
         <omgdc:Bounds x="1130" y="277" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_16v2ykd_di" bpmnElement="SequenceFlow_16v2ykd">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1614" y="317" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1719" y="317" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1606" y="307" width="90" height="20" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ParallelGateway_1kd1c10_di" bpmnElement="ParallelGateway_1kd1c10">
-        <omgdc:Bounds x="1564" y="292" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1544" y="342" width="90" height="20" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_1kc1vak_di" bpmnElement="SequenceFlow_1kc1vak">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1589" y="342" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1589" y="421" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1719" y="421" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1572" y="372" width="90" height="20" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0idgacu_di" bpmnElement="SequenceFlow_0idgacu">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1819" y="317" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1867" y="317" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1798" y="307" width="90" height="20" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0f4ew2e_di" bpmnElement="SequenceFlow_0f4ew2e">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1819" y="421" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1892" y="421" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1892" y="342" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1811" y="411" width="90" height="20" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ParallelGateway_0bm4i1l_di" bpmnElement="ParallelGateway_0bm4i1l">
-        <omgdc:Bounds x="1867" y="292" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1847" y="342" width="90" height="20" />
-        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ExclusiveGateway_1qlf8kn_di" bpmnElement="ExclusiveGateway_1qlf8kn" isMarkerVisible="true">
         <omgdc:Bounds x="2440" y="292" width="50" height="50" />
@@ -596,13 +496,6 @@
         <omgdi:waypoint xsi:type="omgdc:Point" x="2212" y="317" />
         <bpmndi:BPMNLabel>
           <omgdc:Bounds x="2121.5" y="293" width="90" height="20" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_1targ69_di" bpmnElement="SequenceFlow_1targ69">
-        <omgdi:waypoint xsi:type="omgdc:Point" x="1917" y="317" />
-        <omgdi:waypoint xsi:type="omgdc:Point" x="2001" y="317" />
-        <bpmndi:BPMNLabel>
-          <omgdc:Bounds x="1909.5" y="307" width="90" height="20" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="IntermediateCatchEvent_0ox3bvl_di" bpmnElement="IntermediateCatchEvent_0ox3bvl">
@@ -669,6 +562,20 @@
       <bpmndi:BPMNShape id="ServiceTask_17x9v6j_di" bpmnElement="ServiceTask_17x9v6j">
         <omgdc:Bounds x="263" y="277" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0nrvt3r_di" bpmnElement="SequenceFlow_0nrvt3r">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1541" y="317" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1719" y="317" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1585" y="307" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_15duin7_di" bpmnElement="SequenceFlow_15duin7">
+        <omgdi:waypoint xsi:type="omgdc:Point" x="1819" y="317" />
+        <omgdi:waypoint xsi:type="omgdc:Point" x="2001" y="317" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="1865" y="307" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
     <bpmndi:BPMNLabelStyle id="sid-bf836240-0b77-4659-b35f-e4b3289bdd66">
       <omgdc:Font name="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" />

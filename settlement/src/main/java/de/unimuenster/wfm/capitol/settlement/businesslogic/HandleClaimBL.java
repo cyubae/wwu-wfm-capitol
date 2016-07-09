@@ -19,7 +19,7 @@ import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;
  */
 @Stateless
 @Named
-public class CheckClaimCoverageBL {
+public class HandleClaimBL {
 	
 	//Limit in euro above which claim must be handled manually
 	private static int AUTOMATIC_COVERAGE_LIMIT = 1000;
@@ -42,20 +42,20 @@ public class CheckClaimCoverageBL {
 
 	public void performBusinessLogic(DelegateExecution delegateExecution) {
 		
-		int internalClaimId = (Integer) delegateExecution.getVariable("claim_id_internal");
-		Claim claim = claimCRUD.find(internalClaimId);
-		
-		boolean handleManually = false;
-		if(claim.getClaimValue() > AUTOMATIC_COVERAGE_LIMIT*100 && claim.getPolicy() != null) {
-			delegateExecution.setVariable("handle_manually", true);
-		}
-		else {
-			claim.setCovered(true);
-			claimCRUD.update(claim);
-			
-			delegateExecution.setVariable("claim_covered", true);
-			delegateExecution.setVariable("handle_manually", false);
-		}
+//		int internalClaimId = (Integer) delegateExecution.getVariable("claim_id_internal");
+//		Claim claim = claimCRUD.find(internalClaimId);
+//		
+//		boolean handleManually = false;
+//		if(claim.getClaimValue() > AUTOMATIC_COVERAGE_LIMIT*100 && claim.getPolicy() != null) {
+//			delegateExecution.setVariable("handle_manually", true);
+//		}
+//		else {
+//			claim.setCovered(true);
+//			claimCRUD.update(claim);
+//			
+//			delegateExecution.setVariable("claim_covered", true);
+//			delegateExecution.setVariable("handle_manually", false);
+//		}
 		
 	}
 }
