@@ -48,7 +48,10 @@ public class CreateClaim {
 		newClaim.setClaimDescription((String) delegateExecution.getVariable("claim_description"));
 		newClaim.setDamageAddress((String) delegateExecution.getVariable("damage_address"));
 		newClaim.setExternalClaimId( (Integer) delegateExecution.getVariable("claim_id") );
-		newClaim.setClaimValue( ( (Integer) delegateExecution.getVariable("workshop_price") )*100); 
+		
+		Double workshopPrice = (Double) delegateExecution.getVariable("workshop_price");
+		int claimValue = (int) (workshopPrice.doubleValue()*100);
+		newClaim.setClaimValue(claimValue); 
 				
 		newClaim.setPartiesInvolved(
 				((String) delegateExecution.getVariable("claim_description")).equals("true") ? true : false);
