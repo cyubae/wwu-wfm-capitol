@@ -250,7 +250,7 @@
     </userTask>
     <sequenceFlow id="SequenceFlow_1s16rje" sourceRef="ServiceTask_17x9v6j" targetRef="UserTask_0s6e88g" />
     <dataStoreReference id="DataStoreReference_1ykcaib" name="claim database" />
-    <serviceTask id="ServiceTask_17x9v6j" name="Create Claim (Retrieve contract data)" camunda:expression="${createClaim.performBusinessLogic(execution)}">
+    <serviceTask id="ServiceTask_17x9v6j" name="Create Claim (Retrieve contract data)" camunda:expression="${createClaimBL.performBusinessLogic(execution)}">
       <incoming>SequenceFlow_1ahlven</incoming>
       <outgoing>SequenceFlow_1s16rje</outgoing>
       <property id="Property_1k227hz" name="__targetRef_placeholder" />

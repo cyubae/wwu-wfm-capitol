@@ -22,9 +22,9 @@ import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;
 
 @Stateless
 @Named
-public class CreateClaim {
+public class CreateClaimBL {
 
-	private static Logger LOGGER = Logger.getLogger(CreateClaim.class.getName());
+	private static Logger LOGGER = Logger.getLogger(CreateClaimBL.class.getName());
 
 	// Inject CRUD-Services to access persistence unit	
 	@Inject
