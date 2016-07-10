@@ -14,6 +14,8 @@ package de.unimuenster.wfm.capitol.settlement.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,16 +26,13 @@ import javax.inject.Named;
 import org.camunda.bpm.engine.cdi.BusinessProcess;
 import org.camunda.bpm.engine.cdi.jsf.TaskForm;
 
-import de.unimuenster.wfm.capitol.entities.Car;
 import de.unimuenster.wfm.capitol.entities.Claim;
-import de.unimuenster.wfm.capitol.entities.Contract;
-import de.unimuenster.wfm.capitol.entities.Customer;
-import de.unimuenster.wfm.capitol.entities.Policy;
+import de.unimuenster.wfm.capitol.entities.ExternalParty;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
+import de.unimuenster.wfm.capitol.jpa.ClaimCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
 import de.unimuenster.wfm.capitol.jpa.CustomerCRUD;
-import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;
-import de.unimuenster.wfm.capitol.jpa.ClaimCRUD;;
+import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;;
 
 @Named
 @ConversationScoped
@@ -69,6 +68,7 @@ public class CheckDataController implements Serializable {
 
 	// Caches database objects during the conversation
 	private Claim claim;
+//	private ArrayList<ExternalParty> externalPartiesCollection;
 
 	public Claim getClaim() {
 		if(claim == null) {
@@ -76,6 +76,16 @@ public class CheckDataController implements Serializable {
 		}
 		return claim;
 	}
+	
+//	public List<ExternalParty> getExternalPartiesCollection() {
+//		if(externalPartiesCollection == null) {
+//			this.externalPartiesCollection = new ArrayList<ExternalParty>(this.getClaim().getExternalParties());	
+//		}
+//		return this.externalPartiesCollection;
+//	}
+	
+	
+//	Hibernate.initialize(this.getClaim().);
 
 	public void submitResult(boolean result) throws IOException {
 		//update process variable

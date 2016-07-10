@@ -49,61 +49,16 @@
 				</p>
 
 				<p>
-					<label for="claimValue">Claim Value</label>
+					<label for="claimValue">Claim Value (Euro Cents)</label>
 					<h:inputText id="claimValue"
 						value="#{checkDataController.claim.claimValue}" />
 				</p>
 
 				<!-- Data Table for parties involved -->
-				<h3>External Parties Involved</h3>
-				<h:dataTable value="#{checkDataController.claim.externalParties}"
-					var="externalParty">
-					<h:column>
-						<f:facet name="header">Surname</f:facet>
-						<h:outputText id="surname" value="#{externalParty.surname}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">First Name</f:facet>
-						<h:inputText id="firstName" value="#{externalParty.firstName}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Street</f:facet>
-						<h:outputText id="street" value="#{externalParty.street}" />
-					</h:column>					
-					<h:column>
-						<f:facet name="header">House Number</f:facet>
-						<h:outputText id="houseNumber" value="#{externalParty.houseNumber}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Postcode</f:facet>
-						<h:outputText id="postcode" value="#{externalParty.postcode}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">City</f:facet>
-						<h:outputText id="city" value="#{externalParty.city}" />
-					</h:column>					
-					<h:column>
-						<f:facet name="header">Country</f:facet>
-						<h:outputText id="country" value="#{externalParty.country}" />
-					</h:column>					
-					<h:column>
-						<f:facet name="header">E-Mail</f:facet>
-						<h:outputText id="email" value="#{externalParty.email}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Phone Number</f:facet>
-						<h:outputText id="phoneNumber" value="#{externalParty.phoneNumber}" />
-					</h:column>					
-					<h:column>
-						<f:facet name="header">Date of Birth</f:facet>
-						<h:outputText id="dateOfBirth" value="#{externalParty.dateOfBirth}" />
-					</h:column>					
-					<h:column>
-						<f:facet name="header">Company</f:facet>
-						<h:outputText id="company" value="#{externalParty.company}" />
-					</h:column>																
-				</h:dataTable>
+
 			</h:panelGrid>
+
+
 
 			<h2>Contract Information</h2>
 			<h3>Customer Information</h3>

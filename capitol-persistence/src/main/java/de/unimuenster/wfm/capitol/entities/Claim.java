@@ -6,10 +6,9 @@ import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.CascadeType.REFRESH;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.logging.Level;
+import java.util.Date;
 import java.util.logging.Logger;
 
 import javax.persistence.Entity;
@@ -18,14 +17,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 import org.camunda.bpm.engine.cdi.annotation.BusinessProcessScoped;
 
 import de.unimuenster.wfm.capitol.enums.ClaimDecision;
-import de.unimuenster.wfm.capitol.enums.InsuranceType;
-import de.unimuenster.wfm.capitol.helper.DateTools;
 
 @Entity
 @BusinessProcessScoped
@@ -47,7 +43,7 @@ public class Claim implements Serializable {
 	@ManyToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
 	protected Policy policy;
 	
-	@OneToMany(cascade = {DETACH, MERGE, PERSIST, REFRESH}, mappedBy = "claim",fetch=FetchType.LAZY)
+	@OneToMany(cascade = {DETACH, MERGE, PERSIST, REFRESH}, mappedBy="claim", fetch=FetchType.LAZY)
 	protected Collection<ExternalParty> externalParties = new ArrayList<ExternalParty>();	
 	
 	protected String vehicleIDNumber;

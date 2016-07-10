@@ -20,6 +20,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 import org.camunda.bpm.engine.cdi.annotation.BusinessProcessScoped;
+import org.hibernate.annotations.IndexColumn;
 
 @Entity
 @BusinessProcessScoped
