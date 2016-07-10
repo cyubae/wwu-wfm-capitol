@@ -69,9 +69,9 @@ public class SendRejectionBL {
 		
 		if(DESTINATION_URL != null) {
 			messageService.sendJSON(contractProposal, DESTINATION_URL);			
+			LOGGER.log(Level.INFO, "Contract rejction sent successfully! Contract Result: " + order.getResult());
 		}
 		
-		LOGGER.log(Level.INFO, "Contract rejction sent successfully! Contract Result: " + order.getResult());
 	}
 
 

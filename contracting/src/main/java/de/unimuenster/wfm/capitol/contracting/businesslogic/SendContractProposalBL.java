@@ -70,14 +70,14 @@ public class SendContractProposalBL {
 			e.printStackTrace();
 		}
 		order.setResult((Integer) delegateExecution.getVariable("contract_result"));		
+		LOGGER.log(Level.INFO, "Final contract price: " + contract.getTotalCost());
 
 		if(DESTINATION_URL != null) {
 			messageService.sendJSON(contractProposal, DESTINATION_URL);			
+			
+			LOGGER.log(Level.INFO, "Contract proposal sent successfully! Contract Result: " + order.getResult());
 		}
 		
-		LOGGER.log(Level.INFO, "Final contract price: " + contract.getTotalCost());
-		
-		LOGGER.log(Level.INFO, "Contract proposal sent successfully! Contract Result: " + order.getResult());
 	}
 
 

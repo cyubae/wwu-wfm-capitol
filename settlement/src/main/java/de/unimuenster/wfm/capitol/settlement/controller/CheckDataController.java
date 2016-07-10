@@ -85,8 +85,6 @@ public class CheckDataController implements Serializable {
 //	}
 	
 	
-//	Hibernate.initialize(this.getClaim().);
-
 	public void submitResult(boolean result) throws IOException {
 		//update process variable
 		businessProcess.setVariable("data_correct", result);
