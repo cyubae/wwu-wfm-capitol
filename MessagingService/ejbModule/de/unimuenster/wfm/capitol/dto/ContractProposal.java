@@ -42,8 +42,10 @@ public class ContractProposal implements Serializable{
 	}
 
 
-	public class Order{
-	    private int order_id;
+	public class Order implements Serializable{
+		
+		private static final long serialVersionUID = -5230436896883744507L;
+		private int order_id;
 	    private Date request_date;
 	    private String inquiry_text;
 	    private int result;
