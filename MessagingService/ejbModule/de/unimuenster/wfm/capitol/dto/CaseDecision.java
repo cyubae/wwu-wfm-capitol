@@ -41,9 +41,10 @@ public class CaseDecision implements Serializable{
 
 
 
-	public class Decision{
+	public class Decision implements Serializable{
 		
-        private int claim_id;
+		private static final long serialVersionUID = 1852574274546178491L;
+		private int claim_id;
         private double coverage_costs;
         private double customer_costs;
         private int insurance_decision;
