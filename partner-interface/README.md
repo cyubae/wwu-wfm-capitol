@@ -1,4 +1,4 @@
-http://localhost:8080/partner-interface/contractdetails
+http://camunda-capitol.uni-muenster.de/partner-interface/contractdetails
 
 
 
@@ -69,7 +69,7 @@ http://localhost:8080/partner-interface/contractdetails
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-http://localhost:8080/partner-interface/contractstatus
+http://camunda-capitol.uni-muenster.de/partner-interface/contractstatus
 
 {
 "processinstance_id_bvis": "fc9432hjfxn3423fnvbvg",
@@ -84,7 +84,7 @@ http://localhost:8080/partner-interface/contractstatus
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-http://localhost:8080/partner-interface/reminder
+http://camunda-capitol.uni-muenster.de/partner-interface/reminder
 
 
 {
@@ -100,7 +100,7 @@ http://localhost:8080/partner-interface/reminder
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-http://localhost:8080/partner-interface/claimdetails
+http://camunda-capitol.uni-muenster.de/partner-interface/claimdetails
 
 
 {
@@ -168,7 +168,7 @@ http://localhost:8080/partner-interface/claimdetails
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-http://localhost:8080/partner-interface/feedback
+http://camunda-capitol.uni-muenster.de/partner-interface/partner-interface/feedback
 
 
 {
