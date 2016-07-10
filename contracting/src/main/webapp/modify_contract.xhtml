@@ -119,6 +119,12 @@
 						<f:convertDateTime pattern="yyyy-MM-dd" />
 						</h:inputText>
 				</p>
+				<p>
+					<label for="totalCost">Total Cost (Euro Cents):</label>
+					<h:outputText id="totalCost"
+						value="#{modifyContractController.contract.totalCost}" />
+				</p>								
+				
 			</h:panelGrid>
 
 			<h3>Policies</h3>

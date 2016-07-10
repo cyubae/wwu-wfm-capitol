@@ -85,7 +85,7 @@
       <outgoing>SequenceFlow_1rs9g0w</outgoing>
       <outgoing>SequenceFlow_06hmwwp</outgoing>
     </exclusiveGateway>
-    <userTask id="UserTask_0ivyjmb" name="Complete data manually" implementation="##unspecified" camunda:formKey="app:complete_data.jsf">
+    <userTask id="UserTask_0ivyjmb" name="Correct data manually" implementation="##unspecified" camunda:formKey="app:complete_data.jsf">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -94,7 +94,7 @@
       <incoming>SequenceFlow_1120f6i</incoming>
       <outgoing>SequenceFlow_1bev8vu</outgoing>
     </userTask>
-    <exclusiveGateway id="ExclusiveGateway_0jruqba" name="is data complete&#10;and correct?" gatewayDirection="Diverging">
+    <exclusiveGateway id="ExclusiveGateway_0jruqba" name="is data correct?" gatewayDirection="Diverging">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
       </extensionElements>
@@ -221,7 +221,7 @@
       <outgoing>SequenceFlow_1ahlven</outgoing>
       <messageEventDefinition id="sid-2e65a6ce-f67c-4fe7-9ac6-737904e96a60" messageRef="sid-6309FA27-8337-4480-83B5-81ECF9209099" />
     </startEvent>
-    <userTask id="UserTask_0s6e88g" name="Check data for completeness and corectness" camunda:formKey="app:check_data.jsf">
+    <userTask id="UserTask_0s6e88g" name="Check data for  corectness" camunda:formKey="app:check_data.jsf">
       <incoming>SequenceFlow_0tiynr0</incoming>
       <outgoing>SequenceFlow_1iois9y</outgoing>
     </userTask>
