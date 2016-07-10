@@ -46,13 +46,13 @@ public class ExternalParty implements Serializable {
 	protected String city;
 	protected String country;
 	protected String dateOfBirth; //DD-MM-YYYY
-	protected String company;
-	protected boolean hasInsurance;
+	protected String company = "";
+	protected boolean hasInsurance = false;
 	
 	@ManyToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
 	protected Insurance insurance;
 	
-	@ManyToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
+	@ManyToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.LAZY)
 	protected Claim claim;		
 
 	public ExternalParty() {

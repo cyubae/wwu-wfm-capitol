@@ -17,7 +17,7 @@ public class Involved_party {
 	private String postcode;
 	private String city;
 	private String country;
-	private Calendar date_of_birth;
+	private String date_of_birth;
 	private String company;
 	private boolean has_insurance;
 	private Insurance insurance;
@@ -98,11 +98,11 @@ public class Involved_party {
 		this.country = country;
 	}
 
-	public Calendar getDate_of_birth() {
+	public String getDate_of_birth() {
 		return date_of_birth;
 	}
 
-	public void setDate_of_birth(Calendar date_of_birth) {
+	public void setDate_of_birth(String date_of_birth) {
 		this.date_of_birth = date_of_birth;
 	}
 

@@ -47,7 +47,7 @@ public class Claim implements Serializable {
 	@ManyToOne(cascade = {DETACH, MERGE, PERSIST, REFRESH}, fetch=FetchType.EAGER)
 	protected Policy policy;
 	
-	@OneToMany(cascade = {DETACH, MERGE, PERSIST, REFRESH}, mappedBy = "claim",fetch=FetchType.EAGER)
+	@OneToMany(cascade = {DETACH, MERGE, PERSIST, REFRESH}, mappedBy = "claim",fetch=FetchType.LAZY)
 	protected Collection<ExternalParty> externalParties = new ArrayList<ExternalParty>();	
 	
 	protected String vehicleIDNumber;
