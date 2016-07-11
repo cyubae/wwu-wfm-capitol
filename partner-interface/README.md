@@ -168,7 +168,7 @@ http://camunda-capitol.uni-muenster.de/partner-interface/claimdetails
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-http://camunda-capitol.uni-muenster.de/partner-interface/partner-interface/feedback
+http://camunda-capitol.uni-muenster.de/partner-interface/feedback
 
 
 {
