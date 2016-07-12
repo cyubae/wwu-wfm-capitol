@@ -1,0 +1,116 @@
+h1, h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h3 {
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#page {
+    width: 80%;
+    margin: auto;
+    border: 1px solid lightgrey;
+}
+
+#header {
+    padding: 1em;
+    background: #F6F6F6;
+}
+
+#title {
+    vertical-align: 20px;
+}
+
+#navigation {
+    clear: both;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    padding: 1em;
+    background: #F6F6F6;
+}
+
+#navigation ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+#navigation li {
+    display: inline;
+}
+
+#navigation a {
+    color: #000;
+    padding: 8px 0 8px 16px;
+    text-decoration: none;
+}
+
+#content {
+    clear: both;
+    padding: 1em;
+}
+
+#footer {
+    clear: both;
+    padding: 1em;
+    border-top: 1px solid lightgrey;
+    font-size: small;
+    background: #F6F6F6;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+}
+
+.form-footer {
+    padding-left: 5em;
+}
+
+.data-table {
+    border-collapse: collapse;
+}
+
+.header-cell {
+    border-bottom: 1px solid black;
+    vertical-align: bottom;
+}
+
+.data-cell {
+    border-left: 1px solid black;
+    padding-right: 4px;
+    padding-left: 4px;
+}
+
+.data-cell:first-child {
+    border-left: none;
+}
+
+.footer-cell {
+    padding-top: 0.5em;
+    text-align: center;
+}
+
+.label {
+    font-weight: bold;
+    padding-right: 1em;
+}
+
+.details-table .label {
+    border-bottom: 1px solid black;
+}

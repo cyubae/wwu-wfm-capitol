@@ -11,80 +11,96 @@
 	</f:metadata>
 	<h:head>
 		<title>Check Data and Update Customer</title>
+		<h:outputStylesheet name="default.css" />
 	</h:head>
 	<h:body>
 		<h:form id="submitForm">
 			<h1>Check Data and create new Customer</h1>
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="3"
+				columnClasses="form-output,form-output,form-message error"
+				footerClass="form-footer">
 				<p>
 					<label for="customerId">Customer ID</label>
 					<h:outputText id="customerId"
 						value="#{checkCustomerController.customer.customerId}" />
+					<h:message for="customerId" />
 				</p>
 				<p>
 					<label for="firstname">First Name</label>
 					<h:inputText id="firstname"
 						value="#{checkCustomerController.customer.firstName}"
 						required="true" />
+					<h:message for="firstname" />
 				</p>
 				<p>
 					<label for="surname">First Name</label>
 					<h:inputText id="surname"
 						value="#{checkCustomerController.customer.surname}"
 						required="true" />
+					<h:message for="surname" />
 				</p>
 				<p>
 					<label for="email">E-Mail</label>
 					<h:inputText id="email"
-						value="#{checkCustomerController.customer.email}"
-						required="true" />
+						value="#{checkCustomerController.customer.email}" required="true" />
+					<h:message for="email" />
 				</p>
 				<p>
 					<label for="phoneNumber">Phone Number</label>
 					<h:inputText id="phoneNumber"
 						value="#{checkCustomerController.customer.phoneNumber}"
-						required="true" />
+						required="true"
+						validatorMessage="Phone number must be of format 0123-456789"
+						requiredMessage="Required Field!">
+						<f:validateRegex pattern="((\d+)(-)(\d+))" />
+					</h:inputText>
+					<h:message for="phoneNumber" />
 				</p>
 				<p>
 					<label for="street">Street</label>
 					<h:inputText id="street"
-						value="#{checkCustomerController.customer.street}"
-						required="true" />
+						value="#{checkCustomerController.customer.street}" required="true" />
+					<h:message for="street" />
 				</p>
 				<p>
 					<label for="houseNumber">House Number</label>
 					<h:inputText id="houseNumber"
 						value="#{checkCustomerController.customer.houseNumber}"
 						required="true" />
+					<h:message for="houseNumber" />
 				</p>
 				<p>
 					<label for="postcode">Post Code</label>
 					<h:inputText id="postcode"
 						value="#{checkCustomerController.customer.postcode}"
 						required="true" />
+					<h:message for="postcode" />
 				</p>
 				<p>
 					<label for="city">City</label>
 					<h:inputText id="city"
-						value="#{checkCustomerController.customer.city}"
-						required="true" />
+						value="#{checkCustomerController.customer.city}" required="true" />
+					<h:message for="city" />
 				</p>
 				<p>
 					<label for="country">Country</label>
 					<h:inputText id="country"
 						value="#{checkCustomerController.customer.country}"
 						required="true" />
+					<h:message for="country" />
 				</p>
 				<p>
 					<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
 					<h:inputText id="dateOfBirth"
 						value="#{checkCustomerController.customer.dateOfBirth}"
 						required="true" />
+					<h:message for="dateOfBirth" />
 				</p>
 				<p>
 					<label for="company">Customer is Company?</label>
 					<h:selectBooleanCheckbox id="company"
 						value="#{checkCustomerController.customer.company}" />
+					<h:message for="company" />
 					<br />
 				</p>
 				<p>
@@ -92,11 +108,13 @@
 					<h:inputText id="companyName"
 						value="#{checkCustomerController.customer.companyName}"
 						required="false" />
+					<h:message for="companyName" />
 				</p>
 				<p>
 					<label for="blacklisted">Customer is blacklisted</label>
 					<h:selectBooleanCheckbox id="blacklisted"
 						value="#{checkCustomerController.customer.blacklisted}" />
+					<h:message for="blacklisted" />
 					<br />
 				</p>
 			</h:panelGrid>
