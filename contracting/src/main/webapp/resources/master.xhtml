@@ -1,31 +1,33 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <f:view>
-    <ui:insert name="metadata"/>
-    <h:head>
-        <h:outputStylesheet name="default.css"/>
-        <title>
-            <ui:insert name="title">Title</ui:insert>
-        </title>
-    </h:head>
-    <h:body>
-        <div id="page">
-            <div id="header">
-                <ui:insert name="header">
-                    <h1><span id="title">My Insurance Company 1</span></h1>
-                </ui:insert>
-            </div>
-            <div id="content">
-                <ui:insert name="content"/>
-            </div>
-            <div id="footer">
-                <ui:insert name="footer">&copy; 2016 Capitol Insurances GmbH</ui:insert>
-            </div>
-        </div>
-    </h:body>
+	<ui:insert name="metadata" />
+	<h:head>
+		<h:outputStylesheet name="default.css" />
+		<title><ui:insert name="title">Title</ui:insert></title>
+	</h:head>
+	<h:body>
+		<div id="page">
+			<div id="header">
+				<img src="resources/capitol_logo.jpg" alt="Capitol Logo"
+					style="width: 304px; height: 228px;"/>
+				<ui:insert name="header">
+					<h1>
+						<span id="title">Customer Contracting Process</span>
+					</h1>
+				</ui:insert>
+			</div>
+			<div id="content">
+				<ui:insert name="content" />
+			</div>
+			<div id="footer">
+				<ui:insert name="footer">&copy; 2016 Capitol Versicherung AG</ui:insert>
+			</div>
+		</div>
+	</h:body>
 </f:view>
 </html>
