@@ -120,9 +120,9 @@
 						</h:inputText>
 				</p>
 				<p>
-					<label for="totalCost">Total Cost (Euro Cents):</label>
+					<label for="totalCost">Total Cost:</label>
 					<h:outputText id="totalCost"
-						value="#{modifyContractController.contract.totalCost}" />
+						value="#{modifyContractController.contract.totalCost/100} €" />
 				</p>								
 				
 			</h:panelGrid>
@@ -135,8 +135,8 @@
 					<h:outputText id="policyId" value="#{policy.policyId}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Daily Premium (Euro Cents)</f:facet>
-					<h:inputText id="dailyPremium" value="#{policy.dailyPremium}" />
+					<f:facet name="header">Daily Premium in €</f:facet>
+					<h:inputText id="dailyPremium" value="#{policy.dailyPremium/100}" />
 				</h:column>
 				<h:column>
 					<f:facet name="header">Car ID</f:facet>
