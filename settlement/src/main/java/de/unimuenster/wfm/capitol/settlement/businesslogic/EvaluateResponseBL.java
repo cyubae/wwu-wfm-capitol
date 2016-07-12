@@ -50,16 +50,18 @@ public class EvaluateResponseBL {
 		int externalDecision = (Integer) delegateExecution.getVariable("claim_status");
 
 		boolean sendRefund = false;
-		if(
-				(
-						claimDecision == ClaimDecision.COVERED 
-						|| claimDecision == ClaimDecision.PARTIALLY_COVERED
-						)
-				&& externalDecision == 1
-				) {
-			sendRefund = true;	
+		boolean reviewFeedback = false;
+		if(externalDecision == 1) {
+			if(claimDecision == ClaimDecision.COVERED  || claimDecision == ClaimDecision.PARTIALLY_COVERED) {
+				sendRefund = true;
+			}
+		}
+		else if(externalDecision == 2) {
+			reviewFeedback = true;
 		}
 
+
+		delegateExecution.setVariable("review_feedback", reviewFeedback);
 		delegateExecution.setVariable("send_refund", sendRefund);
 	}
 }

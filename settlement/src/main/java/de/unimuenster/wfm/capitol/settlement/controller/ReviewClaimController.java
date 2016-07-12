@@ -38,9 +38,9 @@ import de.unimuenster.wfm.capitol.jpa.ClaimCRUD;;
 
 @Named
 @ConversationScoped
-public class HandleClaimController implements Serializable {
+public class ReviewClaimController implements Serializable {
 
-	private static Logger LOGGER = Logger.getLogger(HandleClaimController.class.getName());
+	private static Logger LOGGER = Logger.getLogger(ReviewClaimController.class.getName());
 
 	private static  final long serialVersionUID = 1L;
 
@@ -98,7 +98,10 @@ public class HandleClaimController implements Serializable {
 			claimDecision = ClaimDecision.COVERED;
 		}
 		
+		LOGGER.log(Level.INFO, "Set new Claim Decision:" + claimDecision);
 		claim.setClaimDecision(claimDecision);
+		
+		LOGGER.log(Level.INFO, "Found new Claim Decision:" + claim.getClaimDecision());
 		
 		claimCRUD.update(claim);
 

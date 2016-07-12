@@ -10,53 +10,74 @@
 			listener="#{camundaTaskForm.startTaskForm()}" />
 	</f:metadata>
 	<h:head>
-		<title>Check data for completeness and correctness</title>
+		<title>Review Claim</title>
 	</h:head>
 	<h:body>
+
 		<h:form id="submitForm">
-			<h1>Check data for completeness and correctness</h1>
+			<h1>Check Claim Approval</h1>
+
+			<p
+				style="border: 3px; border-style: solid; border-color: #FF0000; padding: 1em;">
+				The following message has been received after the last time the
+				decision was sent:<br />
+				<h:outputText id="message"
+					value="#{processVariables['claim_description']}" />
+				<br />
+			</p>
+
 
 			<h2>Claim Information</h2>
 			<h:panelGrid columns="2">
 				<p>
 					<label for="claimId">Claim ID</label>
 					<h:outputText id="claimId"
-						value="#{checkDataController.claim.claimId}" />
+						value="#{reviewClaimController.claim.claimId}" />
 				</p>
 
 				<p>
 					<label for="externalClaimId">External Claim ID</label>
 					<h:outputText id="externalClaimId"
-						value="#{checkDataController.claim.externalClaimId}" />
+						value="#{reviewClaimController.claim.externalClaimId}" />
 				</p>
 
 				<p>
 					<label for="claimDescription">Description</label>
 					<h:outputText id="claimDescription"
-						value="#{checkDataController.claim.claimDescription}" />
+						value="#{reviewClaimController.claim.claimDescription}" />
 				</p>
 
 				<p>
 					<label for="damageDate">Damage Date</label>
 					<h:outputText id="damageDate"
-						value="#{checkDataController.claim.damageDate}" />
+						value="#{reviewClaimController.claim.damageDate}" />
 				</p>
 
 				<p>
 					<label for="damageAddress">Damage Address</label>
 					<h:outputText id="damageAddress"
-						value="#{checkDataController.claim.damageAddress}" />
+						value="#{reviewClaimController.claim.damageAddress}" />
 				</p>
 
 				<p>
-					<label for="claimValue">Claim Value (Euro Cents)</label>
+					<label for="claimValue">Claim Value</label>
 					<h:outputText id="claimValue"
-						value="#{checkDataController.claim.claimValue}" />
+						value="#{reviewClaimController.claim.claimValue}" />
 				</p>
 
 				<!-- Data Table for parties involved -->
-
 			</h:panelGrid>
+
+			<h2>Coverage Decision</h2>
+			<h:panelGrid columns="2">
+				<p>
+					<label for="coveredCosts">Covered Costs</label>
+					<h:inputText id="coveredCosts"
+						value="#{reviewClaimController.claim.coverageCosts}" />
+				</p>
+				<!-- Data Table for parties involved -->
+			</h:panelGrid>
+
 
 
 
@@ -140,27 +161,27 @@
 				<p>
 					<label for="contractID">Contract ID</label>
 					<h:outputText id="contractID"
-						value="#{checkDataController.claim.policy.contract.contractId}" />
+						value="#{reviewClaimController.claim.policy.contract.contractId}" />
 				</p>
 				<p>
 					<label for="insuranceType">Insurance Type</label>
 					<h:outputText id="insuranceType"
-						value="#{checkDataController.claim.policy.contract.insuranceType}" />
+						value="#{reviewClaimController.claim.policy.contract.insuranceType}" />
 				</p>
 				<p>
 					<label for="pickUpDate">Pick-up Date</label>
 					<h:outputText id="pickUpDate"
-						value="#{checkDataController.claim.policy.contract.pickUpDate}" />
+						value="#{reviewClaimController.claim.policy.contract.pickUpDate}" />
 				</p>
 				<p>
 					<label for="returnDate">Return Date</label>
 					<h:outputText id="returnDate"
-						value="#{checkDataController.claim.policy.contract.returnDate}" />
+						value="#{reviewClaimController.claim.policy.contract.returnDate}" />
 				</p>
 				<p>
 					<label for="released">Is released?</label>
 					<h:outputText id="released"
-						value="#{checkDataController.claim.policy.contract.released}" />
+						value="#{reviewClaimController.claim.policy.contract.released}" />
 				</p>
 			</h:panelGrid>
 
@@ -169,12 +190,12 @@
 				<p>
 					<label for="policyId">Policy ID</label>
 					<h:outputText id="policyId"
-						value="#{checkDataController.claim.policy.policyId}" />
+						value="#{reviewClaimController.claim.policy.policyId}" />
 				</p>
 				<p>
-					<label for="dailyPremium">Daily Premium</label>
+					<label for="dailyPremium">Insurance Type</label>
 					<h:outputText id="dailyPremium"
-						value="#{checkDataController.claim.policy.dailyPremium}" />
+						value="#{reviewClaimController.claim.policy.dailyPremium}" />
 				</p>
 			</h:panelGrid>
 
@@ -183,52 +204,48 @@
 				<p>
 					<label for="carId">Car ID</label>
 					<h:outputText id="carId"
-						value="#{checkDataController.claim.policy.car.carId}" />
+						value="#{reviewClaimController.claim.policy.car.carId}" />
 				</p>
 				<p>
 					<label for="vehicleID">Vehicle ID Number</label>
 					<h:outputText id="vehicleID"
-						value="#{checkDataController.claim.policy.car.vehicleIdentificationNumber}" />
+						value="#{reviewClaimController.claim.policy.car.vehicleIdentificationNumber}" />
 				</p>
 				<p>
 					<label for="registrationNumber">Registration Number</label>
 					<h:outputText id="registrationNumber"
-						value="#{checkDataController.claim.policy.car.registrationNumber}" />
+						value="#{reviewClaimController.claim.policy.car.registrationNumber}" />
 				</p>
 				<p>
 					<label for="carBrand">Brand</label>
 					<h:outputText id="carBrand"
-						value="#{checkDataController.claim.policy.car.brand}" />
+						value="#{reviewClaimController.claim.policy.car.brand}" />
 				</p>
 				<p>
 					<label for="carModel">Model</label>
 					<h:outputText id="carModel"
-						value="#{checkDataController.claim.policy.car.model}" />
+						value="#{reviewClaimController.claim.policy.car.model}" />
 				</p>
 				<p>
 					<label for="constructionYear">Construction Year</label>
 					<h:outputText id="constructionYear"
-						value="#{checkDataController.claim.policy.car.constructionYear}" />
+						value="#{reviewClaimController.claim.policy.car.constructionYear}" />
 				</p>
 				<p>
 					<label for="fuelType">Fuel Type</label>
 					<h:outputText id="fuelType"
-						value="#{checkDataController.claim.policy.car.fuelType}" />
+						value="#{reviewClaimController.claim.policy.car.fuelType}" />
 				</p>
 				<p>
 					<label for="horsePower">Horse Power</label>
 					<h:outputText id="horsePower"
-						value="#{checkDataController.claim.policy.car.ps}" />
+						value="#{reviewClaimController.claim.policy.car.ps}" />
 				</p>
-
-
 			</h:panelGrid>
 
 
-			<h:commandButton id="ok_button" value="Data is complete and correct"
-				action="#{checkDataController.submitResult(true)}" />
-			<h:commandButton id="not_ok_button" value="Data is not OK"
-				action="#{checkDataController.submitResult(false)}" />
+			<h:commandButton id="ok_button" value="Claim Processed"
+				action="#{reviewClaimController.submitResult(true)}" />
 		</h:form>
 	</h:body>
 </f:view>
