@@ -116,9 +116,9 @@
 						value="#{validateContractController.contract.returnDate}" />
 				</p>
 				<p>
-					<label for="totalCost">Total Cost (Euro Cents):</label>
+					<label for="totalCost">Total Cost:</label>
 					<h:outputText id="totalCost"
-						value="#{validateContractController.contract.totalCost}" />
+						value="#{validateContractController.contract.totalCost/100} €" />
 				</p>				
 				
 				
@@ -132,8 +132,8 @@
 						#{policy.policyId}
          			</h:column>
 				<h:column>
-					<f:facet name="header">Daily Premium (Euro Cents)</f:facet>
-			            #{policy.dailyPremium}
+					<f:facet name="header">Daily Premium</f:facet>
+			            #{policy.dailyPremium/100} €
 			        </h:column>
 				<h:column>
 					<f:facet name="header">Car ID</f:facet>
