@@ -67,29 +67,31 @@ public class ClaimDetails {
 		variables.put("claim_description", claimdetails.getClaim().getClaim_description());
 		variables.put("workshop_price", claimdetails.getClaim().getWorkshop_price());
 		variables.put("parties_involved", claimdetails.getClaim().isParties_involved());
-		int i = 1;
-		for(Involved_party single_party : claimdetails.getClaim().getInvolvedParties()) {
-			variables.put("involved_party_firstname" + i, single_party.getFirstname());
-			variables.put("involved_party_surname" + i, single_party.getSurname());
-			variables.put("involved_party_email" + i, single_party.getEmail());
-			variables.put("involved_party_phone_number" + i, single_party.getPhone_number());
-			variables.put("involved_party_street" + i, single_party.getStreet());
-			variables.put("involved_party_house_number" + i, single_party.getHouse_number());
-			variables.put("involved_party_postcode" + i, single_party.getPostcode());
-			variables.put("involved_party_city" + i, single_party.getCity());
-			variables.put("involved_party_country" + i, single_party.getCountry());
-			variables.put("involved_party_date_of_birth" + i, single_party.getDate_of_birth());
-			variables.put("involved_party_company" + i, single_party.getCompany());
-			variables.put("involved_party_has_insurance" + i, single_party.isHas_insurance());
-			variables.put("involved_party_insurance_company" + i, single_party.getInsurance().getCompany());
-			variables.put("involved_party_insurance_street" + i, single_party.getInsurance().getStreet());
-			variables.put("involved_party_insurance_house_number" + i, single_party.getInsurance().getHouse_number());
-			variables.put("involved_party_insurance_postcode" + i, single_party.getInsurance().getPostcode());
-			variables.put("involved_party_insurance_city" + i, single_party.getInsurance().getCity());
-			variables.put("involved_party_insurance_country" + i, single_party.getInsurance().getCountry());
-			i++;
-		}		
-		variables.put("number_of_involved_parties", i);
+		if(claimdetails.getClaim().isParties_involved()) {
+			int i = 1;
+			for(Involved_party single_party : claimdetails.getClaim().getInvolvedParties()) {
+				variables.put("involved_party_firstname" + i, single_party.getFirstname());
+				variables.put("involved_party_surname" + i, single_party.getSurname());
+				variables.put("involved_party_email" + i, single_party.getEmail());
+				variables.put("involved_party_phone_number" + i, single_party.getPhone_number());
+				variables.put("involved_party_street" + i, single_party.getStreet());
+				variables.put("involved_party_house_number" + i, single_party.getHouse_number());
+				variables.put("involved_party_postcode" + i, single_party.getPostcode());
+				variables.put("involved_party_city" + i, single_party.getCity());
+				variables.put("involved_party_country" + i, single_party.getCountry());
+				variables.put("involved_party_date_of_birth" + i, single_party.getDate_of_birth());
+				variables.put("involved_party_company" + i, single_party.getCompany());
+				variables.put("involved_party_has_insurance" + i, single_party.isHas_insurance());
+				variables.put("involved_party_insurance_company" + i, single_party.getInsurance().getCompany());
+				variables.put("involved_party_insurance_street" + i, single_party.getInsurance().getStreet());
+				variables.put("involved_party_insurance_house_number" + i, single_party.getInsurance().getHouse_number());
+				variables.put("involved_party_insurance_postcode" + i, single_party.getInsurance().getPostcode());
+				variables.put("involved_party_insurance_city" + i, single_party.getInsurance().getCity());
+				variables.put("involved_party_insurance_country" + i, single_party.getInsurance().getCountry());
+				i++;
+			}		
+			variables.put("number_of_involved_parties", i);	
+		}
 		
 		String id;		
 		try {

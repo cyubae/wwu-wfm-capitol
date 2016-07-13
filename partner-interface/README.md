@@ -171,7 +171,7 @@ http://localhost:8080/partner-interface/claimdetails
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 http://camunda-capitol.uni-muenster.de/partner-interface/feedback
-http://localhost:8080/partner-interface/claimdetails
+http://localhost:8080/partner-interface/feedback
 
 
 {
