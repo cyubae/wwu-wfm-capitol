@@ -84,6 +84,7 @@ public class SendDecisionBL {
 	
 	public void sendIncompleteDataNotification(DelegateExecution delegateExecution) {
 		
+		LOGGER.log(Level.INFO, "sendIncompleteDataNotification invoked");
 		CaseDecision caseDecision = new CaseDecision();
 		Decision decision = caseDecision.new Decision();
 		caseDecision.setDecision(decision);
