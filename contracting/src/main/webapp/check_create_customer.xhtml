@@ -97,7 +97,9 @@
 							<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
 							<h:inputText id="dateOfBirth"
 								value="#{checkCustomerController.customer.dateOfBirth}"
-								required="true" />
+								required="true" >
+									<f:convertDateTime pattern="dd-MM-yyyy" />
+								</h:inputText>
 							<h:message for="dateOfBirth" />
 						</p>
 						<p>

@@ -134,8 +134,8 @@ public class CreateBasicContractBL {
 			
 			//parse dates			
 			try {
-				Date pickUpDate = DateTools.convertStringToDate((String) delegateExecution.getVariable("insurance_pick_up_date"));
-				Date returnDate = DateTools.convertStringToDate((String) delegateExecution.getVariable("insurance_return_date"));
+				Date pickUpDate = (Date) delegateExecution.getVariable("insurance_pick_up_date");
+				Date returnDate = (Date) delegateExecution.getVariable("insurance_return_date");
 
 				newContract.setPickUpDate(pickUpDate);
 				newContract.setReturnDate(returnDate);

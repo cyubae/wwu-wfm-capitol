@@ -8,6 +8,7 @@ import static javax.persistence.CascadeType.REFRESH;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,7 +45,7 @@ public class Customer implements Serializable {
 	protected String postcode;
 	protected String city;
 	protected String country;
-	protected String dateOfBirth; //DD-MM-YYYY
+	protected Date dateOfBirth; 
 	protected	boolean company;
 	protected String companyName;
 	protected boolean blacklisted;
@@ -56,7 +57,7 @@ public class Customer implements Serializable {
 	}
 
 	public Customer(String firstName, String surname, String email, String phoneNumber, String street,
-			String houseNumber, String postcode, String city, String country, String dateOfBirth, boolean company,
+			String houseNumber, String postcode, String city, String country, Date dateOfBirth, boolean company,
 			String companyName, boolean blacklisted) {
 		super();
 		this.firstName = firstName;
@@ -182,13 +183,13 @@ public class Customer implements Serializable {
 	/**
 	 * @return the dateOfBirth
 	 */
-	public String getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 	/**
 	 * @param dateOfBirth the dateOfBirth to set
 	 */
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 	/**

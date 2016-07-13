@@ -1,6 +1,7 @@
 package de.unimuenster.wfm.capitol.contracting.businesslogic;
 
 
+import java.util.Date;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,7 +63,7 @@ public class CheckExistingCustomerIdBL {
 					String.valueOf(delegateExecution.getVariable("user_postcode")), 
 					String.valueOf(delegateExecution.getVariable("user_city")), 
 					String.valueOf(delegateExecution.getVariable("user_country")), 
-					String.valueOf(delegateExecution.getVariable("user_date_of_birth")),
+					(Date) delegateExecution.getVariable("user_date_of_birth"),
 					String.valueOf(delegateExecution.getVariable("user_iscompany")).equals("true") ? true : false,
 					String.valueOf(delegateExecution.getVariable("user_company_name")), 
 					false);

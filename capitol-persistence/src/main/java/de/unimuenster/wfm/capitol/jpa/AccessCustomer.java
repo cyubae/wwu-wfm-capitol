@@ -1,5 +1,6 @@
 package de.unimuenster.wfm.capitol.jpa;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -89,7 +90,7 @@ public class AccessCustomer {
 	}
 
 	public Customer createCustomer(String firstName, String surname, String email, String phoneNumber, String street,
-			String houseNumber, String postcode, String city, String country, String dateOfBirth, boolean company,
+			String houseNumber, String postcode, String city, String country, Date dateOfBirth, boolean company,
 			String companyName, boolean blacklisted) {
 		Customer newCustomer = new Customer(firstName, surname, email, phoneNumber, street, houseNumber, postcode, 
 				city, country, dateOfBirth, company, companyName, blacklisted);

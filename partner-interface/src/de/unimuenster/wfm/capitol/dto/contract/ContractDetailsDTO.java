@@ -1,6 +1,7 @@
 package de.unimuenster.wfm.capitol.dto.contract;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -29,7 +30,7 @@ public class ContractDetailsDTO {
 	@XmlAccessorType(XmlAccessType.FIELD)
 	public class Order {
 		private int order_id;
-		private String request_date;
+		private Date request_date;
 		private boolean fleet_rental;
 		private String inquiry_text;
 		private User user;
@@ -44,11 +45,11 @@ public class ContractDetailsDTO {
 			this.order_id = order_id;
 		}
 
-		public String getRequest_date() {
+		public Date getRequest_date() {
 			return request_date;
 		}
 
-		public void setRequest_date(String request_date) {
+		public void setRequest_date(Date request_date) {
 			this.request_date = request_date;
 		}
 
@@ -103,7 +104,7 @@ public class ContractDetailsDTO {
 			private String postcode;
 			private String city;
 			private String country;
-			private String date_of_birth;
+			private Date date_of_birth;
 			private String company;
 			private String company_name;
 			
@@ -161,10 +162,10 @@ public class ContractDetailsDTO {
 			public void setCountry(String country) {
 				this.country = country;
 			}
-			public String getDate_of_birth() {
+			public Date getDate_of_birth() {
 				return date_of_birth;
 			}
-			public void setDate_of_birth(String date_of_birth) {
+			public void setDate_of_birth(Date date_of_birth) {
 				this.date_of_birth = date_of_birth;
 			}
 			public String isCompany() {
@@ -199,8 +200,8 @@ public class ContractDetailsDTO {
 			private int insurance_id;
 			private String type;
 			private double deductible;
-			private String pick_up_date;
-			private String return_date;
+			private Date pick_up_date;
+			private Date return_date;
 			private double estimated_of_cost;
 			
 			public int getInsurance_id() {
@@ -221,16 +222,16 @@ public class ContractDetailsDTO {
 			public void setDeductible(double deductible) {
 				this.deductible = deductible;
 			}
-			public String getPick_up_date() {
+			public Date getPick_up_date() {
 				return pick_up_date;
 			}
-			public void setPick_up_date(String pick_up_date) {
+			public void setPick_up_date(Date pick_up_date) {
 				this.pick_up_date = pick_up_date;
 			}
-			public String getReturn_date() {
+			public Date getReturn_date() {
 				return return_date;
 			}
-			public void setReturn_date(String return_date) {
+			public void setReturn_date(Date return_date) {
 				this.return_date = return_date;
 			}
 			public double getEstimated_of_cost() {
