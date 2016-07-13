@@ -132,16 +132,11 @@ public class CreateBasicContractBL {
 			newContract.setValidated(false);;
 			newContract.setReleased(false);
 			
-			//parse dates			
-			try {
-				Date pickUpDate = (Date) delegateExecution.getVariable("insurance_pick_up_date");
-				Date returnDate = (Date) delegateExecution.getVariable("insurance_return_date");
+			Date pickUpDate = (Date) delegateExecution.getVariable("insurance_pick_up_date");
+			Date returnDate = (Date) delegateExecution.getVariable("insurance_return_date");
 
-				newContract.setPickUpDate(pickUpDate);
-				newContract.setReturnDate(returnDate);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+			newContract.setPickUpDate(pickUpDate);
+			newContract.setReturnDate(returnDate);
 			
 			LOGGER.log(Level.INFO, "SETTING POLICIES");
 			for(Policy policy : policies) {
