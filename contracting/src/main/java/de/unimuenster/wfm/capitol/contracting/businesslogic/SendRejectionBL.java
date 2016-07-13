@@ -30,7 +30,7 @@ public class SendRejectionBL {
 	
 	//TODO: set URL to send JSON to
 	//"http://camunda-bvis.uni-muenster.de/???"
-	private static String DESTINATION_URL =  "http://camunda-bvis.uni-muenster.de/bvis/insurancedetails";
+	private static String DESTINATION_URL =  "http://camunda-bvis.uni-muenster.de/bvis/api/insurancedetails";
 
 	// Inject CRUD-Services to access persistence unit	
 	@Inject

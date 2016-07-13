@@ -69,9 +69,11 @@
 						value="#{validateContractController.contract.customer.country}" />
 				</p>
 				<p>
-					<label for="dateOfBirth">Date of Birth (YYYY-MM-DD)</label>
+					<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
 					<h:outputText id="dateOfBirth"
-						value="#{validateContractController.contract.customer.dateOfBirth}" />
+						value="#{validateContractController.contract.customer.dateOfBirth}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
 				</p>
 				<p>
 					<label for="company">Customer is Company?</label>

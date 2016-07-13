@@ -3,8 +3,8 @@ package de.unimuenster.wfm.capitol.service;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 
 import javax.ejb.Stateless;
 
@@ -21,9 +21,10 @@ public class MessageServiceImpl implements MessageService{
 		try {
 			URL url = new URL(urlString);
 			String json = ow.writeValueAsString(input);
-			URLConnection connection = url.openConnection();
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestProperty("Content-Type", "application/json");
+			connection.setRequestMethod("POST");
 			connection.setConnectTimeout(10000);
 			connection.setReadTimeout(10000);
 			OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());

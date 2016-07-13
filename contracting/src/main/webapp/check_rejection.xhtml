@@ -69,7 +69,9 @@
 				<p>
 					<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
 					<h:outputText id="dateOfBirth"
-						value="#{rejectCustomerController.customer.dateOfBirth}" />
+						value="#{rejectCustomerController.customer.dateOfBirth}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
 				</p>
 				<p>
 					<label for="company">Customer is Company?</label>

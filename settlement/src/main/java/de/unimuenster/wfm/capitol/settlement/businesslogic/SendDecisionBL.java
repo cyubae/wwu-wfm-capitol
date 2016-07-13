@@ -36,7 +36,7 @@ public class SendDecisionBL {
 	
 	//TODO: set URL to send JSON to
 	//"http://camunda-bvis.uni-muenster.de/???"
-	private static String DESTINATION_URL = "http://camunda-bvis.uni-muenster.de/bvis/claimdecision";
+	private static String DESTINATION_URL = "http://camunda-bvis.uni-muenster.de/bvis/api/claimdecision";
 
 	// Inject CRUD-Services to access persistence unit	
 	@Inject

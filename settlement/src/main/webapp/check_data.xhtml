@@ -39,7 +39,9 @@
 				<p>
 					<label for="damageDate">Damage Date</label>
 					<h:outputText id="damageDate"
-						value="#{checkDataController.claim.damageDate}" />
+						value="#{checkDataController.claim.damageDate}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
 				</p>
 
 				<p>
@@ -81,7 +83,9 @@
 				<p>
 					<label for="customerDOB">Date of Birth</label>
 					<h:outputText id="customerDOB"
-						value="#{checkDataController.claim.policy.contract.customer.dateOfBirth}" />
+						value="#{checkDataController.claim.policy.contract.customer.dateOfBirth}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
 				</p>
 				<p>
 					<label for="street">Street</label>
@@ -150,12 +154,16 @@
 				<p>
 					<label for="pickUpDate">Pick-up Date</label>
 					<h:outputText id="pickUpDate"
-						value="#{checkDataController.claim.policy.contract.pickUpDate}" />
+						value="#{checkDataController.claim.policy.contract.pickUpDate}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
 				</p>
 				<p>
 					<label for="returnDate">Return Date</label>
 					<h:outputText id="returnDate"
-						value="#{checkDataController.claim.policy.contract.returnDate}" />
+						value="#{checkDataController.claim.policy.contract.returnDate}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
 				</p>
 				<p>
 					<label for="released">Is released?</label>

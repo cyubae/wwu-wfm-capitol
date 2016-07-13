@@ -113,7 +113,7 @@ public class CreateClaimBL {
 		externalParty.setPostcode((String) delegateExecution.getVariable("involved_party_postcode" + partyCount));
 		externalParty.setCity((String) delegateExecution.getVariable("involved_party_city" + partyCount));
 		externalParty.setCountry((String) delegateExecution.getVariable("involved_party_country" + partyCount));
-		externalParty.setDateOfBirth((String) delegateExecution.getVariable("involved_party_date_of_birth" + partyCount));
+		externalParty.setDateOfBirth((Date) delegateExecution.getVariable("involved_party_date_of_birth" + partyCount));
 		externalParty.setCompany((String) delegateExecution.getVariable("involved_party_company" + partyCount));
 
 		if(delegateExecution.getVariable("involved_party_has_insurance" + partyCount) != null) {

@@ -71,7 +71,9 @@
 				<p>
 					<label for="dateOfBirth">Date of Birth (YYYY-MM-DD)</label>
 					<h:outputText id="dateOfBirth"
-						value="#{modifyContractController.contract.customer.dateOfBirth}" />
+						value="#{modifyContractController.contract.customer.dateOfBirth}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
 				</p>
 				<p>
 					<label for="company">Customer is Company?</label>
@@ -109,14 +111,13 @@
 					<label for="pickUpDate">Pick-up date:</label>
 					<h:inputText id="pickUpDate"
 						value="#{modifyContractController.contract.pickUpDate}">
-						<f:convertDateTime pattern="yyyy-MM-dd" />
 						</h:inputText>
 				</p>
 				<p>
 					<label for="returnDate">Return date:</label>
 					<h:inputText id="returnDate"
 						value="#{modifyContractController.contract.returnDate}">
-						<f:convertDateTime pattern="yyyy-MM-dd" />
+						<f:convertDateTime pattern="dd-MM-yyyy" />
 						</h:inputText>
 				</p>
 				<p>

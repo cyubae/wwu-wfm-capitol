@@ -1,6 +1,7 @@
 package de.unimuenster.wfm.capitol.dto.claim;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,7 +18,7 @@ public class Involved_party {
 	private String postcode;
 	private String city;
 	private String country;
-	private String date_of_birth;
+	private Date date_of_birth;
 	private String company;
 	private boolean has_insurance;
 	private Insurance insurance;
@@ -98,11 +99,11 @@ public class Involved_party {
 		this.country = country;
 	}
 
-	public String getDate_of_birth() {
+	public Date getDate_of_birth() {
 		return date_of_birth;
 	}
 
-	public void setDate_of_birth(String date_of_birth) {
+	public void setDate_of_birth(Date date_of_birth) {
 		this.date_of_birth = date_of_birth;
 	}
 
