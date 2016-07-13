@@ -1,6 +1,7 @@
 package de.unimuenster.wfm.capitol.contracting.businesslogic;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -59,12 +60,7 @@ public class SendRejectionBL {
 		order.setFinal_price(0);
 		order.setInquiry_text("");
 		order.setOrder_id((Integer) delegateExecution.getVariable("order_id"));
-		try {
-			order.setRequest_date(DateTools.convertStringToDate((String) delegateExecution.getVariable("request_date")));
-		} catch (ParseException e) {
-			LOGGER.log(Level.SEVERE, "Contract Request Date could not be parsed!");
-			e.printStackTrace();
-		}
+		order.setRequest_date((Date) delegateExecution.getVariable("request_date"));
 		order.setResult((Integer) delegateExecution.getVariable("contract_result"));		
 		
 		if(DESTINATION_URL != null) {

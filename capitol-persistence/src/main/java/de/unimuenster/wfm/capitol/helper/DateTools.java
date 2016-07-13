@@ -20,18 +20,18 @@ public class DateTools {
 	}
 	
 	
-	/**
-	 * Returns
-	 * @param dateString takes String of format YYYY-MM-DD and returns object of type java.util.Date
-	 * @return
-	 * @throws ParseException 
-	 */
-	public static Date convertStringToDate(String dateString) throws ParseException {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		java.util.Date parsedDate = format.parse(dateString);
-		java.util.Date utilDate = new java.util.Date(parsedDate.getTime());
-
-		return utilDate;
-	}
+//	/**
+//	 * Returns
+//	 * @param dateString takes String of format YYYY-MM-DD and returns object of type java.util.Date
+//	 * @return
+//	 * @throws ParseException 
+//	 */
+//	public static Date convertStringToDate(String dateString) throws ParseException {
+//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//		java.util.Date parsedDate = format.parse(dateString);
+//		java.util.Date utilDate = new java.util.Date(parsedDate.getTime());
+//
+//		return utilDate;
+//	}
 	
 }
