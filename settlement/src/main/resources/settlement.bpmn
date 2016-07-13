@@ -182,7 +182,7 @@
     </sequenceFlow>
     <endEvent id="EndEvent_1pn9swd" name="Notify of invalid vehicle ID number (Decision: Not Covered)">
       <incoming>SequenceFlow_079btvb</incoming>
-      <messageEventDefinition camunda:expression="${sendDecisionBL.performBusinessLogic(execution)}" />
+      <messageEventDefinition camunda:expression="${sendDecisionBL.sendIncompleteDataNotification(execution)}" />
     </endEvent>
     <dataStoreReference id="DataStoreReference_1ykcaib" name="capitol database" />
     <userTask id="UserTask_1fo7533" name="Review Claim" camunda:formKey="app:review_claim.jsf">
