@@ -37,14 +37,16 @@ public class CarCRUD extends AbstractCRUDService<Car> {
 		String query = "Select c FROM Car c WHERE"
 				+ " c.vehicleIdentificationNumber = '" + vehicleIdentificationNumber + "'";
 
-		LOGGER.log(Level.INFO, "Query string: " + query);		
-		LOGGER.log(Level.INFO, "ACCESSSTEP_1");				
+		LOGGER.log(Level.INFO, "Query string: " + query);
 		TypedQuery<Car> typedQuery = entityManager.createQuery(query, Car.class);
 		try {
 			Car car = typedQuery.getSingleResult();
+			
+			LOGGER.log(Level.INFO, "Found car");
 			return car;
 		}
 		catch(Exception e) {
+			LOGGER.log(Level.INFO, "Found no car");
 			return null;
 		}
 	}    
