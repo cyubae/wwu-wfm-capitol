@@ -46,8 +46,7 @@ public class AccessCustomer {
 				+ " AND c.houseNumber = '" + dataMap.get("user_house_number") + "'"
 				+ " AND c.postcode = '" + dataMap.get("user_postcode") + "'"
 				+ " AND c.city = '" + dataMap.get("user_city") + "'"
-				+ " AND c.country = '" + dataMap.get("user_country") + "'"
-				+ " AND c.dateOfBirth = '" + dataMap.get("user_date_of_birth") + "'";
+				+ " AND c.country = '" + dataMap.get("user_country") + "'";
 
 		//if customer is company, append to companyQuery
 		if ( dataMap.get("user_iscompany") != null && dataMap.get("user_iscompany").equals("true")) {
