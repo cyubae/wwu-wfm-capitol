@@ -34,7 +34,7 @@
 								value="#{validateContractController.contract.customer.firstName}" />
 						</p>
 						<p>
-							<label for="surname">First Name</label>
+							<label for="surname">Surname</label>
 							<h:outputText id="surname"
 								value="#{validateContractController.contract.customer.surname}" />
 						</p>
@@ -115,12 +115,16 @@
 						<p>
 							<label for="pickUpDate">Pick-up date:</label>
 							<h:outputText id="pickUpDate"
-								value="#{validateContractController.contract.pickUpDate}" />
+								value="#{validateContractController.contract.pickUpDate}">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
+							</h:outputText>
 						</p>
 						<p>
 							<label for="returnDate">Return date:</label>
 							<h:outputText id="returnDate"
-								value="#{validateContractController.contract.returnDate}" />
+								value="#{validateContractController.contract.returnDate}">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
+							</h:outputText>
 						</p>
 						<p>
 							<label for="totalCost">Total Cost:</label>
