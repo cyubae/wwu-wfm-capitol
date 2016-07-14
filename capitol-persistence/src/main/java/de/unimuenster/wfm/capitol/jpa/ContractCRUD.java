@@ -39,7 +39,7 @@ public class ContractCRUD extends AbstractCRUDService<Contract> {
 		LOGGER.log(Level.INFO, "Query string: " + query);
 		TypedQuery<Contract> typedQuery = entityManager.createQuery(query, Contract.class);
 		try {
-			Contract contract = typedQuery.getSingleResult();
+			Contract contract = typedQuery.getResultList().get(0);
 			
 			LOGGER.log(Level.INFO, "Found contract");
 			return contract;
