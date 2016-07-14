@@ -96,6 +96,7 @@ public class SendDecisionBL {
 		+ (String) delegateExecution.getVariable("vehicle_identification_number") );		
 		
 		decision.setInsurance_decision(EnumMapper.CLAIMDECISION_TO_INTEGER.get(ClaimDecision.NOT_COVERED));
+		sendCaseDecision(caseDecision);
 	}
 	
 	
