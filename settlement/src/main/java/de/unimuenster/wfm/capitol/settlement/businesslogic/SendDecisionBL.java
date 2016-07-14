@@ -67,7 +67,7 @@ public class SendDecisionBL {
 		caseDecision.setDecision(decision);
 		
 		caseDecision.setProcessinstance_id_bvis((String) delegateExecution.getVariable("processinstance_id_bvis"));
-		caseDecision.setProcessinstance_id_capitol((String) delegateExecution.getVariable(delegateExecution.getProcessInstanceId()));
+		caseDecision.setProcessinstance_id_capitol((String) delegateExecution.getProcessInstanceId());
 		
 		decision.setClaim_id(claim.getExternalClaimId());
 		decision.setCoverage_costs(claim.getCoverageCosts());
@@ -90,7 +90,7 @@ public class SendDecisionBL {
 		caseDecision.setDecision(decision);
 		
 		caseDecision.setProcessinstance_id_bvis((String) delegateExecution.getVariable("processinstance_id_bvis"));
-		caseDecision.setProcessinstance_id_capitol((String) delegateExecution.getVariable(delegateExecution.getProcessInstanceId()));
+		caseDecision.setProcessinstance_id_capitol((String) delegateExecution.getProcessInstanceId());
 		
 		decision.setDescription("We could not find a valid policy for received vehicle_identification_number: "
 		+ (String) delegateExecution.getVariable("vehicle_identification_number") );		
