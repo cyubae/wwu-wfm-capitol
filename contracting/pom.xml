@@ -56,7 +56,14 @@
 			<groupId>org.camunda.bpm.javaee</groupId>
 			<artifactId>camunda-ejb-client</artifactId>
 		</dependency>
-
+		
+		<!-- Bootstrap for JSF -->
+		<dependency>
+   			<groupId>de.larmic.butterfaces</groupId>
+   			<artifactId>components</artifactId>
+   			<version>2.1.8</version>
+		</dependency>
+		
 		<!-- Java EE 6 Specification -->
 		<dependency>
 			<groupId>org.jboss.spec</groupId>
