@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://butterfaces.org/components"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
 	<f:metadata>
 		<f:event type="preRenderView"
@@ -24,7 +25,7 @@
 						<p>
 							<label for="customerId">Customer ID</label>
 							<h:outputText id="customerId"
-								value="#{checkCustomerController.customer.customerId}" 
+								value="#{checkCustomerController.customer.customerId}"
 								requiredMessage="Required Field!" />
 							<h:message for="customerId" />
 						</p>
@@ -32,24 +33,25 @@
 							<label for="firstname">First Name</label>
 							<h:inputText id="firstname"
 								value="#{checkCustomerController.customer.firstName}"
-								required="true"
-								requiredMessage="Required Field!" />
+								required="true" requiredMessage="Required Field!" />
 							<h:message for="firstname" />
 						</p>
 						<p>
 							<label for="surname">First Name</label>
 							<h:inputText id="surname"
 								value="#{checkCustomerController.customer.surname}"
-								required="true"
-								requiredMessage="Required Field!" />
+								required="true" requiredMessage="Required Field!" />
 							<h:message for="surname" />
 						</p>
 						<p>
 							<label for="email">E-Mail</label>
 							<h:inputText id="email"
 								value="#{checkCustomerController.customer.email}"
-								required="true"
-								requiredMessage="Required Field!" />
+								required="true" 
+								requiredMessage="Required Field!"
+								validatorMessage="Not a valid email address!">
+								<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+							</h:inputText>
 							<h:message for="email" />
 						</p>
 						<p>
@@ -67,50 +69,44 @@
 							<label for="street">Street</label>
 							<h:inputText id="street"
 								value="#{checkCustomerController.customer.street}"
-								required="true" 
-								requiredMessage="Required Field!"/>
+								required="true" requiredMessage="Required Field!" />
 							<h:message for="street" />
 						</p>
 						<p>
 							<label for="houseNumber">House Number</label>
 							<h:inputText id="houseNumber"
 								value="#{checkCustomerController.customer.houseNumber}"
-								required="true" 
-								requiredMessage="Required Field!" />
+								required="true" requiredMessage="Required Field!" />
 							<h:message for="houseNumber" />
 						</p>
 						<p>
 							<label for="postcode">Post Code</label>
 							<h:inputText id="postcode"
 								value="#{checkCustomerController.customer.postcode}"
-								required="true" 
-								requiredMessage="Required Field!"/>
+								required="true" requiredMessage="Required Field!" />
 							<h:message for="postcode" />
 						</p>
 						<p>
 							<label for="city">City</label>
 							<h:inputText id="city"
-								value="#{checkCustomerController.customer.city}" 
-								required="true" 
-								requiredMessage="Required Field!"/>
+								value="#{checkCustomerController.customer.city}" required="true"
+								requiredMessage="Required Field!" />
 							<h:message for="city" />
 						</p>
 						<p>
 							<label for="country">Country</label>
 							<h:inputText id="country"
 								value="#{checkCustomerController.customer.country}"
-								required="true" 
-								requiredMessage="Required Field!"/>
+								required="true" requiredMessage="Required Field!" />
 							<h:message for="country" />
 						</p>
 						<p>
 							<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
 							<h:inputText id="dateOfBirth"
 								value="#{checkCustomerController.customer.dateOfBirth}"
-								required="true" 
-								requiredMessage="Required Field!">
-									<f:convertDateTime pattern="dd-MM-yyyy" />
-								</h:inputText>
+								required="true" requiredMessage="Required Field!">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
+							</h:inputText>
 							<h:message for="dateOfBirth" />
 						</p>
 						<p>
@@ -124,15 +120,14 @@
 							<label for="companyName">Company Name</label>
 							<h:inputText id="companyName"
 								value="#{checkCustomerController.customer.companyName}"
-								required="false" 
-								requiredMessage="Required Field!"/>
+								required="false" requiredMessage="Required Field!" />
 							<h:message for="companyName" />
 						</p>
 						<p>
 							<label for="blacklisted">Customer is blacklisted</label>
 							<h:selectBooleanCheckbox id="blacklisted"
-								value="#{checkCustomerController.customer.blacklisted}" 
-								requiredMessage="Required Field!"/>
+								value="#{checkCustomerController.customer.blacklisted}"
+								requiredMessage="Required Field!" />
 							<h:message for="blacklisted" />
 							<br />
 						</p>
