@@ -1,115 +1,145 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://butterfaces.org/components"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
 	<f:metadata>
-		<!-- Start working on a task. Task Id is read internally from
-         request parameters and cached in the CDI conversation scope.
-    -->
-
 		<f:event type="preRenderView"
 			listener="#{camundaTaskForm.startTaskForm()}" />
 	</f:metadata>
-	<h:head>
-		<title>Check existing customer data for correctness</title>
-	</h:head>
-	<h:body>
-		<h:form id="submitForm">
-			<h1>Check existing customer data for correctness:</h1>
-			<h:panelGrid columns="2">
-				<p>
-					<label for="customerId">Customer ID</label>
-					<h:outputText id="customerId"
-						value="#{checkCustomerController.customer.customerId}" />
-				</p>
-				<p>
-					<label for="firstname">First Name</label>
-					<h:inputText id="firstname"
-						value="#{checkCustomerController.customer.firstName}"
-						required="true" />
-				</p>
-				<p>
-					<label for="surname">First Name</label>
-					<h:inputText id="surname"
-						value="#{checkCustomerController.customer.surname}"
-						required="true" />
-				</p>
-				<p>
-					<label for="email">E-Mail</label>
-					<h:inputText id="email"
-						value="#{checkCustomerController.customer.email}"
-						required="true" />
-				</p>
-				<p>
-					<label for="phoneNumber">Phone Number</label>
-					<h:inputText id="phoneNumber"
-						value="#{checkCustomerController.customer.phoneNumber}"
-						required="true" />
-				</p>
-				<p>
-					<label for="street">Street</label>
-					<h:inputText id="street"
-						value="#{checkCustomerController.customer.street}"
-						required="true" />
-				</p>
-				<p>
-					<label for="houseNumber">House Number</label>
-					<h:inputText id="houseNumber"
-						value="#{checkCustomerController.customer.houseNumber}"
-						required="true" />
-				</p>
-				<p>
-					<label for="postcode">Post Code</label>
-					<h:inputText id="postcode"
-						value="#{checkCustomerController.customer.postcode}"
-						required="true" />
-				</p>
-				<p>
-					<label for="city">City</label>
-					<h:inputText id="city"
-						value="#{checkCustomerController.customer.city}"
-						required="true" />
-				</p>
-				<p>
-					<label for="country">Country</label>
-					<h:inputText id="country"
-						value="#{checkCustomerController.customer.country}"
-						required="true" />
-				</p>
-				<p>
-					<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
-					<h:inputText id="dateOfBirth"
-						value="#{checkCustomerController.customer.dateOfBirth}"
-						required="true">
-						<f:convertDateTime pattern="dd-MM-yyyy" />
-					</h:inputText>
-				</p>
-				<p>
-					<label for="company">Customer is Company?</label>
-					<h:selectBooleanCheckbox id="company"
-						value="#{checkCustomerController.customer.company}" />
-					<br />
-				</p>
-				<p>
-					<label for="companyName">Company Name</label>
-					<h:inputText id="companyName"
-						value="#{checkCustomerController.customer.companyName}"
-						required="false" />
-				</p>
-				<p>
-					<label for="blacklisted">Customer is blacklisted</label>
-					<h:selectBooleanCheckbox id="blacklisted"
-						value="#{checkCustomerController.customer.blacklisted}" />
-					<br />
-				</p>
-			</h:panelGrid>
 
-			<h:commandButton id="submit_button" value="Update Customer"
-				action="#{checkCustomerController.submitForm()}" />
-		</h:form>
-	</h:body>
+	<ui:composition template="/resources/master.xhtml">
+		<ui:define name="title">Check existing customer data for correctness</ui:define>
+		<h:head>
+			<title>Check existing customer data for correctness</title>
+			<h:outputStylesheet name="default.css" />
+		</h:head>
+		<ui:define name="content">
+			<div class="inputForm">
+				<h:form id="submitForm">
+					<h1>Check existing customer data for correctness:</h1>
+					<h:panelGrid columns="3"
+						columnClasses="form-output,form-output,form-message error"
+						footerClass="form-footer">
+						<p>
+							<label for="customerId">Customer ID</label>
+							<h:outputText id="customerId"
+								value="#{checkCustomerController.customer.customerId}"
+								requiredMessage="Required Field!" />
+							<h:message for="customerId" />
+						</p>
+						<p>
+							<label for="firstname">First Name</label>
+							<h:inputText id="firstname"
+								value="#{checkCustomerController.customer.firstName}"
+								required="true" requiredMessage="Required Field!" />
+							<h:message for="firstname" />
+						</p>
+						<p>
+							<label for="surname">First Name</label>
+							<h:inputText id="surname"
+								value="#{checkCustomerController.customer.surname}"
+								required="true" requiredMessage="Required Field!" />
+							<h:message for="surname" />
+						</p>
+						<p>
+							<label for="email">E-Mail</label>
+							<h:inputText id="email"
+								value="#{checkCustomerController.customer.email}"
+								required="true" requiredMessage="Required Field!"
+								validatorMessage="Not a valid email address!">
+								<f:validateRegex
+									pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+							</h:inputText>
+							<h:message for="email" />
+						</p>
+						<p>
+							<label for="phoneNumber">Phone Number</label>
+							<h:inputText id="phoneNumber"
+								value="#{checkCustomerController.customer.phoneNumber}"
+								required="true"
+								validatorMessage="Phone number must be of format 0123-456789"
+								requiredMessage="Required Field!">
+								<f:validateRegex pattern="((\d+)(-)(\d+))" />
+							</h:inputText>
+							<h:message for="phoneNumber" />
+						</p>
+						<p>
+							<label for="street">Street</label>
+							<h:inputText id="street"
+								value="#{checkCustomerController.customer.street}"
+								required="true" requiredMessage="Required Field!" />
+							<h:message for="street" />
+						</p>
+						<p>
+							<label for="houseNumber">House Number</label>
+							<h:inputText id="houseNumber"
+								value="#{checkCustomerController.customer.houseNumber}"
+								required="true" requiredMessage="Required Field!" />
+							<h:message for="houseNumber" />
+						</p>
+						<p>
+							<label for="postcode">Post Code</label>
+							<h:inputText id="postcode"
+								value="#{checkCustomerController.customer.postcode}"
+								required="true" requiredMessage="Required Field!" />
+							<h:message for="postcode" />
+						</p>
+						<p>
+							<label for="city">City</label>
+							<h:inputText id="city"
+								value="#{checkCustomerController.customer.city}" required="true"
+								requiredMessage="Required Field!" />
+							<h:message for="city" />
+						</p>
+						<p>
+							<label for="country">Country</label>
+							<h:inputText id="country"
+								value="#{checkCustomerController.customer.country}"
+								required="true" requiredMessage="Required Field!" />
+							<h:message for="country" />
+						</p>
+						<p>
+							<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
+							<h:inputText id="dateOfBirth"
+								value="#{checkCustomerController.customer.dateOfBirth}"
+								required="true" requiredMessage="Required Field!">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
+							</h:inputText>
+							<h:message for="dateOfBirth" />
+						</p>
+						<p>
+							<label for="company">Customer is Company?</label>
+							<h:selectBooleanCheckbox id="company"
+								value="#{checkCustomerController.customer.company}" />
+							<h:message for="company" />
+							<br />
+						</p>
+						<p>
+							<label for="companyName">Company Name</label>
+							<h:inputText id="companyName"
+								value="#{checkCustomerController.customer.companyName}"
+								required="false" requiredMessage="Required Field!" />
+							<h:message for="companyName" />
+						</p>
+						<p>
+							<label for="blacklisted">Customer is blacklisted</label>
+							<h:selectBooleanCheckbox id="blacklisted"
+								value="#{checkCustomerController.customer.blacklisted}"
+								requiredMessage="Required Field!" />
+							<h:message for="blacklisted" />
+							<br />
+						</p>
+					</h:panelGrid>
+
+					<h:commandButton id="submit_button" value="Update Customer"
+						action="#{checkCustomerController.submitForm()}" />
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
 </f:view>
 </html>
+

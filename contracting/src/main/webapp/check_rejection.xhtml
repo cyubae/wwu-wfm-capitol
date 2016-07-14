@@ -1,102 +1,108 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://butterfaces.org/components"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
 	<f:metadata>
 		<f:event type="preRenderView"
 			listener="#{camundaTaskForm.startTaskForm()}" />
 	</f:metadata>
-	<h:head>
-		<title>Confirm Customer Rejection</title>
-	</h:head>
-	<h:body>
-		<h:form id="submitForm">
-			<h1>Confirm Customer Rejection</h1>
-			<h:panelGrid columns="2">
-				<p>
-					<label for="customerId">Customer ID</label>
-					<h:outputText id="customerId"
-						value="#{rejectCustomerController.customer.customerId}" />
-				</p>
-				<p>
-					<label for="firstname">First Name</label>
-					<h:outputText id="firstname"
-						value="#{rejectCustomerController.customer.firstName}" />
-				</p>
-				<p>
-					<label for="surname">First Name</label>
-					<h:outputText id="surname"
-						value="#{rejectCustomerController.customer.surname}" />
-				</p>
-				<p>
-					<label for="email">E-Mail</label>
-					<h:outputText id="email"
-						value="#{rejectCustomerController.customer.email}" />
-				</p>
-				<p>
-					<label for="phoneNumber">Phone Number</label>
-					<h:outputText id="phoneNumber"
-						value="#{rejectCustomerController.customer.phoneNumber}" />
-				</p>
-				<p>
-					<label for="street">Street</label>
-					<h:outputText id="street"
-						value="#{rejectCustomerController.customer.street}" />
-				</p>
-				<p>
-					<label for="houseNumber">House Number</label>
-					<h:outputText id="houseNumber"
-						value="#{rejectCustomerController.customer.houseNumber}" />
-				</p>
-				<p>
-					<label for="postcode">Post Code</label>
-					<h:outputText id="postcode"
-						value="#{rejectCustomerController.customer.postcode}" />
-				</p>
-				<p>
-					<label for="city">City</label>
-					<h:outputText id="city"
-						value="#{rejectCustomerController.customer.city}" />
-				</p>
-				<p>
-					<label for="country">Country</label>
-					<h:outputText id="country"
-						value="#{rejectCustomerController.customer.country}" />
-				</p>
-				<p>
-					<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
-					<h:outputText id="dateOfBirth"
-						value="#{rejectCustomerController.customer.dateOfBirth}">
-						<f:convertDateTime pattern="dd-MM-yyyy" />
-					</h:outputText>
-				</p>
-				<p>
-					<label for="company">Customer is Company?</label>
-					<h:outputText id="company"
-						value="#{rejectCustomerController.customer.company}" />
-					<br />
-				</p>
-				<p>
-					<label for="companyName">Company Name</label>
-					<h:outputText id="companyName"
-						value="#{rejectCustomerController.customer.companyName}" />
-				</p>
-				<p>
-					<label for="blacklisted">Customer is blacklisted</label>
-					<h:outputText id="blacklisted"
-						value="#{rejectCustomerController.customer.blacklisted}" />
-					<br />
-				</p>
-			</h:panelGrid>
+	<ui:composition template="/resources/master.xhtml">
+		<ui:define name="title">Confirm Customer Rejection</ui:define>
+		<h:head>
+			<title>Confirm Customer Rejection</title>
+			<h:outputStylesheet name="default.css" />
+		</h:head>
+		<ui:define name="content">
+			<div class="inputForm">
+				<h:form id="submitForm">
+					<h1>Confirm Customer Rejection</h1>
+					<h:panelGrid columns="2">
+						<p>
+							<label for="customerId">Customer ID</label>
+							<h:outputText id="customerId"
+								value="#{rejectCustomerController.customer.customerId}" />
+						</p>
+						<p>
+							<label for="firstname">First Name</label>
+							<h:outputText id="firstname"
+								value="#{rejectCustomerController.customer.firstName}" />
+						</p>
+						<p>
+							<label for="surname">First Name</label>
+							<h:outputText id="surname"
+								value="#{rejectCustomerController.customer.surname}" />
+						</p>
+						<p>
+							<label for="email">E-Mail</label>
+							<h:outputText id="email"
+								value="#{rejectCustomerController.customer.email}" />
+						</p>
+						<p>
+							<label for="phoneNumber">Phone Number</label>
+							<h:outputText id="phoneNumber"
+								value="#{rejectCustomerController.customer.phoneNumber}" />
+						</p>
+						<p>
+							<label for="street">Street</label>
+							<h:outputText id="street"
+								value="#{rejectCustomerController.customer.street}" />
+						</p>
+						<p>
+							<label for="houseNumber">House Number</label>
+							<h:outputText id="houseNumber"
+								value="#{rejectCustomerController.customer.houseNumber}" />
+						</p>
+						<p>
+							<label for="postcode">Post Code</label>
+							<h:outputText id="postcode"
+								value="#{rejectCustomerController.customer.postcode}" />
+						</p>
+						<p>
+							<label for="city">City</label>
+							<h:outputText id="city"
+								value="#{rejectCustomerController.customer.city}" />
+						</p>
+						<p>
+							<label for="country">Country</label>
+							<h:outputText id="country"
+								value="#{rejectCustomerController.customer.country}" />
+						</p>
+						<p>
+							<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
+							<h:outputText id="dateOfBirth"
+								value="#{rejectCustomerController.customer.dateOfBirth}">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
+							</h:outputText>
+						</p>
+						<p>
+							<label for="company">Customer is Company?</label>
+							<h:outputText id="company"
+								value="#{rejectCustomerController.customer.company}" />
+							<br />
+						</p>
+						<p>
+							<label for="companyName">Company Name</label>
+							<h:outputText id="companyName"
+								value="#{rejectCustomerController.customer.companyName}" />
+						</p>
+						<p>
+							<label for="blacklisted">Customer is blacklisted</label>
+							<h:outputText id="blacklisted"
+								value="#{rejectCustomerController.customer.blacklisted}" />
+							<br />
+						</p>
+					</h:panelGrid>
 
-			<h:commandButton id="reject_button" value="Reject Customer"
-				action="#{rejectCustomerController.submitRejection(true)}" />
-			<h:commandButton id="dont_reject_button" value="Do not reject"
-				action="#{rejectCustomerController.submitRejection(false)}" />
-		</h:form>
-	</h:body>
+					<h:commandButton id="reject_button" value="Reject Customer"
+						action="#{rejectCustomerController.submitRejection(true)}" />
+					<h:commandButton id="dont_reject_button" value="Do not reject"
+						action="#{rejectCustomerController.submitRejection(false)}" />
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
 </f:view>
 </html>

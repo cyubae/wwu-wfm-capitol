@@ -1,179 +1,199 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://butterfaces.org/components"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
 	<f:metadata>
 		<f:event type="preRenderView"
 			listener="#{camundaTaskForm.startTaskForm()}" />
 	</f:metadata>
-	<h:head>
-		<title>Modify Contract</title>
-	</h:head>
-	<h:body>
-		<h:form id="submitForm">
-			<h1>Modify proposed contract</h1>
+	<ui:composition template="/resources/master.xhtml">
+		<ui:define name="title">Modify Contract</ui:define>
+		<h:head>
+			<title>Modify Contract</title>
+			<h:outputStylesheet name="default.css" />
+		</h:head>
+		<ui:define name="content">
+			<div class="inputForm">
+				<h:form id="submitForm">
+					<h1>Modify proposed contract</h1>
 
-			<h2>Customer Information</h2>
-			<h:panelGrid columns="2">
-				<p>
-					<label for="customerId">Customer ID</label>
-					<h:outputText id="customerId"
-						value="#{modifyContractController.contract.customer.customerId}" />
-				</p>
-				<p>
-					<label for="firstname">First Name</label>
-					<h:outputText id="firstname"
-						value="#{modifyContractController.contract.customer.firstName}" />
-				</p>
-				<p>
-					<label for="surname">First Name</label>
-					<h:outputText id="surname"
-						value="#{modifyContractController.contract.customer.surname}" />
-				</p>
-				<p>
-					<label for="email">E-Mail</label>
-					<h:outputText id="email"
-						value="#{modifyContractController.contract.customer.email}" />
-				</p>
-				<p>
-					<label for="phoneNumber">Phone Number</label>
-					<h:outputText id="phoneNumber"
-						value="#{modifyContractController.contract.customer.phoneNumber}" />
-				</p>
-				<p>
-					<label for="street">Street</label>
-					<h:outputText id="street"
-						value="#{modifyContractController.contract.customer.street}" />
-				</p>
-				<p>
-					<label for="houseNumber">House Number</label>
-					<h:outputText id="houseNumber"
-						value="#{modifyContractController.contract.customer.houseNumber}" />
-				</p>
-				<p>
-					<label for="postcode">Post Code</label>
-					<h:outputText id="postcode"
-						value="#{modifyContractController.contract.customer.postcode}" />
-				</p>
-				<p>
-					<label for="city">City</label>
-					<h:outputText id="city"
-						value="#{modifyContractController.contract.customer.city}" />
-				</p>
-				<p>
-					<label for="country">Country</label>
-					<h:outputText id="country"
-						value="#{modifyContractController.contract.customer.country}" />
-				</p>
-				<p>
-					<label for="dateOfBirth">Date of Birth (YYYY-MM-DD)</label>
-					<h:outputText id="dateOfBirth"
-						value="#{modifyContractController.contract.customer.dateOfBirth}">
-						<f:convertDateTime pattern="dd-MM-yyyy" />
-					</h:outputText>
-				</p>
-				<p>
-					<label for="company">Customer is Company?</label>
-					<h:outputText id="company"
-						value="#{modifyContractController.contract.customer.company}" />
-					<br />
-				</p>
-				<p>
-					<label for="companyName">Company Name</label>
-					<h:outputText id="companyName"
-						value="#{modifyContractController.contract.customer.companyName}" />
-				</p>
-				<p>
-					<label for="blacklisted">Customer is blacklisted</label>
-					<h:outputText id="blacklisted"
-						value="#{modifyContractController.contract.customer.blacklisted}" />
-					<br />
-				</p>
-			</h:panelGrid>
+					<h2>Customer Information</h2>
+					<h:panelGrid columns="2">
+						<p>
+							<label for="customerId">Customer ID</label>
+							<h:outputText id="customerId"
+								value="#{modifyContractController.contract.customer.customerId}" />
+						</p>
+						<p>
+							<label for="firstname">First Name</label>
+							<h:outputText id="firstname"
+								value="#{modifyContractController.contract.customer.firstName}" />
+						</p>
+						<p>
+							<label for="surname">First Name</label>
+							<h:outputText id="surname"
+								value="#{modifyContractController.contract.customer.surname}" />
+						</p>
+						<p>
+							<label for="email">E-Mail</label>
+							<h:outputText id="email"
+								value="#{modifyContractController.contract.customer.email}" />
+						</p>
+						<p>
+							<label for="phoneNumber">Phone Number</label>
+							<h:outputText id="phoneNumber"
+								value="#{modifyContractController.contract.customer.phoneNumber}" />
+						</p>
+						<p>
+							<label for="street">Street</label>
+							<h:outputText id="street"
+								value="#{modifyContractController.contract.customer.street}" />
+						</p>
+						<p>
+							<label for="houseNumber">House Number</label>
+							<h:outputText id="houseNumber"
+								value="#{modifyContractController.contract.customer.houseNumber}" />
+						</p>
+						<p>
+							<label for="postcode">Post Code</label>
+							<h:outputText id="postcode"
+								value="#{modifyContractController.contract.customer.postcode}" />
+						</p>
+						<p>
+							<label for="city">City</label>
+							<h:outputText id="city"
+								value="#{modifyContractController.contract.customer.city}" />
+						</p>
+						<p>
+							<label for="country">Country</label>
+							<h:outputText id="country"
+								value="#{modifyContractController.contract.customer.country}" />
+						</p>
+						<p>
+							<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
+							<h:outputText id="dateOfBirth"
+								value="#{modifyContractController.contract.customer.dateOfBirth}">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
+							</h:outputText>
+						</p>
+						<p>
+							<label for="company">Customer is Company?</label>
+							<h:outputText id="company"
+								value="#{modifyContractController.contract.customer.company}" />
+							<br />
+						</p>
+						<p>
+							<label for="companyName">Company Name</label>
+							<h:outputText id="companyName"
+								value="#{modifyContractController.contract.customer.companyName}" />
+						</p>
+						<p>
+							<label for="blacklisted">Customer is blacklisted</label>
+							<h:outputText id="blacklisted"
+								value="#{modifyContractController.contract.customer.blacklisted}" />
+							<br />
+						</p>
+					</h:panelGrid>
 
-			<h2>Contract Information</h2>
+					<h2>Contract Information</h2>
 
-			<h:panelGrid columns="2">
-				<p>
-					<label for="contractId">Contract ID</label>
-					<h:outputText id="contractId"
-						value="#{validateContractController.contract.contractId}" />
-				</p>
-				<p>
-					<label for="insuranceType">Insurance Type</label>
-					<h:inputText id="insuranceType"
-						value="#{modifyContractController.contract.insuranceType}" />
-				</p>
-				<p>
-					<label for="pickUpDate">Pick-up date:</label>
-					<h:inputText id="pickUpDate"
-						value="#{modifyContractController.contract.pickUpDate}">
-						</h:inputText>
-				</p>
-				<p>
-					<label for="returnDate">Return date:</label>
-					<h:inputText id="returnDate"
-						value="#{modifyContractController.contract.returnDate}">
-						<f:convertDateTime pattern="dd-MM-yyyy" />
-						</h:inputText>
-				</p>
-				<p>
-					<label for="totalCost">Total Cost:</label>
-					<h:outputText id="totalCost"
-						value="#{modifyContractController.contract.totalCost/100} €" />
-				</p>								
-				
-			</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p>
+							<label for="contractId">Contract ID</label>
+							<h:outputText id="contractId"
+								value="#{validateContractController.contract.contractId}" />
+						</p>
+						<p>
+							<label for="insuranceType">Insurance Type</label>
+							<h:inputText id="insuranceType"
+								value="#{modifyContractController.contract.insuranceType}"
+								required="true" requiredMessage="Required Field!" />
+						</p>
+						<p>
+							<label for="pickUpDate">Pick-up date:</label>
+							<h:inputText id="pickUpDate"
+								value="#{modifyContractController.contract.pickUpDate}"
+								required="true" requiredMessage="Required Field!">
+							</h:inputText>
+						</p>
+						<p>
+							<label for="returnDate">Return date:</label>
+							<h:inputText id="returnDate"
+								value="#{modifyContractController.contract.returnDate}"
+								required="true" requiredMessage="Required Field!">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
+							</h:inputText>
+						</p>
+						<p>
+							<label for="totalCost">Total Cost:</label>
+							<h:outputText id="totalCost"
+								value="#{modifyContractController.contract.totalCost/100} €" />
+						</p>
 
-			<h3>Policies</h3>
-			<h:dataTable value="#{modifyContractController.contract.policies}"
-				var="policy">
-				<h:column>
-					<f:facet name="header">Policy ID</f:facet>
-					<h:outputText id="policyId" value="#{policy.policyId}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Daily Premium in €</f:facet>
-					<h:inputText id="dailyPremium" value="#{policy.dailyPremium}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Car ID</f:facet>
-					<h:outputText id="carId" value="#{policy.car.carId}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Brand</f:facet>
-					<h:inputText id="brand" value="#{policy.car.brand}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Model</f:facet>
-					<h:inputText id="model" value="#{policy.car.model}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Registration</f:facet>
-					<h:inputText id="registrationNumber"
-						value="#{policy.car.registrationNumber}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Fuel Type</f:facet>
-					<h:inputText id="fuelType" value="#{policy.car.fuelType}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Horsepower</f:facet>
-					<h:inputText id="ps" value="#{policy.car.ps}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Construction Year</f:facet>
-					<h:inputText id="constructionYear"
-						value="#{policy.car.constructionYear}" />
-				</h:column>
-			</h:dataTable>
-			<h:commandButton id="modify_button"
-				value="Modify and Validate Contract"
-				action="#{modifyContractController.submitValidation()}" />
-		</h:form>
-	</h:body>
+					</h:panelGrid>
+
+					<h3>Policies</h3>
+					<h:dataTable value="#{modifyContractController.contract.policies}"
+						var="policy">
+						<h:column>
+							<f:facet name="header">Policy ID</f:facet>
+							<h:outputText id="policyId" value="#{policy.policyId}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Daily Premium in €</f:facet>
+							<h:inputText id="dailyPremium" value="#{policy.dailyPremium}"
+								required="true" requiredMessage="Required Field!" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Car ID</f:facet>
+							<h:outputText id="carId" value="#{policy.car.carId}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Brand</f:facet>
+							<h:inputText id="brand" value="#{policy.car.brand}"
+								required="true" requiredMessage="Required Field!" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Model</f:facet>
+							<h:inputText id="model" value="#{policy.car.model}"
+								required="true" requiredMessage="Required Field!" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Registration</f:facet>
+							<h:inputText id="registrationNumber"
+								value="#{policy.car.registrationNumber}" required="true"
+								requiredMessage="Required Field!" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Fuel Type</f:facet>
+							<h:inputText id="fuelType" value="#{policy.car.fuelType}"
+								required="true" requiredMessage="Required Field!" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Horsepower</f:facet>
+							<h:inputText id="ps" value="#{policy.car.ps}" required="true"
+								requiredMessage="Required Field!" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Construction Year</f:facet>
+							<h:inputText id="constructionYear"
+								value="#{policy.car.constructionYear}" required="true"
+								requiredMessage="Required Field!" />
+						</h:column>
+					</h:dataTable>
+					<h:commandButton id="modify_button"
+						value="Modify and Validate Contract"
+						action="#{modifyContractController.submitValidation()}"
+						required="true" requiredMessage="Required Field!" />
+				</h:form>
+			</div>
+			<div class="error">
+				<h:messages globalOnly="true" errorClass="err" layout="table" />
+			</div>
+		</ui:define>
+	</ui:composition>
 </f:view>
 </html>

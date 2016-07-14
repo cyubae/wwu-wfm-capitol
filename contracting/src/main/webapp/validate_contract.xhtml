@@ -1,178 +1,185 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://butterfaces.org/components"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
 	<f:metadata>
 		<f:event type="preRenderView"
 			listener="#{camundaTaskForm.startTaskForm()}" />
 	</f:metadata>
-	<h:head>
-		<title>Validate Contract</title>
-	</h:head>
-	<h:body>
-		<h:form id="submitForm">
-			<h1>Validate proposed contract</h1>
+	<ui:composition template="/resources/master.xhtml">
+		<ui:define name="title">Validate Contract</ui:define>
+		<h:head>
+			<title>Validate Contract</title>
+			<h:outputStylesheet name="default.css" />
+		</h:head>
+		<ui:define name="content">
+			<div class="inputForm">
+					<h:form id="submitForm">
+						<h1>Validate proposed contract</h1>
 
-			<h2>Customer Information</h2>
-			<h:panelGrid columns="2">
-				<p>
-					<label for="customerId">Customer ID</label>
-					<h:outputText id="customerId"
-						value="#{validateContractController.contract.customer.customerId}" />
-				</p>
-				<p>
-					<label for="firstname">First Name</label>
-					<h:outputText id="firstname"
-						value="#{validateContractController.contract.customer.firstName}" />
-				</p>
-				<p>
-					<label for="surname">First Name</label>
-					<h:outputText id="surname"
-						value="#{validateContractController.contract.customer.surname}" />
-				</p>
-				<p>
-					<label for="email">E-Mail</label>
-					<h:outputText id="email"
-						value="#{validateContractController.contract.customer.email}" />
-				</p>
-				<p>
-					<label for="phoneNumber">Phone Number</label>
-					<h:outputText id="phoneNumber"
-						value="#{validateContractController.contract.customer.phoneNumber}" />
-				</p>
-				<p>
-					<label for="street">Street</label>
-					<h:outputText id="street"
-						value="#{validateContractController.contract.customer.street}" />
-				</p>
-				<p>
-					<label for="houseNumber">House Number</label>
-					<h:outputText id="houseNumber"
-						value="#{validateContractController.contract.customer.houseNumber}" />
-				</p>
-				<p>
-					<label for="postcode">Post Code</label>
-					<h:outputText id="postcode"
-						value="#{validateContractController.contract.customer.postcode}" />
-				</p>
-				<p>
-					<label for="city">City</label>
-					<h:outputText id="city"
-						value="#{validateContractController.contract.customer.city}" />
-				</p>
-				<p>
-					<label for="country">Country</label>
-					<h:outputText id="country"
-						value="#{validateContractController.contract.customer.country}" />
-				</p>
-				<p>
-					<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
-					<h:outputText id="dateOfBirth"
-						value="#{validateContractController.contract.customer.dateOfBirth}">
-						<f:convertDateTime pattern="dd-MM-yyyy" />
-					</h:outputText>
-				</p>
-				<p>
-					<label for="company">Customer is Company?</label>
-					<h:outputText id="company"
-						value="#{validateContractController.contract.customer.company}" />
-					<br />
-				</p>
-				<p>
-					<label for="companyName">Company Name</label>
-					<h:outputText id="companyName"
-						value="#{validateContractController.contract.customer.companyName}" />
-				</p>
-				<p>
-					<label for="blacklisted">Customer is blacklisted</label>
-					<h:outputText id="blacklisted"
-						value="#{validateContractController.contract.customer.blacklisted}" />
-					<br />
-				</p>
-			</h:panelGrid>
+						<h2>Customer Information</h2>
+						<h:panelGrid columns="2">
+							<p>
+								<label for="customerId">Customer ID</label>
+								<h:outputText id="customerId"
+									value="#{validateContractController.contract.customer.customerId}" />
+							</p>
+							<p>
+								<label for="firstname">First Name</label>
+								<h:outputText id="firstname"
+									value="#{validateContractController.contract.customer.firstName}" />
+							</p>
+							<p>
+								<label for="surname">First Name</label>
+								<h:outputText id="surname"
+									value="#{validateContractController.contract.customer.surname}" />
+							</p>
+							<p>
+								<label for="email">E-Mail</label>
+								<h:outputText id="email"
+									value="#{validateContractController.contract.customer.email}" />
+							</p>
+							<p>
+								<label for="phoneNumber">Phone Number</label>
+								<h:outputText id="phoneNumber"
+									value="#{validateContractController.contract.customer.phoneNumber}" />
+							</p>
+							<p>
+								<label for="street">Street</label>
+								<h:outputText id="street"
+									value="#{validateContractController.contract.customer.street}" />
+							</p>
+							<p>
+								<label for="houseNumber">House Number</label>
+								<h:outputText id="houseNumber"
+									value="#{validateContractController.contract.customer.houseNumber}" />
+							</p>
+							<p>
+								<label for="postcode">Post Code</label>
+								<h:outputText id="postcode"
+									value="#{validateContractController.contract.customer.postcode}" />
+							</p>
+							<p>
+								<label for="city">City</label>
+								<h:outputText id="city"
+									value="#{validateContractController.contract.customer.city}" />
+							</p>
+							<p>
+								<label for="country">Country</label>
+								<h:outputText id="country"
+									value="#{validateContractController.contract.customer.country}" />
+							</p>
+							<p>
+								<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
+								<h:outputText id="dateOfBirth"
+									value="#{validateContractController.contract.customer.dateOfBirth}">
+									<f:convertDateTime pattern="dd-MM-yyyy" />
+								</h:outputText>
+							</p>
+							<p>
+								<label for="company">Customer is Company?</label>
+								<h:outputText id="company"
+									value="#{validateContractController.contract.customer.company}" />
+								<br />
+							</p>
+							<p>
+								<label for="companyName">Company Name</label>
+								<h:outputText id="companyName"
+									value="#{validateContractController.contract.customer.companyName}" />
+							</p>
+							<p>
+								<label for="blacklisted">Customer is blacklisted</label>
+								<h:outputText id="blacklisted"
+									value="#{validateContractController.contract.customer.blacklisted}" />
+								<br />
+							</p>
+						</h:panelGrid>
 
-			<h2>Contract Information</h2>
+						<h2>Contract Information</h2>
 
-			<h:panelGrid columns="2">
-				<p>
-					<label for="contractId">Contract ID</label>
-					<h:outputText id="contractId"
-						value="#{validateContractController.contract.contractId}" />
-				</p>
-				<p>
-					<label for="insuranceType">Insurance Type</label>
-					<h:outputText id="insuranceType"
-						value="#{validateContractController.contract.insuranceType}" />
-				</p>
-				<p>
-					<label for="pickUpDate">Pick-up date:</label>
-					<h:outputText id="pickUpDate"
-						value="#{validateContractController.contract.pickUpDate}" />
-				</p>
-				<p>
-					<label for="returnDate">Return date:</label>
-					<h:outputText id="returnDate"
-						value="#{validateContractController.contract.returnDate}" />
-				</p>
-				<p>
-					<label for="totalCost">Total Cost:</label>
-					<h:outputText id="totalCost"
-						value="#{validateContractController.contract.totalCost/100} €" />
-				</p>				
-				
-				
-			</h:panelGrid>
+						<h:panelGrid columns="2">
+							<p>
+								<label for="contractId">Contract ID</label>
+								<h:outputText id="contractId"
+									value="#{validateContractController.contract.contractId}" />
+							</p>
+							<p>
+								<label for="insuranceType">Insurance Type</label>
+								<h:outputText id="insuranceType"
+									value="#{validateContractController.contract.insuranceType}" />
+							</p>
+							<p>
+								<label for="pickUpDate">Pick-up date:</label>
+								<h:outputText id="pickUpDate"
+									value="#{validateContractController.contract.pickUpDate}" />
+							</p>
+							<p>
+								<label for="returnDate">Return date:</label>
+								<h:outputText id="returnDate"
+									value="#{validateContractController.contract.returnDate}" />
+							</p>
+							<p>
+								<label for="totalCost">Total Cost:</label>
+								<h:outputText id="totalCost"
+									value="#{validateContractController.contract.totalCost/100} €" />
+							</p>
 
-			<h3>Policies</h3>
-			<h:dataTable value="#{validateContractController.contract.policies}"
-				var="policy">
-				<h:column>
-					<f:facet name="header">Policy ID</f:facet>
+
+						</h:panelGrid>
+
+						<h3>Policies</h3>
+						<h:dataTable
+							value="#{validateContractController.contract.policies}"
+							var="policy">
+							<h:column>
+								<f:facet name="header">Policy ID</f:facet>
 						#{policy.policyId}
          			</h:column>
-				<h:column>
-					<f:facet name="header">Daily Premium</f:facet>
+							<h:column>
+								<f:facet name="header">Daily Premium</f:facet>
 			            #{policy.dailyPremium/100} €
 			        </h:column>
-				<h:column>
-					<f:facet name="header">Car ID</f:facet>
+							<h:column>
+								<f:facet name="header">Car ID</f:facet>
 						#{policy.car.carId}
          			</h:column>
-				<h:column>
-					<f:facet name="header">Brand</f:facet>
+							<h:column>
+								<f:facet name="header">Brand</f:facet>
 						#{policy.car.brand}
          			</h:column>
-				<h:column>
-					<f:facet name="header">Model</f:facet>
+							<h:column>
+								<f:facet name="header">Model</f:facet>
 						#{policy.car.model}
          			</h:column>
-				<h:column>
-					<f:facet name="header">Registration</f:facet>
+							<h:column>
+								<f:facet name="header">Registration</f:facet>
 						#{policy.car.registrationNumber}
          			</h:column>
-				<h:column>
-					<f:facet name="header">Fuel Type</f:facet>
+							<h:column>
+								<f:facet name="header">Fuel Type</f:facet>
 						#{policy.car.fuelType}
          			</h:column>
-				<h:column>
-					<f:facet name="header">Horsepower</f:facet>
+							<h:column>
+								<f:facet name="header">Horsepower</f:facet>
 						#{policy.car.ps}
          			</h:column>
-				<h:column>
-					<f:facet name="header">Construction Year</f:facet>
+							<h:column>
+								<f:facet name="header">Construction Year</f:facet>
 						#{policy.car.constructionYear}
          			</h:column>
-			</h:dataTable>
+						</h:dataTable>
 
 
-			<h:commandButton id="validate_button" value="Validate Contract"
-				action="#{validateContractController.submitValidation(true)}" />
-			<h:commandButton id="dont_validate_button" value="Do not validate"
-				action="#{validateContractController.submitValidation(false)}" />
-		</h:form>
-	</h:body>
+						<h:commandButton id="validate_button" value="Validate Contract"
+							action="#{validateContractController.submitValidation(true)}" />
+						<h:commandButton id="dont_validate_button" value="Do not validate"
+							action="#{validateContractController.submitValidation(false)}" />
+					</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
 </f:view>
 </html>
