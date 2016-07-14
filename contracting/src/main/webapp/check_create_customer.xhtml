@@ -24,28 +24,32 @@
 						<p>
 							<label for="customerId">Customer ID</label>
 							<h:outputText id="customerId"
-								value="#{checkCustomerController.customer.customerId}" />
+								value="#{checkCustomerController.customer.customerId}" 
+								requiredMessage="Required Field!" />
 							<h:message for="customerId" />
 						</p>
 						<p>
 							<label for="firstname">First Name</label>
 							<h:inputText id="firstname"
 								value="#{checkCustomerController.customer.firstName}"
-								required="true" />
+								required="true"
+								requiredMessage="Required Field!" />
 							<h:message for="firstname" />
 						</p>
 						<p>
 							<label for="surname">First Name</label>
 							<h:inputText id="surname"
 								value="#{checkCustomerController.customer.surname}"
-								required="true" />
+								required="true"
+								requiredMessage="Required Field!" />
 							<h:message for="surname" />
 						</p>
 						<p>
 							<label for="email">E-Mail</label>
 							<h:inputText id="email"
 								value="#{checkCustomerController.customer.email}"
-								required="true" />
+								required="true"
+								requiredMessage="Required Field!" />
 							<h:message for="email" />
 						</p>
 						<p>
@@ -63,41 +67,48 @@
 							<label for="street">Street</label>
 							<h:inputText id="street"
 								value="#{checkCustomerController.customer.street}"
-								required="true" />
+								required="true" 
+								requiredMessage="Required Field!"/>
 							<h:message for="street" />
 						</p>
 						<p>
 							<label for="houseNumber">House Number</label>
 							<h:inputText id="houseNumber"
 								value="#{checkCustomerController.customer.houseNumber}"
-								required="true" />
+								required="true" 
+								requiredMessage="Required Field!" />
 							<h:message for="houseNumber" />
 						</p>
 						<p>
 							<label for="postcode">Post Code</label>
 							<h:inputText id="postcode"
 								value="#{checkCustomerController.customer.postcode}"
-								required="true" />
+								required="true" 
+								requiredMessage="Required Field!"/>
 							<h:message for="postcode" />
 						</p>
 						<p>
 							<label for="city">City</label>
 							<h:inputText id="city"
-								value="#{checkCustomerController.customer.city}" required="true" />
+								value="#{checkCustomerController.customer.city}" 
+								required="true" 
+								requiredMessage="Required Field!"/>
 							<h:message for="city" />
 						</p>
 						<p>
 							<label for="country">Country</label>
 							<h:inputText id="country"
 								value="#{checkCustomerController.customer.country}"
-								required="true" />
+								required="true" 
+								requiredMessage="Required Field!"/>
 							<h:message for="country" />
 						</p>
 						<p>
 							<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
 							<h:inputText id="dateOfBirth"
 								value="#{checkCustomerController.customer.dateOfBirth}"
-								required="true" >
+								required="true" 
+								requiredMessage="Required Field!">
 									<f:convertDateTime pattern="dd-MM-yyyy" />
 								</h:inputText>
 							<h:message for="dateOfBirth" />
@@ -113,13 +124,15 @@
 							<label for="companyName">Company Name</label>
 							<h:inputText id="companyName"
 								value="#{checkCustomerController.customer.companyName}"
-								required="false" />
+								required="false" 
+								requiredMessage="Required Field!"/>
 							<h:message for="companyName" />
 						</p>
 						<p>
 							<label for="blacklisted">Customer is blacklisted</label>
 							<h:selectBooleanCheckbox id="blacklisted"
-								value="#{checkCustomerController.customer.blacklisted}" />
+								value="#{checkCustomerController.customer.blacklisted}" 
+								requiredMessage="Required Field!"/>
 							<h:message for="blacklisted" />
 							<br />
 						</p>
