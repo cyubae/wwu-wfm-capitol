@@ -101,7 +101,7 @@
 
 					<h2>Contract Information</h2>
 
-					<h:panelGrid columns="2">
+					<h:panelGrid columns="3">
 						<p>
 							<label for="contractId">Contract ID</label>
 							<h:outputText id="contractId"
@@ -111,7 +111,9 @@
 							<label for="insuranceType">Insurance Type</label>
 							<h:inputText id="insuranceType"
 								value="#{modifyContractController.contract.insuranceType}"
-								required="true" requiredMessage="Required Field!" />
+								required="true" requiredMessage="Required Field!">
+							</h:inputText>
+							<h:message for="insuranceType" />
 						</p>
 						<p>
 							<label for="pickUpDate">Pick-up date:</label>
@@ -119,6 +121,7 @@
 								value="#{modifyContractController.contract.pickUpDate}"
 								required="true" requiredMessage="Required Field!">
 							</h:inputText>
+							<h:message for="pickUpDate" />
 						</p>
 						<p>
 							<label for="returnDate">Return date:</label>
@@ -127,6 +130,7 @@
 								required="true" requiredMessage="Required Field!">
 								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</h:inputText>
+							<h:message for="returnDate" />
 						</p>
 						<p>
 							<label for="totalCost">Total Cost:</label>
@@ -137,55 +141,6 @@
 					</h:panelGrid>
 
 					<h3>Policies</h3>
-					<h:dataTable value="#{modifyContractController.contract.policies}"
-						var="policy">
-						<h:column>
-							<f:facet name="header">Policy ID</f:facet>
-							<h:outputText id="policyId" value="#{policy.policyId}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Daily Premium in €</f:facet>
-							<h:inputText id="dailyPremium" value="#{policy.dailyPremium}"
-								required="true" requiredMessage="Required Field!" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Car ID</f:facet>
-							<h:outputText id="carId" value="#{policy.car.carId}" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Brand</f:facet>
-							<h:inputText id="brand" value="#{policy.car.brand}"
-								required="true" requiredMessage="Required Field!" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Model</f:facet>
-							<h:inputText id="model" value="#{policy.car.model}"
-								required="true" requiredMessage="Required Field!" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Registration</f:facet>
-							<h:inputText id="registrationNumber"
-								value="#{policy.car.registrationNumber}" required="true"
-								requiredMessage="Required Field!" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Fuel Type</f:facet>
-							<h:inputText id="fuelType" value="#{policy.car.fuelType}"
-								required="true" requiredMessage="Required Field!" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Horsepower</f:facet>
-							<h:inputText id="ps" value="#{policy.car.ps}" required="true"
-								requiredMessage="Required Field!" />
-						</h:column>
-						<h:column>
-							<f:facet name="header">Construction Year</f:facet>
-							<h:inputText id="constructionYear"
-								value="#{policy.car.constructionYear}" required="true"
-								requiredMessage="Required Field!" />
-						</h:column>
-					</h:dataTable>
-
 					<p:dataTable value="#{modifyContractController.contract.policies}"
 						var="policy">
 						<p:column headerText="Policy ID">
@@ -194,39 +149,53 @@
 
 						<p:column headerText="Daily Premium (EUR)">
 							<h:inputText id="dailyPremium" value="#{policy.dailyPremium}"
-								required="true" requiredMessage="Required Field!" />
+								required="true" requiredMessage="Required Field!">
+							</h:inputText>
+							<h:message for="dailyPremium" />
 						</p:column>
 
 						<p:column headerText="Brand">
 							<h:inputText id="brand" value="#{policy.car.brand}"
-								required="true" requiredMessage="Required Field!" />
+								required="true" requiredMessage="Required Field!">
+							</h:inputText>
+							<h:message for="brand" />
 						</p:column>
 
 						<p:column headerText="Model">
 							<h:inputText id="model" value="#{policy.car.model}"
-								required="true" requiredMessage="Required Field!" />
+								required="true" requiredMessage="Required Field!">
+							</h:inputText>
+							<h:message for="model" />
 						</p:column>
 
 						<p:column headerText="Registration">
 							<h:inputText id="registrationNumber"
 								value="#{policy.car.registrationNumber}" required="true"
-								requiredMessage="Required Field!" />
+								requiredMessage="Required Field!">
+							</h:inputText>
+							<h:message for="registrationNumber" />
 						</p:column>
 
 						<p:column headerText="Fuel Type">
 							<h:inputText id="fuelType" value="#{policy.car.fuelType}"
-								required="true" requiredMessage="Required Field!" />
+								required="true" requiredMessage="Required Field!">
+							</h:inputText>
+							<h:message for="fuelType" />
 						</p:column>
 
 						<p:column headerText="Horsepower">
 							<h:inputText id="ps" value="#{policy.car.ps}" required="true"
-								requiredMessage="Required Field!" />
+								requiredMessage="Required Field!">
+							</h:inputText>
+							<h:message for="ps" />
 						</p:column>
 
 						<p:column headerText="Construction Year">
 							<h:inputText id="constructionYear"
 								value="#{policy.car.constructionYear}" required="true"
-								requiredMessage="Required Field!" />
+								requiredMessage="Required Field!">
+							</h:inputText>
+							<h:message for="constructionYear" />
 						</p:column>
 					</p:dataTable>
 
@@ -235,10 +204,6 @@
 						action="#{modifyContractController.submitValidation()}"
 						required="true" requiredMessage="Required Field!" />
 				</h:form>
-			</div>
-			<div class="error">
-				<h:messages globalOnly="true" errorClass="err" layout="table" />
-			</div>
 		</ui:define>
 	</ui:composition>
 </f:view>
