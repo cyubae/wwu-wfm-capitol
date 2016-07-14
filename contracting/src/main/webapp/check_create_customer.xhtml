@@ -3,7 +3,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:b="http://butterfaces.org/components"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <f:view>
 	<f:metadata>
 		<f:event type="preRenderView"
@@ -31,110 +32,106 @@
 						</p>
 						<p>
 							<label for="firstname">First Name</label>
-							<h:inputText id="firstname"
+							<p:inputText id="firstname"
 								value="#{checkCustomerController.customer.firstName}"
 								required="true" requiredMessage="Required Field!" />
 							<h:message for="firstname" />
 						</p>
 						<p>
 							<label for="surname">First Name</label>
-							<h:inputText id="surname"
+							<p:inputText id="surname"
 								value="#{checkCustomerController.customer.surname}"
 								required="true" requiredMessage="Required Field!" />
 							<h:message for="surname" />
 						</p>
 						<p>
 							<label for="email">E-Mail</label>
-							<h:inputText id="email"
+							<p:inputText id="email"
 								value="#{checkCustomerController.customer.email}"
 								required="true" 
 								requiredMessage="Required Field!"
 								validatorMessage="Not a valid email address!">
 								<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-							</h:inputText>
+							</p:inputText>
 							<h:message for="email" />
 						</p>
 						<p>
 							<label for="phoneNumber">Phone Number</label>
-							<h:inputText id="phoneNumber"
+							<p:inputText id="phoneNumber"
 								value="#{checkCustomerController.customer.phoneNumber}"
 								required="true"
 								validatorMessage="Phone number must be of format 0123-456789"
 								requiredMessage="Required Field!">
 								<f:validateRegex pattern="((\d+)(-)?(\d+))" />
-							</h:inputText>
+							</p:inputText>
 							<h:message for="phoneNumber" />
 						</p>
 						<p>
 							<label for="street">Street</label>
-							<h:inputText id="street"
+							<p:inputText id="street"
 								value="#{checkCustomerController.customer.street}"
 								required="true" requiredMessage="Required Field!" />
 							<h:message for="street" />
 						</p>
 						<p>
 							<label for="houseNumber">House Number</label>
-							<h:inputText id="houseNumber"
+							<p:inputText id="houseNumber"
 								value="#{checkCustomerController.customer.houseNumber}"
 								required="true" requiredMessage="Required Field!" />
 							<h:message for="houseNumber" />
 						</p>
 						<p>
 							<label for="postcode">Post Code</label>
-							<h:inputText id="postcode"
+							<p:inputText id="postcode"
 								value="#{checkCustomerController.customer.postcode}"
 								required="true" requiredMessage="Required Field!" />
 							<h:message for="postcode" />
 						</p>
 						<p>
 							<label for="city">City</label>
-							<h:inputText id="city"
+							<p:inputText id="city"
 								value="#{checkCustomerController.customer.city}" required="true"
 								requiredMessage="Required Field!" />
 							<h:message for="city" />
 						</p>
 						<p>
 							<label for="country">Country</label>
-							<h:inputText id="country"
+							<p:inputText id="country"
 								value="#{checkCustomerController.customer.country}"
 								required="true" requiredMessage="Required Field!" />
 							<h:message for="country" />
 						</p>
 						<p>
 							<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
-							<h:inputText id="dateOfBirth"
+							<p:inputText id="dateOfBirth"
 								value="#{checkCustomerController.customer.dateOfBirth}"
 								required="true" requiredMessage="Required Field!">
 								<f:convertDateTime pattern="dd-MM-yyyy" />
-							</h:inputText>
+							</p:inputText>
 							<h:message for="dateOfBirth" />
 						</p>
 						<p>
 							<label for="company">Customer is Company?</label>
-							<h:selectBooleanCheckbox id="company"
-								value="#{checkCustomerController.customer.company}" />
+							<p:selectBooleanButton id="company" value="#{checkCustomerController.customer.company}" onLabel="Yes" offLabel="No" style="width:60px" />
 							<h:message for="company" />
 							<br />
 						</p>
 						<p>
 							<label for="companyName">Company Name</label>
-							<h:inputText id="companyName"
+							<p:inputText id="companyName"
 								value="#{checkCustomerController.customer.companyName}"
 								required="false" requiredMessage="Required Field!" />
 							<h:message for="companyName" />
 						</p>
 						<p>
 							<label for="blacklisted">Customer is blacklisted</label>
-							<h:selectBooleanCheckbox id="blacklisted"
-								value="#{checkCustomerController.customer.blacklisted}"
-								requiredMessage="Required Field!" />
+							<p:selectBooleanButton id="blacklisted" value="#{checkCustomerController.customer.blacklisted}" onLabel="Yes" offLabel="No" style="width:60px" />
 							<h:message for="blacklisted" />
 							<br />
 						</p>
 					</h:panelGrid>
-
-					<h:commandButton id="submit_button" value="Create Customer"
-						action="#{checkCustomerController.submitForm()}" />
+					
+					<p:commandButton value="Create Customer" id="submit_button" action="#{checkCustomerController.submitForm()}"/>
 				</h:form>
 			</div>
 		</ui:define>
