@@ -3,7 +3,8 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:b="http://butterfaces.org/components"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <f:view>
 	<f:metadata>
 		<f:event type="preRenderView"
@@ -184,6 +185,51 @@
 								requiredMessage="Required Field!" />
 						</h:column>
 					</h:dataTable>
+
+					<p:dataTable value="#{modifyContractController.contract.policies}"
+						var="policy">
+						<p:column headerText="Policy ID">
+							<h:outputText id="policyId" value="#{policy.policyId}" />
+						</p:column>
+
+						<p:column headerText="Daily Premium (EUR)">
+							<h:inputText id="dailyPremium" value="#{policy.dailyPremium}"
+								required="true" requiredMessage="Required Field!" />
+						</p:column>
+
+						<p:column headerText="Brand">
+							<h:inputText id="brand" value="#{policy.car.brand}"
+								required="true" requiredMessage="Required Field!" />
+						</p:column>
+
+						<p:column headerText="Model">
+							<h:inputText id="model" value="#{policy.car.model}"
+								required="true" requiredMessage="Required Field!" />
+						</p:column>
+
+						<p:column headerText="Registration">
+							<h:inputText id="registrationNumber"
+								value="#{policy.car.registrationNumber}" required="true"
+								requiredMessage="Required Field!" />
+						</p:column>
+
+						<p:column headerText="Fuel Type">
+							<h:inputText id="fuelType" value="#{policy.car.fuelType}"
+								required="true" requiredMessage="Required Field!" />
+						</p:column>
+
+						<p:column headerText="Horsepower">
+							<h:inputText id="ps" value="#{policy.car.ps}" required="true"
+								requiredMessage="Required Field!" />
+						</p:column>
+
+						<p:column headerText="Construction Year">
+							<h:inputText id="constructionYear"
+								value="#{policy.car.constructionYear}" required="true"
+								requiredMessage="Required Field!" />
+						</p:column>
+					</p:dataTable>
+
 					<h:commandButton id="modify_button"
 						value="Modify and Validate Contract"
 						action="#{modifyContractController.submitValidation()}"
