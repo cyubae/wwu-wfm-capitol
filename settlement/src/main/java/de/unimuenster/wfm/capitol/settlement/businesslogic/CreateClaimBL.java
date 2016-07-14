@@ -1,6 +1,7 @@
 package de.unimuenster.wfm.capitol.settlement.businesslogic;
 
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,8 +13,10 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 
 import de.unimuenster.wfm.capitol.entities.Car;
 import de.unimuenster.wfm.capitol.entities.Claim;
+import de.unimuenster.wfm.capitol.entities.Contract;
 import de.unimuenster.wfm.capitol.entities.ExternalParty;
 import de.unimuenster.wfm.capitol.entities.Insurance;
+import de.unimuenster.wfm.capitol.entities.Policy;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
 import de.unimuenster.wfm.capitol.jpa.ClaimCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
@@ -75,10 +78,25 @@ public class CreateClaimBL {
 			//			e.printStackTrace();
 		}
 
-		//try to find policy associated to the claim
-		Car car = carCRUD.findCarByVehicleId(newClaim.getVehicleIDNumber());
-		if(car!=null) {
-			newClaim.setPolicy(car.getPolicy());
+		
+		//try to find contract associated to insurance_id sent with the claim
+		Contract contract = contractCRUD.findContractByInsuranceId((Integer) delegateExecution.getVariable("insurance_id"));
+		//try to find car associated to insurance found
+		List<Car> cars = carCRUD.findCarByVehicleId(newClaim.getVehicleIDNumber());
+		
+		Car carClaimed = null;
+		for(Policy currentPolicy1 : contract.getPolicies() ) {
+			for(Car currentCar : cars) {
+				Policy currentPolicy2 = currentCar.getPolicy();
+				if (currentPolicy1 == currentPolicy2) {
+					carClaimed = currentCar;
+				}
+			}
+		}
+						
+		
+		if(carClaimed!=null) {
+			newClaim.setPolicy(carClaimed.getPolicy());
 			delegateExecution.setVariable("contract_found", true);
 		}
 		else{

@@ -37,6 +37,7 @@ public class Contract implements Serializable {
 	@GeneratedValue
 	protected int contractId;
 	
+	//id used by external partner (corresponds to process variable insurance_insurance_id)
 	protected int insuranceId;
 
 	@Version
@@ -176,7 +177,6 @@ public class Contract implements Serializable {
 		int numberOfDays = DateTools.getDaysBetweenDates(this.getPickUpDate(), this.getReturnDate());		
 		return numberOfDays * this.getTotalDailyPremium(); 
 	}
-	
 
 	@Override
 	public String toString() {

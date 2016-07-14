@@ -30,7 +30,7 @@ public class CarCRUD extends AbstractCRUDService<Car> {
 	 * Returns car if available for given vehicleIdentificationNumber
 	 * Else returns null
 	 */
-	public Car findCarByVehicleId(String vehicleIdentificationNumber) {
+	public List<Car> findCarByVehicleId(String vehicleIdentificationNumber) {
 
 		LOGGER.log(Level.INFO, "entityManager.toString(): " + entityManager.toString());
 		LOGGER.log(Level.INFO, "Prepare query string");				
@@ -40,10 +40,10 @@ public class CarCRUD extends AbstractCRUDService<Car> {
 		LOGGER.log(Level.INFO, "Query string: " + query);
 		TypedQuery<Car> typedQuery = entityManager.createQuery(query, Car.class);
 		try {
-			Car car = typedQuery.getSingleResult();
+			List<Car> cars = typedQuery.getResultList();
 			
-			LOGGER.log(Level.INFO, "Found car");
-			return car;
+			LOGGER.log(Level.INFO, "Found cars");
+			return cars;
 		}
 		catch(Exception e) {
 			LOGGER.log(Level.INFO, "Found no car");
