@@ -141,3 +141,11 @@ a:hover {
 {
     width: 60%;
 }
+
+.labeltitle, labelvalue {
+    width: 50%;
+}
+
+.labelvalue {
+    color: #066083;
+}

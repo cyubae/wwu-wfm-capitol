@@ -19,10 +19,13 @@
 		<ui:define name="content">
 			<div class="inputForm">
 				<h:form id="submitForm">
-					<h1>Validate proposed contract</h1>
-
-					<h2>Customer Information</h2>
-					<h:panelGrid columns="2">
+					<h2>Validate proposed contract</h2>
+					<p style="border: 1px solid #066083; padding: 10px; text-align: center; width: 80%; margin-left: 10%; margin-top: 20px; margin-bottom: 20px;">
+						Please check if the customer and its contract is valid.<br />
+						If it might be not validate, you can modify it in a following form.
+					</p>
+					<h3>Customer Information</h3>
+					<h:panelGrid columns="2" columnClasses="labeltitle, labelvalue" style="margin-top: 20px;">
 						<p>
 							<label for="customerId">Customer ID</label>
 							<h:outputText id="customerId"
@@ -99,9 +102,9 @@
 						</p>
 					</h:panelGrid>
 
-					<h2>Contract Information</h2>
+					<h3>Contract Information</h3>
 
-					<h:panelGrid columns="2">
+					<h:panelGrid columns="2" columnClasses="labeltitle, labelvalue" style="margin-top: 20px;">
 						<p>
 							<label for="contractId">Contract ID</label>
 							<h:outputText id="contractId"
