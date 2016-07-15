@@ -40,7 +40,7 @@ public class PremiumCalculator {
 		LOGGER.log(Level.INFO, "dailyPremium: " + dailyPremiumCents);
 		
 		//format cents to BigDecimal "Euros,Cents"
-		BigDecimal dailyPremiumEuros = new BigDecimal(dailyPremiumCents).divide(new BigDecimal(100)).setScale(2, RoundingMode.HALF_EVEN);
+		BigDecimal dailyPremiumEuros = new BigDecimal(dailyPremiumCents).divide(new BigDecimal(100), RoundingMode.HALF_EVEN).setScale(2, RoundingMode.HALF_EVEN);
 
 		return dailyPremiumEuros;
 	}
