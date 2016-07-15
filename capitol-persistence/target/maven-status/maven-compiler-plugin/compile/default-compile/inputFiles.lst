@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\enums\ClaimDecision.java
 C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Contract.java
 C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\ContractCRUD.java
@@ -20,26 +19,3 @@ C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\
 C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\CustomerCRUD.java
 C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\CarCRUD.java
 C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\ExternalPartyCRUD.java
-=======
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Insurance.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Policy.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\enums\CarType.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Car.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\helper\DateTools.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\ExternalParty.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\PolicyCRUD.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\AbstractCRUDService.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Claim.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\enums\ClaimDecision.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\AccessCustomer.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\ClaimCRUD.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\enums\InsuranceType.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\InsuranceCRUD.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\CarCRUD.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\ContractCRUD.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\ExternalPartyCRUD.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\CustomerCRUD.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Contract.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Customer.java
-D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\helper\CurrencyTools.java
->>>>>>> 0cee1258e53555577ac6be198f6252b64899904d
