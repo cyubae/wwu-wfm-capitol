@@ -6,6 +6,7 @@ import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.CascadeType.REFRESH;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Logger;
@@ -46,14 +47,14 @@ public class Policy implements Serializable {
 	protected Collection<Claim> claims = new ArrayList<Claim>();	
 
 	//daily insurance premium (in euro cents)
-	protected int dailyPremium;
+	protected BigDecimal dailyPremium;
 	
 
 	public Policy() {
 
 	}
 
-	public Policy(Car car, Contract contract, int dailyPremium) {
+	public Policy(Car car, Contract contract, BigDecimal dailyPremium) {
 		super();
 		this.car = car;
 		this.contract = contract;
@@ -84,11 +85,11 @@ public class Policy implements Serializable {
 		this.contract = contract;
 	}
 
-	public int getDailyPremium() {
+	public BigDecimal getDailyPremium() {
 		return dailyPremium;
 	}
 
-	public void setDailyPremium(int dailyPremium) {
+	public void setDailyPremium(BigDecimal dailyPremium) {
 		this.dailyPremium = dailyPremium;
 	}
 	

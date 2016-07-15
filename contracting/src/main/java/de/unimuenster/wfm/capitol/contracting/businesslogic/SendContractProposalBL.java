@@ -61,7 +61,7 @@ public class SendContractProposalBL {
 		contractProposal.setProcessinstance_id_bvis(String.valueOf(delegateExecution.getVariable("processinstance_id_bvis")));
 		contractProposal.setProcessinstance_id_capitol(delegateExecution.getProcessInstanceId());
 
-		order.setFinal_price(contract.getTotalCost());
+		order.setFinal_price(contract.getTotalCost().doubleValue());
 		order.setInquiry_text("");
 		order.setOrder_id((Integer) delegateExecution.getVariable("order_id"));
 		order.setRequest_date((Date) delegateExecution.getVariable("request_date"));

@@ -141,6 +141,43 @@
 
 						</h:panelGrid>
 					</p:panel>
+					<h:panelGrid columns="3">
+						<p>
+							<label for="contractId">Contract ID</label>
+							<h:outputText id="contractId"
+								value="#{validateContractController.contract.contractId}" />
+						</p>
+						<p>
+							<label for="insuranceType">Insurance Type</label>
+							<h:inputText id="insuranceType"
+								value="#{modifyContractController.contract.insuranceType}"
+								required="true" requiredMessage="Required Field!">
+							</h:inputText>
+							<h:message for="insuranceType" />
+						</p>
+						<p>
+							<label for="pickUpDate">Pick-up date:</label>
+							<h:inputText id="pickUpDate"
+								value="#{modifyContractController.contract.pickUpDate}"
+								required="true" requiredMessage="Required Field!">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
+							</h:inputText>
+							<h:message for="pickUpDate" />
+						</p>
+						<p>
+							<label for="returnDate">Return date:</label>
+							<h:inputText id="returnDate"
+								value="#{modifyContractController.contract.returnDate}"
+								required="true" requiredMessage="Required Field!">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
+							</h:inputText>
+							<h:message for="returnDate" />
+						</p>
+						<p>
+							<label for="totalCost">Total Cost (EUR):</label>
+							<h:outputText id="totalCost"
+								value="#{modifyContractController.contract.totalCost}" />
+						</p>
 
 					<p:panel id="panel_3" header="Policies">
 						<p:dataTable value="#{modifyContractController.contract.policies}"

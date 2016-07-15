@@ -1,20 +1,16 @@
 package de.unimuenster.wfm.capitol.contracting.helper;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.camunda.bpm.engine.delegate.DelegateExecution;
-
-import de.unimuenster.wfm.capitol.contracting.controller.ValidateContractController;
-import de.unimuenster.wfm.capitol.entities.Customer;
 import de.unimuenster.wfm.capitol.enums.CarType;
 import de.unimuenster.wfm.capitol.enums.InsuranceType;
-import de.unimuenster.wfm.capitol.jpa.AccessCustomer;
 
 @Stateless
 @Named
@@ -24,7 +20,7 @@ public class PremiumCalculator {
 
 	private static double PS_FACTOR = 0.15;
 
-	public static int getDailyPremium(CarType carType, InsuranceType insuranceType, int horsePower, int yearOfConstruction) {
+	public static BigDecimal getDailyPremium(CarType carType, InsuranceType insuranceType, int horsePower, int yearOfConstruction) {
 		
 		LOGGER.log(Level.INFO, "invoked getDailyPremium: " + carType + insuranceType + horsePower + yearOfConstruction);
 
@@ -36,14 +32,17 @@ public class PremiumCalculator {
 		LOGGER.log(Level.INFO, "currentYear: " + currentYear);
 
 		//"type": "partial" * "type": "truck" + "ps": 102 * 0,15 + 20-1,2ˆ(actual year- "construction_year")
-		int dailyPremium = (int) Math.round(
+		int dailyPremiumCents = (int) Math.round(
 				dailyInsurancePremium * carCostFactor 
 				+ horsePower * PS_FACTOR 
 				+ (20 - Math.pow(1.2, currentYear-yearOfConstruction)/30)
 				);
-		LOGGER.log(Level.INFO, "dailyPremium: " + dailyPremium);
+		LOGGER.log(Level.INFO, "dailyPremium: " + dailyPremiumCents);
+		
+		//format cents to BigDecimal "Euros,Cents"
+		BigDecimal dailyPremiumEuros = new BigDecimal(dailyPremiumCents).divide(new BigDecimal(100)).setScale(2, RoundingMode.HALF_EVEN);
 
-		return dailyPremium;
+		return dailyPremiumEuros;
 	}
 
 	/**

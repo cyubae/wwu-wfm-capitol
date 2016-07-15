@@ -1,6 +1,6 @@
 package de.unimuenster.wfm.capitol.contracting.businesslogic;
 
-import java.text.ParseException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,7 +21,6 @@ import de.unimuenster.wfm.capitol.entities.Customer;
 import de.unimuenster.wfm.capitol.entities.Policy;
 import de.unimuenster.wfm.capitol.enums.CarType;
 import de.unimuenster.wfm.capitol.enums.InsuranceType;
-import de.unimuenster.wfm.capitol.helper.DateTools;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
 import de.unimuenster.wfm.capitol.jpa.CustomerCRUD;
@@ -103,7 +102,7 @@ public class CreateBasicContractBL {
 			int horsePower = currentCar.getPs();
 			int yearOfConstruction = currentCar.getConstructionYear();
 
-			int dailyPremium = PremiumCalculator.getDailyPremium(currentCarType, currentInsuranceType, horsePower, yearOfConstruction);
+			BigDecimal dailyPremium = PremiumCalculator.getDailyPremium(currentCarType, currentInsuranceType, horsePower, yearOfConstruction);
 
 			Policy newPolicy = new Policy();
 			newPolicy.setDailyPremium(dailyPremium);
