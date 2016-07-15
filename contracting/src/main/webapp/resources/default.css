@@ -1,7 +1,16 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
 h1, h2 {
     margin-top: 0;
     margin-bottom: 0;
-    font-family: 'Open Sans', sans-serif;
+    color: #066083;
+    text-shadow: 1px 1px 1px #FFFFFF;
+}
+
+h2 {
+    font-weight: light;
 }
 
 h3 {
@@ -25,13 +34,14 @@ a:hover {
 
 #header {
     padding: 1em;
-    background: #F6F6F6;
+    background: #FFFFFF;
 }
 
 #header img {
   float: left;
   width: 20%;
 }
+
 #header h1 {
   position: relative;
   top: 18px;
@@ -76,7 +86,8 @@ a:hover {
     padding: 1em;
     border-top: 1px solid lightgrey;
     font-size: small;
-    background: #F6F6F6;
+    background: #066083;
+    color: #FFFFFF;
 }
 
 .error {
@@ -124,4 +135,9 @@ a:hover {
 
 .details-table .label {
     border-bottom: 1px solid black;
+}
+
+.form-output
+{
+    width: 60%;
 }
