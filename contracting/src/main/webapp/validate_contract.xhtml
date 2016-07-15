@@ -22,8 +22,8 @@
 					<h2>Validate proposed contract</h2>
 					<p
 						style="border: 1px solid #066083; padding: 10px; text-align: center; width: 80%; margin-left: 10%; margin-top: 20px; margin-bottom: 20px;">
-						Please check if the customer and its contract is valid.<br /> If
-						it might be not validate, you can modify it in a following form.
+						Please check if the customer and contract details are valid.<br /> 
+						Should this information be incorrect, do not validate it to modify it in the following form.
 					</p>
 
 					<p:panel id="panel_1" header="Customer Information">
@@ -80,7 +80,7 @@
 									value="#{validateContractController.contract.customer.country}" />
 							</p>
 							<p>
-								<label for="dateOfBirth">Date of Birth (DD-MM-YYYY)</label>
+								<label for="dateOfBirth">Date of Birth</label>
 								<h:outputText id="dateOfBirth"
 									value="#{validateContractController.contract.customer.dateOfBirth}">
 									<f:convertDateTime pattern="dd-MM-yyyy" />

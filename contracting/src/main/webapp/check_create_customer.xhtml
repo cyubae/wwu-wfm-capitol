@@ -22,14 +22,12 @@
 					<h2>Create New Customer</h2>
 					<p
 						style="border: 1px solid #066083; padding: 10px; text-align: center; width: 80%; margin-left: 10%; margin-top: 20px; margin-bottom: 20px;">
-						You can check the received customer details from our partner
-						company BVIS.<br /> Please check them, if the entered customer
-						data are correct and on top of that, if the customer is
-						blacklisted.
+						Please verify if the customer details received from our partner
+						company are correct.<br />
 					</p>
 
 					<p:panel id="panel_1" header="New Customer">
-					
+
 						<h:panelGrid columns="3" cellpadding="10">
 							<p:outputLabel for="customerId">Customer ID</p:outputLabel>
 							<h:outputText id="customerId"
@@ -124,14 +122,12 @@
 								value="#{checkCustomerController.customer.blacklisted}" />
 							<p:message for="blacklisted" />
 							<br />
-
 						</h:panelGrid>
-
-						<p:commandButton value="Create Customer" id="submit_button"
-							action="#{checkCustomerController.submitForm()}"
-							update ="panel_1"
-							icon="ui-icon-check" />
 					</p:panel>
+
+					<p:commandButton value="Create Customer" id="submit_button"
+						action="#{checkCustomerController.submitForm()}" update="panel_1"
+						icon="ui-icon-check" />
 				</h:form>
 			</div>
 		</ui:define>

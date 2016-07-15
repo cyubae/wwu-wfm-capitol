@@ -1,6 +1,7 @@
 package de.unimuenster.wfm.capitol.contracting.helper;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Calendar;
 import java.util.logging.Level;
@@ -15,6 +16,10 @@ import de.unimuenster.wfm.capitol.enums.InsuranceType;
 @Stateless
 @Named
 public class PremiumCalculator {
+	
+	public static void main(String[] args) {
+		
+	}
 	
 	private static Logger LOGGER = Logger.getLogger(PremiumCalculator.class.getName());
 
@@ -40,7 +45,7 @@ public class PremiumCalculator {
 		LOGGER.log(Level.INFO, "dailyPremium: " + dailyPremiumCents);
 		
 		//format cents to BigDecimal "Euros,Cents"
-		BigDecimal dailyPremiumEuros = new BigDecimal(dailyPremiumCents).divide(new BigDecimal(100), RoundingMode.HALF_EVEN).setScale(2, RoundingMode.HALF_EVEN);
+		BigDecimal dailyPremiumEuros = new BigDecimal(dailyPremiumCents).divide(new BigDecimal(100), MathContext.DECIMAL128).setScale(2, RoundingMode.HALF_EVEN);
 
 		return dailyPremiumEuros;
 	}
