@@ -14,6 +14,7 @@ package de.unimuenster.wfm.capitol.settlement.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,17 +25,13 @@ import javax.inject.Named;
 import org.camunda.bpm.engine.cdi.BusinessProcess;
 import org.camunda.bpm.engine.cdi.jsf.TaskForm;
 
-import de.unimuenster.wfm.capitol.entities.Car;
 import de.unimuenster.wfm.capitol.entities.Claim;
-import de.unimuenster.wfm.capitol.entities.Contract;
-import de.unimuenster.wfm.capitol.entities.Customer;
-import de.unimuenster.wfm.capitol.entities.Policy;
 import de.unimuenster.wfm.capitol.enums.ClaimDecision;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
+import de.unimuenster.wfm.capitol.jpa.ClaimCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
 import de.unimuenster.wfm.capitol.jpa.CustomerCRUD;
-import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;
-import de.unimuenster.wfm.capitol.jpa.ClaimCRUD;;
+import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;;
 
 @Named
 @ConversationScoped
@@ -80,14 +77,14 @@ public class ReviewClaimController implements Serializable {
 
 	public void submitResult(boolean result) throws IOException {
 
-		int claimValue = claim.getClaimValue();
-		int claimCoverageCosts = claim.getCoverageCosts();
+		BigDecimal claimValue = claim.getClaimValue();
+		BigDecimal claimCoverageCosts = claim.getCoverageCosts();
 		
-		claim.setCustomerCosts(claimValue-claimCoverageCosts);
+		claim.setCustomerCosts(claimValue.subtract(claimCoverageCosts));
 		
 		ClaimDecision claimDecision;
-		if (claimValue > claimCoverageCosts) {
-			if (claimCoverageCosts > 0) {
+		if (claimValue.compareTo(claimCoverageCosts) > 0) {
+			if (claimCoverageCosts.compareTo(new BigDecimal(0)) > 0) {
 				claimDecision = ClaimDecision.PARTIALLY_COVERED;
 			}
 			else {

@@ -70,8 +70,8 @@ public class SendDecisionBL {
 		caseDecision.setProcessinstance_id_capitol((String) delegateExecution.getProcessInstanceId());
 		
 		decision.setClaim_id(claim.getExternalClaimId());
-		decision.setCoverage_costs(claim.getCoverageCosts());
-		decision.setCustomer_costs(claim.getCustomerCosts());
+		decision.setCoverage_costs(claim.getCoverageCosts().doubleValue());
+		decision.setCustomer_costs(claim.getCustomerCosts().doubleValue());
 		decision.setDescription("");
 		decision.setInsurance_decision(EnumMapper.CLAIMDECISION_TO_INTEGER.get(claim.getClaimDecision()));
 		

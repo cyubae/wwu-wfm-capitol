@@ -1,5 +1,6 @@
 package de.unimuenster.wfm.capitol.settlement.businesslogic;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -61,7 +62,7 @@ public class CreateClaimBL {
 		newClaim.setExternalClaimId( (Integer) delegateExecution.getVariable("claim_id") );
 
 		Double workshopPrice = (Double) delegateExecution.getVariable("workshop_price");
-		int claimValue = (int) (workshopPrice.doubleValue()*100);
+		BigDecimal claimValue = new BigDecimal(workshopPrice);
 		newClaim.setClaimValue(claimValue);
 
 		newClaim.setPartiesInvolved((Boolean) delegateExecution.getVariable("parties_involved"));

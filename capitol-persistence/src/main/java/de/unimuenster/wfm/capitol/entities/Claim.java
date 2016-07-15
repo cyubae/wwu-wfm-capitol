@@ -6,6 +6,7 @@ import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.CascadeType.REFRESH;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -54,9 +55,9 @@ public class Claim implements Serializable {
 	protected boolean finished = false;
 	
 	//values in euro cents
-	protected int claimValue;
-	protected int coverageCosts;
-	protected int customerCosts;
+	protected BigDecimal claimValue;
+	protected BigDecimal coverageCosts;
+	protected BigDecimal customerCosts;
 	
 	protected ClaimDecision claimDecision;
 	
@@ -114,22 +115,22 @@ public class Claim implements Serializable {
 	public void setFinished(boolean finished) {
 		this.finished = finished;
 	}
-	public int getClaimValue() {
+	public BigDecimal getClaimValue() {
 		return claimValue;
 	}
-	public void setClaimValue(int claimValue) {
+	public void setClaimValue(BigDecimal claimValue) {
 		this.claimValue = claimValue;
 	}
-	public int getCoverageCosts() {
+	public BigDecimal getCoverageCosts() {
 		return coverageCosts;
 	}
-	public void setCoverageCosts(int coverageCosts) {
+	public void setCoverageCosts(BigDecimal coverageCosts) {
 		this.coverageCosts = coverageCosts;
 	}
-	public int getCustomerCosts() {
+	public BigDecimal getCustomerCosts() {
 		return customerCosts;
 	}
-	public void setCustomerCosts(int customerCosts) {
+	public void setCustomerCosts(BigDecimal customerCosts) {
 		this.customerCosts = customerCosts;
 	}
 	public ClaimDecision getClaimDecision() {

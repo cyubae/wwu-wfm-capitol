@@ -1,5 +1,7 @@
 package de.unimuenster.wfm.capitol.settlement.businesslogic;
 
+import java.math.BigDecimal;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -44,7 +46,7 @@ public class HandleClaimBL {
 		Claim claim = claimCRUD.find(internalClaimId);
 		
 		claim.setCoverageCosts(claim.getClaimValue());
-		claim.setCustomerCosts(0);
+		claim.setCustomerCosts(new BigDecimal(0));
 		claim.setClaimDecision(ClaimDecision.COVERED);
 		
 		claimCRUD.update(claim);		
