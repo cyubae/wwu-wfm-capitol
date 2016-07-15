@@ -1,4 +1,5 @@
 de\unimuenster\wfm\capitol\entities\Contract.class
+de\unimuenster\wfm\capitol\helper\CurrencyTools.class
 de\unimuenster\wfm\capitol\entities\Claim.class
 de\unimuenster\wfm\capitol\entities\ExternalParty.class
 de\unimuenster\wfm\capitol\jpa\ClaimCRUD.class

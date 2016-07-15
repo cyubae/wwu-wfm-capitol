@@ -6,9 +6,11 @@ import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.CascadeType.REFRESH;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -161,21 +163,21 @@ public class Contract implements Serializable {
 	 * Returns sum of daily premiums of all associated policies
 	 * @return
 	 */
-	public int getTotalDailyPremium() {
-		int totalDailyPremium = 0;
+	public BigDecimal getTotalDailyPremium() {
+		BigDecimal totalDailyPremium = new BigDecimal(0);
 		for(Policy policy : this.getPolicies()) {
-			totalDailyPremium += policy.getDailyPremium();
+			totalDailyPremium = totalDailyPremium.add(policy.getDailyPremium());
 		}
-		return totalDailyPremium;
+		return totalDailyPremium.setScale(2, RoundingMode.HALF_EVEN);
 	}
 	
 	/**
 	 * Returns costs of all associated polices for entire contract duration in euro cents
 	 * @return
 	 */
-	public int getTotalCost() {
+	public BigDecimal getTotalCost() {
 		int numberOfDays = DateTools.getDaysBetweenDates(this.getPickUpDate(), this.getReturnDate());		
-		return numberOfDays * this.getTotalDailyPremium(); 
+		return this.getTotalDailyPremium().multiply(new BigDecimal(numberOfDays)).setScale(2, RoundingMode.HALF_EVEN); 
 	}
 
 	@Override
@@ -187,6 +189,19 @@ public class Contract implements Serializable {
 //				+ policies + ", insuranceType=" + insuranceType + ", pickUpDate=" + pickUpDate + ", returnDate="
 //				+ returnDate + ", validated=" + validated + ", released=" + released + "]";
 	}
+	
+	
+//	public static BigDecimal bdCalc() {
+//		BigDecimal bd = new BigDecimal(1);
+//		for(int i = 1; i<=10; i++) {
+//			bd = bd.multiply(new BigDecimal(i));
+//		}
+//		return bd;
+//	}
+//	
+//	public static void main(String[] args) {
+//		System.out.println(bdCalc());
+//	}
 
 }
 
