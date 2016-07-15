@@ -1,8 +1,9 @@
 package de.unimuenster.wfm.capitol.helper;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 
 public class DateTools {
 	
@@ -10,13 +11,13 @@ public class DateTools {
 	 * Returns number of days between two date objects
 	 * if date2 is more in the future than date1 then the result will be positive
 	 * if date1 is more in the future than date2 then the result will be negative.
-	 * @param date1
-	 * @param date2
+	 * @param date1 earlier
+	 * @param date2 later
 	 * @return
 	 */
 	public static int getDaysBetweenDates(Date date1, Date date2)
 	{       
-	    return (int)((date2.getTime() - date1.getTime()) / (1000*60*60*24l));
+		return Days.daysBetween(new DateTime(date2), new DateTime(date1)).getDays() + 1;
 	}
 	
 	
