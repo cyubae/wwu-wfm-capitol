@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Insurance.java
 D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Policy.java
 D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\enums\CarType.java
@@ -19,26 +18,4 @@ D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\
 D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\CustomerCRUD.java
 D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Contract.java
 D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Customer.java
-=======
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\enums\ClaimDecision.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Contract.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\ContractCRUD.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Customer.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\helper\DateTools.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Policy.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\AccessCustomer.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Car.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\ExternalParty.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\enums\InsuranceType.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\InsuranceCRUD.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\ClaimCRUD.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\PolicyCRUD.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\helper\CurrencyTools.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\enums\CarType.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\AbstractCRUDService.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Insurance.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\entities\Claim.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\CustomerCRUD.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\CarCRUD.java
-C:\Users\mkubicki\Desktop\MScIS\WFM\Capitol\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\jpa\ExternalPartyCRUD.java
->>>>>>> origin/master
+D:\Master\Workflow Management\wwu-wfm-capitol\capitol-persistence\src\main\java\de\unimuenster\wfm\capitol\helper\CurrencyTools.java
