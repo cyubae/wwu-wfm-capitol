@@ -9,6 +9,10 @@ h1, h2 {
     text-shadow: 1px 1px 1px #FFFFFF;
 }
 
+h1 {
+    font-weight: bold;
+}
+
 h2 {
     font-weight: light;
 }
