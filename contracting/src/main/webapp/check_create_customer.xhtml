@@ -41,7 +41,7 @@
 								required="true" requiredMessage="Required Field!" />
 							<p:message for="firstname" />
 
-							<p:outputLabel for="surname">Surname</p:outputLabel>
+							<p:outputLabel for="surname">Last Name</p:outputLabel>
 							<p:inputText id="surname"
 								value="#{checkCustomerController.customer.surname}"
 								required="true" requiredMessage="Required Field!" />
@@ -98,7 +98,6 @@
 							<p:message for="country" />
 
 							<p:outputLabel for="dateOfBirth">Date of Birth</p:outputLabel>
-
 							<p:calendar id="dateOfBirth"
 								value="#{checkCustomerController.customer.dateOfBirth}"
 								showOn="button" required="true"

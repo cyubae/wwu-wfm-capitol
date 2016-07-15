@@ -35,7 +35,7 @@
 							<h:outputText id="firstname"
 								value="#{modifyContractController.contract.customer.firstName}" />
 
-							<p:outputLabel for="surname">First Name</p:outputLabel>
+							<p:outputLabel for="surname">Last Name</p:outputLabel>
 							<h:outputText id="surname"
 								value="#{modifyContractController.contract.customer.surname}" />
 
@@ -76,7 +76,6 @@
 							<p:outputLabel for="company">Customer is Company?</p:outputLabel>
 							<h:outputText id="company"
 								value="#{modifyContractController.contract.customer.company}" />
-							<br />
 
 							<p:outputLabel for="companyName">Company Name</p:outputLabel>
 							<h:outputText id="companyName"
@@ -102,22 +101,26 @@
 							</p:inputText>
 							<h:message for="insuranceType" />
 
+
+
 							<p:outputLabel for="pickUpDate">Pick-up date:</p:outputLabel>
-							<p:inputText id="pickUpDate"
+							<p:calendar id="pickUpDate"
 								value="#{modifyContractController.contract.pickUpDate}"
-								required="true" requiredMessage="Required Field!">
+								showOn="button" required="true"
+								requiredMessage="Required Field!" pattern="dd-MM-yyyy">
 								<f:convertDateTime pattern="dd-MM-yyyy" />
-							</p:inputText>
+							</p:calendar>
 							<h:message for="pickUpDate" />
-
+														
 							<p:outputLabel for="returnDate">Return date:</p:outputLabel>
-							<p:inputText id="returnDate"
+							<p:calendar id="returnDate"
 								value="#{modifyContractController.contract.returnDate}"
-								required="true" requiredMessage="Required Field!">
+								showOn="button" required="true"
+								requiredMessage="Required Field!" pattern="dd-MM-yyyy">
 								<f:convertDateTime pattern="dd-MM-yyyy" />
-							</p:inputText>
+							</p:calendar>
 							<h:message for="returnDate" />
-
+														
 							<p:outputLabel for="totalCost">Total Cost:</p:outputLabel>
 							<h:outputText id="totalCost"
 								value="#{modifyContractController.contract.totalCost} EUR" />
@@ -132,9 +135,10 @@
 								<h:outputText id="policyId" value="#{policy.policyId}" />
 							</p:column>
 
-							<p:column headerText="Daily Premium">
-								<p:inputText id="dailyPremium" value="#{policy.dailyPremium} EUR"
-									required="true" requiredMessage="Required Field!">
+							<p:column headerText="Daily Premium (EUR)">
+								<p:inputText id="dailyPremium"
+									value="#{policy.dailyPremium}" required="true"
+									requiredMessage="Required Field!">
 								</p:inputText>
 								<p:message for="dailyPremium" />
 							</p:column>

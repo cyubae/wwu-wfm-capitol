@@ -41,7 +41,7 @@
 								value="#{rejectCustomerController.customer.firstName}"
 								required="true" requiredMessage="Required Field!" />
 
-							<p:outputLabel for="surname">Surname</p:outputLabel>
+							<p:outputLabel for="surname">Last Name</p:outputLabel>
 							<h:outputText id="surname"
 								value="#{rejectCustomerController.customer.surname}"
 								required="true" requiredMessage="Required Field!" />
@@ -97,7 +97,7 @@
 							</h:outputText>
 
 							<p:outputLabel for="company">Customer is Company?</p:outputLabel>
-							<p:selectBooleanCheckbox id="company"
+							<h:outputText id="company"
 								value="#{rejectCustomerController.customer.company}" />
 
 							<label for="companyName">Company Name</label>
