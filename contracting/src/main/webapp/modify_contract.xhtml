@@ -138,9 +138,9 @@
 								<h:outputText id="totalCost"
 									value="#{modifyContractController.contract.totalCost/100} €" />
 							</p>
-
 						</h:panelGrid>
 					</p:panel>
+
 					<h:panelGrid columns="3">
 						<p>
 							<label for="contractId">Contract ID</label>
@@ -178,6 +178,7 @@
 							<h:outputText id="totalCost"
 								value="#{modifyContractController.contract.totalCost}" />
 						</p>
+					</h:panelGrid>
 
 					<p:panel id="panel_3" header="Policies">
 						<p:dataTable value="#{modifyContractController.contract.policies}"
@@ -237,13 +238,13 @@
 								<h:message for="constructionYear" />
 							</p:column>
 						</p:dataTable>
+						</p:panel>
 
 						<h:commandButton id="modify_button"
 							value="Modify and Validate Contract"
 							action="#{modifyContractController.submitValidation()}"
 							required="true" requiredMessage="Required Field!" />
 					</h:form>
-				</p:panel>
 			</div>
 		</ui:define>
 	</ui:composition>
