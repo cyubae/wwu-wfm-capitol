@@ -30,9 +30,7 @@ a:hover {
 
 #header img {
   float: left;
-  width: 100px;
-  height: 100px;
-  background: #555;
+  width: 20%;
 }
 #header h1 {
   position: relative;
