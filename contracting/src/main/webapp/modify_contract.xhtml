@@ -120,7 +120,7 @@
 
 							<p:outputLabel for="totalCost">Total Cost:</p:outputLabel>
 							<h:outputText id="totalCost"
-								value="#{modifyContractController.contract.totalCost}" />
+								value="#{modifyContractController.contract.totalCost} EUR" />
 							<h:panelGroup />
 						</h:panelGrid>
 					</p:panel>
@@ -132,8 +132,8 @@
 								<h:outputText id="policyId" value="#{policy.policyId}" />
 							</p:column>
 
-							<p:column headerText="Daily Premium (EUR)">
-								<p:inputText id="dailyPremium" value="#{policy.dailyPremium}"
+							<p:column headerText="Daily Premium">
+								<p:inputText id="dailyPremium" value="#{policy.dailyPremium} EUR"
 									required="true" requiredMessage="Required Field!">
 								</p:inputText>
 								<p:message for="dailyPremium" />
