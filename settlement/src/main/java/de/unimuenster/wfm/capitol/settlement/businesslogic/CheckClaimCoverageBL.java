@@ -46,15 +46,15 @@ public class CheckClaimCoverageBL {
 		
 		int internalClaimId = (Integer) delegateExecution.getVariable("claim_id_internal");
 		Claim claim = claimCRUD.find(internalClaimId);
-		boolean handleManually = true;
+		boolean handleManually = false;
 		
-		if(claim.getClaimValue().doubleValue() < AUTOMATIC_COVERAGE_LIMIT) {
+		if(claim.isHandleManually()) {
 			LOGGER.log(Level.INFO, "Case A");
-			handleManually = false;
+			handleManually = true;
 		}
-		else if(!claim.isHandleManually()) {
+		else if(claim.getClaimValue().doubleValue() >= AUTOMATIC_COVERAGE_LIMIT) {
 			LOGGER.log(Level.INFO, "Case B");
-			handleManually = false;
+			handleManually = true;
 		}
 		
 		LOGGER.log(Level.INFO, "handleManually:" + handleManually);
