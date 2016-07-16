@@ -28,11 +28,6 @@
 						it.<br />
 					</p>
 
-					<p:panel id="panel_0" header="Partner Message">
-						<h:outputText id="partner_message"
-							value="#{processVariables['inquiry_text']}" />
-					</p:panel>
-
 					<p:panel id="panel_1" header="Customer Information">
 
 						<h:panelGrid columns="2" cellpadding="10">
@@ -112,6 +107,11 @@
 							<p:selectBooleanCheckbox id="blacklisted"
 								value="#{rejectCustomerController.customer.blacklisted}" />
 						</h:panelGrid>
+					</p:panel>
+
+					<p:panel id="panel_0" header="Partner Message">
+						<h:outputText id="partner_message"
+							value="#{processVariables['inquiry_text']}" />
 					</p:panel>
 
 					<p:commandButton value="Reject Customer" id="reject_button"

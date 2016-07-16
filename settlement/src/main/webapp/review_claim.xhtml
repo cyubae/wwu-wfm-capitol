@@ -22,11 +22,14 @@
 					<h2>Review Claim Decision</h2>
 					<p
 						style="border: 1px solid #066083; padding: 10px; text-align: center; width: 80%; margin-left: 10%; margin-top: 20px; margin-bottom: 20px;">
-						Please review the claim decision.<br /> The customer has sent the
-						following message after the last time the decision was sent:<br />
-						<h:outputText id="message"
-							value="#{processVariables['claim_description']}" />
+						The customer has not accepted our claim decision. <br />
+						Please review the feedback message received and alter the decision accordingly.
 					</p>
+
+					<p:panel id="panel_0" header="Feedback Message">
+						<h:outputText id="partner_message"
+							value="#{processVariables['claim_description']}" />
+					</p:panel>
 
 					<p:panel id="panel_1" header="Claim Information">
 						<h:panelGrid columns="2" columnClasses="labeltitle, labelvalue"

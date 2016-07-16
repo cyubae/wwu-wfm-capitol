@@ -25,11 +25,6 @@
 						Please make the necessary modifications prior to validating the
 						contract.</p>
 
-					<p:panel id="panel_0" header="Partner Message">
-						<h:outputText id="partner_message"
-							value="#{processVariables['inquiry_text']}" />
-					</p:panel>
-
 					<p:panel id="panel_1" header="Customer Information">
 						<h:panelGrid columns="2">
 							<p:outputLabel for="customerId" value="Customer ID: " />
@@ -192,6 +187,11 @@
 								<p:message for="constructionYear" />
 							</p:column>
 						</p:dataTable>
+					</p:panel>
+
+					<p:panel id="panel_0" header="Partner Message">
+						<h:outputText id="partner_message"
+							value="#{processVariables['inquiry_text']}" />
 					</p:panel>
 
 					<p:commandButton value="Modify and Validate Contract"

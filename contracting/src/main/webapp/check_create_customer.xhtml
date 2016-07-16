@@ -26,10 +26,6 @@
 						company are correct.<br />
 					</p>
 
-					<p:panel id="panel_0" header="Partner Message">
-						<h:outputText id="partner_message"
-							value="#{processVariables['inquiry_text']}" />
-					</p:panel>
 
 					<p:panel id="panel_1" header="New Customer">
 
@@ -130,6 +126,11 @@
 						</h:panelGrid>
 					</p:panel>
 
+					<p:panel id="panel_0" header="Partner Message">
+						<h:outputText id="partner_message"
+							value="#{processVariables['inquiry_text']}" />
+					</p:panel>
+					
 					<p:commandButton value="Create Customer" id="submit_button"
 						action="#{checkCustomerController.submitForm()}" update="panel_0 panel_1"
 						icon="ui-icon-check" />

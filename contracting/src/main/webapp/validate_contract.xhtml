@@ -27,11 +27,6 @@
 						to enable modification in the following form.
 					</p>
 
-					<p:panel id="panel_0" header="Partner Message">
-						<h:outputText id="partner_message"
-							value="#{processVariables['inquiry_text']}" />
-					</p:panel>
-
 					<p:panel id="panel_1" header="Customer Information">
 						<h:panelGrid columns="2" columnClasses="labeltitle, labelvalue"
 							style="margin-top: 20px;">
@@ -192,6 +187,11 @@
 								<p:message for="constructionYear" />
 							</p:column>
 						</p:dataTable>
+					</p:panel>
+
+					<p:panel id="panel_0" header="Partner Message">
+						<h:outputText id="partner_message"
+							value="#{processVariables['inquiry_text']}" />
 					</p:panel>
 
 					<p:commandButton value="Validate Contract" id="validate_button"
