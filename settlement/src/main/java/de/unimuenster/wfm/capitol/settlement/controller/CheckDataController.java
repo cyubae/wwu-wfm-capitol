@@ -88,6 +88,7 @@ public class CheckDataController implements Serializable {
 	public void submitResult(boolean result) throws IOException {
 		//update process variable
 		businessProcess.setVariable("data_correct", result);
+		claimCRUD.update(claim);
 
 		try {
 			// Complete user task from

@@ -1,5 +1,8 @@
 package de.unimuenster.wfm.capitol.settlement.businesslogic;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,6 +20,8 @@ import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;
 @Stateless
 @Named
 public class CheckClaimCoverageBL {
+	
+	private static Logger LOGGER = Logger.getLogger(CheckClaimCoverageBL.class.getName());
 	
 	//Limit in euro above which claim must be handled manually
 	private static int AUTOMATIC_COVERAGE_LIMIT = 1000;
@@ -43,15 +48,16 @@ public class CheckClaimCoverageBL {
 		Claim claim = claimCRUD.find(internalClaimId);
 		boolean handleManually = true;
 		
-		if(claim.getClaimValue().doubleValue() > AUTOMATIC_COVERAGE_LIMIT || claim.getPolicy() == null) {
-			handleManually = true;
-		}
-		else if(claim.isHandleManually()) {
-			handleManually = true;
-		}
-		else {
+		if(claim.getClaimValue().doubleValue() < AUTOMATIC_COVERAGE_LIMIT) {
+			LOGGER.log(Level.INFO, "Case A");
 			handleManually = false;
 		}
+		else if(!claim.isHandleManually()) {
+			LOGGER.log(Level.INFO, "Case B");
+			handleManually = false;
+		}
+		
+		LOGGER.log(Level.INFO, "handleManually:" + handleManually);
 		
 		delegateExecution.setVariable("handle_manually", handleManually);
 		
