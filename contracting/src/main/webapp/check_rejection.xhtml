@@ -51,8 +51,6 @@
 								value="#{rejectCustomerController.customer.email}"
 								required="true" requiredMessage="Required Field!"
 								validatorMessage="Not a valid email address!">
-								<f:validateRegex
-									pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
 							</h:outputText>
 
 							<p:outputLabel for="phoneNumber">Phone Number</p:outputLabel>
@@ -61,7 +59,6 @@
 								required="true"
 								validatorMessage="Phone number must be of format 0123-456789"
 								requiredMessage="Required Field!">
-								<f:validateRegex pattern="((\d+)(-)?(\d+))" />
 							</h:outputText>
 
 							<p:outputLabel for="street">Street</p:outputLabel>
@@ -105,7 +102,7 @@
 								value="#{rejectCustomerController.customer.companyName}"
 								required="false" requiredMessage="Required Field!" />
 
-							<label for="blacklisted">Customer is blacklisted</label>
+							<label for="blacklisted">Customer is blacklisted?</label>
 							<p:selectBooleanCheckbox id="blacklisted"
 								value="#{rejectCustomerController.customer.blacklisted}" />
 						</h:panelGrid>
