@@ -167,9 +167,9 @@
 									<f:convertDateTime pattern="dd-MM-yyyy" />
 								</h:outputText>
 
-								<p:outputLabel for="totalCost" value="Total Cost:: " />
+								<p:outputLabel for="totalCost" value="Total Cost (EUR): " />
 								<h:outputText id="totalCost"
-									value="#{checkDataController.claim.policy.contract.totalCost} EUR" />
+									value="#{checkDataController.claim.policy.contract.totalCost}" />
 
 								<p:outputLabel for="released" value="Is released? " />
 								<h:outputText id="released"
@@ -189,7 +189,7 @@
 									value="#{checkDataController.claim.policy.policyId}" />
 
 
-								<p:outputLabel for="dailyPremium" value="Daily Premium: " />
+								<p:outputLabel for="dailyPremium" value="Daily Premium (EUR): " />
 								<h:outputText id="dailyPremium"
 									value="#{checkDataController.claim.policy.dailyPremium}" />
 
@@ -239,7 +239,7 @@
 									value="#{checkDataController.claim.policy.car.fuelType}" />
 
 
-								<p:outputLabel for="horsePower" value="Horse Power: " />
+								<p:outputLabel for="horsePower" value="Horsepower: " />
 								<h:outputText id="horsePower"
 									value="#{checkDataController.claim.policy.car.ps}" />
 

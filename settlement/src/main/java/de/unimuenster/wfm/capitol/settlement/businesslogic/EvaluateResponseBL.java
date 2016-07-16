@@ -61,8 +61,8 @@ public class EvaluateResponseBL {
 		}
 
 
-//		delegateExecution.setVariable("review_feedback", reviewFeedback);
-		delegateExecution.setVariable("review_feedback", false);
+		delegateExecution.setVariable("review_feedback", reviewFeedback);
+//		delegateExecution.setVariable("review_feedback", false);
 		delegateExecution.setVariable("send_refund", sendRefund);
 	}
 }
