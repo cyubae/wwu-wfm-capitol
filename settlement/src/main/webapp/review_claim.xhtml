@@ -22,8 +22,9 @@
 					<h2>Review Claim Decision</h2>
 					<p
 						style="border: 1px solid #066083; padding: 10px; text-align: center; width: 80%; margin-left: 10%; margin-top: 20px; margin-bottom: 20px;">
-						The customer has not accepted our claim decision. <br />
-						Please review the feedback message received and alter the decision accordingly.
+						The customer has not accepted our claim decision. <br /> Please
+						review the feedback message received and alter the decision
+						accordingly.
 					</p>
 
 					<p:panel id="panel_0" header="Feedback Message">
@@ -67,11 +68,23 @@
 						</h:panelGrid>
 
 						<p:panel id="panel_1a" header="Coverage Decision">
-							<p:outputLabel for="coveredCosts" value="Covered Costs (EUR): " />
-							<h:inputText id="coveredCosts"
-								value="#{reviewClaimController.claim.coverageCosts}"
-								required="true" requiredMessage="Required Field!" />
-							<p:message for="coveredCosts" />
+							<h:panelGrid columns="3" columnClasses="labeltitle, labelvalue"
+								style="margin-top: 20px;">
+								<p:outputLabel for="coveredCosts" value="Covered Costs (EUR): " />
+								<h:inputText id="coveredCosts"
+									value="#{reviewClaimController.coverageCosts}" required="true"
+									requiredMessage="Required Field!">
+									<p:ajax event="keyup" update="coverageDecision"
+										listener="#{reviewClaimController.setCoverageDecision}" />
+								</h:inputText>
+								<p:message for="coveredCosts" />
+
+								<p:outputLabel for="coverageDecision"
+									value="Coverage Decision: " />
+								<h:outputText id="coverageDecision"
+									value="#{reviewClaimController.coverageDecision}" />
+								<h:panelGroup />
+							</h:panelGrid>
 						</p:panel>
 					</p:panel>
 

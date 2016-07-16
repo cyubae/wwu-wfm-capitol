@@ -74,14 +74,23 @@ public class ReviewClaimController implements Serializable {
 		}
 		return claim;
 	}
+	
 
-	public void submitResult(boolean result) throws IOException {
+	public BigDecimal getCoverageCosts() {
+		return this.getClaim().getCoverageCosts();
+	}
 
+	public void setCoverageCosts(BigDecimal coverageCosts) {
+		this.getClaim().setCoverageCosts(coverageCosts);
+		this.setCoverageDecision();
+	}
+	
+	public void setCoverageDecision() {
 		BigDecimal claimValue = claim.getClaimValue();
 		BigDecimal claimCoverageCosts = claim.getCoverageCosts();
-		
+
 		claim.setCustomerCosts(claimValue.subtract(claimCoverageCosts));
-		
+
 		ClaimDecision claimDecision;
 		if (claimValue.compareTo(claimCoverageCosts) > 0) {
 			if (claimCoverageCosts.compareTo(new BigDecimal(0)) > 0) {
@@ -94,10 +103,18 @@ public class ReviewClaimController implements Serializable {
 		else {
 			claimDecision = ClaimDecision.COVERED;
 		}
-		
-		LOGGER.log(Level.INFO, "Set new Claim Decision:" + claimDecision);
 		claim.setClaimDecision(claimDecision);
-		
+	}
+	
+	public ClaimDecision getCoverageDecision() {
+		return this.claim.getClaimDecision();
+	}
+
+
+	public void submitResult(boolean result) throws IOException {
+
+		this.setCoverageDecision();
+			
 		LOGGER.log(Level.INFO, "Found new Claim Decision:" + claim.getClaimDecision());
 		
 		claimCRUD.update(claim);
