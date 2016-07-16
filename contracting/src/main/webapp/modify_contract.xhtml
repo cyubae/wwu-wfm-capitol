@@ -95,17 +95,14 @@
 							<h:panelGroup />
 
 							<p:outputLabel for="insuranceType">Insurance Type</p:outputLabel>
-							<h:selectOneMenu id="insuranceType"
-							    value="#{modifyContractController.contract.insuranceType}"
-							    required="true" requiredMessage="Required Field!" >
-							    <f:selectItem itemValue="TOTAL" itemLabel="Total" />
-							    <f:selectItem itemValue="PARTIAL" itemLabel="Partial" />
-							    <f:selectItem itemValue="LIABILITY" itemLabel="Liability" />
-							</h:selectOneMenu>
+							<p:selectOneMenu id="insuranceType"
+								value="#{modifyContractController.contract.insuranceType}">
+								<f:selectItem itemValue="TOTAL" itemLabel="Total" />
+								<f:selectItem itemValue="PARTIAL" itemLabel="Partial" />
+								<f:selectItem itemValue="LIABILITY" itemLabel="Liability" />
+							</p:selectOneMenu>
 							<h:message for="insuranceType" />
-							
-							
-							
+
 							<p:outputLabel for="pickUpDate">Pick-up date:</p:outputLabel>
 							<p:calendar id="pickUpDate"
 								value="#{modifyContractController.contract.pickUpDate}"
@@ -114,7 +111,7 @@
 								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</p:calendar>
 							<h:message for="pickUpDate" />
-														
+
 							<p:outputLabel for="returnDate">Return date:</p:outputLabel>
 							<p:calendar id="returnDate"
 								value="#{modifyContractController.contract.returnDate}"
@@ -123,7 +120,7 @@
 								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</p:calendar>
 							<h:message for="returnDate" />
-														
+
 							<p:outputLabel for="totalCost">Total Cost:</p:outputLabel>
 							<h:outputText id="totalCost"
 								value="#{modifyContractController.contract.totalCost} EUR" />
@@ -139,9 +136,8 @@
 							</p:column>
 
 							<p:column headerText="Daily Premium (EUR)">
-								<p:inputText id="dailyPremium"
-									value="#{policy.dailyPremium}" required="true"
-									requiredMessage="Required Field!">
+								<p:inputText id="dailyPremium" value="#{policy.dailyPremium}"
+									required="true" requiredMessage="Required Field!">
 								</p:inputText>
 								<p:message for="dailyPremium" />
 							</p:column>

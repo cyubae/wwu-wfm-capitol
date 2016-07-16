@@ -1,38 +1,40 @@
 package de.unimuenster.wfm.capitol.helper;
 
 import java.util.Date;
-
-import org.joda.time.DateTime;
-import org.joda.time.Days;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DateTools {
 	
+	private static Logger LOGGER = Logger.getLogger(DateTools.class.getName());
+	
+
 	/**
 	 * Returns number of days between two date objects
 	 * if date2 is more in the future than date1 then the result will be positive
 	 * if date1 is more in the future than date2 then the result will be negative.
-	 * @param date1 earlier
-	 * @param date2 later
+	 * @param dateStart earlier
+	 * @param dateEnd later
 	 * @return
 	 */
-	public static int getDaysBetweenDates(Date date1, Date date2)
-	{       
-		return Days.daysBetween(new DateTime(date2), new DateTime(date1)).getDays() + 1;
+	@SuppressWarnings("deprecation")
+	public static int getDaysBetweenDates(Date dateStart, Date dateEnd) {
+	  long diff = -1;
+	  try {
+		  dateStart.setHours(0);
+		  dateStart.setMinutes(0);
+		  dateStart.setSeconds(0);
+		  
+		  dateEnd.setHours(0);
+		  dateEnd.setMinutes(0);
+		  dateEnd.setSeconds(0);
+		  
+	    //time is always 00:00:00 so rounding should help to ignore the missing hour when going from winter to summer time as well as the extra hour in the other direction
+	    diff = Math.round((dateEnd.getTime() - dateStart.getTime()) / (double) 86400000);
+	  } catch (Exception e) {
+		  LOGGER.log(Level.SEVERE, "Failed to calculate days between days (contract duration)");
+	  }
+	  return (int) diff;
 	}
-	
-	
-//	/**
-//	 * Returns
-//	 * @param dateString takes String of format YYYY-MM-DD and returns object of type java.util.Date
-//	 * @return
-//	 * @throws ParseException 
-//	 */
-//	public static Date convertStringToDate(String dateString) throws ParseException {
-//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//		java.util.Date parsedDate = format.parse(dateString);
-//		java.util.Date utilDate = new java.util.Date(parsedDate.getTime());
-//
-//		return utilDate;
-//	}
 	
 }

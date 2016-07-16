@@ -74,7 +74,7 @@ http://localhost:8080/partner-interface/contractstatus
 
 {
 "processinstance_id_bvis": "fc9432hjfxn3423fnvbvg",
-"processinstance_id_capitol": "3vc5wsdcvisph344r9uvg",
+"processinstance_id_capitol": "e6ed637e-4a8d-11e6-9ab1-a0a8cd3a521e",
 "order": {
     "order_id": 3,
     "request_date": "2016-05-21",

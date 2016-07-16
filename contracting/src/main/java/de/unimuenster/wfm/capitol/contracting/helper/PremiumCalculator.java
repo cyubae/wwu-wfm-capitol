@@ -16,11 +16,7 @@ import de.unimuenster.wfm.capitol.enums.InsuranceType;
 @Stateless
 @Named
 public class PremiumCalculator {
-	
-	public static void main(String[] args) {
 		
-	}
-	
 	private static Logger LOGGER = Logger.getLogger(PremiumCalculator.class.getName());
 
 	private static double PS_FACTOR = 0.15;
