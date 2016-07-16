@@ -25,6 +25,11 @@
 						Please make the necessary modifications prior to validating the
 						contract.</p>
 
+					<p:panel id="panel_0" header="Partner Message">
+						<h:outputText id="partner_message"
+							value="#{processVariables['inquiry_text']}" />
+					</p:panel>
+
 					<p:panel id="panel_1" header="Customer Information">
 						<h:panelGrid columns="2">
 							<p:outputLabel for="customerId" value="Customer ID: " />
@@ -192,7 +197,7 @@
 					<p:commandButton value="Modify and Validate Contract"
 						id="modify_button"
 						action="#{modifyContractController.submitValidation()}"
-						update="panel_1 panel_2 panel_3" icon="ui-icon-check" />
+						update="panel_0 panel_1 panel_2 panel_3" icon="ui-icon-check" />
 				</h:form>
 			</div>
 		</ui:define>

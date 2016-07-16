@@ -21,39 +21,44 @@
 
 
 				<h:form id="submitForm">
-					<h2>Create New Customer</h2>
+					<h2>Confirm Customer Rejection</h2>
 					<p
 						style="border: 1px solid #066083; padding: 10px; text-align: center; width: 80%; margin-left: 10%; margin-top: 20px; margin-bottom: 20px;">
 						Please verify the proposed customer rejection before confirming
 						it.<br />
 					</p>
 
+					<p:panel id="panel_0" header="Partner Message">
+						<h:outputText id="partner_message"
+							value="#{processVariables['inquiry_text']}" />
+					</p:panel>
+
 					<p:panel id="panel_1" header="Customer Information">
 
 						<h:panelGrid columns="2" cellpadding="10">
-							<p:outputLabel for="customerId" value="Customer ID: "/>
+							<p:outputLabel for="customerId" value="Customer ID: " />
 							<h:outputText id="customerId"
 								value="#{rejectCustomerController.customer.customerId}"
 								requiredMessage="Required Field!" />
 
-							<p:outputLabel for="firstname" value="First Name: "/>
+							<p:outputLabel for="firstname" value="First Name: " />
 							<h:outputText id="firstname"
 								value="#{rejectCustomerController.customer.firstName}"
 								required="true" requiredMessage="Required Field!" />
 
-							<p:outputLabel for="surname" value="Last Name: "/>
+							<p:outputLabel for="surname" value="Last Name: " />
 							<h:outputText id="surname"
 								value="#{rejectCustomerController.customer.surname}"
 								required="true" requiredMessage="Required Field!" />
 
-							<p:outputLabel for="email" value="E-Mail: "/>
+							<p:outputLabel for="email" value="E-Mail: " />
 							<h:outputText id="email"
 								value="#{rejectCustomerController.customer.email}"
 								required="true" requiredMessage="Required Field!"
 								validatorMessage="Not a valid email address!">
 							</h:outputText>
 
-							<p:outputLabel for="phoneNumber" value="Phone Number: "/>
+							<p:outputLabel for="phoneNumber" value="Phone Number: " />
 							<h:outputText id="phoneNumber"
 								value="#{rejectCustomerController.customer.phoneNumber}"
 								required="true"
@@ -61,48 +66,49 @@
 								requiredMessage="Required Field!">
 							</h:outputText>
 
-							<p:outputLabel for="street" value="Street: "/>
+							<p:outputLabel for="street" value="Street: " />
 							<h:outputText id="street"
 								value="#{rejectCustomerController.customer.street}"
 								required="true" requiredMessage="Required Field!" />
 
-							<p:outputLabel for="houseNumber" value="House Number: "/>
+							<p:outputLabel for="houseNumber" value="House Number: " />
 							<h:outputText id="houseNumber"
 								value="#{rejectCustomerController.customer.houseNumber}"
 								required="true" requiredMessage="Required Field!" />
 
-							<p:outputLabel for="postcode" value="Post Code: "/>
+							<p:outputLabel for="postcode" value="Post Code: " />
 							<h:outputText id="postcode"
 								value="#{rejectCustomerController.customer.postcode}"
 								required="true" requiredMessage="Required Field!" />
 
-							<p:outputLabel for="city" value="City: "/>
+							<p:outputLabel for="city" value="City: " />
 							<h:outputText id="city"
 								value="#{rejectCustomerController.customer.city}"
 								required="true" requiredMessage="Required Field!" />
 
-							<p:outputLabel for="country" value="Country: "/>
+							<p:outputLabel for="country" value="Country: " />
 							<h:outputText id="country"
 								value="#{rejectCustomerController.customer.country}"
 								required="true" requiredMessage="Required Field!" />
 
-							<p:outputLabel for="dateOfBirth" value="Date of Birth: "/>
+							<p:outputLabel for="dateOfBirth" value="Date of Birth: " />
 							<h:outputText id="dateOfBirth"
 								value="#{rejectCustomerController.customer.dateOfBirth}"
 								required="true" requiredMessage="Required Field!">
 								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</h:outputText>
 
-							<p:outputLabel for="company" value="Customer is Company? "/>
+							<p:outputLabel for="company" value="Customer is Company? " />
 							<h:outputText id="company"
 								value="#{rejectCustomerController.customer.company}" />
 
-							<p:outputLabel for="companyName" value="Company Name: "/>
+							<p:outputLabel for="companyName" value="Company Name: " />
 							<h:outputText id="companyName"
 								value="#{rejectCustomerController.customer.companyName}"
 								required="false" requiredMessage="Required Field!" />
 
-							<p:outputLabel for="blacklisted" value="Customer is blacklisted? "/>
+							<p:outputLabel for="blacklisted"
+								value="Customer is blacklisted? " />
 							<p:selectBooleanCheckbox id="blacklisted"
 								value="#{rejectCustomerController.customer.blacklisted}" />
 						</h:panelGrid>
@@ -110,10 +116,10 @@
 
 					<p:commandButton value="Reject Customer" id="reject_button"
 						action="#{rejectCustomerController.submitRejection(true)}"
-						update="panel_1" icon="ui-icon-check" />
+						update="panel_0 panel_1" icon="ui-icon-check" />
 					<p:commandButton value="Do not reject" id="dont_reject_button"
 						action="#{rejectCustomerController.submitRejection(false)}"
-						update="panel_1" icon="ui-icon-close" />
+						update="panel_0 panel_1" icon="ui-icon-close" />
 
 				</h:form>
 			</div>

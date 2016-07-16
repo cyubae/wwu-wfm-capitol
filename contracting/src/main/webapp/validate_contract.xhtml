@@ -22,107 +22,114 @@
 					<h2>Validate proposed contract</h2>
 					<p
 						style="border: 1px solid #066083; padding: 10px; text-align: center; width: 80%; margin-left: 10%; margin-top: 20px; margin-bottom: 20px;">
-						Please check if the customer and contract details are valid.<br /> 
-						Should this information be incorrect, do not validate it in order to enable modification in the following form.
+						Please check if the customer and contract details are valid.<br />
+						Should this information be incorrect, do not validate it in order
+						to enable modification in the following form.
 					</p>
+
+					<p:panel id="panel_0" header="Partner Message">
+						<h:outputText id="partner_message"
+							value="#{processVariables['inquiry_text']}" />
+					</p:panel>
 
 					<p:panel id="panel_1" header="Customer Information">
 						<h:panelGrid columns="2" columnClasses="labeltitle, labelvalue"
 							style="margin-top: 20px;">
-							
-								<p:outputLabel for="customerId" value="Customer ID: "/>
-								<h:outputText id="customerId"
-									value="#{validateContractController.contract.customer.customerId}" />							
-							
-								<p:outputLabel for="firstname" value="First Name: "/>
-								<h:outputText id="firstname"
-									value="#{validateContractController.contract.customer.firstName}" />							
-							
-								<p:outputLabel for="surname" value="Last Name: "/>
-								<h:outputText id="surname"
-									value="#{validateContractController.contract.customer.surname}" />							
-							
-								<p:outputLabel for="email" value="E-Mail: "/>
-								<h:outputText id="email"
-									value="#{validateContractController.contract.customer.email}" />							
-							
-								<p:outputLabel for="phoneNumber" value="Phone Number: "/>
-								<h:outputText id="phoneNumber"
-									value="#{validateContractController.contract.customer.phoneNumber}" />							
-							
-								<p:outputLabel for="street" value="Street: "/>
-								<h:outputText id="street"
-									value="#{validateContractController.contract.customer.street}" />							
-							
-								<p:outputLabel for="houseNumber" value="House Number: "/>
-								<h:outputText id="houseNumber"
-									value="#{validateContractController.contract.customer.houseNumber}" />							
-							
-								<p:outputLabel for="postcode" value="Post Code: "/>
-								<h:outputText id="postcode"
-									value="#{validateContractController.contract.customer.postcode}" />							
-							
-								<p:outputLabel for="city" value="City: "/>
-								<h:outputText id="city"
-									value="#{validateContractController.contract.customer.city}" />							
-							
-								<p:outputLabel for="country" value="Country: "/>
-								<h:outputText id="country"
-									value="#{validateContractController.contract.customer.country}" />							
-							
-								<p:outputLabel for="dateOfBirth" value="Date of Birth: "/>
-								<h:outputText id="dateOfBirth"
-									value="#{validateContractController.contract.customer.dateOfBirth}">
-									<f:convertDateTime pattern="dd-MM-yyyy" />
-								</h:outputText>							
-							
-								<p:outputLabel for="company" value="Customer is company? "/>
-								<h:outputText id="company"
-									value="#{validateContractController.contract.customer.company}" />							
-							
-								<p:outputLabel for="companyName" value="Company Name: "/>
-								<h:outputText id="companyName"
-									value="#{validateContractController.contract.customer.companyName}" />
-							
-								<p:outputLabel for="blacklisted" value="Customer is blacklisted? "/>
-								<h:outputText id="blacklisted"
-									value="#{validateContractController.contract.customer.blacklisted}" />
-							
+
+							<p:outputLabel for="customerId" value="Customer ID: " />
+							<h:outputText id="customerId"
+								value="#{validateContractController.contract.customer.customerId}" />
+
+							<p:outputLabel for="firstname" value="First Name: " />
+							<h:outputText id="firstname"
+								value="#{validateContractController.contract.customer.firstName}" />
+
+							<p:outputLabel for="surname" value="Last Name: " />
+							<h:outputText id="surname"
+								value="#{validateContractController.contract.customer.surname}" />
+
+							<p:outputLabel for="email" value="E-Mail: " />
+							<h:outputText id="email"
+								value="#{validateContractController.contract.customer.email}" />
+
+							<p:outputLabel for="phoneNumber" value="Phone Number: " />
+							<h:outputText id="phoneNumber"
+								value="#{validateContractController.contract.customer.phoneNumber}" />
+
+							<p:outputLabel for="street" value="Street: " />
+							<h:outputText id="street"
+								value="#{validateContractController.contract.customer.street}" />
+
+							<p:outputLabel for="houseNumber" value="House Number: " />
+							<h:outputText id="houseNumber"
+								value="#{validateContractController.contract.customer.houseNumber}" />
+
+							<p:outputLabel for="postcode" value="Post Code: " />
+							<h:outputText id="postcode"
+								value="#{validateContractController.contract.customer.postcode}" />
+
+							<p:outputLabel for="city" value="City: " />
+							<h:outputText id="city"
+								value="#{validateContractController.contract.customer.city}" />
+
+							<p:outputLabel for="country" value="Country: " />
+							<h:outputText id="country"
+								value="#{validateContractController.contract.customer.country}" />
+
+							<p:outputLabel for="dateOfBirth" value="Date of Birth: " />
+							<h:outputText id="dateOfBirth"
+								value="#{validateContractController.contract.customer.dateOfBirth}">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
+							</h:outputText>
+
+							<p:outputLabel for="company" value="Customer is company? " />
+							<h:outputText id="company"
+								value="#{validateContractController.contract.customer.company}" />
+
+							<p:outputLabel for="companyName" value="Company Name: " />
+							<h:outputText id="companyName"
+								value="#{validateContractController.contract.customer.companyName}" />
+
+							<p:outputLabel for="blacklisted"
+								value="Customer is blacklisted? " />
+							<h:outputText id="blacklisted"
+								value="#{validateContractController.contract.customer.blacklisted}" />
+
 						</h:panelGrid>
 					</p:panel>
 
 					<p:panel id="panel_2" header="Contract Information">
 						<h:panelGrid columns="2" columnClasses="labeltitle, labelvalue"
 							style="margin-top: 20px;">
-							
-								<p:outputLabel for="contractId" value="Contract ID: "/>
-								<h:outputText id="contractId"
-									value="#{validateContractController.contract.contractId}" />
-							
-							
-								<p:outputLabel for="insuranceType" value="Insurance Type: "/>
-								<h:outputText id="insuranceType"
-									value="#{validateContractController.contract.insuranceType}" />
-							
-							
-								<p:outputLabel for="pickUpDate" value="Pick-up date: "/>
-								<h:outputText id="pickUpDate"
-									value="#{validateContractController.contract.pickUpDate}">
-									<f:convertDateTime pattern="dd-MM-yyyy" />
-								</h:outputText>
-							
-							
-								<p:outputLabel for="returnDate" value="Return date: "/>
-								<h:outputText id="returnDate"
-									value="#{validateContractController.contract.returnDate}">
-									<f:convertDateTime pattern="dd-MM-yyyy" />
-								</h:outputText>
-							
-							
-								<p:outputLabel for="totalCost" value="Total Cost (EUR): "/>
-								<h:outputText id="totalCost"
-									value="#{validateContractController.contract.totalCost}" />
-							
+
+							<p:outputLabel for="contractId" value="Contract ID: " />
+							<h:outputText id="contractId"
+								value="#{validateContractController.contract.contractId}" />
+
+
+							<p:outputLabel for="insuranceType" value="Insurance Type: " />
+							<h:outputText id="insuranceType"
+								value="#{validateContractController.contract.insuranceType}" />
+
+
+							<p:outputLabel for="pickUpDate" value="Pick-up date: " />
+							<h:outputText id="pickUpDate"
+								value="#{validateContractController.contract.pickUpDate}">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
+							</h:outputText>
+
+
+							<p:outputLabel for="returnDate" value="Return date: " />
+							<h:outputText id="returnDate"
+								value="#{validateContractController.contract.returnDate}">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
+							</h:outputText>
+
+
+							<p:outputLabel for="totalCost" value="Total Cost (EUR): " />
+							<h:outputText id="totalCost"
+								value="#{validateContractController.contract.totalCost}" />
+
 						</h:panelGrid>
 					</p:panel>
 
