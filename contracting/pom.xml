@@ -37,6 +37,12 @@
 			<artifactId>capitol-persistence</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>compile</scope>
+			<exclusions> 
+            <exclusion>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+            </exclusion>
+        </exclusions>
 		</dependency>
 
 		<!-- MessagingService -->
@@ -85,13 +91,6 @@
 			<groupId>org.primefaces.themes</groupId>
 			<artifactId>all-themes</artifactId>
 			<version>1.0.10</version>
-		</dependency>
-
-		<dependency>
-			<groupId>dom4j</groupId>
-			<artifactId>dom4j</artifactId>
-			<version>1.6.1</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<!-- Java EE 6 Specification -->
