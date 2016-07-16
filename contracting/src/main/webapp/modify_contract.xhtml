@@ -27,61 +27,62 @@
 
 					<p:panel id="panel_1" header="Customer Information">
 						<h:panelGrid columns="2">
-							<p:outputLabel for="customerId" value="Customer ID: "/>
+							<p:outputLabel for="customerId" value="Customer ID: " />
 							<h:outputText id="customerId"
 								value="#{modifyContractController.contract.customer.customerId}" />
 
-							<p:outputLabel for="firstname" value="First Name: "/>
+							<p:outputLabel for="firstname" value="First Name: " />
 							<h:outputText id="firstname"
 								value="#{modifyContractController.contract.customer.firstName}" />
 
-							<p:outputLabel for="surname" value="Last Name: "/>
+							<p:outputLabel for="surname" value="Last Name: " />
 							<h:outputText id="surname"
 								value="#{modifyContractController.contract.customer.surname}" />
 
-							<p:outputLabel for="email" value="E-Mail: "/>
+							<p:outputLabel for="email" value="E-Mail: " />
 							<h:outputText id="email"
 								value="#{modifyContractController.contract.customer.email}" />
 
-							<p:outputLabel for="phoneNumber" value="Phone Number: "/>
+							<p:outputLabel for="phoneNumber" value="Phone Number: " />
 							<h:outputText id="phoneNumber"
 								value="#{modifyContractController.contract.customer.phoneNumber}" />
 
-							<p:outputLabel for="street" value="Street: "/>
+							<p:outputLabel for="street" value="Street: " />
 							<h:outputText id="street"
 								value="#{modifyContractController.contract.customer.street}" />
 
-							<p:outputLabel for="houseNumber" value="House Number: "/>
+							<p:outputLabel for="houseNumber" value="House Number: " />
 							<h:outputText id="houseNumber"
 								value="#{modifyContractController.contract.customer.houseNumber}" />
 
-							<p:outputLabel for="postcode" value="Post Code: "/>
+							<p:outputLabel for="postcode" value="Post Code: " />
 							<h:outputText id="postcode"
 								value="#{modifyContractController.contract.customer.postcode}" />
 
-							<p:outputLabel for="city" value="City: "/>
+							<p:outputLabel for="city" value="City: " />
 							<h:outputText id="city"
 								value="#{modifyContractController.contract.customer.city}" />
 
-							<p:outputLabel for="country" value="Country: "/>
+							<p:outputLabel for="country" value="Country: " />
 							<h:outputText id="country"
 								value="#{modifyContractController.contract.customer.country}" />
 
-							<p:outputLabel for="dateOfBirth" value="Date of Birth: "/>
+							<p:outputLabel for="dateOfBirth" value="Date of Birth: " />
 							<h:outputText id="dateOfBirth"
 								value="#{modifyContractController.contract.customer.dateOfBirth}">
 								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</h:outputText>
 
-							<p:outputLabel for="company" value="Customer is Company? "/>
+							<p:outputLabel for="company" value="Customer is Company? " />
 							<h:outputText id="company"
 								value="#{modifyContractController.contract.customer.company}" />
 
-							<p:outputLabel for="companyName" value="Company Name: "/>
+							<p:outputLabel for="companyName" value="Company Name: " />
 							<h:outputText id="companyName"
 								value="#{modifyContractController.contract.customer.companyName}" />
 
-							<p:outputLabel for="blacklisted" value="Customer is blacklisted? "/>
+							<p:outputLabel for="blacklisted"
+								value="Customer is blacklisted? " />
 							<h:outputText id="blacklisted"
 								value="#{modifyContractController.contract.customer.blacklisted}" />
 						</h:panelGrid>
@@ -89,12 +90,12 @@
 
 					<p:panel id="panel_2" header="Contract Information">
 						<h:panelGrid columns="3">
-							<p:outputLabel for="contractId" value="Contract ID: "/>
+							<p:outputLabel for="contractId" value="Contract ID: " />
 							<h:outputText id="contractId"
 								value="#{validateContractController.contract.contractId}" />
 							<h:panelGroup />
 
-							<p:outputLabel for="insuranceType" value="Insurance Type: "/>
+							<p:outputLabel for="insuranceType" value="Insurance Type: " />
 							<p:selectOneMenu id="insuranceType"
 								value="#{modifyContractController.contract.insuranceType}">
 								<f:selectItem itemValue="TOTAL" itemLabel="Total" />
@@ -103,7 +104,7 @@
 							</p:selectOneMenu>
 							<h:message for="insuranceType" />
 
-							<p:outputLabel for="pickUpDate" value="Pick-up date: "/>
+							<p:outputLabel for="pickUpDate" value="Pick-up date: " />
 							<p:calendar id="pickUpDate"
 								value="#{modifyContractController.contract.pickUpDate}"
 								showOn="button" required="true"
@@ -112,7 +113,7 @@
 							</p:calendar>
 							<h:message for="pickUpDate" />
 
-							<p:outputLabel for="returnDate" value="Return date: "/>
+							<p:outputLabel for="returnDate" value="Return date: " />
 							<p:calendar id="returnDate"
 								value="#{modifyContractController.contract.returnDate}"
 								showOn="button" required="true"
@@ -121,7 +122,7 @@
 							</p:calendar>
 							<h:message for="returnDate" />
 
-							<p:outputLabel for="totalCost" value="Total Cost: "/>
+							<p:outputLabel for="totalCost" value="Total Cost: " />
 							<h:outputText id="totalCost"
 								value="#{modifyContractController.contract.totalCost} EUR" />
 							<h:panelGroup />
