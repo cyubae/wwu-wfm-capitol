@@ -41,13 +41,19 @@ public class CheckClaimCoverageBL {
 		
 		int internalClaimId = (Integer) delegateExecution.getVariable("claim_id_internal");
 		Claim claim = claimCRUD.find(internalClaimId);
+		boolean handleManually = true;
 		
 		if(claim.getClaimValue().doubleValue() > AUTOMATIC_COVERAGE_LIMIT || claim.getPolicy() == null) {
-			delegateExecution.setVariable("handle_manually", true);
+			handleManually = true;
+		}
+		else if(claim.isHandleManually()) {
+			handleManually = true;
 		}
 		else {
-			delegateExecution.setVariable("handle_manually", false);
+			handleManually = false;
 		}
+		
+		delegateExecution.setVariable("handle_manually", handleManually);
 		
 	}
 }

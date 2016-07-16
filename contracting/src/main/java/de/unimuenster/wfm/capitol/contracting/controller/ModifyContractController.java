@@ -72,6 +72,17 @@ public class ModifyContractController implements Serializable {
 		return contract;
 	}
 	
+	private int totalCost = -1;
+	
+	public int getTotalCost() {
+		if(totalCost<0) {
+			
+		}
+		return this.totalCost;
+	}
+	
+	
+	
 
 	public void submitValidation() throws IOException {
 		//update process variable

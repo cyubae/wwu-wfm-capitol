@@ -105,23 +105,23 @@
 									value="#{validateContractController.contract.insuranceType}" />
 							
 							
-								<p:outputLabel for="pickUpDate" value="Pick-up date:: "/>
+								<p:outputLabel for="pickUpDate" value="Pick-up date: "/>
 								<h:outputText id="pickUpDate"
 									value="#{validateContractController.contract.pickUpDate}">
 									<f:convertDateTime pattern="dd-MM-yyyy" />
 								</h:outputText>
 							
 							
-								<p:outputLabel for="returnDate" value="Return date:: "/>
+								<p:outputLabel for="returnDate" value="Return date: "/>
 								<h:outputText id="returnDate"
 									value="#{validateContractController.contract.returnDate}">
 									<f:convertDateTime pattern="dd-MM-yyyy" />
 								</h:outputText>
 							
 							
-								<p:outputLabel for="totalCost" value="Total Cost:: "/>
+								<p:outputLabel for="totalCost" value="Total Cost (EUR): "/>
 								<h:outputText id="totalCost"
-									value="#{validateContractController.contract.totalCost} EUR" />
+									value="#{validateContractController.contract.totalCost}" />
 							
 						</h:panelGrid>
 					</p:panel>
@@ -134,8 +134,8 @@
 								<h:outputText id="policyId" value="#{policy.policyId}" />
 							</p:column>
 
-							<p:column headerText="Daily Premium">
-								<h:outputText id="dailyPremium" value="#{policy.dailyPremium} EUR"
+							<p:column headerText="Daily Premium (EUR)">
+								<h:outputText id="dailyPremium" value="#{policy.dailyPremium}"
 									required="true" requiredMessage="Required Field!">
 								</h:outputText>
 								<p:message for="dailyPremium" />

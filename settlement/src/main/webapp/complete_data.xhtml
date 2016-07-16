@@ -22,7 +22,8 @@
 					<h2>Manual Data Correction</h2>
 					<p
 						style="border: 1px solid #066083; padding: 10px; text-align: center; width: 80%; margin-left: 10%; margin-top: 20px; margin-bottom: 20px;">
-						Please complete and correct the information pertaining to the claim received.</p>
+						Please complete and correct the information pertaining to the
+						claim received.</p>
 
 					<p:panel id="panel_1" header="Claim Information">
 						<h:panelGrid columns="3" columnClasses="labeltitle, labelvalue"
@@ -258,6 +259,18 @@
 							</h:panelGrid>
 						</p:panel>
 
+					</p:panel>
+
+					<p:panel id="panel_3" header="Handling Decision">
+						<h:panelGrid columns="2" columnClasses="labeltitle, labelvalue"
+							style="margin-top: 20px;">
+
+							<p:outputLabel for="handlingDecision"
+								value="Handle claim manually? " />
+							<p:selectBooleanCheckbox id="handlingDecision"
+								value="#{completeDataController.claim.handleManually}" />
+
+						</h:panelGrid>
 					</p:panel>
 
 					<p:commandButton id="ok_button"

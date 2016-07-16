@@ -64,6 +64,10 @@ public class CreateClaimBL {
 		Double workshopPrice = (Double) delegateExecution.getVariable("workshop_price");
 		BigDecimal claimValue = new BigDecimal(workshopPrice);
 		newClaim.setClaimValue(claimValue);
+		//if claim value is >= 1000, handle manually
+		if(newClaim.getClaimValue().compareTo(new BigDecimal(1000)) >=0 ) {
+			newClaim.setHandleManually(true);
+		}
 
 		newClaim.setPartiesInvolved((Boolean) delegateExecution.getVariable("parties_involved"));
 

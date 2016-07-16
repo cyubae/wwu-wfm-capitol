@@ -53,8 +53,8 @@ public class Claim implements Serializable {
 	protected String claimDescription;
 	protected boolean partiesInvolved;
 	protected boolean finished = false;
+	protected boolean handleManually = false;
 	
-	//values in euro cents
 	protected BigDecimal claimValue;
 	protected BigDecimal coverageCosts;
 	protected BigDecimal customerCosts;
@@ -150,6 +150,12 @@ public class Claim implements Serializable {
 	}
 	public void removeExternalParty(ExternalParty externalParty) {
 		this.externalParties.remove(externalParty);
+	}
+	public boolean isHandleManually() {
+		return handleManually;
+	}
+	public void setHandleManually(boolean handleManually) {
+		this.handleManually = handleManually;
 	}
 
 }

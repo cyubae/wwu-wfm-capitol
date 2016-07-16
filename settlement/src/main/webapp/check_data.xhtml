@@ -249,14 +249,26 @@
 
 					</p:panel>
 
+					<p:panel id="panel_3" header="Handling Decision">
+						<h:panelGrid columns="2" columnClasses="labeltitle, labelvalue"
+							style="margin-top: 20px;">
+
+							<p:outputLabel for="handlingDecision"
+								value="Handle claim manually? " />
+							<p:selectBooleanCheckbox id="handlingDecision"
+								value="#{checkDataController.claim.handleManually}" />
+
+						</h:panelGrid>
+					</p:panel>
+
 					<p:commandButton id="ok_button"
 						value="Data is complete and correct"
 						action="#{checkDataController.submitResult(true)}"
-						update="panel_1 panel_2" icon="ui-icon-check" />
+						update="panel_1 panel_2 panel_3" icon="ui-icon-check" />
 
 					<p:commandButton id="not_ok_button" value="Data is not OK"
 						action="#{checkDataController.submitResult(false)}"
-						update="panel_1 panel_2" icon="ui-icon-close" />
+						update="panel_1 panel_2 panel_3" icon="ui-icon-close" />
 
 				</h:form>
 			</div>
