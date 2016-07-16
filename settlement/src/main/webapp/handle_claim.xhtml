@@ -61,11 +61,23 @@
 						</h:panelGrid>
 
 						<p:panel id="panel_1a" header="Coverage Decision">
-							<p:outputLabel for="coveredCosts" value="Covered Costs (EUR): " />
-							<h:inputText id="coveredCosts"
-								value="#{handleClaimController.claim.coverageCosts}"
-								required="true" requiredMessage="Required Field!" />
-							<p:message for="coveredCosts" />
+							<h:panelGrid columns="3" columnClasses="labeltitle, labelvalue"
+								style="margin-top: 20px;">
+								<p:outputLabel for="coveredCosts" value="Covered Costs (EUR): " />
+								<h:inputText id="coveredCosts"
+									value="#{handleClaimController.coverageCosts}" required="true"
+									requiredMessage="Required Field!">
+									<p:ajax event="keyup" update="coverageDecision"
+										listener="#{handleClaimController.setCoverageDecision}" />
+								</h:inputText>
+								<p:message for="coveredCosts" />
+
+								<p:outputLabel for="coverageDecision"
+									value="Coverage Decision: " />
+								<h:outputText id="coverageDecision"
+									value="#{handleClaimController.coverageDecision}" />
+								<h:panelGroup />
+							</h:panelGrid>
 						</p:panel>
 					</p:panel>
 
@@ -258,11 +270,9 @@
 
 					</p:panel>
 
-					<p:commandButton id="ok_button"
-						value="Process claim"
+					<p:commandButton id="ok_button" value="Process claim"
 						action="#{handleClaimController.submitResult(true)}"
 						update="panel_1 panel_2" icon="ui-icon-check" />
-
 				</h:form>
 			</div>
 		</ui:define>

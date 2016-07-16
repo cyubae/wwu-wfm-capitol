@@ -57,7 +57,7 @@ public class HandleClaimController implements Serializable {
 
 	@Inject
 	private CustomerCRUD customerCRUD;		
-	
+
 	@Inject
 	private ClaimCRUD claimCRUD;	
 
@@ -75,13 +75,21 @@ public class HandleClaimController implements Serializable {
 		return claim;
 	}
 
-	public void submitResult(boolean result) throws IOException {
+	public BigDecimal getCoverageCosts() {
+		return this.getClaim().getCoverageCosts();
+	}
 
+	public void setCoverageCosts(BigDecimal coverageCosts) {
+		this.getClaim().setCoverageCosts(coverageCosts);
+		this.setCoverageDecision();
+	}
+	
+	public void setCoverageDecision() {
 		BigDecimal claimValue = claim.getClaimValue();
 		BigDecimal claimCoverageCosts = claim.getCoverageCosts();
-		
+
 		claim.setCustomerCosts(claimValue.subtract(claimCoverageCosts));
-		
+
 		ClaimDecision claimDecision;
 		if (claimValue.compareTo(claimCoverageCosts) > 0) {
 			if (claimCoverageCosts.compareTo(new BigDecimal(0)) > 0) {
@@ -94,9 +102,17 @@ public class HandleClaimController implements Serializable {
 		else {
 			claimDecision = ClaimDecision.COVERED;
 		}
-		
 		claim.setClaimDecision(claimDecision);
+	}
+	
+	public ClaimDecision getCoverageDecision() {
+		return this.claim.getClaimDecision();
+	}
+
+	public void submitResult(boolean result) throws IOException {
 		
+		this.setCoverageDecision();
+
 		claimCRUD.update(claim);
 
 		try {
