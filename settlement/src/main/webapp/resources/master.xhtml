@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://butterfaces.org/components"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<ui:insert name="metadata" />
+	<h:head>
+		<h:outputStylesheet name="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" />
+		<h:outputStylesheet name="default.css" />
+		<title><ui:insert name="title">Title</ui:insert></title>
+	</h:head>
+	<h:body>
+		<div id="page">
+			<div id="header">
+				<img src="resources/capitol_logo.svg" alt="Capitol Logo"/>
+				<ui:insert name="header">
+					<h1>
+						<span id="title">Customer Claim Handling Process</span>
+					</h1>
+				</ui:insert>
+			</div>
+			<div id="content">
+				<ui:insert name="content" />
+			</div>
+			<div id="footer">
+				<ui:insert name="footer">&copy; 2016 Capitol Versicherung AG</ui:insert>
+			</div>
+		</div>
+	</h:body>
+</f:view>
+</html>

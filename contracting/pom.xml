@@ -64,7 +64,7 @@
 			<version>2.1.8</version>
 		</dependency>
 
-		<!-- primefaces for JSF -->
+		<!-- Primefaces for JSF -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>

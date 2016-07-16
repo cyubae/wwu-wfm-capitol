@@ -1,0 +1,159 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #066083;
+    text-shadow: 1px 1px 1px #FFFFFF;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+h2 {
+    font-weight: light;
+}
+
+h3 {
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.ui-panelgrid td {
+    padding: 2px 5px ;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#page {
+    width: 80%;
+    margin: auto;
+    border: 1px solid lightgrey;
+}
+
+#header {
+    padding: 1em;
+    background: #FFFFFF;
+}
+
+#header img {
+  float: left;
+  width: 20%;
+}
+
+#header h1 {
+  position: relative;
+  top: 18px;
+  left: 10px;
+}
+
+#title {
+    vertical-align: 20px;
+}
+
+#navigation {
+    clear: both;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    padding: 1em;
+    background: #F6F6F6;
+}
+
+#navigation ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+#navigation li {
+    display: inline;
+}
+
+#navigation a {
+    color: #000;
+    padding: 8px 0 8px 16px;
+    text-decoration: none;
+}
+
+#content {
+    clear: both;
+    padding: 1em;
+}
+
+#footer {
+    clear: both;
+    padding: 1em;
+    border-top: 1px solid lightgrey;
+    font-size: small;
+    background: #066083;
+    color: #FFFFFF;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+}
+
+.form-footer {
+    padding-left: 5em;
+}
+
+.data-table {
+    border-collapse: collapse;
+}
+
+.header-cell {
+    border-bottom: 1px solid black;
+    vertical-align: bottom;
+}
+
+.data-cell {
+    border-left: 1px solid black;
+    padding-right: 4px;
+    padding-left: 4px;
+}
+
+.data-cell:first-child {
+    border-left: none;
+}
+
+.footer-cell {
+    padding-top: 0.5em;
+    text-align: center;
+}
+
+.label {
+    font-weight: bold;
+    padding-right: 1em;
+}
+
+.details-table .label {
+    border-bottom: 1px solid black;
+}
+
+.form-output
+{
+    width: 60%;
+}
+
+.labeltitle, labelvalue {
+    width: 50%;
+}
+
+.labelvalue {
+    color: #000000;
+}
