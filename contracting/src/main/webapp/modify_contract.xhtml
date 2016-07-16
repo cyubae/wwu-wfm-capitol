@@ -110,6 +110,7 @@
 								showOn="button" required="true"
 								requiredMessage="Required Field!" pattern="dd-MM-yyyy">
 								<f:convertDateTime pattern="dd-MM-yyyy" />
+								<p:ajax event="keyup" update="totalCost" />
 							</p:calendar>
 							<h:message for="pickUpDate" />
 
@@ -118,6 +119,7 @@
 								value="#{modifyContractController.contract.returnDate}"
 								showOn="button" required="true"
 								requiredMessage="Required Field!" pattern="dd-MM-yyyy">
+								<p:ajax event="keyup" update="totalCost" />
 								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</p:calendar>
 							<h:message for="returnDate" />
@@ -139,6 +141,7 @@
 							<p:column headerText="Daily Premium (EUR)">
 								<p:inputText id="dailyPremium" value="#{policy.dailyPremium}"
 									required="true" requiredMessage="Required Field!">
+									<p:ajax event="keyup" update=":submitForm:totalCost" />
 								</p:inputText>
 								<p:message for="dailyPremium" />
 							</p:column>
