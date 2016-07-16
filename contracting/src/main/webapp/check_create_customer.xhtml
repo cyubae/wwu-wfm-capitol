@@ -29,25 +29,25 @@
 					<p:panel id="panel_1" header="New Customer">
 
 						<h:panelGrid columns="3" cellpadding="10">
-							<p:outputLabel for="customerId">Customer ID</p:outputLabel>
+							<p:outputLabel for="customerId" value="Customer ID: " />
 							<h:outputText id="customerId"
 								value="#{checkCustomerController.customer.customerId}"
 								requiredMessage="Required Field!" />
 							<p:message for="customerId" />
 
-							<p:outputLabel for="firstname">First Name</p:outputLabel>
+							<p:outputLabel for="firstname" value="First Name: " />
 							<p:inputText id="firstname"
 								value="#{checkCustomerController.customer.firstName}"
 								required="true" requiredMessage="Required Field!" />
 							<p:message for="firstname" />
 
-							<p:outputLabel for="surname">Last Name</p:outputLabel>
+							<p:outputLabel for="surname" value="Last Name: " />
 							<p:inputText id="surname"
 								value="#{checkCustomerController.customer.surname}"
 								required="true" requiredMessage="Required Field!" />
 							<p:message for="surname" />
 
-							<p:outputLabel for="email">E-Mail</p:outputLabel>
+							<p:outputLabel for="email" value="E-Mail: " />
 							<p:inputText id="email"
 								value="#{checkCustomerController.customer.email}"
 								required="true" requiredMessage="Required Field!"
@@ -57,7 +57,7 @@
 							</p:inputText>
 							<p:message for="email" />
 
-							<p:outputLabel for="phoneNumber">Phone Number</p:outputLabel>
+							<p:outputLabel for="phoneNumber" value="Phone Number: " />
 							<p:inputText id="phoneNumber"
 								value="#{checkCustomerController.customer.phoneNumber}"
 								required="true"
@@ -67,63 +67,61 @@
 							</p:inputText>
 							<p:message for="phoneNumber" />
 
-							<p:outputLabel for="street">Street</p:outputLabel>
+							<p:outputLabel for="street" value="Street: " />
 							<p:inputText id="street"
 								value="#{checkCustomerController.customer.street}"
 								required="true" requiredMessage="Required Field!" />
 							<p:message for="street" />
 
-							<p:outputLabel for="houseNumber">House Number</p:outputLabel>
+							<p:outputLabel for="houseNumber" value="House Number: " />
 							<p:inputText id="houseNumber"
 								value="#{checkCustomerController.customer.houseNumber}"
 								required="true" requiredMessage="Required Field!" />
 							<p:message for="houseNumber" />
 
-							<p:outputLabel for="postcode">Post Code</p:outputLabel>
+							<p:outputLabel for="postcode" value="Post Code: " />
 							<p:inputText id="postcode"
 								value="#{checkCustomerController.customer.postcode}"
 								required="true" requiredMessage="Required Field!" />
 							<p:message for="postcode" />
 
-							<p:outputLabel for="city">City</p:outputLabel>
+							<p:outputLabel for="city" value="City: " />
 							<p:inputText id="city"
 								value="#{checkCustomerController.customer.city}" required="true"
 								requiredMessage="Required Field!" />
 							<p:message for="city" />
 
-							<p:outputLabel for="country">Country</p:outputLabel>
+							<p:outputLabel for="country" value="Country: " />
 							<p:inputText id="country"
 								value="#{checkCustomerController.customer.country}"
 								required="true" requiredMessage="Required Field!" />
 							<p:message for="country" />
 
-							<p:outputLabel for="dateOfBirth">Date of Birth</p:outputLabel>
+							<p:outputLabel for="dateOfBirth" value="Date of Birth: " />
 							<p:calendar id="dateOfBirth"
 								value="#{checkCustomerController.customer.dateOfBirth}"
 								showOn="button" required="true"
-								requiredMessage="Required Field!"
-								pattern="dd-MM-yyyy">
+								requiredMessage="Required Field!" pattern="dd-MM-yyyy">
 								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</p:calendar>
 							<p:message for="dateOfBirth" />
 
-							<p:outputLabel for="company">Customer is Company?</p:outputLabel>
+							<p:outputLabel for="company" value="Customer is Company? " />
 							<p:selectBooleanCheckbox id="company"
 								value="#{checkCustomerController.customer.company}" />
 							<p:message for="company" />
-							<br />
 
-							<label for="companyName">Company Name</label>
+							<p:outputLabel for="companyName" value="Company Name: " />
 							<p:inputText id="companyName"
 								value="#{checkCustomerController.customer.companyName}"
 								required="false" requiredMessage="Required Field!" />
 							<p:message for="companyName" />
 
-							<label for="blacklisted">Customer is blacklisted</label>
+							<p:outputLabel for="blacklisted"
+								value="Customer is blacklisted? " />
 							<p:selectBooleanCheckbox id="blacklisted"
 								value="#{checkCustomerController.customer.blacklisted}" />
 							<p:message for="blacklisted" />
-							<br />
 						</h:panelGrid>
 					</p:panel>
 
