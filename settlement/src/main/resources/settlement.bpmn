@@ -168,21 +168,21 @@
       <incoming>SequenceFlow_0tiynr0</incoming>
       <outgoing>SequenceFlow_1iois9y</outgoing>
     </userTask>
-    <exclusiveGateway id="ExclusiveGateway_0zhjckz" name="Contract data found?">
+    <exclusiveGateway id="ExclusiveGateway_0zhjckz" name="Valid Contract found?">
       <incoming>SequenceFlow_0iomcp7</incoming>
       <outgoing>SequenceFlow_0tiynr0</outgoing>
       <outgoing>SequenceFlow_079btvb</outgoing>
     </exclusiveGateway>
     <sequenceFlow id="SequenceFlow_0iomcp7" sourceRef="ServiceTask_17x9v6j" targetRef="ExclusiveGateway_0zhjckz" />
     <sequenceFlow id="SequenceFlow_0tiynr0" name="yes" sourceRef="ExclusiveGateway_0zhjckz" targetRef="UserTask_0s6e88g">
-      <conditionExpression xsi:type="tFormalExpression">${contract_found}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${continue_claim_handling}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_079btvb" name="no" sourceRef="ExclusiveGateway_0zhjckz" targetRef="EndEvent_1pn9swd">
-      <conditionExpression xsi:type="tFormalExpression">${not contract_found}</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression">${not continue_claim_handling}</conditionExpression>
     </sequenceFlow>
-    <endEvent id="EndEvent_1pn9swd" name="Notify of invalid vehicle ID number (Decision: Not Covered)">
+    <endEvent id="EndEvent_1pn9swd" name="Notify of invalid claim(Decision: Not Covered)">
       <incoming>SequenceFlow_079btvb</incoming>
-      <messageEventDefinition camunda:expression="${sendDecisionBL.sendIncompleteDataNotification(execution)}" />
+      <messageEventDefinition camunda:expression="${sendDecisionBL.sendInvalidContractNotification(execution)}" />
     </endEvent>
     <dataStoreReference id="DataStoreReference_1ykcaib" name="capitol database" />
     <userTask id="UserTask_1fo7533" name="Review Claim" camunda:formKey="app:review_claim.jsf">

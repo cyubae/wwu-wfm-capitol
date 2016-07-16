@@ -120,6 +120,7 @@ public class CreateBasicContractBL {
 		return policies;
 	}
 
+	@SuppressWarnings("deprecation")
 	private Contract createContract(DelegateExecution delegateExecution, ArrayList<Policy> policies) {
 
 		InsuranceType currentInsuranceType = STRING_TO_INSURANCETYPE.get((String) delegateExecution.getVariable("insurance_type"));
@@ -131,8 +132,16 @@ public class CreateBasicContractBL {
 			newContract.setValidated(false);;
 			newContract.setReleased(false);
 			
-			Date pickUpDate = (Date) delegateExecution.getVariable("insurance_pick_up_date");
+			Date pickUpDate = ((Date) delegateExecution.getVariable("insurance_pick_up_date"));
 			Date returnDate = (Date) delegateExecution.getVariable("insurance_return_date");
+			
+			pickUpDate.setHours(0);
+			pickUpDate.setMinutes(0);
+			pickUpDate.setSeconds(1);
+			
+			returnDate.setHours(23);
+			returnDate.setMinutes(59);
+			returnDate.setSeconds(59);
 
 			newContract.setPickUpDate(pickUpDate);
 			newContract.setReturnDate(returnDate);

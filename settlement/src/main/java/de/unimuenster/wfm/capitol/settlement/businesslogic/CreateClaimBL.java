@@ -79,31 +79,54 @@ public class CreateClaimBL {
 			//			e.printStackTrace();
 		}
 
+		//preset process variables
+		boolean damageDateCovered = false;
+		boolean contractFound = false;
 		
-		//try to find contract associated to insurance_id sent with the claim
-		Contract contract = contractCRUD.findContractByInsuranceId((Integer) delegateExecution.getVariable("insurance_id"));
-		//try to find car associated to insurance found
-		List<Car> cars = carCRUD.findCarByVehicleId(newClaim.getVehicleIDNumber());
-		
-		Car carClaimed = null;
-		for(Policy currentPolicy1 : contract.getPolicies() ) {
-			for(Car currentCar : cars) {
-				Policy currentPolicy2 = currentCar.getPolicy();
-				if (currentPolicy1 == currentPolicy2) {
-					carClaimed = currentCar;
-				}
+		//try to find contract associated to insurance_id sent with the claim which covers damage date
+		Contract contract = null;
+		List<Contract> contractList = contractCRUD.findContractsByInsuranceId((Integer) delegateExecution.getVariable("insurance_id"));
+		for(Contract currentContract : contractList) {
+			Date contractStartDate = currentContract.getPickUpDate();
+			Date contractEndDate = currentContract.getReturnDate();
+			Date damageDate = newClaim.getDamageDate();
+			if(de.unimuenster.wfm.capitol.settlement.helper.DateTools.dateIsWithinRange(contractStartDate, contractEndDate, damageDate)) {
+				damageDateCovered = true;
+				contract = currentContract;
+			}
+			else {
+				damageDateCovered = false;
 			}
 		}
-						
 		
-		if(carClaimed!=null) {
-			newClaim.setPolicy(carClaimed.getPolicy());
-			delegateExecution.setVariable("contract_found", true);
-		}
-		else{
-			delegateExecution.setVariable("contract_found", false);
+		if(contract != null) {
+			//try to find car associated to insurance found
+			List<Car> cars = carCRUD.findCarByVehicleId(newClaim.getVehicleIDNumber());		
+			//find policy for given car
+			Car carClaimed = null;
+			for(Policy currentPolicy1 : contract.getPolicies() ) {
+				for(Car currentCar : cars) {
+					Policy currentPolicy2 = currentCar.getPolicy();
+					if (currentPolicy1 == currentPolicy2) {
+						carClaimed = currentCar;
+						newClaim.setPolicy(carClaimed.getPolicy());
+						contractFound = true;				
+					}
+				}
+			}										
 		}
 
+		//set process variables
+		delegateExecution.setVariable("damage_date_covered", damageDateCovered);
+		delegateExecution.setVariable("contract_found", contractFound);
+		
+		boolean continueClaimHandling = false;
+		if(contractFound && damageDateCovered) {
+			continueClaimHandling = true;
+		}
+		delegateExecution.setVariable("continue_claim_handling", continueClaimHandling);
+
+		
 		//associate involved parties
 		if (newClaim.isPartiesInvolved()) {
 			int numberOfExternalParties = (Integer) delegateExecution.getVariable("number_of_involved_parties");
