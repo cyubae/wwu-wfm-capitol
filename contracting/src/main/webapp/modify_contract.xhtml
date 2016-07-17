@@ -134,14 +134,15 @@
 
 					<p:panel id="panel_3" header="Policies">
 						<p:dataTable value="#{modifyContractController.contract.policies}"
-							var="policy">
+							var="policy" styleClass="ui-fluid">
 							<p:column headerText="Policy ID">
 								<h:outputText id="policyId" value="#{policy.policyId}" />
 							</p:column>
 
 							<p:column headerText="Daily Premium (EUR)">
 								<p:inputText id="dailyPremium" value="#{policy.dailyPremium}"
-									required="true" requiredMessage="Required Field!">
+									required="true" requiredMessage="Required Field!"
+									style="font-size: 75%;">
 									<p:ajax event="keyup" update=":submitForm:totalCost" />
 								</p:inputText>
 								<p:message for="dailyPremium" />
@@ -149,58 +150,68 @@
 
 							<p:column headerText="Brand">
 								<p:inputText id="brand" value="#{policy.car.brand}"
-									required="true" requiredMessage="Required Field!">
+									required="true" requiredMessage="Required Field!"
+									style="font-size: 75%;">
 								</p:inputText>
 								<p:message for="brand" />
 							</p:column>
 
 							<p:column headerText="Model">
 								<p:inputText id="model" value="#{policy.car.model}"
-									required="true" requiredMessage="Required Field!">
+									required="true" requiredMessage="Required Field!"
+									style="font-size: 75%;">
 								</p:inputText>
 								<p:message for="model" />
 							</p:column>
 
 							<p:column headerText="Registration">
 								<p:inputText id="registrationNumber"
-									value="#{policy.car.registrationNumber}" required="true"
-									requiredMessage="Required Field!">
+									value="#{policy.car.registrationNumber}"
+									required="true" requiredMessage="Required Field!"
+									style="font-size: 75%;">
 								</p:inputText>
 								<p:message for="registrationNumber" />
 							</p:column>
 
 							<p:column headerText="Car Type">
-								<p:selectOneMenu id="carType" value="#{policy.car.type}">
-									<f:selectItem itemValue="MINI_CAR" itemLabel="MINI_CAR" />
-									<f:selectItem itemValue="SMALL_CAR" itemLabel="SMALL_CAR" />
-									<f:selectItem itemValue="CAR" itemLabel="CAR" />
-									<f:selectItem itemValue="KOMBI" itemLabel="KOMBI" />
-									<f:selectItem itemValue="PICK_UP" itemLabel="PICK_UP" />
-									<f:selectItem itemValue="VAN" itemLabel="VAN" />
-									<f:selectItem itemValue="LIMOUSINE" itemLabel="LIMOUSINE" />
-									<f:selectItem itemValue="TRUCK" itemLabel="TRUCK" />
+								<p:selectOneMenu id="carType"
+									value="#{policy.car.type}"
+									style="font-size: 75%;" styleClass="ui-fluid">
+									<f:selectItem itemValue="MINI_CAR" itemLabel="Mini Car" />
+									<f:selectItem itemValue="SMALL_CAR" itemLabel="Small Car" />
+									<f:selectItem itemValue="CAR" itemLabel="Car" />
+									<f:selectItem itemValue="KOMBI" itemLabel="Kombi" />
+									<f:selectItem itemValue="PICK_UP" itemLabel="Pick Up" />
+									<f:selectItem itemValue="VAN" itemLabel="Van" />
+									<f:selectItem itemValue="LIMOUSINE" itemLabel="Limousine" />
+									<f:selectItem itemValue="TRUCK" itemLabel="Truck" />
 								</p:selectOneMenu>
 								<p:message for="carType" />
 							</p:column>
 
 							<p:column headerText="Fuel Type">
-								<p:inputText id="fuelType" value="#{policy.car.fuelType}"
-									required="true" requiredMessage="Required Field!">
+								<p:inputText id="fuelType"
+									value="#{policy.car.fuelType}"
+									required="true" requiredMessage="Required Field!"
+									style="font-size: 75%;">
 								</p:inputText>
 								<p:message for="fuelType" />
 							</p:column>
 
 							<p:column headerText="Horsepower">
-								<p:inputText id="ps" value="#{policy.car.ps}" required="true"
-									requiredMessage="Required Field!">
+								<p:inputText id="ps"
+									value="#{policy.car.ps}"
+									required="true" requiredMessage="Required Field!"
+									style="font-size: 75%;">
 								</p:inputText>
 								<p:message for="ps" />
 							</p:column>
 
 							<p:column headerText="Construction Year">
 								<p:inputText id="constructionYear"
-									value="#{policy.car.constructionYear}" required="true"
-									requiredMessage="Required Field!">
+									value="#{policy.car.constructionYear}"
+									required="true" requiredMessage="Required Field!"
+									style="font-size: 75%;">
 								</p:inputText>
 								<p:message for="constructionYear" />
 							</p:column>
