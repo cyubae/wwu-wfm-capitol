@@ -142,6 +142,7 @@ public class CreateClaimBL {
 				}
 			}
 		}
+		LOGGER.log(Level.INFO, "newClaim.getExternalParties().size(): " + newClaim.getExternalParties().size());
 
 		//persist new claim
 		newClaim = claimCRUD.createAndFlush(newClaim);

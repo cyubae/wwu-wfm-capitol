@@ -83,6 +83,7 @@ public class CheckDataController implements Serializable {
 	}
 	
 	public Collection<ExternalParty> getExternalParties() {
+		LOGGER.log(Level.INFO, "getExternalParties invoked - number external parties: " + this.getClaim().getExternalParties().size());
 		return this.getClaim().getExternalParties();
 	}
 	
