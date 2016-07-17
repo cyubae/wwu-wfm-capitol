@@ -134,7 +134,8 @@
 					</p:panel>
 
 					<p:panel id="panel_3" header="Policies">
-						<p:dataTable id="policies" value="#{modifyContractController.contract.policies}"
+						<p:dataTable id="policies"
+							value="#{modifyContractController.contract.policies}"
 							var="policy">
 							<p:column headerText="Policy ID">
 								<h:outputText id="policyId" value="#{policy.policyId}" />
@@ -144,6 +145,13 @@
 								<h:outputText id="dailyPremium" value="#{policy.dailyPremium}">
 								</h:outputText>
 								<p:message for="dailyPremium" />
+							</p:column>
+
+							<p:column headerText="Discount (%)">
+								<p:inputText id="brand" value="#{policy.discount}"
+									required="true" requiredMessage="Required Field!">
+								</p:inputText>
+								<p:message for="brand" />
 							</p:column>
 
 							<p:column headerText="Brand">

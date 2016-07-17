@@ -91,7 +91,9 @@ public class ModifyContractController implements Serializable {
 				policy.getContract().getInsuranceType(), 
 				policy.getCar().getPs(), 
 				policy.getCar().getConstructionYear());
-		policy.setDailyPremium(dailyPremium);
+		int discount = policy.getDiscount();
+		BigDecimal finalPremium = dailyPremium.multiply(new BigDecimal(discount));		
+		policy.setDailyPremium(finalPremium);
 	}
 	
 	public void changeAllDailyPremiums() {
