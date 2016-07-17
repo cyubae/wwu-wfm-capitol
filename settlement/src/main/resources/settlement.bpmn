@@ -79,7 +79,7 @@
       <incoming>SequenceFlow_1bev8vu</incoming>
       <outgoing>SequenceFlow_1s70td0</outgoing>
     </exclusiveGateway>
-    <exclusiveGateway id="ExclusiveGateway_05ri3wu" name="manual evaluation&#10;required?" gatewayDirection="Diverging">
+    <exclusiveGateway id="ExclusiveGateway_05ri3wu" name="Manual Evaluation&#10;Required?" gatewayDirection="Diverging">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
       </extensionElements>
@@ -87,7 +87,7 @@
       <outgoing>SequenceFlow_1rs9g0w</outgoing>
       <outgoing>SequenceFlow_06hmwwp</outgoing>
     </exclusiveGateway>
-    <userTask id="UserTask_0ivyjmb" name="Correct data manually" implementation="##unspecified" camunda:formKey="app:complete_data.jsf">
+    <userTask id="UserTask_0ivyjmb" name="Correct Data Manually" implementation="##unspecified" camunda:formKey="app:complete_data.jsf">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -96,7 +96,7 @@
       <incoming>SequenceFlow_1120f6i</incoming>
       <outgoing>SequenceFlow_1bev8vu</outgoing>
     </userTask>
-    <exclusiveGateway id="ExclusiveGateway_0jruqba" name="is data correct?" gatewayDirection="Diverging">
+    <exclusiveGateway id="ExclusiveGateway_0jruqba" name="Is Data Correct?" gatewayDirection="Diverging">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
       </extensionElements>
@@ -104,7 +104,7 @@
       <outgoing>SequenceFlow_0et410l</outgoing>
       <outgoing>SequenceFlow_1120f6i</outgoing>
     </exclusiveGateway>
-    <serviceTask id="CheckClaimCoverage" name="Check claim coverage" camunda:expression="${checkClaimCoverageBL.performBusinessLogic(execution)}">
+    <serviceTask id="CheckClaimCoverage" name="Check Claim Coverage" camunda:expression="${checkClaimCoverageBL.performBusinessLogic(execution)}">
       <incoming>SequenceFlow_1s70td0</incoming>
       <outgoing>SequenceFlow_1eo7a6x</outgoing>
     </serviceTask>
@@ -136,7 +136,7 @@
     <sequenceFlow id="SequenceFlow_0nrvt3r" sourceRef="ExclusiveGateway_0bfo49s" targetRef="SendTask_0tiet84" />
     <sequenceFlow id="SequenceFlow_15duin7" sourceRef="SendTask_0tiet84" targetRef="IntermediateCatchEvent_0ox3bvl" />
     <sequenceFlow id="SequenceFlow_0nad7mk" sourceRef="ServiceTask_1dlcziy" targetRef="ExclusiveGateway_0bfo49s" />
-    <userTask id="UserTask_0g5kavc" name="Handle claim manually" implementation="##unspecified" camunda:formKey="app:handle_claim.jsf">
+    <userTask id="UserTask_0g5kavc" name="Handle Claim Manually" implementation="##unspecified" camunda:formKey="app:handle_claim.jsf">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -146,7 +146,7 @@
       <outgoing>SequenceFlow_07kggg3</outgoing>
     </userTask>
     <sequenceFlow id="SequenceFlow_0rdwhyp" sourceRef="ServiceTask_14jz12o" targetRef="ExclusiveGateway_0v4dkel" />
-    <serviceTask id="ServiceTask_17x9v6j" name="Create Claim (Retrieve contract data)" camunda:expression="${createClaimBL.performBusinessLogic(execution)}">
+    <serviceTask id="ServiceTask_17x9v6j" name="Create Claim (Retrieve Contract Data)" camunda:expression="${createClaimBL.performBusinessLogic(execution)}">
       <incoming>SequenceFlow_1ahlven</incoming>
       <outgoing>SequenceFlow_0iomcp7</outgoing>
       <property id="Property_16upn25" name="__targetRef_placeholder" />
@@ -155,7 +155,7 @@
         <targetRef>Property_16upn25</targetRef>
       </dataInputAssociation>
     </serviceTask>
-    <startEvent id="StartEvent_0o57kxj" name="receive claim">
+    <startEvent id="StartEvent_0o57kxj" name="Receive Claim">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
         <signavio:signavioMetaData metaKey="vorgngerprozesse" metaValue="[]" />
@@ -164,7 +164,7 @@
       <outgoing>SequenceFlow_1ahlven</outgoing>
       <messageEventDefinition id="sid-2e65a6ce-f67c-4fe7-9ac6-737904e96a60" messageRef="sid-6309FA27-8337-4480-83B5-81ECF9209099" />
     </startEvent>
-    <userTask id="UserTask_0s6e88g" name="Check data for  correctness" camunda:formKey="app:check_data.jsf">
+    <userTask id="UserTask_0s6e88g" name="Check Data for  Correctness" camunda:formKey="app:check_data.jsf">
       <incoming>SequenceFlow_0tiynr0</incoming>
       <outgoing>SequenceFlow_1iois9y</outgoing>
     </userTask>
@@ -180,16 +180,16 @@
     <sequenceFlow id="SequenceFlow_079btvb" name="no" sourceRef="ExclusiveGateway_0zhjckz" targetRef="EndEvent_1pn9swd">
       <conditionExpression xsi:type="tFormalExpression">${not continue_claim_handling}</conditionExpression>
     </sequenceFlow>
-    <endEvent id="EndEvent_1pn9swd" name="Notify of invalid claim(Decision: Not Covered)">
+    <endEvent id="EndEvent_1pn9swd" name="Notify of Invalid Claim (Decision: Not Covered)">
       <incoming>SequenceFlow_079btvb</incoming>
       <messageEventDefinition camunda:expression="${sendDecisionBL.sendInvalidContractNotification(execution)}" />
     </endEvent>
-    <dataStoreReference id="DataStoreReference_1ykcaib" name="capitol database" />
+    <dataStoreReference id="DataStoreReference_1ykcaib" name="Capitol Database" />
     <userTask id="UserTask_1fo7533" name="Review Claim" camunda:formKey="app:review_claim.jsf">
       <incoming>SequenceFlow_01e64a3</incoming>
       <outgoing>SequenceFlow_0sixek3</outgoing>
     </userTask>
-    <sendTask id="SendTask_0tiet84" name="Send decision to BVIS " implementation="##unspecified" camunda:expression="${sendDecisionBL.performBusinessLogic(execution)}" camunda:resultVariable="result1">
+    <sendTask id="SendTask_0tiet84" name="Send Decision to BVIS " implementation="##unspecified" camunda:expression="${sendDecisionBL.performBusinessLogic(execution)}" camunda:resultVariable="result1">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -198,17 +198,17 @@
       <incoming>SequenceFlow_0nrvt3r</incoming>
       <outgoing>SequenceFlow_15duin7</outgoing>
     </sendTask>
-    <intermediateCatchEvent id="IntermediateCatchEvent_0ox3bvl" name="receive accept/decline">
+    <intermediateCatchEvent id="IntermediateCatchEvent_0ox3bvl" name="Receive Accept/Decline">
       <incoming>SequenceFlow_15duin7</incoming>
       <outgoing>SequenceFlow_1ymgav4</outgoing>
       <messageEventDefinition messageRef="Message_1yhro65" />
     </intermediateCatchEvent>
-    <exclusiveGateway id="ExclusiveGateway_0ex7jpu" name="Accepted and covered?">
+    <exclusiveGateway id="ExclusiveGateway_0ex7jpu" name="Accepted and Covered?">
       <incoming>SequenceFlow_0lttgts</incoming>
       <outgoing>SequenceFlow_1rcrs7g</outgoing>
       <outgoing>SequenceFlow_0b23few</outgoing>
     </exclusiveGateway>
-    <sendTask id="SendTask_11hfxxe" name="Send refund to BVIS bank account" implementation="##unspecified" camunda:expression="${sendRefundBL.performBusinessLogic(execution)}" camunda:resultVariable="result2">
+    <sendTask id="SendTask_11hfxxe" name="Send Refund to BVIS Bank Account" implementation="##unspecified" camunda:expression="${sendRefundBL.performBusinessLogic(execution)}" camunda:resultVariable="result2">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -217,7 +217,7 @@
       <incoming>SequenceFlow_0b23few</incoming>
       <outgoing>SequenceFlow_0jelfcz</outgoing>
     </sendTask>
-    <endEvent id="EndEvent_0kajk9l" name="claim processed">
+    <endEvent id="EndEvent_0kajk9l" name="Claim Processed">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
         <signavio:signavioMetaData metaKey="nachfolgerprozesse" metaValue="[]" />
@@ -257,7 +257,7 @@
       <outgoing>SequenceFlow_0nrvt3r</outgoing>
     </exclusiveGateway>
     <sequenceFlow id="SequenceFlow_0sixek3" sourceRef="UserTask_1fo7533" targetRef="ExclusiveGateway_0bfo49s" />
-    <serviceTask id="ServiceTask_1dlcziy" name="Handle claim automatically" camunda:expression="${handleClaimBL.performBusinessLogic(execution)}">
+    <serviceTask id="ServiceTask_1dlcziy" name="Handle Claim Automatically" camunda:expression="${handleClaimBL.performBusinessLogic(execution)}">
       <incoming>SequenceFlow_1rs9g0w</incoming>
       <outgoing>SequenceFlow_0nad7mk</outgoing>
     </serviceTask>
