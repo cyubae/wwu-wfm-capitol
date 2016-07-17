@@ -92,7 +92,7 @@ public class ModifyContractController implements Serializable {
 				policy.getCar().getPs(), 
 				policy.getCar().getConstructionYear());
 		int discount = policy.getDiscount();
-		BigDecimal finalPremium = dailyPremium.multiply(new BigDecimal(discount));		
+		BigDecimal finalPremium = dailyPremium.multiply(new BigDecimal(1 - ((double)discount)/100) );		
 		policy.setDailyPremium(finalPremium);
 	}
 	
