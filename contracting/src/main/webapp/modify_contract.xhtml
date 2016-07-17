@@ -89,7 +89,7 @@
 					</p:panel>
 
 					<p:panel id="panel_2" header="Contract Information">
-						<h:panelGrid columns="3">
+						<h:panelGrid columns="3" styleClass="ui-fluid">
 							<p:outputLabel for="contractId" value="Contract ID: " />
 							<h:outputText id="contractId"
 								value="#{validateContractController.contract.contractId}" />
@@ -97,7 +97,8 @@
 
 							<p:outputLabel for="insuranceType" value="Insurance Type: " />
 							<p:selectOneMenu id="insuranceType"
-								value="#{modifyContractController.contract.insuranceType}">
+								value="#{modifyContractController.contract.insuranceType}"
+								required="true" requiredMessage="Required Field!">
 								<f:selectItem itemValue="TOTAL" itemLabel="Total" />
 								<f:selectItem itemValue="PARTIAL" itemLabel="Partial" />
 								<f:selectItem itemValue="LIABILITY" itemLabel="Liability" />

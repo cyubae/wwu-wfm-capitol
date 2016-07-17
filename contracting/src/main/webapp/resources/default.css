@@ -159,3 +159,12 @@ a:hover {
 .labelvalue {
     color: #000000;
 }
+
+.ui-selectonemenu {
+	box-sizing: border-box;
+	width: 100% !important;
+}
+
+.ui-selectonemenu-label{
+     width: 100% !important;
+}
