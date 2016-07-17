@@ -71,7 +71,7 @@
         <flowNodeRef>sid-D31430BA-C4CC-429C-B346-A605D4B8DD2C</flowNodeRef>
       </lane>
     </laneSet>
-    <startEvent id="sid-DED54C9E-A9E3-4F7E-9B4D-67CA80108CEA" name="customer data and&#10;contract conditions&#10;received">
+    <startEvent id="sid-DED54C9E-A9E3-4F7E-9B4D-67CA80108CEA" name="Customer Data and&#10;Contract Conditions&#10;Received">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
         <signavio:signavioMetaData metaKey="vorgngerprozesse" metaValue="[]" />
@@ -80,7 +80,7 @@
       <outgoing>sid-81E55155-D2E5-4AAF-8AFE-C183AD856622</outgoing>
       <messageEventDefinition id="sid-9612c456-7bca-4ac0-aacc-8e6269b3a983" messageRef="sid-960C1264-D388-4E58-8F1D-97CA4E220758" />
     </startEvent>
-    <serviceTask id="CheckIfCustomerBlacklisted" name="Check if customer is blacklisted" implementation="##WebService" camunda:expression="${checkIfCustomerBlacklistedBL.performBusinessLogic(execution)}">
+    <serviceTask id="CheckIfCustomerBlacklisted" name="Check if Customer is Blacklisted" implementation="##WebService" camunda:expression="${checkIfCustomerBlacklistedBL.performBusinessLogic(execution)}">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -100,7 +100,7 @@
       <conditionExpression xsi:type="tFormalExpression">${user_is_blacklisted}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-16C3DB62-288D-474B-8436-B1CD54F79F8D" name="" sourceRef="sid-90CC009F-F71C-47D9-A7FF-C2D2B971E9E5" targetRef="sid-C81607F4-3CF2-4067-9CFC-E55A10FE43DB" />
-    <serviceTask id="CheckExistingCustomerId" name="Check for existing customer ID" camunda:expression="${checkExistingCustomerIdBL.findExistingCustomer(execution)}">
+    <serviceTask id="CheckExistingCustomerId" name="Check for Existing Customer ID" camunda:expression="${checkExistingCustomerIdBL.findExistingCustomer(execution)}">
       <incoming>sid-81E55155-D2E5-4AAF-8AFE-C183AD856622</incoming>
       <outgoing>sid-3E9B8CF7-BD5C-4763-B93F-9A264E166D0B</outgoing>
     </serviceTask>
@@ -108,7 +108,7 @@
     <sequenceFlow id="SequenceFlow_0oor331" name="yes" sourceRef="ExclusiveGateway_0qegcgb" targetRef="sid-FCB6B618-A53A-4AB8-B118-E5DE1E6A1090">
       <conditionExpression xsi:type="tFormalExpression">${user_rejected}</conditionExpression>
     </sequenceFlow>
-    <exclusiveGateway id="sid-D36D1ADB-10C9-47B6-AC3D-419CA3216F00" name="customer&#10;exists?" gatewayDirection="Diverging">
+    <exclusiveGateway id="sid-D36D1ADB-10C9-47B6-AC3D-419CA3216F00" name="Customer&#10;exists?" gatewayDirection="Diverging">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
       </extensionElements>
@@ -124,11 +124,11 @@
       <incoming>sid-260DD31D-DD1C-4AFE-9567-93C30B29BBCF</incoming>
       <outgoing>sid-9BB8CE96-6965-4B5C-87FD-8AC75017EB78</outgoing>
     </exclusiveGateway>
-    <userTask id="UserTask_1lkisg5" name="Check and update customer data" camunda:formKey="app:check_update_customer.jsf">
+    <userTask id="UserTask_1lkisg5" name="Check and Update Customer Data" camunda:formKey="app:check_update_customer.jsf">
       <incoming>sid-338B8A5D-B84F-40E1-AD64-38C4B6F8ADB9</incoming>
       <outgoing>sid-260DD31D-DD1C-4AFE-9567-93C30B29BBCF</outgoing>
     </userTask>
-    <userTask id="UserTask_0tievdk" name="Check data and create customer" camunda:formKey="app:check_create_customer.jsf">
+    <userTask id="UserTask_0tievdk" name="Check Data and Create Customer" camunda:formKey="app:check_create_customer.jsf">
       <incoming>sid-C61EBAF4-526D-40DF-A555-C99E75B85689</incoming>
       <outgoing>sid-D61DA17E-BBED-4F1A-A43C-563BE79F788D</outgoing>
     </userTask>
@@ -140,7 +140,7 @@
     </sequenceFlow>
     <sequenceFlow id="sid-D61DA17E-BBED-4F1A-A43C-563BE79F788D" name="" sourceRef="UserTask_0tievdk" targetRef="sid-CE61613D-38D0-42B1-A5A4-4DE8FD694371" />
     <sequenceFlow id="sid-260DD31D-DD1C-4AFE-9567-93C30B29BBCF" name="" sourceRef="UserTask_1lkisg5" targetRef="sid-CE61613D-38D0-42B1-A5A4-4DE8FD694371" />
-    <exclusiveGateway id="sid-CEA70218-9AAF-4A9D-B69C-C0BC2E729D64" name="customer&#10;blacklisted?" gatewayDirection="Diverging">
+    <exclusiveGateway id="sid-CEA70218-9AAF-4A9D-B69C-C0BC2E729D64" name="Customer&#10;Blacklisted?" gatewayDirection="Diverging">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
         <signavio:signavioLabel bottom="false" left="false" ref="text_name" right="true" top="false" valign="middle" x="45.0" y="20.0" />
@@ -158,7 +158,7 @@
       <incoming>sid-0F8FC498-4901-4303-92E4-D9B3713F3B54</incoming>
       <outgoing>sid-7664EBAD-E0BF-49B8-869D-3B7CA846F6D4</outgoing>
     </userTask>
-    <exclusiveGateway id="sid-352209F6-1CDC-4F91-9F46-8648D653EF75" name="Basic contract&#10;valid?" gatewayDirection="Diverging">
+    <exclusiveGateway id="sid-352209F6-1CDC-4F91-9F46-8648D653EF75" name="Basic Contract&#10;valid?" gatewayDirection="Diverging">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
         <signavio:signavioLabel align="center" bottom="false" left="false" ref="text_name" right="false" top="true" valign="bottom" x="20.0" y="-9.0" />
@@ -175,7 +175,7 @@
       <conditionExpression xsi:type="tFormalExpression">${contract_validated}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="sid-BB169C09-CD09-4BFB-A567-83F869D7E517" name="" sourceRef="sid-42D047DA-8DA5-432E-89EB-1C5CF23CD847" targetRef="sid-D31430BA-C4CC-429C-B346-A605D4B8DD2C" />
-    <endEvent id="sid-FCB6B618-A53A-4AB8-B118-E5DE1E6A1090" name="inform BVIS&#10;about rejection">
+    <endEvent id="sid-FCB6B618-A53A-4AB8-B118-E5DE1E6A1090" name="Inform BVIS&#10;about Rejection">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
         <signavio:signavioMetaData metaKey="nachfolgerprozesse" metaValue="[]" />
@@ -188,11 +188,11 @@
       <incoming>SequenceFlow_1dhxa83</incoming>
       <outgoing>SequenceFlow_1eto6s4</outgoing>
     </exclusiveGateway>
-    <userTask id="UserTask_1l7yy2z" name="Check rejection" camunda:formKey="app:check_rejection.jsf">
+    <userTask id="UserTask_1l7yy2z" name="Check Rejection" camunda:formKey="app:check_rejection.jsf">
       <incoming>sid-C4A645D8-E767-45F7-930C-34BCCDF5064A</incoming>
       <outgoing>SequenceFlow_1bbq612</outgoing>
     </userTask>
-    <exclusiveGateway id="ExclusiveGateway_0qegcgb" name="rejection valid?">
+    <exclusiveGateway id="ExclusiveGateway_0qegcgb" name="Rejection valid?">
       <incoming>SequenceFlow_1bbq612</incoming>
       <outgoing>SequenceFlow_0oor331</outgoing>
       <outgoing>SequenceFlow_1dhxa83</outgoing>
@@ -201,7 +201,7 @@
       <conditionExpression xsi:type="tFormalExpression">${not user_rejected}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="SequenceFlow_1bbq612" sourceRef="UserTask_1l7yy2z" targetRef="ExclusiveGateway_0qegcgb" />
-    <userTask id="sid-42D047DA-8DA5-432E-89EB-1C5CF23CD847" name="Modify contract manually" implementation="##WebService" camunda:formKey="app:modify_contract.jsf">
+    <userTask id="sid-42D047DA-8DA5-432E-89EB-1C5CF23CD847" name="Modify Contract Manually" implementation="##WebService" camunda:formKey="app:modify_contract.jsf">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -218,7 +218,7 @@
       <incoming>sid-030CBFA1-F5EA-4BFB-8772-C0C96F6452CC</incoming>
       <outgoing>SequenceFlow_1m5e0p5</outgoing>
     </exclusiveGateway>
-    <sendTask id="sid-09F71DFF-8C12-43E9-8A55-0C971FA8BCD4" name="Send contract proposal" implementation="##WebService" camunda:expression="${sendContractProposalBL.performBusinessLogic(execution)}">
+    <sendTask id="sid-09F71DFF-8C12-43E9-8A55-0C971FA8BCD4" name="Send Contract Proposal" implementation="##WebService" camunda:expression="${sendContractProposalBL.performBusinessLogic(execution)}">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -227,7 +227,7 @@
       <incoming>SequenceFlow_1m5e0p5</incoming>
       <outgoing>sid-8B9DFF88-4986-4502-A695-66DD25E2A02C</outgoing>
     </sendTask>
-    <receiveTask id="sid-E416B265-A8D8-4894-BA47-CF68322258A8" name="Receive accept/decline" implementation="##WebService" messageRef="Message_1tx3dwf">
+    <receiveTask id="sid-E416B265-A8D8-4894-BA47-CF68322258A8" name="Receive Accept/Decline" implementation="##WebService" messageRef="Message_1tx3dwf">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -236,7 +236,7 @@
       <incoming>sid-8B9DFF88-4986-4502-A695-66DD25E2A02C</incoming>
       <outgoing>SequenceFlow_1d84f3k</outgoing>
     </receiveTask>
-    <endEvent id="sid-C81607F4-3CF2-4067-9CFC-E55A10FE43DB" name="contract proposal&#10;expired">
+    <endEvent id="sid-C81607F4-3CF2-4067-9CFC-E55A10FE43DB" name="Contract Proposal&#10;Expired">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
         <signavio:signavioMetaData metaKey="nachfolgerprozesse" metaValue="[]" />
@@ -250,7 +250,7 @@
         <timeDuration xsi:type="tFormalExpression">P14D</timeDuration>
       </timerEventDefinition>
     </boundaryEvent>
-    <endEvent id="sid-99728641-7CB6-488A-821D-B44C558DAE6C" name="contract settled">
+    <endEvent id="sid-99728641-7CB6-488A-821D-B44C558DAE6C" name="Contract Settled">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffff" />
         <signavio:signavioMetaData metaKey="nachfolgerprozesse" metaValue="[]" />
@@ -259,7 +259,7 @@
     </endEvent>
     <sequenceFlow id="SequenceFlow_1d84f3k" sourceRef="sid-E416B265-A8D8-4894-BA47-CF68322258A8" targetRef="ReleaseContract" />
     <sequenceFlow id="SequenceFlow_144bw6w" sourceRef="ReleaseContract" targetRef="sid-99728641-7CB6-488A-821D-B44C558DAE6C" />
-    <serviceTask id="ReleaseContract" name="Release contract" implementation="##WebService" camunda:expression="${releaseContractBL.performBusinessLogic(execution)}">
+    <serviceTask id="ReleaseContract" name="Release Contract" implementation="##WebService" camunda:expression="${releaseContractBL.performBusinessLogic(execution)}">
       <extensionElements>
         <signavio:signavioMetaData metaKey="bgcolor" metaValue="#ffffcc" />
         <signavio:signavioMetaData metaKey="risklevel" metaValue="" />
@@ -268,7 +268,7 @@
       <incoming>SequenceFlow_1d84f3k</incoming>
       <outgoing>SequenceFlow_144bw6w</outgoing>
     </serviceTask>
-    <serviceTask id="CreateBasicContract" name="Create basic contract (based on customer requirements)" camunda:expression="${createBasicContractBL.performBusinessLogic(execution)}">
+    <serviceTask id="CreateBasicContract" name="Create Basic Contract (based on Customer Requirements)" camunda:expression="${createBasicContractBL.performBusinessLogic(execution)}">
       <incoming>SequenceFlow_1eto6s4</incoming>
       <outgoing>sid-0F8FC498-4901-4303-92E4-D9B3713F3B54</outgoing>
     </serviceTask>
