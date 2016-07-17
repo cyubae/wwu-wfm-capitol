@@ -112,7 +112,7 @@
 								showOn="button" required="true"
 								requiredMessage="Required Field!" pattern="dd-MM-yyyy">
 								<f:convertDateTime pattern="dd-MM-yyyy" />
-								<p:ajax event="change" update="submitForm" />
+								<p:ajax event="dateSelect" update="submitForm" />
 							</p:calendar>
 							<h:message for="pickUpDate" />
 
@@ -121,7 +121,7 @@
 								value="#{modifyContractController.contract.returnDate}"
 								showOn="button" required="true"
 								requiredMessage="Required Field!" pattern="dd-MM-yyyy">
-								<p:ajax event="change" update="submitForm" />
+								<p:ajax event="dateSelect" update="submitForm" />
 								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</p:calendar>
 							<h:message for="returnDate" />
