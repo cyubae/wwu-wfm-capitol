@@ -96,13 +96,7 @@ public class SendDecisionBL {
 		boolean contractFound = false;
 		contractFound = (Boolean) delegateExecution.getVariable("contract_found");
 
-		if(!contractFound) {
-			decision.setDescription("For given insurance_id: " 
-					+ delegateExecution.getVariable("insurance_id")
-					+ " there is no policy for received vehicle_identification_number: "
-					+ (String) delegateExecution.getVariable("vehicle_identification_number"));					
-		}
-		else if (!damageDateCovered) {
+		if (!damageDateCovered) {
 			decision.setDescription("For given insurance_id: " 
 					+ delegateExecution.getVariable("insurance_id")
 					+ " there is no policy for car with received vehicle_identification_number "
@@ -110,9 +104,15 @@ public class SendDecisionBL {
 					+ " that covers damage date: "
 					+ (String) delegateExecution.getVariable("damage_date") );
 		}		
+		else if(!contractFound) {
+			decision.setDescription("For given insurance_id: " 
+					+ delegateExecution.getVariable("insurance_id")
+					+ " there is no policy for received vehicle_identification_number: "
+					+ (String) delegateExecution.getVariable("vehicle_identification_number"));					
+		}
 		decision.setInsurance_decision(EnumMapper.CLAIMDECISION_TO_INTEGER.get(ClaimDecision.NOT_COVERED));
 		sendCaseDecision(caseDecision);
-		
+
 		LOGGER.log(Level.INFO, "Sent InvalidContractNotification with mmessage: " + decision.getDescription());
 	}
 
