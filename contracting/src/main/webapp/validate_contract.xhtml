@@ -156,6 +156,13 @@
 								</h:outputText>
 								<p:message for="model" />
 							</p:column>
+							
+							<p:column headerText="Car Type">
+								<h:outputText id="carType" value="#{policy.car.type}"
+									required="true" requiredMessage="Required Field!">
+								</h:outputText>
+								<p:message for="carType" />
+							</p:column>							
 
 							<p:column headerText="Registration">
 								<h:outputText id="registrationNumber"

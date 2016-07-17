@@ -168,6 +168,20 @@
 								<p:message for="registrationNumber" />
 							</p:column>
 
+							<p:column headerText="Car Type">
+								<p:selectOneMenu id="carType" value="#{policy.car.type}">
+									<f:selectItem itemValue="MINI_CAR" itemLabel="MINI_CAR" />
+									<f:selectItem itemValue="SMALL_CAR" itemLabel="SMALL_CAR" />
+									<f:selectItem itemValue="CAR" itemLabel="CAR" />
+									<f:selectItem itemValue="KOMBI" itemLabel="KOMBI" />
+									<f:selectItem itemValue="PICK_UP" itemLabel="PICK_UP" />
+									<f:selectItem itemValue="VAN" itemLabel="VAN" />
+									<f:selectItem itemValue="LIMOUSINE" itemLabel="LIMOUSINE" />
+									<f:selectItem itemValue="TRUCK" itemLabel="TRUCK" />
+								</p:selectOneMenu>
+								<p:message for="carType" />
+							</p:column>
+
 							<p:column headerText="Fuel Type">
 								<p:inputText id="fuelType" value="#{policy.car.fuelType}"
 									required="true" requiredMessage="Required Field!">
