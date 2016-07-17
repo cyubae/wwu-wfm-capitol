@@ -56,6 +56,19 @@
 								value="#{checkDataController.claim.claimValue} EUR" />
 
 							<!-- Data Table for parties involved -->
+							<p:panel id="panel_1a" header="Involved Parties" lazy="true">
+								<p:dataTable
+									value="#{checkDataController.claim.externalParties}"
+									var="externalParty">
+									<p:column headerText="First Name">
+										<h:outputText id="policyId" value="#{externalParty.firstName}" />
+									</p:column>
+
+									<p:column headerText="Last Name">
+										<h:outputText id="policyId" value="#{externalParty.surname}" />
+									</p:column>
+								</p:dataTable>
+							</p:panel>
 
 						</h:panelGrid>
 					</p:panel>

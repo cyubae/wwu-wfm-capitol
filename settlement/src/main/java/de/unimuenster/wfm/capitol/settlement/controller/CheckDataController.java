@@ -14,7 +14,6 @@ package de.unimuenster.wfm.capitol.settlement.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +31,7 @@ import de.unimuenster.wfm.capitol.jpa.CarCRUD;
 import de.unimuenster.wfm.capitol.jpa.ClaimCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
 import de.unimuenster.wfm.capitol.jpa.CustomerCRUD;
+import de.unimuenster.wfm.capitol.jpa.ExternalPartyCRUD;
 import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;;
 
 @Named
@@ -61,6 +61,9 @@ public class CheckDataController implements Serializable {
 	
 	@Inject
 	private ClaimCRUD claimCRUD;	
+	
+	@Inject
+	private ExternalPartyCRUD externalPartyCRUD;
 
 	// Inject task form available through the camunda cdi artifact
 	@Inject
@@ -77,11 +80,12 @@ public class CheckDataController implements Serializable {
 		return claim;
 	}
 	
+//	
 //	public List<ExternalParty> getExternalPartiesCollection() {
-//		if(externalPartiesCollection == null) {
-//			this.externalPartiesCollection = new ArrayList<ExternalParty>(this.getClaim().getExternalParties());	
-//		}
-//		return this.externalPartiesCollection;
+//		this.getClaim();
+//		externalPartyCRUD.findAll();
+////			this.externalPartiesCollection = new ArrayList<ExternalParty>(this.getClaim().getExternalParties());	
+////		}
 //	}
 	
 	
