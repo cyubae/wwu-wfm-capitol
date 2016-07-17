@@ -14,7 +14,7 @@ package de.unimuenster.wfm.capitol.settlement.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -80,6 +80,10 @@ public class CheckDataController implements Serializable {
 //			claim = claimCRUD.find((Integer) (businessProcess.getVariable("claim_id_internal")));
 		}
 		return claim;
+	}
+	
+	public Collection<ExternalParty> getExternalParties() {
+		return this.getClaim().getExternalParties();
 	}
 	
 //	

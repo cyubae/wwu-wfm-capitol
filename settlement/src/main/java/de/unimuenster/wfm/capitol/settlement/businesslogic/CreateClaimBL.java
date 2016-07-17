@@ -69,7 +69,6 @@ public class CreateClaimBL {
 			newClaim.setHandleManually(true);
 		}
 
-		newClaim.setPartiesInvolved((Boolean) delegateExecution.getVariable("parties_involved"));
 
 		newClaim.setClaimDescription((String) delegateExecution.getVariable("claim_description"));
 		newClaim.setVehicleIDNumber((String) delegateExecution.getVariable("vehicle_identification_number"));
@@ -130,13 +129,16 @@ public class CreateClaimBL {
 		}
 		delegateExecution.setVariable("continue_claim_handling", continueClaimHandling);
 
-		
 		//associate involved parties
+		newClaim.setPartiesInvolved((Boolean) delegateExecution.getVariable("parties_involved"));
 		if (newClaim.isPartiesInvolved()) {
+			LOGGER.log(Level.INFO, "isPartiesInvolved: true");
 			int numberOfExternalParties = (Integer) delegateExecution.getVariable("number_of_involved_parties");
 			if (numberOfExternalParties > 0) {
+				LOGGER.log(Level.INFO, "numberOfExternalParties:" + numberOfExternalParties);
 				for (int partyCount = 1; partyCount<=numberOfExternalParties; partyCount++) {
 					newClaim.addExternalParty(createExternalParty(delegateExecution, partyCount));
+					LOGGER.log(Level.INFO, "Add party no. " + partyCount);
 				}
 			}
 		}

@@ -6,10 +6,6 @@ import java.util.Map;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.persistence.EntityGraph;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 
 import de.unimuenster.wfm.capitol.entities.Claim;
 

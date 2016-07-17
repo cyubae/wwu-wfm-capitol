@@ -55,23 +55,23 @@
 								<p:outputLabel for="claimValue" value="Claim Value (EUR): " />
 								<h:outputText id="claimValue"
 									value="#{checkDataController.claim.claimValue}" />
+							</h:panelGrid>
 						</p:panel>
 
 						<!-- Data Table for parties involved -->
-						<p:panel id="panel_1b" header="Involved Parties" lazy="true">
-							<p:dataTable value="#{checkDataController.claim.externalParties}"
-								var="externalParty">
+						<p:panel id="panel_1b" header="Involved Parties">
+							<h:dataTable value="#{checkDataController.externalParties}"
+								var="externalParty" >
 								<p:column headerText="First Name">
-									<h:outputText id="policyId" value="#{externalParty.firstName}" />
+									<h:outputText id="externalFirstName" value="#{externalParty.firstName}" />
 								</p:column>
 
 								<p:column headerText="Last Name">
-									<h:outputText id="policyId" value="#{externalParty.surname}" />
+									<h:outputText id="externalSurname" value="#{externalParty.surname}" />
 								</p:column>
-							</p:dataTable>
+							</h:dataTable>
 						</p:panel>
 
-						</h:panelGrid>
 					</p:panel>
 
 					<p:panel id="panel_2" header="Contract Information">
