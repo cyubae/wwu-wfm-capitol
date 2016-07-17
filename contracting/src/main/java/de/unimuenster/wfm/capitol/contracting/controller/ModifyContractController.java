@@ -117,7 +117,7 @@ public class ModifyContractController implements Serializable {
 	public void submitValidation() throws IOException {
 		//update process variable
 		businessProcess.setVariable("contract_validated", true);
-		businessProcess.setVariable("contract_result", EnumMapper.CONTRACTRESULT_TO_INTEGER.get(ContractResult.ACCEPTED));
+		businessProcess.setVariable("contract_result", EnumMapper.CONTRACTRESULT_TO_INTEGER.get(ContractResult.MODIFIED));
 
 		//update contract persistence object
 		this.getContract().setValidated(true);		
