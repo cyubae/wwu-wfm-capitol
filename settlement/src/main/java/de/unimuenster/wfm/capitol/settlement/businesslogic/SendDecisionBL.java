@@ -1,6 +1,6 @@
 package de.unimuenster.wfm.capitol.settlement.businesslogic;
 
-import java.text.ParseException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,12 +13,8 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 
 import de.unimuenster.wfm.capitol.dto.CaseDecision;
 import de.unimuenster.wfm.capitol.dto.CaseDecision.Decision;
-import de.unimuenster.wfm.capitol.dto.ContractProposal;
-import de.unimuenster.wfm.capitol.dto.ContractProposal.Order;
 import de.unimuenster.wfm.capitol.entities.Claim;
-import de.unimuenster.wfm.capitol.entities.Contract;
 import de.unimuenster.wfm.capitol.enums.ClaimDecision;
-import de.unimuenster.wfm.capitol.helper.DateTools;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
 import de.unimuenster.wfm.capitol.jpa.ClaimCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
@@ -102,7 +98,7 @@ public class SendDecisionBL {
 					+ " there is no policy for car with received vehicle_identification_number "
 					+ (String) delegateExecution.getVariable("vehicle_identification_number")
 					+ " that covers damage date: "
-					+ (String) delegateExecution.getVariable("damage_date") );
+					+ (Date) delegateExecution.getVariable("damage_date") );
 		}		
 		else if(!contractFound) {
 			decision.setDescription("For given insurance_id: " 
