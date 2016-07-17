@@ -25,50 +25,51 @@
 						Please check and validate the details of the claim received.</p>
 
 					<p:panel id="panel_1" header="Claim Information">
-						<h:panelGrid columns="2" columnClasses="labeltitle, labelvalue"
-							style="margin-top: 20px;">
+						<p:panel id="panel_1a" header="Claim Details" lazy="true">
+							<h:panelGrid columns="2" columnClasses="labeltitle, labelvalue"
+								style="margin-top: 20px;">
 
-							<p:outputLabel for="claimId" value="Claim ID: " />
-							<h:outputText id="claimId"
-								value="#{checkDataController.claim.claimId}" />
+								<p:outputLabel for="claimId" value="Claim ID: " />
+								<h:outputText id="claimId"
+									value="#{checkDataController.claim.claimId}" />
 
 
-							<p:outputLabel for="externalClaimId" value="External Claim ID: " />
-							<h:outputText id="externalClaimId"
-								value="#{checkDataController.claim.externalClaimId}" />
+								<p:outputLabel for="externalClaimId" value="External Claim ID: " />
+								<h:outputText id="externalClaimId"
+									value="#{checkDataController.claim.externalClaimId}" />
 
-							<p:outputLabel for="claimDescription" value="Description: " />
-							<h:outputText id="claimDescription"
-								value="#{checkDataController.claim.claimDescription}" />
+								<p:outputLabel for="claimDescription" value="Description: " />
+								<h:outputText id="claimDescription"
+									value="#{checkDataController.claim.claimDescription}" />
 
-							<p:outputLabel for="damageDate" value="Damage Date: " />
-							<h:outputText id="damageDate"
-								value="#{checkDataController.claim.damageDate}">
-								<f:convertDateTime pattern="dd-MM-yyyy" />
-							</h:outputText>
+								<p:outputLabel for="damageDate" value="Damage Date: " />
+								<h:outputText id="damageDate"
+									value="#{checkDataController.claim.damageDate}">
+									<f:convertDateTime pattern="dd-MM-yyyy" />
+								</h:outputText>
 
-							<p:outputLabel for="damageAddress" value="Damage Address: " />
-							<h:outputText id="damageAddress"
-								value="#{checkDataController.claim.damageAddress}" />
+								<p:outputLabel for="damageAddress" value="Damage Address: " />
+								<h:outputText id="damageAddress"
+									value="#{checkDataController.claim.damageAddress}" />
 
-							<p:outputLabel for="claimValue" value="Claim Value: " />
-							<h:outputText id="claimValue"
-								value="#{checkDataController.claim.claimValue} EUR" />
+								<p:outputLabel for="claimValue" value="Claim Value (EUR): " />
+								<h:outputText id="claimValue"
+									value="#{checkDataController.claim.claimValue}" />
+						</p:panel>
 
-							<!-- Data Table for parties involved -->
-							<p:panel id="panel_1a" header="Involved Parties" lazy="true">
-								<p:dataTable
-									value="#{checkDataController.claim.externalParties}"
-									var="externalParty">
-									<p:column headerText="First Name">
-										<h:outputText id="policyId" value="#{externalParty.firstName}" />
-									</p:column>
+						<!-- Data Table for parties involved -->
+						<p:panel id="panel_1b" header="Involved Parties" lazy="true">
+							<p:dataTable value="#{checkDataController.claim.externalParties}"
+								var="externalParty">
+								<p:column headerText="First Name">
+									<h:outputText id="policyId" value="#{externalParty.firstName}" />
+								</p:column>
 
-									<p:column headerText="Last Name">
-										<h:outputText id="policyId" value="#{externalParty.surname}" />
-									</p:column>
-								</p:dataTable>
-							</p:panel>
+								<p:column headerText="Last Name">
+									<h:outputText id="policyId" value="#{externalParty.surname}" />
+								</p:column>
+							</p:dataTable>
+						</p:panel>
 
 						</h:panelGrid>
 					</p:panel>
