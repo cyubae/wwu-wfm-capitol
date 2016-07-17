@@ -90,7 +90,9 @@ public class CreateClaimBL {
 		//try to find contract associated to insurance_id sent with the claim which covers damage date
 		Contract contract = null;
 		List<Contract> contractList = contractCRUD.findContractsByInsuranceId((Integer) delegateExecution.getVariable("insurance_id"));
+		LOGGER.log(Level.INFO, "Found contracts: " + contractList.size());
 		for(Contract currentContract : contractList) {
+			LOGGER.log(Level.INFO, "currentContract: " + currentContract.getContractId());
 			Date contractStartDate = currentContract.getPickUpDate();
 			Date contractEndDate = currentContract.getReturnDate();
 			Date damageDate = newClaim.getDamageDate();
@@ -105,15 +107,21 @@ public class CreateClaimBL {
 		
 		if(contract != null) {
 			//try to find car associated to insurance found
-			List<Car> cars = carCRUD.findCarByVehicleId(newClaim.getVehicleIDNumber());		
+			List<Car> cars = carCRUD.findCarByVehicleId(newClaim.getVehicleIDNumber());	
+			LOGGER.log(Level.INFO, "Found cars: " + cars.size());
 			//find policy for given car
 			Car carClaimed = null;
+			LOGGER.log(Level.INFO, "Iterating through policies: " + contract.getPolicies().size());
 			for(Policy currentPolicy1 : contract.getPolicies() ) {
+				LOGGER.log(Level.INFO, "LOOP_1");
 				for(Car currentCar : cars) {
+					LOGGER.log(Level.INFO, "LOOP_2");
 					Policy currentPolicy2 = currentCar.getPolicy();
 					if (currentPolicy1 == currentPolicy2) {
+						LOGGER.log(Level.INFO, "CONDITION_1");
 						carClaimed = currentCar;
 						newClaim.setPolicy(carClaimed.getPolicy());
+						LOGGER.log(Level.INFO, "Found policy: " + carClaimed.getPolicy());
 						contractFound = true;				
 					}
 				}
