@@ -15,6 +15,7 @@ package de.unimuenster.wfm.capitol.contracting.controller;
 import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Collection;
 import java.util.logging.Logger;
 
@@ -85,6 +86,10 @@ public class ModifyContractController implements Serializable {
 		return this.totalCost;
 	}
 
+	/**
+	 * Helper function for ajax changes
+	 * @param policy
+	 */
 	public void changeDailyPremium(Policy policy) {
 		BigDecimal dailyPremium = PremiumCalculator.getDailyPremium(
 				policy.getCar().getType(), 
@@ -92,10 +97,13 @@ public class ModifyContractController implements Serializable {
 				policy.getCar().getPs(), 
 				policy.getCar().getConstructionYear());
 		int discount = policy.getDiscount();
-		BigDecimal finalPremium = dailyPremium.multiply(new BigDecimal(1 - ((double)discount)/100) );		
+		BigDecimal finalPremium = dailyPremium.multiply(new BigDecimal(1 - ((double)discount)/100) ).setScale(2, RoundingMode.HALF_EVEN);		
 		policy.setDailyPremium(finalPremium);
 	}
 	
+	/**
+	 * Helper function for ajax changes
+	 */
 	public void changeAllDailyPremiums() {
 		Collection<Policy> policies = this.getContract().getPolicies();
 		for(Policy policy : policies) {
