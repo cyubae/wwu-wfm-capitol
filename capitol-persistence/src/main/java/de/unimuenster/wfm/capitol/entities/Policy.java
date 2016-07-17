@@ -48,6 +48,7 @@ public class Policy implements Serializable {
 
 	//daily insurance premium (in euro cents)
 	protected BigDecimal dailyPremium;
+	protected int discount = 0;
 	
 
 	public Policy() {
@@ -108,6 +109,14 @@ public class Policy implements Serializable {
 	public void removeClaim(Claim claim) {
 		this.claims.remove(claim);
 	}	
+
+	public int getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
 
 	@Override
 	public String toString() {

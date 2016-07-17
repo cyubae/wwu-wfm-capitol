@@ -14,6 +14,9 @@ package de.unimuenster.wfm.capitol.contracting.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Collection;
 import java.util.logging.Logger;
 
 import javax.enterprise.context.ConversationScoped;
@@ -25,7 +28,9 @@ import org.camunda.bpm.engine.cdi.jsf.TaskForm;
 
 import de.unimuenster.wfm.capitol.contracting.enums.ContractResult;
 import de.unimuenster.wfm.capitol.contracting.helper.EnumMapper;
+import de.unimuenster.wfm.capitol.contracting.helper.PremiumCalculator;
 import de.unimuenster.wfm.capitol.entities.Contract;
+import de.unimuenster.wfm.capitol.entities.Policy;
 import de.unimuenster.wfm.capitol.jpa.CarCRUD;
 import de.unimuenster.wfm.capitol.jpa.ContractCRUD;
 import de.unimuenster.wfm.capitol.jpa.CustomerCRUD;
@@ -34,7 +39,7 @@ import de.unimuenster.wfm.capitol.jpa.PolicyCRUD;
 @Named
 @ConversationScoped
 public class ModifyContractController implements Serializable {
-	
+
 	private static Logger LOGGER = Logger.getLogger(ModifyContractController.class.getName());
 
 	private static  final long serialVersionUID = 1L;
@@ -42,7 +47,7 @@ public class ModifyContractController implements Serializable {
 	// the BusinessProcess to access the process variables
 	@Inject
 	private BusinessProcess businessProcess;
-	
+
 	// Inject CRUD-Services to access persistence unit	
 	@Inject
 	private ContractCRUD contractCRUD;
@@ -62,27 +67,52 @@ public class ModifyContractController implements Serializable {
 
 	// Caches the Contract during the conversation
 	private Contract contract;
-	
-//	private Collection<Policy> policies;
-	
+
+	//	private Collection<Policy> policies;
+
 	public Contract getContract() {
 		if (contract == null) {
 			contract = contractCRUD.find((Integer) (businessProcess.getVariable("contract_id")));
 		}
 		return contract;
 	}
-	
+
 	private int totalCost = -1;
-	
+
 	public int getTotalCost() {
 		if(totalCost<0) {
-			
+
 		}
 		return this.totalCost;
 	}
+
+	/**
+	 * Helper function for ajax changes
+	 * @param policy
+	 */
+	public void changeDailyPremium(Policy policy) {
+		BigDecimal dailyPremium = PremiumCalculator.getDailyPremium(
+				policy.getCar().getType(), 
+				policy.getContract().getInsuranceType(), 
+				policy.getCar().getPs(), 
+				policy.getCar().getConstructionYear());
+		int discount = policy.getDiscount();
+		BigDecimal finalPremium = dailyPremium.multiply(new BigDecimal(1 - ((double)discount)/100) ).setScale(2, RoundingMode.HALF_EVEN);		
+		policy.setDailyPremium(finalPremium);
+	}
 	
-	
-	
+	/**
+	 * Helper function for ajax changes
+	 */
+	public void changeAllDailyPremiums() {
+		Collection<Policy> policies = this.getContract().getPolicies();
+		for(Policy policy : policies) {
+			this.changeDailyPremium(policy);
+		}
+	}
+
+
+
 
 	public void submitValidation() throws IOException {
 		//update process variable
@@ -92,20 +122,20 @@ public class ModifyContractController implements Serializable {
 		//update contract persistence object
 		this.getContract().setValidated(true);		
 		contractCRUD.update(this.getContract());
-		
-				
+
+
 		try {
 			// Complete user task from
-		
+
 			taskForm.completeTask();
-		
+
 		} catch (IOException e) {
 			// Rollback both transactions on error
-		
+
 			throw new RuntimeException("Cannot complete task", e);
 		}
 	}
-	
-	
+
+
 }
 
