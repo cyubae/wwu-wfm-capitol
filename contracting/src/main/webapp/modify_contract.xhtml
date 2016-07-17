@@ -101,6 +101,8 @@
 								<f:selectItem itemValue="TOTAL" itemLabel="Total" />
 								<f:selectItem itemValue="PARTIAL" itemLabel="Partial" />
 								<f:selectItem itemValue="LIABILITY" itemLabel="Liability" />
+								<p:ajax event="keyup" update=":submitForm:policies :submitForm:totalCost"
+									listener="#{modifyContractController.changeAllDailyPremiums()}" />
 							</p:selectOneMenu>
 							<h:message for="insuranceType" />
 
@@ -110,7 +112,7 @@
 								showOn="button" required="true"
 								requiredMessage="Required Field!" pattern="dd-MM-yyyy">
 								<f:convertDateTime pattern="dd-MM-yyyy" />
-								<p:ajax event="keyup" update="totalCost" />
+								<p:ajax event="keyup" update="totalCost :submitForm:totalCost" />
 							</p:calendar>
 							<h:message for="pickUpDate" />
 
@@ -119,7 +121,7 @@
 								value="#{modifyContractController.contract.returnDate}"
 								showOn="button" required="true"
 								requiredMessage="Required Field!" pattern="dd-MM-yyyy">
-								<p:ajax event="keyup" update="totalCost" />
+								<p:ajax event="keyup" update="totalCost :submitForm:totalCost" />
 								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</p:calendar>
 							<h:message for="returnDate" />
@@ -132,17 +134,15 @@
 					</p:panel>
 
 					<p:panel id="panel_3" header="Policies">
-						<p:dataTable value="#{modifyContractController.contract.policies}"
+						<p:dataTable id="policies" value="#{modifyContractController.contract.policies}"
 							var="policy">
 							<p:column headerText="Policy ID">
 								<h:outputText id="policyId" value="#{policy.policyId}" />
 							</p:column>
 
 							<p:column headerText="Daily Premium (EUR)">
-								<p:inputText id="dailyPremium" value="#{policy.dailyPremium}"
-									required="true" requiredMessage="Required Field!">
-									<p:ajax event="keyup" update=":submitForm:totalCost" />
-								</p:inputText>
+								<h:outputText id="dailyPremium" value="#{policy.dailyPremium}">
+								</h:outputText>
 								<p:message for="dailyPremium" />
 							</p:column>
 
@@ -178,6 +178,8 @@
 									<f:selectItem itemValue="VAN" itemLabel="VAN" />
 									<f:selectItem itemValue="LIMOUSINE" itemLabel="LIMOUSINE" />
 									<f:selectItem itemValue="TRUCK" itemLabel="TRUCK" />
+									<p:ajax event="keyup" update="dailyPremium :submitForm:totalCost"
+										listener="#{modifyContractController.changeDailyPremium(policy)}" />
 								</p:selectOneMenu>
 								<p:message for="carType" />
 							</p:column>
@@ -192,6 +194,8 @@
 							<p:column headerText="Horsepower">
 								<p:inputText id="ps" value="#{policy.car.ps}" required="true"
 									requiredMessage="Required Field!">
+									<p:ajax event="keyup" update="dailyPremium :submitForm:totalCost"
+										listener="#{modifyContractController.changeDailyPremium(policy)}" />
 								</p:inputText>
 								<p:message for="ps" />
 							</p:column>
@@ -200,6 +204,8 @@
 								<p:inputText id="constructionYear"
 									value="#{policy.car.constructionYear}" required="true"
 									requiredMessage="Required Field!">
+									<p:ajax event="keyup" update="dailyPremium :submitForm:totalCost"
+										listener="#{modifyContractController.changeDailyPremium(policy)}" />
 								</p:inputText>
 								<p:message for="constructionYear" />
 							</p:column>
