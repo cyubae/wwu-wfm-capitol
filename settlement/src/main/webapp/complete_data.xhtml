@@ -61,6 +61,12 @@
 								required="true" requiredMessage="Required Field!" />
 							<p:message for="damageAddress" />
 
+							<p:outputLabel for="isExternalPartiesInvolved"
+								value="External parties involved?: " />
+							<p:selectBooleanCheckbox id="isExternalPartiesInvolved"
+								value="#{completeDataController.claim.partiesInvolved}" />
+							<p:message for="isExternalPartiesInvolved" />
+
 							<p:outputLabel for="claimValue" value="Claim Value (EUR): " />
 							<p:inputText id="claimValue"
 								value="#{completeDataController.claim.claimValue}"

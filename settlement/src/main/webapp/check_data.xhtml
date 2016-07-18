@@ -51,9 +51,13 @@
 							<h:outputText id="damageAddress"
 								value="#{checkDataController.claim.damageAddress}" />
 
-							<p:outputLabel for="claimValue" value="Claim Value: " />
+							<p:outputLabel for="isExternalPartiesInvolved" value="External parties involved?: " />
+							<h:outputText id="isExternalPartiesInvolved"
+								value="#{checkDataController.claim.partiesInvolved}" />
+
+							<p:outputLabel for="claimValue" value="Claim Value (EUR): " />
 							<h:outputText id="claimValue"
-								value="#{checkDataController.claim.claimValue} EUR" />
+								value="#{checkDataController.claim.claimValue}" />
 
 							<!-- Data Table for parties involved -->
 
