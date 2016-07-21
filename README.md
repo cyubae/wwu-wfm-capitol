@@ -1,17 +1,31 @@
 # wwu-wfm-capitol
 
+#Anpassungen am Code
+
+Um mit BVIS kommunizieren zu können muss die Variable DESTINATION_URL in den Klassen "SendContractProposalBL" und "SendRejectionBL" (Contracting) bzw. in der Klasse "SendDecisionBL" (Settlement) auf den deployment-Ort von BVIS angepasst werden.
+
 # Build Reihenfolge 
 
 (wird bei Ausführung von mvn clean install im Hauptordner automatisch eingehalten)
 
 1. Partner Interface
 2. MessagingService
-4. capitol-persistence
-3. Processes (contracting and settlement)
+4. capitol-persistence 
+3. Processes (contracting and settlement)*
 
-# Deploy Reihenfolge 
+# Deployment
 
-Selbe wie oben
+Das Projekt ist auf die Wildfly-Distribution von Camunda ausgelegt. Nach dem Herunterladen und entpacken muss zuerst ein Wildfly-User mit dem Script add-user.bat angelegt werden. Danach kann der Server gestartet und über localhost:8080 auf die WebConsole zugegriffen werden. Von hier aus kann das Projekt deployt werden:
+
+1. Deploye HSQLDB.jar (aus dem Ordner "database_settings")
+2. Erstellen einer neuen Non-XA Datasource (Die Anleitung hierfür befindet sich ebenfalls in "database_settings")
+3. Neustarten des Servers, um die Datasource zu aktivieren.
+4. Deployment von Partner-Interface und MessagingService
+5. Deployment von Contracting und Settlement
+
+#Herunterfahren
+
+Aufgrund eines Problems mit Wildfly/JBoss (https://issues.jboss.org/browse/JBWS-3842?_sscc=t) muss vor dem Abschalten des Servers ein Prozess in der Wildfly Console disabled werden, da ansonsten der Server nicht wieder bootet.
 
 # partner-interface bietet REST interface.
 
